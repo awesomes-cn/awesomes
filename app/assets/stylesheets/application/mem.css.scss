@@ -10,3 +10,29 @@
     }
   }
 }
+
+
+.mem-wraper{
+  padding: 10px; background-color: #FFF; box-shadow: 1px 1px 1px #DADADA; padding-left: 100px; min-height: 100px;
+  .tx{width: 80px; height: 80px; border-radius: 5px; display: inline-block; position: absolute; left: 25px; top: 10px;}
+  h3{margin: 0; margin-top: 3px;}
+  .desc{color: #999}
+  ul{
+    padding: 0;
+    li{
+      list-style: none;
+      &.thirds{
+        font-size: 14px;
+        a{
+          text-decoration: none;display: inline-block; margin-right: 10px; background-color: #F9F9F9;  color: #999;  box-shadow: 1px 1px 1px #EEE;
+          i{padding: 0 5px; display: inline-block; height: 100%; color: #FFF;}
+          span{padding: 0 5px;display: inline-block;background-color: #F9F9F9; }
+          &.home{background-color: #A1DD9A;}
+          &.twitter{background-color: #918FF9}
+          &.github{background-color: #2EB4E5}
+
+        } 
+      }
+    }
+  }
+}

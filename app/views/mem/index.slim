@@ -1,26 +1,20 @@
 =content_for :con
-  div.mem-wrap
-    div.left-bar
-      div.inner
+  div.row
+    div.col-md-8
+      div.mem-wraper
         img.tx[src="#{access_path 'mem'}#{@mem.avatar}"]
         ul
-          li: strong =@mem.nc
-          li 第 #{@mem.index} 位会员
-          li
-            i.fa.fa-map-marker>
-            span =@mem.mem_info.location
-    div.right-wrap
-      h3 Github名片
-      p 昵称：#{@mem.nc}
-      p 粉丝：#{@mem.mem_info.followers}
-      p 关注：#{@mem.mem_info.following}
-      p 
-        | 博客：
-        a[href="#{@mem.mem_info.blog}" target="_blank"] =@mem.mem_info.blog
-      p 
-        | Github主页：
-        a[href="#{@mem.mem_info.html_url}" target="_blank"] =@mem.mem_info.html_url
+          li: h3 =@mem.nc
+          li: span.desc 第 #{@mem.index} 位会员，于 #{@mem.created_at} 加入
+          li.thirds
+            a.home[href="#{@mem.mem_info.blog}" target="_blank"]
+              i.fa.fa-home
+              span =@mem.mem_info.blog
+            a.twitter[href="" target="_blank"]
+              i.fa.fa-twitter
+              span hxh
+            a.github[href="#{@mem.mem_info.html_url}"]
+              i.fa.fa-github
+              span awesome-cn
 
-
-
-
+    div.col-md-4
