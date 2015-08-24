@@ -1,0 +1,20 @@
+=content_for :banner
+  div.doc-editor
+    =render "layouts/markdown_editor"
+  -if is_admin
+    =form_tag "/markdown.json" 
+      input.editor-val[type="hidden" name="markdown"]
+      button.btn.btn-primary#btn-markdown 保存 Markdown
+
+  input#tmp-con[type="hidden" value="#{@item.fdesc}"]  
+  javascript:
+    $(document).on('ready page:load', function(){ 
+      markdown_editor.setValue($("#tmp-con").val()); 
+    })
+   
+   
+  css:
+    body{background-color: #FFF}
+    footer{display: none}
+    .doc-editor{  padding-top: 52px;}
+ 

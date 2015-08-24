@@ -1,0 +1,25 @@
+div.panel.panel-default
+  div.panel-heading
+    h4.txt-center 资源列表
+  div.panel-body.resource-list[style="background-color: #FFF"]
+    div.list-group#relist-wrap[ng-controller="RepoResouceCtrl" ng-init="init('#{@item.id}','#{@item.owner}','#{@item.alia}')"]
+      li.list-group-item[ng-repeat="item in resources"] 
+        span[ng-show="item.recsts == '1'"] 
+          | [审核中]
+        a[href="{{item.url}}" target="_blank"]  {{item.title}}
+        div.opers 
+          span[ng-class="item.can_edit ? 'yes' : 'no' "]
+            a.op[href="" ng-click="destroy(item)" ]: i.fa.fa-trash
+            a.op[href="" ng-click="edit(item)" onclick="edit_from(this)"]: i.fa.fa-pencil
+          a[href="/mem"]: img.tx[src="http://assets.renjk.com/mem/15061814160567168865.jpg"]
+
+      li.list-group-item#edit-item[style="background-color: #F4F4F4"]
+        div.row
+          div.col-md-5.col-sm-4
+            input.form-control[placeholder="资源标题" ng-model="edit_item.title"]
+          div.col-md-6.col-sm-6
+            input.form-control[placeholder="链接地址" ng-model="edit_item.url"] 
+          div.col-md-1.col-sm-2
+            button.btn.btn-primary.open-login[ng-click="sub()"] 提交  
+  div.panel-footer
+    small 你可以将与该库有关的学习资源（博文，书籍，视频教程，精选问题解答）分享到这里          

@@ -1,0 +1,2 @@
+module ResourceHelper
+end

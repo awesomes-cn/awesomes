@@ -1,0 +1,51 @@
+footer.footer
+  div.container
+    div.row
+      div.col-md-6
+        img[src="/assets/footer-logo.png"]
+      div.col-md-6
+        ul.menus
+          li: a[href="/site/about"] 关于
+          li: a[href="/site/about"] 联系我们
+          li: a[href="/site/about"] 友情链接
+          li: a[href="/site/about"] 发展历程
+        div.clear  
+        p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
+    div.bottom-wraper
+      p 
+        | Awesomes.cn 所有的评论和发布均采用
+        a<>[href="/markdown"] Markdown
+        | 格式
+      p 
+        | 京ICP备14011059号-1 | 本站采用
+        a<>[href="http://creativecommons.org/licenses/by/4.0/" target="blank"]  识共享署名 4.0 国际许可协议
+        | 进行许可
+      /img[src="/assets/seal.png"]
+      p
+        | 本站已通过
+        a<>[href="http://webscan.360.cn/index/checkwebsite/url/www.awesomes.cn" name="9f7397b639fc54f2f6b9e31257486317" target="_blank"] 360网站安全检测平台</a>
+        | 和
+        a<>[href="http://zhanzhang.anquan.org/physical/report/?domain=www.awesomes.cn" target="_blank"] 安全联盟
+        | 的检测 
+        | 来
+        a<>[href="http://koubei.baidu.com/s/awesomes.cn"  target="_blank"]  百度口碑
+        | 为我们点赞吧
+      p.third-contact
+        a[href="http://weibo.com/awesomescn" target="_blank"]: i.fa.fa-weibo
+        a[href="https://github.com/awesomes-cn" target="_blank"]: i.fa.fa-github
+        a[href="https://twitter.com/awesomescn"  target="_blank"]: i.fa.fa-twitter
+
+
+// login Modal
+div.modal.fade[id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
+  div.modal-dialog[role="document"]
+    div.modal-content
+      div.modal-header
+        button[type="button" class="close" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"] &times;
+        h4.modal-title 登陆到 Awesomes
+
+      div.modal-body
+        a[href="/mem/login?from=github" data-no-turbolink]: i.fa.fa-github
+      div.modal-footer
+        span Awesomes cn会对接到你的Github账号，可将您的贡献同步到自己的Github

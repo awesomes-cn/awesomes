@@ -1,0 +1,20 @@
+=cache "sitemap_xml",skip_digest: true,:expires_in => 1.day do 
+  urlset
+    -sitemap.each do |item|
+      url
+        loc =item[:loc]
+        lastmod = item[:lastmod]
+        changefreq =item[:changefreq]
+        data
+          display
+            title =item[:title]
+            -item[:tag].each do |key|
+              tag =key
+            pubTime =item[:pubTime]
+            -if item[:breadCrumb]
+              -item[:breadCrumb].each do |b|
+                breadCrumb[title="#{b[:title]}" url="#{b[:url]}"]
+            -if item[:thumbnail]
+              thumbnail[loc="#{item[:thumbnail]}"]
+            -if item[:video]
+              video[loc="#{item[:video][:loc]}" title="#{item[:video][:title]}" thumbnail_loc="#{item[:video][:thumbnail_loc]}" duration="#{item[:video][:duration]}"]

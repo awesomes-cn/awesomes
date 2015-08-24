@@ -1,0 +1,23 @@
+header.navbar.navbar-inverse
+  div.container
+    div.navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-navbar-collapse"]
+        span.sr-only Toggle navigation
+        i.fa.fa-bars
+      a.navbar-brand.logo[href="/"] Awesomes 
+
+    div#bs-navbar-collapse.collapse.navbar-collapse 
+      ul.nav.navbar-nav.navbar-left.menus
+        /li: a[href="/docs"] 中文文档库
+        li: a[href="/repos/Dom/animation"] 动画
+        li: a[href="/repos/Mobile"] 移动端
+        li: a[href="/repos/Images/sliders"] 幻灯片
+        li: a[href="/repos/Applications/builds"] 构建工具
+
+      
+      ul.nav.navbar-nav.navbar-right
+        -if !current_mem
+          li: a.open-login[href=""] 登陆
+        -else
+          li: a[href="/mem"] =current_mem.nc
+         

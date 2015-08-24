@@ -1,0 +1,7 @@
+-@root = Menutyp.find_by_key @item.rootyp
+-@typ = Menutyp.find_by_key @item.typcd
+ol.breadcrumb
+  li: a[href="/"] Home 
+  li: a[href="/repos/#{@root.key}"] =@root.sdesc
+  li: a[href="/repos/#{@root.key}/#{@typ.key}"] =@typ.sdesc
+  li.active =@item.name

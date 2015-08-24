@@ -1,0 +1,41 @@
+div.comment-wraper
+  =cache "comments_#{@comment[:typ]}_#{@comment[:idcd]}",skip_digest: true do 
+    -comment_list @comment[:typ],@comment[:idcd]
+    -if @comments.count > 0
+      ul.comment-list
+        -@comments.each do |item|
+          li[data-mem="#{item.mem_id}"]
+            a>[href="/mem/#{item.mem.id}" target="_blank"]: img.tx[src="#{access_path 'mem'}#{item.mem.avatar}"]
+            a>[href="/mem/#{item.mem.id}" target="_blank"] =item.mem.nc
+            span =item.friendly_time
+            a.oper.reply-btn[href="" data-mem="#{item.mem.nc}"]: i.fa.fa-reply
+            a.oper[href="/comment/#{item.id}/edit" ]: i.fa.fa-pencil
+            a.oper[href="" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
+            =raw item.raw_con
+
+        
+
+    -else
+  =render "layouts/comment_editor"
+
+  javascript:
+    $(document).on('ready page:load', function(){
+      $('.comment-wraper').on('click','.reply-btn',function(){
+        $('html,body').animate({scrollTop:$('.comment-wraper li:last').offset().top});
+        markdown_editor.setValue(markdown_editor.getValue()+"@"+$(this).attr("data-mem")+" "); 
+      });
+
+      if(Rails.islogin){
+        $(".comment-list > li[data-mem="+Rails.mem_id+"]").addClass("show-oper");
+      } 
+    })
+
+    function del_comment(obj){
+      if(!confirm("确定删除该评论？")){return false}
+      $.post("/comment/"+$(obj).attr("data-id")+"/destroy",function(data){
+        if(data.status){
+          $(obj).closest("li").fadeOut();
+        }
+      })
+      
+    }  

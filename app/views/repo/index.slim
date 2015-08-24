@@ -1,0 +1,92 @@
+=content_for :title 
+  | #{@item.name} - awesomes
+
+=content_for :keywords
+  | #{@item.name},#{@item.name}源码,#{@item.name}下载,#{@item.name}文档,#{@item.name}资源库
+
+=content_for :description
+  | #{@item.description}
+
+=content_for :right_bar 
+  =render 'layouts/right_bar'
+=content_for :con
+  div.panel.panel-default.view-wraper
+    =render "banner"
+    
+
+    
+    div.panel-body.detail
+      div.lang
+        span[data-lang="en"] EN
+        span[data-lang="zh"] 中
+      article[data-lang="en" ng-non-bindable]
+        =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
+          =raw GitHub::Markdown.render @item.about
+      article[data-lang="zh" ng-non-bindable]
+        =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
+          -if !@item.about_zh.blank? 
+            =raw GitHub::Markdown.render @item.about_zh
+            div.edit-footer
+              p
+                | 感谢：
+                -@item.contributors.each do |mem|
+                  a<>[href="/mem/#{mem.id}"] =mem.nc
+                  
+                | 的贡献 查看
+                a<[href="#{@item.link_url}/commits"] 版本历史
+              p
+                | 觉得说明不够完善？有错误？或者你有额外的资源和文档（务必保证质量）
+                a<>[href="#{@item.link_url}/readme"] 马上编辑完善
+              p 提示：并非必须翻译英文说明，某些库的说明比较简短，可以从官方的主页翻译必要的信息（大致用法，主要参数）
+          -else
+            div.no-zh
+              h3 #{@item.name} 暂时没有中文说明
+              h4 我们期待您参与进来翻译和完善
+              h5: a.open-login[href="/repo/#{@item.owner}/#{@item.alia}/readme" ] 马上添加中文说明
+    
+  /=render "resources"
+
+  div.panel.panel-default    
+    div.panel-heading: h4.txt-center 讨论区  
+    div.panel-body
+      =render "layouts/comment"
+
+    div.panel-footer
+      small 
+        | 如果你有什么问题或感想请这在这里留言讨论，我们会尽量为您解答。必要时可以在
+        a<>[href="#{@item.html_url}/issues" target="_blank"] Github issues
+        | 提交Bug（注意是项目本身的问题，使用过程中遇到的问题可以移步
+        a<>[href="http://stackoverflow.com/" target="_blank"] stackoverflow 
+        | ，注意打上相应的Tag）
+          
+  javascript:
+    $(document).on('ready page:load', function(){
+      $(".detail > .lang > span").click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        $(".detail > article[data-lang="+$(this).attr('data-lang')+"]").show().siblings("article").hide();
+      })
+      $(".detail > .lang > span[data-lang=#{@lang}]").click();
+     
+
+      $(".detail pre").each(function(){
+        var pre = $(this);
+        var _lang = pre.attr('lang');
+        if(_lang == 'html'){
+          _lang = "markup";
+        }
+        pre.find('code').attr('class',"language-"+_lang);
+      })
+      Prism.highlightAll();
+
+    }) 
+
+    function edit_from(obj){
+      $("#edit-item").insertAfter($(obj).closest("li"));
+    }
+
+    function reset_from(){
+      $("#edit-item").appendTo("#relist-wrap");
+    }
+
+
+

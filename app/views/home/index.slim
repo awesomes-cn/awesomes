@@ -1,0 +1,22 @@
+=content_for :banner
+	div.doc-banner.repo-banner
+      h3 也许是最好的免费开源的前端资源库
+      h4 The definitive source of the best  Web libraries, frameworks, and plugins
+      form[action="/repos" method="get"]
+        input.txt[type="text" placeholder="查找库" name="keyword"]
+        button.serach-btn[type="submit"]: i.fa.fa-search
+=content_for :con
+  div.row.repo-list
+    =cache "home_menus",skip_digest: true,:expires_in => 2.day do 
+      -Menutyp.menus('A').each do |root| 
+        div.panel.panel-default 
+          div.panel-heading =root.sdesc
+          div.panel-body 
+            -root.subitems_b.each do |item|
+              div.col-md-3
+                a.item[href="/repos/#{root.key.downcase}/#{item.key.downcase}"]
+                  i.fa>[class="#{item.icon}"]
+                  | #{item.sdesc}
+                  small.right =item.num
+  
+ 

@@ -1,0 +1,39 @@
+=content_for :title 
+  | 中文文档库 - awesomes
+
+=content_for :description
+  | 最新最全最好的中文文档库
+
+=content_for :keywords
+  | 中文文档,jquery中文文档,bootstrap中文文档
+
+doctype html
+html
+  head
+    =render 'layouts/header'
+  body
+    =render 'layouts/top'
+    div.doc-banner
+      h3 没错，这里就是自由、开放的中文文档库
+      h4 我们需要你来完善和维护
+      a.sub-btn[href="#" title="编辑发布文档"]: i.fa.fa-pencil
+      form
+        input.txt[type="text" placeholder="查找 / 发布 文档" name="keyword" id="text-key" value="#{params[:keyword]}"]
+        button.serach-btn[type="submit"  title="查找文档"]: i.fa.fa-search
+      javascript:
+        $(function(){
+          $(".doc-banner .sub-btn").click(function(){
+            var _keyword = $("#text-key").val();
+            if(_keyword  == ''){return false;}
+            $(this).attr("href","/doc/"+_keyword+"/offer");
+          })
+        })  
+
+      h5 目前共有 #{Doc.count} 个中文文档
+      
+    div.container.l-margin.main-container
+      =cache "doc_list_#{Doc.count}_#{url_all_para}",:expires_in => 2.day do 
+        =render "doc/list"
+          
+    =render 'layouts/footer'
+    

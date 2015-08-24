@@ -1,0 +1,5 @@
+-if menus_b
+  div.list-group.left-menus
+    span.list-group-item.root =menus_b.sdesc
+    -menus_b.subitems_c.each do |item|
+      a.list-group-item[href="/#{menus_b.key.downcase}/#{item.key.downcase}"] =item.sdesc

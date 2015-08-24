@@ -1,0 +1,27 @@
+div.panel-heading.nav-heading 
+  =render "repo/crumbs"
+div.panel-heading.main-heading
+  a.repo-title[href="#{@item.link_url}"]: h2 =@item.name
+  p =@item.description
+  div.menu
+    a[href="#{@item.homepage}"  target="_blank"] 官 网 
+    a.gitbtn[href="#{@item.html_url}" target="_blank"] Github  
+div.params
+  / div.col-md-2[style="border-left: 0;"]
+  /   i.fa.fa-area-chart>
+  /   span 0
+  div.col-md-3[title="星标数量" style="border-left: 0"]
+    i.fa.fa-star>
+    span =@item.stargazers_count
+  div.col-md-3[title="最后更新时间"]
+    i.fa.fa-clock-o>
+    span =@item.friendly_time
+  div.col-md-3[title="Fork数量"]
+    i.fa.fa-code-fork>
+    span =@item.forks_count
+  / div.col-md-2
+  /   i.fa.fa-users>
+  /   span 0
+  div.col-md-3[title="关注数量"]
+    i.fa.fa-eye>
+    span =@item.subscribers_count

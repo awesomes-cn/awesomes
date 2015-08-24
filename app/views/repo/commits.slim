@@ -1,0 +1,17 @@
+=content_for :con
+  div.panel.panel-default.view-wraper  
+    =render "banner"
+  div.panel.panel-default[style="margin-top: 20px;"]
+    div.panel-heading: h4.txt-center 提交历史 
+    div.panel-body
+      -@readmes.each do |item| 
+        ul.diff-list
+          li
+            p 
+              span =item.sdesc
+              a.right[href="#{@item.link_url}/diff/#{item.id}"] 查看更新
+            p
+              a>[href="/mem/#{item.mem_id}"]
+                img.tx[src="http://assets.renjk.com/mem/15061814160567168865.jpg"]
+                span< =item.mem.nc 
+              span.right =item.friendly_time

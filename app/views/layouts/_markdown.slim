@@ -1,0 +1,25 @@
+textarea#meditor
+
+/link[rel="stylesheet" href="/codemirror/lib/codemirror.css"]
+/script[src="/codemirror/lib/codemirror.js"]
+/script[src="/codemirror/addon/edit/continuelist.js"]
+/script[src="/codemirror/mode/xml/xml.js"]
+/script[src="/codemirror/mode/markdown/markdown.js"]
+/script[src="/markdown/marked.js"]
+/script[src="/markdown/online.js"]
+
+javascript:
+  var markdown_editor = CodeMirror.fromTextArea(document.getElementById("meditor"), {
+      mode: 'markdown',
+      theme: "default",
+      lineWrapping: true,
+      extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
+    });
+  
+  
+  //markdown_editor.setValue(localStorage.markdown);   
+  markdown_editor.on("change",function(){
+    //localStorage.markdown = markdown_editor.getValue();
+    $(".editor-val").val(markdown_editor.getValue());
+  })
+  $(".editor-val").val(markdown_editor.getValue());

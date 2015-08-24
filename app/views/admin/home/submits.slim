@@ -1,0 +1,34 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#list[ng-controller="SubmitCtrl" ng-init="get_list(1)"]
+    thead
+      tr
+        th #
+        th 地址
+        th 类型
+        th 添加时间 
+        th 操作
+    tbody 
+      tr[ng-repeat="item in items"  class="{{item.status}}"]
+        td {{item.id}}
+        td: a(href='{{item.html_url}}' target='_blank') {{item.html_url}} 
+        td {{item.typcd}} 
+        td {{item.created_at}}  
+        td[ng-class="item.synced ?  'synced' : '' "]
+          a[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash<>
+          a.fetch-btn[href='' ng-click="fetch(item)" title='提取库']: i.fa.fa-check-circle
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span#totalc 加载中..
+  div#pagenation
+  input#menubar[type="hidden" value="submits"]
+
+  javascript:
+    $(function(){
+      $("body").on("click",".fetch-btn",function(){
+        $(this).find("i").attr("class","fa fa-spinner fa-spin")
+      })
+    })

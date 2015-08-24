@@ -1,0 +1,206 @@
+data:
+  - key: Applications
+    sdesc: "应用"
+    typcd: A 
+
+  - key: Frameworks
+    sdesc: "框架"
+    parent: Applications
+    typcd: B
+    fdesc: '各种JS MVC、MVVM框架，让我们写出更干净整洁的代码'
+    icon: "fa-connectdevelop"
+
+  - key: Builds
+    sdesc: "构建工具"
+    parent: Applications
+    typcd: B
+    fdesc: '实现项目自动化构建和管理，简化你的工作。'
+    icon: "fa-rocket"
+
+  - key: Loaders
+    sdesc: "模块加载"
+    parent: Applications
+    typcd: B
+    fdesc: '实现代码的模块化，加速优化代码的组织结构'
+    icon: "fa-circle-o-notch"
+
+  - key: Templating
+    sdesc: "模板引擎"
+    parent: Applications
+    typcd: B
+    fdesc: '更好地在JS中组织HTML代码'
+    icon: "fa-copy"
+
+  - key: Testings
+    sdesc: "测试框架"
+    parent: Applications
+    typcd: B
+    fdesc: '前端Javascript测试框架'
+    icon: "fa-coffee"  
+
+  - key: Utilities
+    sdesc: "实用工具"
+    parent: Applications
+    typcd: B
+    fdesc: '各种前端应用工具集'
+    icon: "fa-briefcase"
+
+  - key: Development-Aids
+    sdesc: "开发助手"
+    parent: Applications
+    typcd: B
+    fdesc: '浏览器的帮助函数库以及JS扩展库'
+    icon: "fa-wrench"
+
+
+  - key: Games
+    sdesc: "游戏引擎"
+    parent: Applications
+    typcd: B
+    fdesc: 'JS和HTML5的前端游戏引擎，帮助我们更好更快地打造游戏'
+    icon: "fa-gamepad"
+
+  - key: Highlights
+    sdesc: "代码高亮"
+    parent: Applications
+    typcd: B
+    fdesc: '代码高亮，着色'
+    icon: "fa-code"
+
+  - key: Editor
+    sdesc: "富文本编辑器"
+    parent: Applications
+    typcd: B
+    fdesc: '各种网页编辑器'
+    icon: "fa-columns"
+
+  - key: Mobile
+    sdesc: "移动端"
+    typcd: A  
+
+  - key: Frameworks
+    sdesc: "框架"
+    parent: Mobile
+    typcd: B
+    fdesc: '移动端框架和UI库，快速构建移动应用'
+    icon: "fa-connectdevelop" 
+
+  - key: Utilities
+    sdesc: "工具组件"
+    parent: Mobile
+    typcd: B
+    fdesc: '移动端工具函数库和适用于移动端的组件'
+    icon: "fa-briefcase"   
+
+  - key: Media
+    sdesc: "多媒体"
+    typcd: A
+
+  - key: Audio
+    sdesc: "音频"
+    parent: Media
+    typcd: B
+    fdesc: '音频处理和播放库'
+    icon: "fa-music"
+
+  - key: Video
+    sdesc: "视频"
+    parent: Media
+    typcd: B
+    fdesc: '视频处理和播放库'
+    icon: "fa-video-camera"
+
+  - key: Dom
+    sdesc: Dom
+    typcd: A
+
+  - key: Frameworks
+    sdesc: "框架"
+    parent: Dom
+    typcd: B
+    fdesc: '前端UI框架，让程序员也能搭建出优美的界面'
+    icon: "fa-connectdevelop"
+
+  - key: Utilities
+    sdesc: "实用工具"
+    parent: Dom
+    typcd: B
+    fdesc: "各种DOM的实用工具库"
+    icon: "fa-briefcase"
+
+  - key: Fonts
+    sdesc: "字体 / 图标"
+    parent: Dom
+    typcd: B
+    fdesc: "网页字体，字体处理工具，字体图标"
+    icon: "fa-flag"
+
+
+  - key: Forms
+    sdesc: "表单"
+    parent: Dom
+    typcd: B
+    fdesc: "表单处理、验证和美化库"
+    icon: "fa-check-square"
+
+
+
+  - key: Animation
+    sdesc: "动画"
+    parent: Dom
+    typcd: B
+    fdesc: "各种JS动画库和CSS3动画库"
+    icon: "fa-cog fa-spin"
+
+  - key: Alerts
+    sdesc: "弹出框"
+    parent: Dom
+    typcd: B
+    fdesc: "弹出层和弹出框"
+    icon: "fa-chevron-circle-up"  
+
+  - key: Uploads
+    sdesc: "文件上传"
+    parent: Dom
+    typcd: B
+    fdesc: "web上传控件"
+    icon: "fa-cloud-upload"
+
+  - key: Dates
+    sdesc: "日期时间"
+    parent: Dom
+    typcd: B
+    fdesc: "日期和时间插件"
+    icon: "fa-calendar"
+
+  - key: Pages
+    sdesc: "页面布局"
+    parent: Dom
+    typcd: B
+    fdesc: "页面布局方式，单页面流转"
+    icon: "fa-th"
+
+  - key: Images
+    sdesc: "图像图像"
+    typcd: A 
+
+  - key: Graphics
+    sdesc: "图形库"
+    parent: Images
+    typcd: B
+    fdesc: "2D/3D图形处理库"
+    icon: "fa-pie-chart"
+
+  - key: Sliders
+    sdesc: "幻灯片"
+    parent: Images
+    typcd: B
+    fdesc: "图片展示和轮播效果图"
+    icon: "fa-camera"
+
+  - key: Charts
+    sdesc: "图表"
+    parent: Images
+    typcd: B
+    fdesc: "web图表"
+    icon: "fa-bar-chart"

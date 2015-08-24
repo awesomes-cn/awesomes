@@ -1,0 +1,27 @@
+-content_for :menu
+  =render 'mem_bar'
+=content_for :con
+  table.table#list[ng-controller="MemCtrl" ng-init="get_list(1)"]
+    thead
+      tr
+        th #
+        th 昵称
+        th 邮箱
+        th 注册时间 
+        th 操作
+    tbody 
+      tr[ng-repeat="item in items" class="{{item.status}}"]
+        td {{item.id}}
+        td: a(href='/mem/{{item.id}}' target='_blank') {{item.nc}} 
+        td {{item.email}}
+        td {{item.created_at}}  
+        td
+          a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
+          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span#totalc 加载中..
+  div#pagenation
+  input#menubar[type="hidden" value="mems"]

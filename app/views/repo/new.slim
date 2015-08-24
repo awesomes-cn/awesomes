@@ -1,0 +1,38 @@
+=content_for :con
+  div.main.new-lib
+    =form_for(Submit.new,url: "/submit/save" ,method:'post',html:{id: 'inform'}) do |item|
+      h2 仅需1秒即可提交你的库
+      p 
+        | 请确保提交的库是
+        strong<> 前端库
+        | 并且github有
+        strong<> 50 star
+        | 以上
+        p: input.txt[type="text" name="html_url" placeholder= "https://github.com/jquery/jquery"]
+
+      P
+        span 选择一个类型： 
+        select#root-typ[name="typ"]
+          -Menutyp.flat_show.each do |item|
+            -if params[:typ] == item[:key]
+              option[value="#{item[:key]}" selected] =item[:sdesc]
+            -else
+              option[value="#{item[:key]}"] =item[:sdesc]
+
+        
+
+      p: button.btn.btn-primary[type="submit"] 确定提交
+
+    javascript:
+      $('#inform').validate({ 
+        rules:{
+          'html_url':{
+            required: true,
+            url:true
+          },
+          
+        },
+        messages:{
+          'html_url':'',
+        }, 
+      }); 

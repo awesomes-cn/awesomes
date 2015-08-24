@@ -1,0 +1,19 @@
+.markdown-wraper
+  .preview-wraper
+    div#preview
+  .spliter
+  .editor-wraper.unselect
+    .inner
+      =render "layouts/markdown"
+
+javascript:
+  markdown_editor.on("change",function(){
+    $("#preview").html(marked(markdown_editor.getValue()));
+    Prism.highlightAll();
+  })
+  $("#preview").html(marked(markdown_editor.getValue()));
+
+  
+
+
+  

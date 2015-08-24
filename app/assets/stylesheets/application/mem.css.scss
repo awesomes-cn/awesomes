@@ -1,0 +1,12 @@
+.mem-wrap{
+    padding-left: 200px; position: relative; min-height: 500px;
+  .left-bar{
+    width: 180px;padding-right: 10px; position:absolute; top:0px;left:0;bottom:0; border-right: #ddd 1px solid;
+    .inner{padding: 20px; padding-top: 0;}
+    .tx{width: 100%;} 
+    ul{
+      margin:0;padding: 0;
+      li{list-style: none}
+    }
+  }
+}

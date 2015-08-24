@@ -1,0 +1,14 @@
+=content_for :con
+  div.main.txt-center
+    -if @repo
+      h4
+        | 你提交库已经存在，
+        a[href="/repo/#{@repo.owner}/#{@repo.alia}"] 马上访问
+    -else
+      h3.high 感谢你在awesomes.cn上提交库
+      h4 
+        | 我们将会在2个工作日内为您审核。你可以
+        a<>[href="/"] 浏览库
+        | 或者
+        a<>[href="/repo/new"] 继续提交
+

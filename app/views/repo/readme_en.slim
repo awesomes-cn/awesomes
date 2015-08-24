@@ -1,0 +1,42 @@
+=content_for :con
+  div.doc-title
+    h4
+      | 你正在编辑 
+      a<>[href="#{@item.link_url}"] =@item.name
+      | 英文文说明
+    p 
+      | 为了防止你正在编辑的内容丢失，默认加载你之前的输入，如果你是首次进入编辑文档，请手动获取最新
+      a#getold<>[href=""] 最新版本
+      | ，并在此基础上做修改
+    =form_for(@item,url: "/repo/#{@item.owner}/#{@item.alia}/readme_en.json",html:{id: 'item_form',method: 'post'}) do |item|
+      input.editor-val[type="hidden" name="markdown"]
+      input[type="hidden" name="rid" value="#{@item.id}"]
+      div.btns-wrap
+        button.btn.btn-danger.open-login[ type="submit"] 保存英文说明
+    javascript:
+      $(document).on('ready page:load', function(){
+        $("#getold").click(function(){
+          if(confirm("确认将最新版本加载过来？这会导致你已输入的内容被覆盖！")){
+            markdown_editor.setValue($("#tmp-con").val());
+          }
+          return false;
+        })
+      })
+  div.doc-editor
+    =render "layouts/markdown_editor"
+
+  
+
+  
+  input#tmp-con[type="hidden" value="#{@item.about}"]
+  javascript:
+    $(document).on('ready page:load', function(){
+      if(markdown_editor.getValue() == ''){
+        markdown_editor.setValue($("#tmp-con").val());
+      }
+    })
+   
+   
+  css:
+    body{background-color: #FFF}
+ 

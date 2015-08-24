@@ -1,0 +1,72 @@
+-repo_list
+div.panel.panel-default.list-wraper
+  div.panel-heading.nav-heading
+    ol.breadcrumb
+      li: a[href="/"] Home
+      -if @root
+        -if @typ
+          li: a[href="/repos/#{@root.key}"] =@root.sdesc
+          li.active: span =@typ.sdesc
+        -else
+          li.active =@root.sdesc
+    -if @typ
+      a.sub-repo[href="/repo/new?typ=#{@root.key}-#{@typ.key}"]
+        i.fa.fa-plus>
+        | 提交一个库      
+    / -if !params[:keyword].blank?
+    /   span.right
+    /     | 共搜索到
+    /     i.num<> =@count
+    /     | 个结果 
+
+    
+    div.clear
+  div.panel-heading
+    -if @root
+      div[style="padding-left: 10px;"]
+        h3 
+          | #{@root.sdesc} 
+          -if @typ
+            | - #{@typ.sdesc}
+        -if @typ
+          small =@typ.fdesc
+        -else
+          ul.list-typs
+            -@root.subitems_b.each do |item|
+              li
+                a[href="/repos/#{@root.key}/#{item.key.downcase}"]
+                  | #{item.sdesc}
+                  span =item.num
+    -if !params[:keyword].blank?
+      span 我们为您找到 #{@count} 个与 #{params[:keyword]} 有关的前端库
+
+
+
+  -if @count < 1
+    div.view-wraper
+      div.nolist
+        h3 
+          | 未搜索到
+          strong<> =params[:keyword] 
+          | 的相关库
+        p
+          | 你可以快速
+          a<[href="/repo/new"] 提交一个库
+  -else
+    div.list-group 
+      -@items.each do |item|
+        a.list-group-item[href="#{item.link_url}"]
+          h3 =item.name
+          span =item.description 
+div#page-repo.pagenation.pagination-lg
+javascript:
+  $(document).on('ready page:load', function(){
+    $("#page-repo").pagination(#{@count},{
+      items_per_page : #{default_page_size},
+      current_page : #{page},
+      //link_to:"?page=__id__",
+      callback: function(page){
+        Turbolinks.visit("?page="+(page +1) );
+      }
+    }) 
+  })

@@ -1,0 +1,19 @@
+=content_for :con 
+  div.about-wraper
+    h4 
+      | 您正在编辑
+      a<>[href="/#{@item.key}"] =@item.sdesc
+      | 的首页展示内容
+  textarea#sim_editor[data-autosave="/simditor/editor-content" data-for="#readme_about"]  
+  =render "layouts/simditor"
+  
+  =form_for(@item,url: "/category/#{@item.key}/uphome",html:{id: 'item_form',method: 'post'}) do |item|
+    input[type="hidden" name="home" id="readme_about"]
+    button.btn.btn-danger.right[style="margin-top: 20px" type="submit"] 确认无误提交
+
+
+  script#tmp-con[type="text/html"] =raw @item.home
+  javascript:
+    $(function(){
+      myeditor.setValue($("#tmp-con").html());
+    })

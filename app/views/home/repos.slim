@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    =render 'layouts/header'
+  body
+    =render 'layouts/top'
+    =yield :banner
+    div.container.l-margin.main-container
+      div.row
+        div.col-md-2
+          =render 'layouts/left_bar'
+
+        div.col-md-10
+          =cache "repo_list_#{url_all_para}",skip_digest: true,:expires_in => 2.day do 
+            =render 'repo/list'
+          
+    =render 'layouts/footer'
+    
+
+

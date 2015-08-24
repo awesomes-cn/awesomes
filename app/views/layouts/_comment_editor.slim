@@ -1,0 +1,36 @@
+=form_tag "/comment/save",{id: "com-form"}
+  div.comment-editor
+    =render "layouts/markdown"
+    div.comment-footer
+      input[type="hidden" name="typ" value="#{@comment[:typ]}"]
+      input[type="hidden" name="idcd" value="#{@comment[:idcd]}"]
+      input[type="hidden" name="id" value="#{@comment[:id]}"]
+      input.editor-val[type="hidden" name="con" id="com-con"]
+      button.btn.btn-primary.open-login[ng-click="item"] 提交评论 
+
+      a[href="/markdown" target="_blank"] Markdown 排版说明
+
+javascript:
+  markdown_editor.setValue("");  
+  $('#com-form').validate({ 
+      rules:{
+        'con':{required:true}, 
+      },
+      messages:{
+        'con':'', 
+      }, 
+      ignore: ".ignore",
+      submitHandler: function(form) {
+        $(form).ajaxSubmit({
+          success:function(data){
+            if(data.status){
+              //window.location.reload();
+              Turbolinks.visit(data.url);
+            }else{
+            } 
+          }
+        });
+      }  
+  });
+
+   

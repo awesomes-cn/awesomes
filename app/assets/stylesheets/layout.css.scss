@@ -1,0 +1,212 @@
+body{line-height: 25px; color: #333;background-color: #F4F4F4; font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
+.left{float: left; }
+.right{float: right}
+.clear{clear: both}
+a{ 
+  text-decoration: none;
+  -webkit-transition:all,.5s,ease,0s; 
+}
+.header{
+  background-color: #409ADA; padding-bottom: 100px; text-align: center; margin-bottom: 20px; 
+  h2{-webkit-font-smoothing: antialiased;color: #fff;font-size: 30px;font-weight: 400;text-rendering: optimizeLegibility; margin: 0; padding-bottom: 20px; padding-top: 100px}
+  .search{border: none; padding: 8px 20px; outline: none; border-radius: 100px; margin: 20px 0; width: 250px;padding-right: 40px;}
+  a{color: #FFF}
+  .fa-search{
+    margin-left: -30px;background: none;border: none;color: #B2B2B2; outline: none;
+    &:hover{color: #444}
+  }
+
+}
+
+.footer{
+  border-top: 1px solid #e9eaef;text-shadow: 1px 1px 1px #0D0D0D;background: #222222;color: #5C5C5C; margin-top: 100px; padding: 20px;
+  .menus{
+    padding: 0; float: right;  padding-top: 30px;
+    li{list-style: none; display: inline-block; margin-left: 15px; }
+    
+  }
+  a{color: #8E8E8E}
+  p{text-align: right;}
+
+  .bottom-wraper{  
+    border-top: #2C2C2C 1px solid;    margin: 40px 0;    padding: 40px 0;  
+    font-size: 12px;  color: #5C5C5C;
+    p{text-align: center;}
+  }
+
+  .third-contact{
+    i.fa{font-size: 25px; margin: 20px;}
+  }
+}
+
+.txt.error{
+  background-color:rgb(255, 201, 201);
+}
+
+.txt-center {text-align:center}
+
+h3.high{margin-bottom: 30px;}
+pre{
+  background: none;font-family: 'monaco', 'Consolas', "Liberation Mono", Courier, monospace, monospace;padding: 1em; padding: 2px 0 2px 15px;
+border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
+}
+
+
+.navbar{border-radius: 0; z-index: 1000;}
+
+.left-menus
+{
+  border-color: #bce8f1;
+  *{border-left-color: #bce8f1;border-right-color: #bce8f1;}
+  .root{color: #31708f;background-color: #d9edf7;border-color: #bce8f1;font-weight: 700;}
+  a.list-group-item{}
+}
+
+.logo{
+  &:after{
+  }
+}
+
+
+#loginModal{
+  .modal-body{text-align:center}
+  .fa-github{font-size: 100px;}
+  a{color: #333}
+  .modal-content{box-shadow: 0 1px 2px rgba(166, 166, 166, 0.5);border: 1px solid rgba(189, 189, 189, 0.2)}
+  .modal-footer{text-align:center}
+}
+
+// bootstrap 
+.modal-backdrop.in{opacity: 0.9;filter: alpha(opacity=90);}
+.modal-backdrop{background-color:#FFF; z-index: 100}
+.modal{z-index: 1000}
+
+// simditor
+.markdown-editor-wraper{
+  .simditor.simditor-markdown .markdown-editor{
+      width: 55%;  float: right; border-left: #DDD 1px solid;
+  }
+  .simditor.simditor-markdown .simditor-body{
+      width: 45%;  float: left;  border-bottom: none;
+  }
+  .simditor .simditor-toolbar{
+      text-align: center;
+  }
+  .simditor .simditor-toolbar > ul > li{
+    display: inline-block; float: none;
+  }
+  .simditor-wrapper{
+    width: 100%;
+  }
+  .simditor .markdown-editor textarea{
+    border-bottom: none;
+  }
+}
+
+.CodeMirror{font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif!important}
+//- markdown 编辑器
+.markdown-wraper{
+  overflow: hidden;  height: 100%; position: relative;
+ 
+  & > div{
+      z-index: 10; position: absolute;height: 100%;top: 0;bottom: 0;border: #DDD 1px solid;
+    &.preview-wraper{
+     width: 40%; left:0; box-shadow: inset 0 1px 2px #e4e4e4; 
+     & > div{
+       overflow-y: scroll; height: 100%; padding: 10px;
+     }
+    }
+    &.editor-wraper{
+      border-left: #DDD 1px solid;width: 60%;right: 0;  box-shadow: inset 0 1px 2px #e4e4e4;
+      textarea{width: 100%; border:0 ; outline: none;height: 100%;}
+      .inner{padding: 10px; position: relative; height: 100%; }
+    }
+    &.spliter{
+      width:5px;background-color: #111;left:40%;z-index: 11;  cursor: col-resize;
+    }
+  }
+  .CodeMirror{height: 100%;}
+
+} 
+
+.unselect {
+-webkit-user-select: none; 
+-moz-user-select: none;
+-khtml-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+
+//- diff
+.diff{overflow:auto;}
+.diff ul{background:#fff;overflow:auto;font-size:13px;list-style:none;margin:0;padding:0;display:table;width:100%;}
+.diff del, .diff ins{display:block;text-decoration:none;}
+.diff li{padding:0; display:table-row;margin: 0;height:1em;}
+.diff li.ins{background:#dfd; color:#080}
+.diff li.del{background:#fee; color:#b00}
+.diff li:hover{background:#ffc}
+/* try 'whitespace:pre;' if you don't want lines to wrap */
+.diff del, .diff ins, .diff span{white-space:pre-wrap;font-family:courier;margin-right: 50px;}
+.diff del strong{font-weight:normal;background:#fcc;}
+.diff ins strong{font-weight:normal;background:#9f9;}
+.diff li.diff-comment { display: none; }
+.diff li.diff-block-info { background: none repeat scroll 0 0 gray; }
+
+
+//上传
+.upwrap{
+  position: relative;
+  input{ display: inline-block;position: absolute; top:0;FILTER:ALPHA(opacity=0); -moz-opacity:0; opacity: 0;}
+  .upbtn{
+    padding: 10px 20px; display: inline-block;  background-color: rgb(14, 173, 255);color: #FFF; text-align: center;
+  }
+}
+
+.doc-title{
+  .upwrap{
+   position: absolute;  top: 10px;
+  }
+}
+
+.panel,.list-group-item{
+  border-radius: 0;border-color: #E5E5E5;
+}
+.list-group-item{
+  
+  text-overflow:ellipsis;//让超出的用...实现
+  white-space:nowrap;//禁止换行
+  overflow:hidden;//超出的隐藏
+  display: block;
+}
+.panel-heading{border-radius: 0}
+
+.simditor{
+  img{max-width: 100%}
+}
+
+
+.comment-wraper{
+  ul{padding: 0;}
+  li{list-style: none;   position: relative; display: block; min-height: 80px; padding-left: 50px; border-bottom: #EEE 1px solid; padding-top: 10px;}
+  .tx{width: 40px; height: 40px; border-radius: 4px; display: inline-block; position: absolute; left:0; top: 17px;}
+  .comment-editor{padding: 10px;  border:#EEE 1px solid}
+  .CodeMirror{height: 100%;   padding: 10px;height: 200px;}
+  .comment-footer{
+    border-top:#EEE 1px solid;  padding-top: 10px;
+    a{display: inline-block; float: right;}
+  }
+  
+  .comment-list{
+    a.oper{
+      color:#999; float: right; margin-left: 5px; display: none;
+      &:hover{color: #000}
+      &.reply-btn{display: inline-block;}
+    }
+    li.show-oper{
+      a.oper{display: inline-block;}
+    }
+  }
+  
+}
+

@@ -1,0 +1,27 @@
+#menu_bar{
+  a.list-group-item.on{color: Red}
+}
+
+.admin-wrap{
+  margin-bottom: 100px;
+}
+
+table{
+  width: 100%;
+  tr{
+    td{padding: 10px 0;}
+  }
+}
+
+tr.UNREAD,tr.recsts-1{
+  *{color: #BEBEBE}
+  td.synced{
+		a * {color: red;}
+	}
+}
+
+body{background-color: #FFF!important}
+
+td.synced{
+	a{color: red;}
+}

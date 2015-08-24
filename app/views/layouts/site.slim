@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    =render 'layouts/header'
+  body
+    =render 'layouts/top'
+    =yield :banner
+    div.container.l-margin.main-container
+      div.row
+        div.col-md-2
+          div.list-group.left-menus
+            a.list-group-item[href="/site/about"] 关于
+            a.list-group-item[href="/site/history"] 发展历程
+            a.list-group-item[href="/site/contact"] 联系我们
+            a.list-group-item[href="/site/link"] 友情链接
+      
+        div.col-md-8
+          =yield :con
+      
+        div.col-md-2
+          =yield :right_bar
+          
+    =render 'layouts/footer'
+    
+

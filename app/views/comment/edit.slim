@@ -1,0 +1,16 @@
+=content_for :con
+  div.comment-wraper
+    h4 
+      | 你当前正在编辑
+      a<>[href="#{@item.target_url}"] #{@item.target.name}
+      | 评论
+    =render "layouts/comment_editor"
+    input.editor-val[type="hidden" name="con" id="com-con"]
+  input#tmp-con[type="hidden" value="#{@item.con}"]
+  javascript:
+    $(document).on('ready page:load', function(){
+      markdown_editor.setValue($("#tmp-con").val());
+    })
+       
+  css:
+    body{background-color: #FFF} 

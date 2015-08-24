@@ -1,0 +1,46 @@
+=content_for :con
+  div.doc-title
+    h4 你正在审核 #{@item.repo.name} 中文说明的提交
+
+    =form_for(@item,url: "/readme/#{params[:id]}/diff.json",html:{id: 'item_form',method: 'post'}) do |item|
+      input.editor-val[type="hidden" name="markdown"]
+      
+      button.btn.btn-success.doc-merge-btn[type="submit"] 合并改提交
+
+    div.btns-wrap      
+      a.btn.btn-primary<>[href="/readme/#{@item.id}/toggle"] #{@item.status == "UNREAD" ? "标记为已处理" : "标记为未处理"}
+      a.btn.btn-danger[href="/readme/#{@item.id}/destroy" onclick="return confirm('确定删除？')"] 删除该提交
+
+  div.doc-editor
+    .markdown-wraper
+      .preview-wraper.unselect
+        div#preview 
+          =raw Diffy::Diff.new(@item.repo.about_zh, @item.about).to_s(:html_simple)
+      .spliter
+      .editor-wraper.unselect
+        .inner
+          =render "layouts/markdown"
+  
+        
+
+
+  input#tmp-con[type="hidden" value="#{@item.about}"]
+  
+  javascript:
+    $(document).on('ready page:load', function(){
+      markdown_editor.setValue($("#tmp-con").val())
+      markdown_editor.on("change",function(){
+        update_form();
+      })
+
+      update_form();
+    })
+
+    function update_form(){
+      $("#markdown-con").val(markdown_editor.getValue());
+    }
+
+  css:
+    body{background-color: #FFF}  
+    
+

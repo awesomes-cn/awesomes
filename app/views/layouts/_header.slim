@@ -1,0 +1,35 @@
+title = (_title = yield :title) =='' ? 'Awesomes - 前端资源库' : _title
+meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
+meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+meta[name="description" content="#{(_description = yield :description) =='' ? '免费开源的高质量前端库、框架和插件' : _description}"]
+meta[name="keywords" content="#{(_keywords = yield :keywords) =='' ? 'html5,h5,css3,jquery,web框架,js框架,jquery插件,免费开源,中文文档' : _keywords}"]
+javascript:
+ var Rails = {
+   config: {
+     source_access_path : "#{Rails.application.config.source_access_path}"
+   },
+   access_path: function(folder){
+     return this.config.source_access_path + folder + '/';
+   },
+   islogin: #{is_login},
+   mem_id: #{session[:mem] || 'undefined'}
+
+ };
+
+= stylesheet_link_tag "application", media: "all"
+= javascript_include_tag "application"
+
+javascript:
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?4eb521ea7e1a8b34ca104f2703625e64";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+
+
+ 
+
+= csrf_meta_tags
+

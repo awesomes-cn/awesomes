@@ -1,0 +1,21 @@
+=content_for :con 
+  div.about-wraper
+    h4 
+      | 您正在为
+      a<>[href="/repo/#{@item.name}"] =@item.name
+      | 添加中文说明
+    small 为了便于您的翻译，已默认将英文说明加载过来，您可以通过替换的方式进行翻译和完善，如果你已经登录，系统将会把您加入到该文档的翻译成员里面去
+  textarea#sim_editor[data-autosave="/simditor/editor-content" data-for="#readme_about"]  
+  =render "layouts/simditor"
+  
+  =form_for(Readme.new,url: "/repo/#{@item.alia}/readme",html:{id: 'item_form',method: 'post'}) do |item|
+    input[type="hidden" name="about" id="readme_about"]
+    input[type="hidden" name="id" value="#{@item.id}"]
+    button.btn.btn-danger.right[style="margin-top: 20px" type="submit"] 确认无误提交文档
+
+
+  script#tmp-con[type="text/html"] =raw (@item.about_zh || @item.about)
+  javascript:
+    $(document).on('ready page:load', function(){
+      myeditor.setValue($("#tmp-con").html());
+    })

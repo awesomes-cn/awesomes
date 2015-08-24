@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    =render 'layouts/header'
+  body
+    =render 'layouts/top'
+    =yield :banner
+    div.container.l-margin.main-container
+      div.row
+        div.col-md-2
+          =render 'layouts/left_bar'
+
+        div.col-md-10
+          =yield :con
+          
+    =render 'layouts/footer'
+    
+

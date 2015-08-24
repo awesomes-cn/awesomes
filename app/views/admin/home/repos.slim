@@ -1,0 +1,35 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#list[ng-controller="RepoCtrl" ng-init="get_list(1)"]
+    thead
+      tr
+        th #
+        th 库名
+        th 地址
+        th 类型 
+        th 操作
+    tbody 
+      tr[ng-repeat="item in items" class="recsts{{item.recsts}}" ]
+        td {{item.id}}
+        td: a[href='/repo/{{item.alia}}' target='_blank'] {{item.name}} 
+        td: a[href='{{item.html_url}}' target='_blank'] {{item.html_url}} 
+        td {{item.rootyp}}-{{item.typcd}}  
+        td[ng-class="item.synced ?  'synced' : '' "]
+          a.sync-btn<>[href="" data-id="{{item.id}}" ng-click="sync(item)" title="同步Github数据"]: i.fa.fa-globe
+          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          a[href="/repo/{{item.owner}}/{{item.alia}}/edit" title='编辑']: i.fa.fa-pencil
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span#totalc 加载中..
+  div#pagenation
+  input#menubar[type="hidden" value="repos"] 
+
+  javascript:
+    $(function(){
+      $("body").on("click",".sync-btn",function(){
+        $(this).find("i").attr("class","fa fa-spinner fa-spin")
+      })
+    })

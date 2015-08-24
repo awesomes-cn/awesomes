@@ -1,0 +1,28 @@
+link[rel="stylesheet" type="text/css" href="/simditor/styles/simditor.css"]
+link[rel="stylesheet" type="text/css" href="/simditor/styles/simditor-markdown.css"]
+=javascript_include_tag "/simditor/scripts/module"
+=javascript_include_tag "/simditor/scripts/hotkeys"
+=javascript_include_tag "/simditor/scripts/uploader"
+=javascript_include_tag "/simditor/scripts/simditor"
+=javascript_include_tag "/simditor/scripts/simditor-autosave"
+=javascript_include_tag "/simditor/scripts/marked"
+=javascript_include_tag "/simditor/scripts/to-markdown"
+=javascript_include_tag "/simditor/scripts/simditor-markdown"
+
+javascript:
+  var myeditor;
+  $(function(){
+    myeditor = new Simditor({
+      textarea: $('#sim_editor'),
+      toolbar:['title','bold' ,'italic','underline','strikethrough','color','ol'            
+        ,'ul','blockquote','code','table','link','image','hr','indent' ,'outdent'       
+        ,'alignment','|','markdown'
+      ],
+      markdown: $('#sim_editor').attr("markdown")
+    });
+
+    myeditor.on('valuechanged',function(){
+      $($("#sim_editor").attr('data-for')).val(myeditor.getValue()).click();
+    })
+    
+  })

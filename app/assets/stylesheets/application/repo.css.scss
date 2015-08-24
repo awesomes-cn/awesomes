@@ -1,0 +1,59 @@
+.about-wraper{
+  padding: 10px; background-color: #F9F9F9;border: 1px solid #c9d8db;
+  small{color: #969696;}
+}
+
+.contris{
+	padding: 0; float: right;
+	li{list-style: none; display: inline-block; margin-left: 5px;}
+	img{width: 25px; height: 25px; border-radius: 100%}
+}
+
+.resource-list{
+	position: relative;
+	.list-group-item{
+		border-color: #F0F0F0;  border-left: 0; border-right: 0;
+
+		&:hover{
+			span.yes .op{display: inline-block;}
+		}
+
+		&:first-child{
+			border: 0;
+		}
+	}
+
+	.opers{
+		position: absolute;right: 10px; width: 100px; top: 10px;text-align: right;
+		a{
+			margin-left: 10px; opacity: 0.5; display: inline-block;
+			&:hover{
+				opacity: 1;
+			}
+			&.op{display: none;}
+		}
+		.tx{
+			width: 20px; height: 20px; border-radius: 4px;-webkit-transition:all,.5s,ease,0s;
+			
+		}
+	}
+	
+}
+.panel-footer small{
+	color: #898989;
+	a{color: #898989;  font-weight: bold;}
+}
+
+.diff-wraper{
+	& > article{
+		padding: 20px; background-color:#FFF;display: block;
+	}
+}
+
+.diff-list{
+	padding: 0;
+	li{list-style: none; display: block; border-bottom: #D3D3D3  1px dashed }
+	.tx{width: 20px; height: 20px; border-radius: 3px;}
+}
+
+a.repo-title{color: #333; text-decoration: none}

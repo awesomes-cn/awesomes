@@ -1,0 +1,55 @@
+=content_for :con
+  div.panel.panel-default
+    div.panel-heading
+      h3
+        | 你当前正在编辑
+        a<[href="/repo/#{@item.owner}/#{@item.alia}"] =@item.name
+
+    div.panel-body
+      =form_for(@item,url: "/repo/#{@item.owner}/#{@item.alia}/update" ,method:'post',html:{id: 'inform'}) do |f|
+        table.table
+          tr
+            td[width="50px"] 库名
+            td =f.text_field(:name,class:'form-control')
+
+          tr
+            td[width="50px"] Github
+            td =f.text_field(:html_url,class:'form-control')
+
+          tr
+            td[width="50px"] 描述
+            td =f.text_field(:description,class:'form-control')
+
+          tr
+            td[width="50px"] 官网
+            td =f.text_field(:homepage,class:'form-control')
+
+          tr
+            td[width="50px"] 类型
+            td 
+              select#root-typ[name="typ"]
+                -Menutyp.flat_show.each do |item|
+                  -if item[:key] == "#{@item.rootyp}-#{@item.typcd}"
+                    option[value="#{item[:key]}" selected] =item[:sdesc]
+                  -else
+                    option[value="#{item[:key]}" ] =item[:sdesc]
+
+          /tr
+            /td[width="50px"] 中文简介 
+            /td 
+              /=f.hidden_field(:about_zh)
+              /textarea#sim_editor[data-autosave="/simditor/editor-content" data-for="#repo_about_zh" markdown="true"]  
+              /=render "layouts/simditor"
+              /script#tmp-con[type="text/html"] =raw @item.about_zh
+              /javascript:
+              /  $(function(){
+              /    myeditor.setValue($("#tmp-con").html());
+              /  })
+
+
+          tr
+            td
+            td
+              button.btn.btn-danger.right 更新
+
+  

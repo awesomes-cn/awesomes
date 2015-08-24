@@ -1,0 +1,37 @@
+#
+# OneApm Ruby探针配置
+#
+
+common: &default_settings
+
+  license_key: ENV["ONEAPM_LICENSE_KEY"]
+
+  # 您在这里填写的app_name会显示在OneAPM的管理后台界面中。
+  #
+  # 如果您修改了此处的app_name，一个新的应用会出现在后台，
+  # 数据会上传到这个新应用，并停止向旧的应用上传数据。
+  #
+  app_name: My Application
+
+#
+# 环境相关配置
+#
+
+production:
+  <<: *default_settings
+  monitor_mode: true
+
+development:
+  <<: *default_settings
+  # development模式下，探针开启并上传性能数据
+  monitor_mode: true
+  app_name: My Application (Development)
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+staging:
+  <<: *default_settings
+  monitor_mode: true
+  app_name: My Application (Staging)

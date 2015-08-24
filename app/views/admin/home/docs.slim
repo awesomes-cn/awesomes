@@ -1,0 +1,27 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#list[ng-controller="DocCtrl" ng-init="get_list(1)"]
+    thead
+      tr
+        th #
+        th 文档名
+        th 作者
+        th 提交时间
+        th 操作
+    tbody 
+      tr[ng-repeat="item in items" class="recsts{{item.recsts}}"]
+        td {{item.id}}
+        td: a[href='/doc/{{item.name}}' target='_blank'] {{item.name}} 
+        td: a[href="/mem/{{item.mem.id}}}"] {{item.mem.nc}}
+        td {{item.created_at}}  
+        td
+          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          a[href="/doc/{{item.name}}/edit" title='编辑']: i.fa.fa-pencil
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span#totalc 加载中..
+  div#pagenation
+  input#menubar[type="hidden" value="docs"] 

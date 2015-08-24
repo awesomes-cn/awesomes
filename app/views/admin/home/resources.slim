@@ -1,0 +1,32 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#list[ng-controller="ResourceCtrl" ng-init="get_list(1)"]
+    thead
+      tr
+        th #
+        th 库
+        th 标题
+        th 资源地址
+        th 添加者
+        th 添加时间 
+        th 操作
+    tbody 
+      tr[ng-repeat="item in items" class="recsts-{{item.recsts}}"]
+        td {{item.id}}
+        td: a(href='/repo/{{item.repo_alia}}' target='_blank') {{item.repo_alia}} 
+        td {{item.title}}
+        td: a[href="{{item.url}}" target='_blank'] {{item.url}}
+        td: a[href="/mem/{{item.mem.id}}" target='_blank'] {{item.mem.nc}}
+        td {{item.created_at}}  
+        td
+          a[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          a<>[href='#' ng-click="edit(item.id)"]: i.fa.fa-pencil 
+          a[href='#' ng-click="reset(item.id)"]: i.fa.fa-check-circle
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span#totalc 加载中..
+  div#pagenation
+  input#menubar[type="hidden" value="resources"]

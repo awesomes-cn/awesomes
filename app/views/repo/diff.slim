@@ -1,0 +1,17 @@
+=content_for :con
+  div.panel.panel-default.view-wraper  
+    =render "/repo/banner"
+  div.panel.panel-default[style="margin-top: 20px;"]
+    div.panel-heading
+      h4.txt-center 
+        a.left[href="#{@item.link_url}/commits"]: i.fa.fa-th-list
+        span<> ##{@readme.id}
+        a[href="/mem/#{@readme.mem_id}"] =@readme.mem.nc
+        span<> 于
+        span =@readme.friendly_time
+        span<> 为
+        a[href="#{@item.link_url}"] =@item.name
+        span<> 提交的文档
+    div.panel-body
+      div.diff-wraper
+        article =raw Diffy::Diff.new(@readme.old, @readme.about,:include_plus_and_minus_in_html  => true).to_s(:html)

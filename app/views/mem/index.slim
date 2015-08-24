@@ -1,0 +1,27 @@
+=content_for :con
+  div.mem-wrap
+    div.left-bar
+      div.inner
+        /img.tx[src="#{access_path 'mem'}#{@mem.avatar}"]
+        img.tx[src="https://ruby-china-files.b0.upaiyun.com/user/big_avatar/10401.jpg"]
+        ul
+          li: strong =@mem.nc
+          li 第 #{@mem.index} 位会员
+          li
+            i.fa.fa-map-marker>
+            span =@mem.mem_info.location
+    div.right-wrap
+      h3 Github名片
+      p 昵称：#{@mem.nc}
+      p 粉丝：#{@mem.mem_info.followers}
+      p 关注：#{@mem.mem_info.following}
+      p 
+        | 博客：
+        a[href="#{@mem.mem_info.blog}" target="_blank"] =@mem.mem_info.blog
+      p 
+        | Github主页：
+        a[href="#{@mem.mem_info.html_url}" target="_blank"] =@mem.mem_info.html_url
+
+
+
+
