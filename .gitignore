@@ -15,3 +15,4 @@
 /log/*
 !/log/.keep
 /tmp
+/config/local_env.yml
