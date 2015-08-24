@@ -19,7 +19,7 @@ div.comment-wraper
   =render "layouts/comment_editor"
 
   javascript:
-    $(document).on('ready page:load', function(){
+    $(function(){
       $('.comment-wraper').on('click','.reply-btn',function(){
         $('html,body').animate({scrollTop:$('.comment-wraper li:last').offset().top});
         markdown_editor.setValue(markdown_editor.getValue()+"@"+$(this).attr("data-mem")+" "); 
