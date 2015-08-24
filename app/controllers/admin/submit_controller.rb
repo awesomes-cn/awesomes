@@ -10,7 +10,7 @@ class Admin::SubmitController < AdminController
     _submit.save
     render json: {status: false} and return if Repo.find_by_html_url(_url.gsub(/http[s]?/,"https"))
 
-    _api_url = "https://api.github.com/repos#{_url.split(/http(s)?:\/\/github.com/).last}?client_id=#{Rails.application.config.github_client_id}&client_secret=#{Rails.application.config.github_client_secret}"
+    _api_url = "https://api.github.com/repos#{_url.split(/http(s)?:\/\/github.com/).last}?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
     
     require 'rest-client'
     _response = RestClient.get _api_url
