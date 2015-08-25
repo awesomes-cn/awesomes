@@ -1,8 +1,7 @@
 # awesomes
 http://www.awesomes.cn source code
 
-[![Build
-Status](https://secure.travis-ci.org/ruby-china/ruby-china.png?branch=master&.png)](http://travis-ci.org/ruby-china/ruby-china)
+
 
 ## Requirements
 
