@@ -38,6 +38,7 @@ class MemController < ApplicationController
           :blog=> _raw_info['blog'],
           :followers=> _raw_info['followers'],
           :following=> _raw_info['following'],
+          :github=> _raw_info['login']
         })
       end
       _mem.mauths.create(_para)

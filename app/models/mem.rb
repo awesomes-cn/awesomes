@@ -19,8 +19,4 @@ class Mem < ActiveRecord::Base
   def index
     Mem.where("id < ?",id).count + 1
   end
-
-  def location
-    super.blank? ? "You're lost" : super
-  end
 end

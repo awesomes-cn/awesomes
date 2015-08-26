@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815045056) do
+ActiveRecord::Schema.define(version: 20150826035913) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20150815045056) do
     t.integer  "following",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "github",     limit: 255
+    t.string   "twitter",    limit: 255
   end
 
   create_table "mems", force: :cascade do |t|
@@ -89,10 +91,12 @@ ActiveRecord::Schema.define(version: 20150815045056) do
   create_table "readmes", force: :cascade do |t|
     t.integer  "mem_id",     limit: 4
     t.integer  "repo_id",    limit: 4
-    t.text     "about",      limit: 65535
-    t.string   "status",     limit: 45,    default: "UNREAD"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.text     "about",      limit: 4294967295
+    t.text     "old",        limit: 4294967295
+    t.string   "sdesc",      limit: 200,        default: "初始化文档"
+    t.string   "status",     limit: 45,         default: "UNREAD"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "repo_resources", force: :cascade do |t|
@@ -103,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150815045056) do
     t.integer  "mem_id",     limit: 4
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "repo_id",    limit: 4
   end
 
   create_table "repos", force: :cascade do |t|
@@ -121,9 +126,9 @@ ActiveRecord::Schema.define(version: 20150815045056) do
     t.text     "about_zh",          limit: 4294967295
     t.string   "typcd",             limit: 255
     t.string   "rootyp",            limit: 255
+    t.string   "owner",             limit: 100
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.string   "owner",             limit: 100
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
