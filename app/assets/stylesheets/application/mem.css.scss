@@ -66,5 +66,7 @@
   padding: 0;
   li{
     list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0;
+    a.repo{color: #333}
+    span:last-child{color: #BBB; float: right}
   }
 }

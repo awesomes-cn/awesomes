@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150826035913) do
     t.integer  "repo_id",    limit: 4
     t.text     "about",      limit: 4294967295
     t.text     "old",        limit: 4294967295
-    t.string   "sdesc",      limit: 200,        default: "初始化文档"
+    t.string   "sdesc",      limit: 200
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false

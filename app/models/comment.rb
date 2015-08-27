@@ -26,7 +26,7 @@ class Comment < ActiveRecord::Base
 
   def target_url
     if typ == "REPO"
-      "/repo/#{target.owner}/#{target.alia}"
+      "#{target.link_url}"
     end
   end
 end

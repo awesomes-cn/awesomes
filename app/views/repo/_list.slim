@@ -60,7 +60,7 @@ div.panel.panel-default.list-wraper
           span =item.description 
 div#page-repo.pagenation.pagination-lg
 javascript:
-  $(document).on('ready page:load', function(){
+  $(function(){
     $("#page-repo").pagination(#{@count},{
       items_per_page : #{default_page_size},
       current_page : #{page},

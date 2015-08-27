@@ -55,6 +55,33 @@ class ApplicationController < ActionController::Base
      @item = Menutyp.where({:key=> params[:typ],:typcd=> 'B'}).first
   end
 
+  def max_page_size
+    100
+  end
+    
+  def default_page_size
+    15
+  end
+
+  def page_size
+    size = params[:pagesize].to_i
+    [size.zero? ? default_page_size : size, max_page_size].min
+  end
+
+  def page
+    @page = params[:page]
+    @page = 1 if !@page
+    @page =  @page.to_i - 1
+  end
+
+  def data_list query
+    query.order('id desc').limit(page_size).offset(page * page_size)
+  end
+
+  def data_list_asc query
+    query.order('id asc').limit(page_size).offset(page * page_size)
+  end
+
   def upload_pic(file,filename,folder,width,height)
     _full_path = "#{Rails.root}/public/upload/#{folder}/#{filename}"
     image = MiniMagick::Image.read(file)
