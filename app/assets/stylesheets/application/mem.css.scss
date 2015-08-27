@@ -45,15 +45,26 @@
     border-bottom: #EEE 1px solid;
     ul{margin: 0; padding: 0;}
     li{
-      list-style: none; display: inline-block; padding: 10px 20px;
-      a{text-decoration: none}
+      list-style: none; display: inline-block; padding: 10px; margin: 0 10px;
+      a{text-decoration: none; color: #ADADAD}
       &.on{
-        
+        border-bottom: #616161 3px solid; 
+        a{
+          color: #616161;
+        }
       }
     }
   }
   .con-wrap{
     padding: 20px;
 
+  }
+}
+
+.mem-list-wraper
+{
+  padding: 0;
+  li{
+    list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0;
   }
 }

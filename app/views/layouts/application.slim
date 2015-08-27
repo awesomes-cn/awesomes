@@ -3,20 +3,4 @@ html
   head
     =render 'layouts/header'
   body
-    =render 'layouts/top'
-    =yield :banner
-    div.container.l-margin.main-container
-      =yield :con
-      / div.row
-      /   div.col-md-2
-      /     =render 'layouts/left_bar'
-
-      /   div.col-md-8
-      /     =yield :con
-
-      /   div.col-md-2
-      /     =yield :right_bar
-          
-    =render 'layouts/footer'
-    
-
+    =render 'layouts/layout'

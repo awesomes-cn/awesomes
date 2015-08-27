@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    =render 'layouts/header'
+  body
+    =render 'layouts/top'
+    =yield :banner
+    div.container.l-margin.main-container
+      div.row
+        div.col-md-9
+          div.mem-wraper
+            img.tx[src="#{access_path 'mem'}#{@mem.avatar}"]
+            ul
+              li: h3 =@mem.nc
+              li: span.desc 第 #{@mem.index} 位会员，于 #{@mem.created_at} 加入
+              li.thirds
+                -if !@mem.mem_info.blog.blank?
+                  a.home[href="#{@mem.mem_info.blog}" target="_blank"]
+                    i.fa.fa-home
+                    | #{@mem.mem_info.blog}
+
+                -if !@mem.mem_info.twitter.blank?
+                  a.twitter[href="https://twitter.com/#{@mem.mem_info.twitter}" target="_blank"]
+                    i.fa.fa-twitter
+                    | #{@mem.mem_info.twitter}
+
+                -if !@mem.mem_info.github.blank?
+                  a.github[href="https://github.com/#{@mem.mem_info.github}"]
+                    i.fa.fa-github
+                    | #{@mem.mem_info.github}
+
+                a.location[href="#"]
+                  i.fa.fa-map-marker
+                  | #{@mem.mem_info.location}
+          div.mem-main
+            div.menus
+              ul
+                li[data-val="doc"]: a[href="#"] 文档
+                li[data-val="comment"]: a[href="#"] 评论
+            div.con-wrap
+              =yield :con
+                
+        div.col-md-3
+        
+          
+    =render 'layouts/footer'
+
+    javascript:
+      $(function(){
+        $(".mem-main .menus li[data-val="+$("#mem-nav").val()+"]").addClass("on");
+      })
+    
+
