@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def is_me?
     _id = params[:id].to_i 
     if _id > 0
-      @mem = Mem.find_by_id params[:id]
+      @mem = Mem.find_by_id _id
       redirect_to '/tip',:notice=> t('mem_none') and return if !@mem 
     else
       redirect_to '/tip',:notice=> t('no_login') and return  if session[:mem].to_i < 1

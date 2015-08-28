@@ -6,6 +6,7 @@ class Mem < ActiveRecord::Base
   has_many :repo_resources
   has_one :mem_infos
   has_many :comments
+  has_many :mem_repos
 
 
   def mem_info

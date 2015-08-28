@@ -65,5 +65,21 @@ class MemController < ApplicationController
     @items = data_list_asc @mem.comments
     @count = @mem.comments.count
   end
+
+  def sync_repo
+    require 'rest-client'
+    _response = RestClient.get "https://api.github.com/users/#{current_mem.mem_info.github}/repos?page=1&per_page=5"
+    _result = JSON.parse(_response.body) 
+    MemRepo.where({:mem_id=> current_mem.id}).delete_all
+    _result.each do |item|
+      current_mem.mem_repos << MemRepo.create({
+        :name=> item['name'],
+        :html_url=> item['html_url'],
+        :description=> item['description'],
+        :stargazers_count=> item['stargazers_count']
+      })
+    end
+    redirect_to request.referer
+  end
   
 end

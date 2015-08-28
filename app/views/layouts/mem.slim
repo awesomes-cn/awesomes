@@ -25,7 +25,7 @@ html
                     | #{@mem.mem_info.twitter}
 
                 -if !@mem.mem_info.github.blank?
-                  a.github[href="https://github.com/#{@mem.mem_info.github}"]
+                  a.github[href="https://github.com/#{@mem.mem_info.github}" target="_blank"]
                     i.fa.fa-github
                     | #{@mem.mem_info.github}
 
@@ -37,10 +37,24 @@ html
               ul
                 li[data-val="doc"]: a[href="/mem/#{@mem.id}"] 文档
                 li[data-val="comments"]: a[href="/mem/#{@mem.id}/comments"] 评论
+                -if @isme
+                  li.right[data-val="info"]: a[href="/mem/info"] 个人资料
             div.con-wrap
               =yield :con
                 
         div.col-md-3
+          div.panel.panel-default.github-list
+            div.panel-heading 
+              span GitHub Public Repos
+              a.sync[href="/mem/sync_repo" title="从GitHub同步"]: i.fa.fa-exchange
+            div.list-group
+              -@mem.mem_repos.all.each do |item|
+                div.list-group-item
+                  a[href="#{item.html_url}" target="_blank"]: strong =item.name
+                  p: small =item.description
+            div.panel-footer
+              a.right[href="https://github.com/#{@mem.mem_info.github}" target="_blank"] More on GitHub
+              div.clear
         
           
     =render 'layouts/footer'

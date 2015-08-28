@@ -45,7 +45,7 @@
     border-bottom: #EEE 1px solid;
     ul{margin: 0; padding: 0;}
     li{
-      list-style: none; display: inline-block; padding: 10px; margin: 0 10px;
+      list-style: none; display: inline-block; padding: 10px; margin: 0 10px;padding-top: 13px;
       a{text-decoration: none; color: #ADADAD}
       &.on{
         border-bottom: #616161 3px solid; 
@@ -65,8 +65,19 @@
 {
   padding: 0;
   li{
-    list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0;
+    list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0; 
     a.repo{color: #333}
     span:last-child{color: #BBB; float: right}
   }
+}
+
+
+.github-list{
+  .list-group{
+    a{
+      &:link,&:visited{color: #444}
+    }
+    small{color: #888}
+  }
+  .sync{color: #888; float: right;}
 }
