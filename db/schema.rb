@@ -23,25 +23,6 @@ ActiveRecord::Schema.define(version: 20150830142318) do
     t.datetime "updated_at",                             null: false
   end
 
-  create_table "docs", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "con",        limit: 4294967295
-    t.text     "markdown",   limit: 4294967295
-    t.string   "cover",      limit: 55
-    t.integer  "mem_id",     limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  create_table "docsubs", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "mem_id",     limit: 4
-    t.text     "con",        limit: 65535
-    t.string   "status",     limit: 10,    default: "UNREAD"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-  end
-
   create_table "mauths", force: :cascade do |t|
     t.string   "recsts",     limit: 1,   default: "0"
     t.integer  "mem_id",     limit: 4
@@ -66,8 +47,8 @@ ActiveRecord::Schema.define(version: 20150830142318) do
   end
 
   create_table "mem_repos", force: :cascade do |t|
-    t.string   "name",             limit: 255
     t.integer  "mem_id",           limit: 4
+    t.string   "name",             limit: 255
     t.string   "description",      limit: 255
     t.string   "html_url",         limit: 255
     t.integer  "stargazers_count", limit: 4
@@ -78,12 +59,10 @@ ActiveRecord::Schema.define(version: 20150830142318) do
   create_table "mems", force: :cascade do |t|
     t.string   "nc",         limit: 255
     t.string   "email",      limit: 255
-    t.string   "avatar",     limit: 100
+    t.string   "avatar",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "mems", ["nc", "email"], name: "search", using: :btree
 
   create_table "menutyps", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -102,23 +81,22 @@ ActiveRecord::Schema.define(version: 20150830142318) do
   create_table "readmes", force: :cascade do |t|
     t.integer  "mem_id",     limit: 4
     t.integer  "repo_id",    limit: 4
-    t.text     "about",      limit: 4294967295
-    t.text     "old",        limit: 4294967295
-    t.string   "sdesc",      limit: 200
-    t.string   "status",     limit: 45,         default: "UNREAD"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.text     "about",      limit: 65535
+    t.text     "old",        limit: 65535
+    t.string   "sdesc",      limit: 255
+    t.string   "status",     limit: 255,   default: "UNREAD"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   create_table "repo_resources", force: :cascade do |t|
-    t.string   "recsts",     limit: 2,   default: "1"
+    t.string   "recsts",     limit: 255, default: "1"
     t.string   "title",      limit: 255
     t.string   "url",        limit: 255
-    t.string   "repo_alia",  limit: 255
+    t.integer  "repo_id",    limit: 4
     t.integer  "mem_id",     limit: 4
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.integer  "repo_id",    limit: 4
   end
 
   create_table "repos", force: :cascade do |t|
@@ -126,23 +104,20 @@ ActiveRecord::Schema.define(version: 20150830142318) do
     t.string   "full_name",         limit: 255
     t.string   "alia",              limit: 255
     t.string   "html_url",          limit: 255
-    t.string   "description",       limit: 1000
-    t.string   "description_cn",    limit: 1000
+    t.string   "description",       limit: 255
     t.string   "homepage",          limit: 255
     t.integer  "stargazers_count",  limit: 4
     t.integer  "forks_count",       limit: 4
     t.integer  "subscribers_count", limit: 4
     t.datetime "pushed_at"
-    t.text     "about",             limit: 4294967295
-    t.text     "about_zh",          limit: 4294967295
+    t.text     "about",             limit: 65535
+    t.text     "about_zh",          limit: 65535
     t.string   "typcd",             limit: 255
     t.string   "rootyp",            limit: 255
-    t.string   "owner",             limit: 100
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "owner",             limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
-
-  add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
 
   create_table "sites", force: :cascade do |t|
     t.string   "typ",        limit: 255
@@ -157,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150830142318) do
     t.string   "html_url",   limit: 255
     t.string   "rootyp",     limit: 255
     t.string   "typcd",      limit: 255
-    t.string   "status",     limit: 45,  default: "UNREAD"
+    t.string   "status",     limit: 255, default: "UNREAD"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
