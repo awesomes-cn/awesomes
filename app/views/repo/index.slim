@@ -60,24 +60,12 @@
         | ，注意打上相应的Tag）
           
   javascript:
-    $(document).on('ready page:load', function(){
+    $(function(){
       $(".detail > .lang > span").click(function(){
         $(this).addClass('on').siblings().removeClass('on');
         $(".detail > article[data-lang="+$(this).attr('data-lang')+"]").show().siblings("article").hide();
       })
-      $(".detail > .lang > span[data-lang=#{@lang}]").click();
-     
-
-      $(".detail pre").each(function(){
-        var pre = $(this);
-        var _lang = pre.attr('lang');
-        if(_lang == 'html'){
-          _lang = "markup";
-        }
-        pre.find('code').attr('class',"language-"+_lang);
-      })
-      Prism.highlightAll();
-
+      $(".detail > .lang > span[data-lang=#{@lang}]").click(); 
     }) 
 
     function edit_from(obj){

@@ -67,7 +67,6 @@
   li{
     list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0; 
     a.repo{color: #333}
-    span:last-child{color: #BBB; float: right}
   }
 }
 
@@ -77,7 +76,13 @@
     a{
       &:link,&:visited{color: #444}
     }
+    
     small{color: #888}
+    .list-group-item{
+      position: relative;
+      & > p{margin: 0;  padding-right: 30px;text-overflow: ellipsis;  white-space: nowrap;  overflow: hidden; display: block;}
+    }
+    .stars{position: absolute; right: 10px; top: 20px;}
   }
   .sync{color: #888; float: right;}
 }

@@ -46,12 +46,14 @@ html
           div.panel.panel-default.github-list
             div.panel-heading 
               span GitHub Public Repos
-              a.sync[href="/mem/sync_repo" title="从GitHub同步"]: i.fa.fa-exchange
+              -if @isme
+                a.sync[href="/mem/sync_repo" title="从GitHub同步"]: i.fa.fa-exchange
             div.list-group
               -@mem.mem_repos.all.each do |item|
                 div.list-group-item
                   a[href="#{item.html_url}" target="_blank"]: strong =item.name
                   p: small =item.description
+                  span.stars =item.stargazers_count
             div.panel-footer
               a.right[href="https://github.com/#{@mem.mem_info.github}" target="_blank"] More on GitHub
               div.clear

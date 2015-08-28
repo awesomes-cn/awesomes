@@ -14,10 +14,8 @@ class Comment < ActiveRecord::Base
   end
 
   def raw_con
-    #CGI::escapeHTML(GitHub::Markdown.render con).gsub(/&lt;([!script])(.+?)&gt;/){ |m|
-    #  "<$1 #{CGI::unescapeHTML($2)}>"
-    #}.gsub(/&lt;\/([!script])&gt;/,'</$1>')
     TrustHtml.sanitize(GitHub::Markdown.render con).gsub(/@([^:：?\s@]+)/,"<a href='/mem/nc/\\1' target='_blank'>@\\1</a>")
+    #(GitHub::Markdown.render con).gsub(/@([^:：?\s@]+)/,"<a href='/mem/nc/\\1' target='_blank'>@\\1</a>")
   end
 
   def target

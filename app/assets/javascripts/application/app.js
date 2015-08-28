@@ -1,11 +1,16 @@
-$(document).on('ready page:load', function(){
+$(function(){
   $(".open-login").click(function(){
     return open_login();
   })
-
-  //NProgress.start();
-  //NProgress.done();
-  
+  $("pre").each(function(){
+    var pre = $(this);
+    var _lang = pre.attr('lang');
+    if(_lang == 'html'){
+      _lang = "markup";
+    }
+    pre.find('code').attr('class',"language-"+_lang);
+  })
+  Prism.highlightAll();
   
 })
 Turbolinks.enableProgressBar();

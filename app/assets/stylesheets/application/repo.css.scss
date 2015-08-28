@@ -56,4 +56,7 @@
 	.tx{width: 20px; height: 20px; border-radius: 3px;}
 }
 
-a.repo-title{color: #333; text-decoration: none}
+a.repo-title{
+	color: #333; text-decoration: none;
+	& > h2{display: inline-block;}
+}

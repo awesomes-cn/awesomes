@@ -5,7 +5,7 @@
         a.repo[href="#{item.repo.link_url}"] =item.repo.name
         i.fa.fa-angle-right<>
         a[href="#{item.repo.link_url}/diff/#{item.id}"] =item.sdesc
-        span =item.created_at.strftime("%Y-%m-%d")
+        span.right =item.created_at.strftime("%Y-%m-%d")
   div#page-mem      
   input#mem-nav[type="hidden" value="doc"]
   javascript:
