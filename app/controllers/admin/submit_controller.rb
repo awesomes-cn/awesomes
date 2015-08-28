@@ -40,7 +40,7 @@ class Admin::SubmitController < AdminController
     }
     _repo = Repo.create(_para)
 
-    _readme_url = "https://api.github.com/repos/#{_result['full_name']}/readme?client_id=#{Rails.application.config.github_client_id}&client_secret=#{Rails.application.config.github_client_secret}"
+    _readme_url = "https://api.github.com/repos/#{_result['full_name']}/readme?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
     _response = RestClient.get _readme_url, {:accept => "application/vnd.github.VERSION.raw"}
     _readme = _response.body
     _repo.about = _readme

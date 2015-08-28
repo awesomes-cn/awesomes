@@ -12,7 +12,7 @@ class Admin::RepoController < AdminController
     _repo = Repo.find_by_id(params[:id]) 
     _url = _repo.html_url
 
-    _api_url = "https://api.github.com/repos#{_url.split(/http(s)?:\/\/github.com/).last}?client_id=#{Rails.application.config.github_client_id}&client_secret=#{Rails.application.config.github_client_secret}"
+    _api_url = "https://api.github.com/repos#{_url.split(/http(s)?:\/\/github.com/).last}?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
     
     require 'rest-client'
     _response = RestClient.get _api_url
