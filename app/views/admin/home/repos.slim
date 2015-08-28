@@ -12,7 +12,7 @@
     tbody 
       tr[ng-repeat="item in items" class="recsts{{item.recsts}}" ]
         td {{item.id}}
-        td: a[href='/repo/{{item.alia}}' target='_blank'] {{item.name}} 
+        td: a[href='{{item.link_url}}' target='_blank'] {{item.name}} 
         td: a[href='{{item.html_url}}' target='_blank'] {{item.html_url}} 
         td {{item.rootyp}}-{{item.typcd}}  
         td[ng-class="item.synced ?  'synced' : '' "]
