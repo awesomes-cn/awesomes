@@ -41,7 +41,7 @@ class MemController < ApplicationController
           :following=> _raw_info['following'],
           :github=> _raw_info['login']
         })
-        Github.new.mem_sync_repo current_mem
+        Github.new.mem_sync_repo _mem
       end
       _mem.mauths.create(_para)
       session[:mem] = _mem.id
