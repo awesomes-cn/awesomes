@@ -41,6 +41,7 @@ class MemController < ApplicationController
           :following=> _raw_info['following'],
           :github=> _raw_info['login']
         })
+        Github.new.mem_sync_repo current_mem
       end
       _mem.mauths.create(_para)
       session[:mem] = _mem.id
@@ -68,11 +69,8 @@ class MemController < ApplicationController
   end
 
   def sync_repo
-    Thread.new{
-      Github.new.mem_sync_repo current_mem
-      redirect_to request.referer
-    }.join
-    
+    Github.new.mem_sync_repo current_mem
+    redirect_to request.referer
   end
   
 end
