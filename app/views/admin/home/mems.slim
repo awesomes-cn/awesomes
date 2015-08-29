@@ -15,9 +15,10 @@
         td: a(href='/mem/{{item.id}}' target='_blank') {{item.nc}} 
         td {{item.email}}
         td {{item.created_at}}  
-        td
+        td[ng-class="item.synced ?  'synced' : '' "]
           a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
           a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" ng-click="sync(item)"]: i.fa.fa-exchange
     tfoot
       tr
         td[colspan='8'] 
