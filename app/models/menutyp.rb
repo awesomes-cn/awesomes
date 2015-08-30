@@ -6,6 +6,10 @@ class Menutyp < ActiveRecord::Base
     Rails.cache.read(@@CACHE_KEY).find_all{|r|r.key == key}.first || Menutyp.new
   end
 
+  def link
+    parent ? "/repos/#{parent}/#{key}" : "/repos/#{key}"
+  end
+
   def self.menus typcd
     Menutyp.where({:typcd=> typcd}).all
   end

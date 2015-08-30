@@ -60,3 +60,31 @@ a.repo-title{
 	color: #333; text-decoration: none;
 	& > h2{display: inline-block;}
 }
+
+
+.repo-item{
+	display: block; height: 150px; background-color: #FD635E;  text-align: center;margin: 15px 0;  box-shadow: 1px 1px 1px #DDD;
+	*{color: #FFF;}
+  &.item-1{background-color: #FD635E}
+  &.item-2{background-color: #FFB26A}
+  &.item-3{background-color: #BB9CE6}
+  &.item-4{background-color: #94AFF1}
+  &.item-5{background-color: #8BF3F0}
+  &.item-6{background-color: #DBF283}
+  &.item-7{background-color: #FFD764}
+  &.item-8{background-color: #76E86A}
+  &.item-9{background-color: #79C8B3}
+  &.item-10{background-color: #DD79B2}
+  i.fa{font-size: 4em;}
+  h3{margin: 0; font-size: 18px;  padding: 0; padding-top: 30px; padding-bottom: 20px; text-align: center;}
+  &.h-2{
+  	height: 330px;
+  	h3{font-size: 2em;  padding-top: 50px;}
+  	i.fa{font-size: 10em;}
+  }
+}
+
+.repo-list {
+	.more{display: block; width: 200px; text-align: center; padding: 20px 0; margin: 0 auto; margin-top: 50px; background-color: #EEE; color: #bbb}
+}
+

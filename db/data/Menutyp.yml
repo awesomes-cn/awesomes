@@ -2,6 +2,8 @@ data:
   - key: Applications
     sdesc: "应用"
     typcd: A 
+    fdesc: 'Javascript 应用框架和工具库'
+    icon: "fa-television"
 
   - key: Frameworks
     sdesc: "框架"
@@ -16,6 +18,7 @@ data:
     typcd: B
     fdesc: '实现项目自动化构建和管理，简化你的工作。'
     icon: "fa-rocket"
+    home_index: 28
 
   - key: Loaders
     sdesc: "模块加载"
@@ -59,6 +62,7 @@ data:
     typcd: B
     fdesc: 'JS和HTML5的前端游戏引擎，帮助我们更好更快地打造游戏'
     icon: "fa-gamepad"
+    home_index: 26
 
   - key: Highlights
     sdesc: "代码高亮"
@@ -66,6 +70,7 @@ data:
     typcd: B
     fdesc: '代码高亮，着色'
     icon: "fa-code"
+    home_index: 24
 
   - key: Editor
     sdesc: "富文本编辑器"
@@ -73,10 +78,14 @@ data:
     typcd: B
     fdesc: '各种网页编辑器'
     icon: "fa-columns"
+    home_index: 20
 
   - key: Mobile
     sdesc: "移动端"
     typcd: A  
+    fdesc: '适配移动端的H5应用框架和工具组件'
+    icon: "fa-mobile" 
+    home_index: 30
 
   - key: Frameworks
     sdesc: "框架"
@@ -95,6 +104,9 @@ data:
   - key: Media
     sdesc: "多媒体"
     typcd: A
+    fdesc: '音频和视频处理的工具库和播放插件'
+    icon: "fa-film"
+    home_index: 18
 
   - key: Audio
     sdesc: "音频"
@@ -113,6 +125,8 @@ data:
   - key: Dom
     sdesc: Dom
     typcd: A
+    fdesc: 'Dom页面元素的辅助工具和框架'
+    icon: "fa-laptop"
 
   - key: Frameworks
     sdesc: "框架"
@@ -134,6 +148,7 @@ data:
     typcd: B
     fdesc: "网页字体，字体处理工具，字体图标"
     icon: "fa-flag"
+    home_index: 16
 
 
   - key: Forms
@@ -151,6 +166,7 @@ data:
     typcd: B
     fdesc: "各种JS动画库和CSS3动画库"
     icon: "fa-cog fa-spin"
+    home_index: 14
 
   - key: Alerts
     sdesc: "弹出框"
@@ -183,6 +199,8 @@ data:
   - key: Images
     sdesc: "图像图像"
     typcd: A 
+    fdesc: '图形图形处理库和各种展示效果'
+    icon: 'fa-image'
 
   - key: Graphics
     sdesc: "图形库"
@@ -190,6 +208,7 @@ data:
     typcd: B
     fdesc: "2D/3D图形处理库"
     icon: "fa-pie-chart"
+    home_index: 22
 
   - key: Sliders
     sdesc: "幻灯片"
@@ -204,3 +223,4 @@ data:
     typcd: B
     fdesc: "web图表"
     icon: "fa-bar-chart"
+    home_index: 12

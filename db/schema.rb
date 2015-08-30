@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828155833) do
+ActiveRecord::Schema.define(version: 20150830142318) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150828155833) do
 
   create_table "mem_repos", force: :cascade do |t|
     t.string   "name",             limit: 255
+    t.integer  "mem_id",           limit: 4
     t.string   "description",      limit: 255
     t.string   "html_url",         limit: 255
     t.integer  "stargazers_count", limit: 4
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150828155833) do
     t.string   "icon",       limit: 255
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "home_index", limit: 4,     default: 0
   end
 
   create_table "readmes", force: :cascade do |t|
