@@ -12,6 +12,9 @@ $(function(){
   })
   Prism.highlightAll();
   
+  $("article table").each(function(){
+    $(this).attr('class','table');
+  })
 })
 Turbolinks.enableProgressBar();
 
