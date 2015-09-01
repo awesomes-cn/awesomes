@@ -6,6 +6,10 @@ class RepoController < ApplicationController
     @comment = {:typ=> 'REPO',:idcd=> @item.id}
   end 
 
+  def translation
+    render :layout=> nil
+  end
+
   def commits
     @readmes = @item.readmes
   end
