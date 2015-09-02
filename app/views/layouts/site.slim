@@ -6,19 +6,19 @@ html
     =render 'layouts/top'
     =yield :banner
     div.container.l-margin.main-container
-      div.row
-        div.col-md-2
-          div.list-group.left-menus
-            a.list-group-item[href="/site/about"] 关于
-            a.list-group-item[href="/site/history"] 发展历程
-            a.list-group-item[href="/site/contact"] 联系我们
-            a.list-group-item[href="/site/link"] 友情链接
-      
-        div.col-md-8
-          =yield :con
-      
-        div.col-md-2
-          =yield :right_bar
+      div.row.site-wraper 
+        div.panel.panel-default
+          div.panel-body
+            div.col-md-2
+              div.list-group.left-menus
+                a.list-group-item[href="/site/about"] 关于
+                a.list-group-item[href="/site/history"] 发展历程
+                a.list-group-item[href="/site/contact"] 联系我们
+                a.list-group-item[href="/site/link"] 友情链接
+                a.list-group-item[href="/site/api"] 开放API
+          
+            div.col-md-10.
+              =yield :con 
           
     =render 'layouts/footer'
     

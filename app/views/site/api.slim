@@ -1,0 +1,85 @@
+=content_for :con 
+  h1 Awesomes  API 
+
+  h3 Open API
+  h4 Request path
+  pre: code http://www.awesomes.cn/api/readme
+  
+  h4 Request method
+  code Get
+
+  h4 Request parameters
+  table.table
+    tr
+      th Name
+      th Type
+      th Required
+      th Parameter position
+      th Description
+      th Default value
+    tr 
+      td owner
+      td string
+      td yes
+      td urlParam
+      td GiHub repo's owner name
+      td no
+    tr 
+      td name
+      td string
+      td yes
+      td urlParam
+      td GiHub repo's  name
+      td no
+    tr 
+      td owner
+      td string
+      td no
+      td urlParam
+      td The return content format
+      td markdown
+
+  h4 Response JSON
+  pre
+    code[class="javascript"]
+      | {
+      br
+      |    code: 1, #state,0:success,1: didn't find the repo
+      br
+      |    owner: params[:owner], 
+      br
+      |    name: params[:name],
+      br
+      |    has_zh: !_item.about_zh.blank?,#whether exist chinese readme,this is boolen
+      br
+      |    readme: _item.about_zh #chinese readme
+      br
+      | }
+
+  p
+    | Check it on 
+    a<>[href="http://apistore.baidu.com/apiworks/servicedetail/889.html" target="_blank"] baidu api store
+    | or just visit
+    a[href="http://www.awesomes.cn/api/readme?owner=FortAwesome&name=font-awesome" target="_blank"]  http://www.awesomes.cn/api/readme?owner=FortAwesome&name=font-awesome  
+      
+
+
+  h3#translation Add a icon to your repo for Chinese translation
+  p Awesomes.cn offer a chinese translation for English project used by chinese users.You can add this icon to your preoject .
+  img[src="http://awesomes.oss-cn-beijing.aliyuncs.com/readme.png"]
+
+  p This will let chinese developers use the English project more easily,and let more developers join us to translate more github open projects.
+
+  p  
+    | Just add the following text to your repo's 
+    code<> README.md
+    | file
+  pre[lang="bash" class="language-markup"]
+    code
+      | [![中文说明](http://awesomes.oss-cn-beijing.aliyuncs.com/readme.png)](http://www.awesomes.cn/repo/videojs/video-js)
+  p 
+    | Change the link 
+    code<> http://www.awesomes.cn/repo/videojs/video-js
+    | to your repo's path in the format 
+    code<> http://www.awesomes.cn/repo/[your github user name]/[your repo name]
+      
