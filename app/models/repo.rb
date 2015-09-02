@@ -1,6 +1,6 @@
 class Repo < ActiveRecord::Base
   has_many :readmes
-  has_many :repo_resources
+  has_many :repo_notifies
 
   after_create do |item|
     ActionController::Base.new.expire_fragment  %r{repo_list_.+} 

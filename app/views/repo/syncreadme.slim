@@ -1,0 +1,13 @@
+=content_for :con
+  div.panel.panel-default.view-wraper  
+    =render "banner"
+  div.panel.panel-default.repo-extra
+    div.panel-heading
+      a.btn.btn-danger.left[href="#{@item.link_url}/avoid"] 忽略
+      h4.txt-center 检查Readme更新 
+      =form_tag "#{@item.link_url}/accept",mthod: 'post',class: 'right'
+        button.btn.btn-success 更新
+        
+
+    div.panel-body
+      div =raw Diffy::Diff.new(@item.about, @readme).to_s(:html_simple)

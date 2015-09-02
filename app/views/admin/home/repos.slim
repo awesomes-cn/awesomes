@@ -1,13 +1,14 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#list[ng-controller="RepoCtrl" ng-init="get_list(1)"]
+  table.table#list[ng-controller="RepoCtrl" ng-init="get_list(1,{order_by: 'outdated desc'})"]
     thead
       tr
         th #
         th 库名
         th 地址
         th 类型 
+        th Readme
         th 操作
     tbody 
       tr[ng-repeat="item in items" class="recsts{{item.recsts}}" ]
@@ -15,6 +16,7 @@
         td: a[href='{{item.link_url}}' target='_blank'] {{item.name}} 
         td: a[href='{{item.html_url}}' target='_blank'] {{item.html_url}} 
         td {{item.rootyp}}-{{item.typcd}}  
+        td: a[href="{{item.link_url}}/syncreadme" title="查看更新" target="_blank"] {{item.outdated == '1' ? '有更新' : ''}}
         td[ng-class="item.synced ?  'synced' : '' "]
           a.sync-btn<>[href="" data-id="{{item.id}}" ng-click="sync(item)" title="同步Github数据"]: i.fa.fa-globe
           a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash

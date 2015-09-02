@@ -1,0 +1,9 @@
+=content_for :con
+  div.panel.panel-default.view-wraper  
+    =render "banner"
+  div.panel.panel-default[style="margin-top: 20px;"]
+    div.panel-heading: h4.txt-center Add notify 
+    div.panel-body.txt-center[style="padding: 100px 0;"]
+      h3 Thanks for your notify to #{@item.name}!
+      br
+      h4 We will update the readme and chinese translation immediately.

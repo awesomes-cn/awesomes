@@ -22,6 +22,12 @@
       article[data-lang="en" ng-non-bindable]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
           =raw GitHub::Markdown.render @item.about
+          div.edit-footer
+            p
+              | Find this readme outdated? please just
+              a<>[href="#{@item.link_url}/notify"] click to tell me
+              | now! We will update the readme and chinese translation immediately.
+
       article[data-lang="zh" ng-non-bindable]
         =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
           -if !@item.about_zh.blank? 

@@ -23,14 +23,7 @@ adminApp.controller('DocsubCtrl',['$scope','$http',function($scope,$http){
 adminApp.controller('DocCtrl',['$scope','$http',function($scope,$http){
   get_data($scope,$http,'doc') 
 }])
-
-//- 资源
-adminApp.controller('ResourceCtrl',['$scope','$http',function($scope,$http){
-  get_data($scope,$http,'resource') 
-  $scope.edit = function(item){
-    
-  }
-}])
+ 
 
 //- 会员
 adminApp.controller('MemCtrl',['$scope','$http',function($scope,$http){
@@ -59,10 +52,9 @@ function get_data($scope,$http,collection,data_callback){
 
   $scope.where = {};
 
-  $scope.get_list = function(page,para,pagesize){
-    if (!para) {para = {}};
-    if(!pagesize){pagesize = 15};
-    $http.post(list_url,{page : page,pagesize: pagesize, para : para}).success(function(data){
+  $scope.get_list = function(page,para,pagesize){ 
+    _paras = _.extend({page : page,pagesize: pagesize}, para);
+    $http.post(list_url,_paras).success(function(data){
       if(data_callback){
         data = data_callback(data);
       }

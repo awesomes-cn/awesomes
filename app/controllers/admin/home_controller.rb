@@ -8,7 +8,7 @@ class Admin::HomeController < AdminController
   end
 
   def repos
-    adminlists Repo,[:name,:html_url,:typcd,:rootyp,:alia,:owner],:methods => ['link_url']
+    adminlists Repo,[:name,:html_url,:typcd,:rootyp,:alia,:owner,:outdated],:methods => ['link_url']
   end
 
   def docsubs

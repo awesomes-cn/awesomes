@@ -27,8 +27,8 @@ class AdminController < ActionController::Base
     @page =  @page.to_i - 1
   end
 
-  def data_list query
-    query.order('id desc').limit(page_size).offset(page * page_size)
+  def data_list query 
+    query.order(params[:order_by]).order('id desc').limit(page_size).offset(page * page_size)
   end
 
   def data_list_asc query
@@ -40,9 +40,6 @@ class AdminController < ActionController::Base
       format.html
       format.json { 
         _reitems = items.select(permits+[:created_at,:id])
-        #if params[:para] and params[:para] != {}
-        #  _items = _items.where(params.require(:para).permit(permits))
-        #end
         render json: {
           items: data_list(_reitems),
           count: items.count

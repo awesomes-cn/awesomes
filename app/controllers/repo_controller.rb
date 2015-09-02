@@ -1,6 +1,6 @@
 class RepoController < ApplicationController
   before_filter :repo_lost 
-  before_filter :admin_login,:only=> ["edit","update","readme_en"]
+  before_filter :admin_login,:only=> ["edit","update","readme_en",'syncreadme','avoid','accept']
   def index
     @lang = params[:lang] || (@item.about_zh.blank? ? 'en' : 'zh')
     @comment = {:typ=> 'REPO',:idcd=> @item.id}
@@ -51,5 +51,28 @@ class RepoController < ApplicationController
       _items = _items.where({:recsts=> '0'})
     end
     render json:{items:  _items}
+  end
+
+  def notify
+    @item.update_attributes({:outdated=> '1'})
+  end
+
+  def syncreadme
+    _readme_url = "https://api.github.com/repos/#{@item.full_name}/readme?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
+    _response = RestClient.get _readme_url, {:accept => "application/vnd.github.VERSION.raw"}
+    @readme = _response.body
+  end
+
+  def avoid
+    @item.update_attributes({:outdated=> '0'})
+    redirect_to @item.link_url
+  end
+
+  def accept
+    _readme_url = "https://api.github.com/repos/#{@item.full_name}/readme?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
+    _response = RestClient.get _readme_url, {:accept => "application/vnd.github.VERSION.raw"}
+    _readme = _response.body
+    @item.update_attributes({:about=> _readme,:outdated=> '0'})
+    redirect_to @item.link_url
   end
 end

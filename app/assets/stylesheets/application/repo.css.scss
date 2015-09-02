@@ -88,3 +88,11 @@ a.repo-title{
 	.more{display: block; width: 200px; text-align: center; padding: 20px 0; margin: 0 auto; margin-top: 50px; background-color: #EEE; color: #bbb}
 }
 
+.repo-extra{
+  margin-top: 20px;
+  .panel-heading{
+    text-align: center;
+    h4{display: inline-block;}
+  }
+}
+
