@@ -69,7 +69,7 @@ class MemController < ApplicationController
   end
 
   def sync_repo
-    Github.new.mem_sync_repo current_mem
+    Github.mem_sync_repo current_mem
     redirect_to request.referer
   end
   
