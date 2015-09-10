@@ -189,6 +189,13 @@ data:
     fdesc: "日期和时间插件"
     icon: "fa-calendar"
 
+  - key: Navs
+    sdesc: "菜单导航"
+    parent: Dom
+    typcd: B
+    fdesc: "页面导航和菜单"
+    icon: "fa-navicon"
+
   - key: Pages
     sdesc: "页面布局"
     parent: Dom
