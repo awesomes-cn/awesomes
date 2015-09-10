@@ -55,6 +55,12 @@ data:
     fdesc: '浏览器的帮助函数库以及JS扩展库'
     icon: "fa-wrench"
 
+  - key: Processor
+    sdesc: "（预）处理器"
+    parent: Applications
+    typcd: B
+    fdesc: 'Javascript/CSS （预）处理器，让我们更高效地写代码'
+    icon: "fa-hourglass-end"
 
   - key: Games
     sdesc: "游戏引擎"
