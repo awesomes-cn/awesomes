@@ -1,6 +1,8 @@
 class RepoController < ApplicationController
   before_filter :repo_lost 
   before_filter :admin_login,:only=> ["edit","update","readme_en",'syncreadme','avoid','accept']
+  before_filter :mem_login,:only=>['readme']
+  
   def index
     @lang = params[:lang] || (@item.about_zh.blank? ? 'en' : 'zh')
     @comment = {:typ=> 'REPO',:idcd=> @item.id}

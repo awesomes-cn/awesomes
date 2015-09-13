@@ -42,22 +42,29 @@ div.panel.panel-default.list-wraper
 
 
 
-  -if @count < 1
-    div.view-wraper
-      div.nolist
-        h3 
-          | 未搜索到
-          strong<> =params[:keyword] 
-          | 的相关库
-        p
-          | 你可以快速
-          a<[href="/repo/new"] 提交一个库
-  -else
-    div.list-group 
-      -@items.each do |item|
-        a.list-group-item[href="#{item.link_url}"]
-          h3 =item.name
-          span =item.description 
+-if @count < 1
+  div.view-wraper
+    div.nolist
+      h3 
+        | 未搜索到
+        strong<> =params[:keyword] 
+        | 的相关库
+      p
+        | 你可以快速
+        a<[href="/repo/new"] 提交一个库
+-else
+  div.row.repo-list-wraper
+    -@items.each do |item|
+      div.col-sm-4
+        div.thumbnail
+          a[href="#{item.link_url}"]: img[src="http://isux.tencent.com/wp-content/uploads/2015/04/20150427180506952-385x220.jpg"]
+          div.caption
+            a[href="#{item.link_url}"]: h3 =item.name
+            p =item.description
+          ul
+            li.tag-github: a: i.fa.fa-github.fa-fw
+            li.tag-mobile: a: i.fa.fa-mobile.fa-fw
+          
 div#page-repo.pagenation.pagination-lg
 javascript:
   $(function(){

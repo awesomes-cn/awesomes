@@ -1,4 +1,4 @@
-body{line-height: 25px; color: #333;background-color: #F4F4F4; font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
+body{line-height: 25px; color: #333;background-color: #F2F2F2; font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
 .left{float: left; }
 .right{float: right}
 .clear{clear: both}
@@ -58,8 +58,11 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
 {
   border-color: #bce8f1;
   *{border-left-color: #bce8f1;border-right-color: #bce8f1;}
-  .root{color: #31708f;background-color: #d9edf7;border-color: #bce8f1;font-weight: 700;}
-  a.list-group-item{}
+  
+  .list-group-item{
+    display: none;border-left: 0;border-right: 0;border-color: #EEE; border-radius: 0;
+    &.root{display: block}
+  }
 }
 
 .logo{

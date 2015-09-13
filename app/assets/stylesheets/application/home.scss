@@ -22,6 +22,7 @@
 }
 
 .list-wraper{
+  border: none;box-shadow: none;
   & > .nav-heading {
     padding: 5px; font-size: 12px;border-color: #EEE;
     & > ol{
@@ -203,3 +204,28 @@ padding: 0 10px;border-radius: 10px;
 
 
 #btn-markdown{  position: absolute;  top: 10px;  right: 300px;  z-index: 1000;}
+
+
+.repo-list-wraper{
+  .thumbnail{
+    border: 0; padding: 0; overflow: hidden; border-radius: 0; margin-bottom: 30px;
+    .caption{
+      & > p{ 
+        color: #717171;height: 50px;overflow: hidden;
+      }
+      a{color: #333333;  text-decoration: none}
+    }
+    & > ul{
+      margin: 0; padding: 0;
+      li{
+        display: inline-block; list-style: none; background-color: #E33B79;height: 30px;padding: 0 10px;line-height: 30px;  float: right;
+        a{color: #FFF;}
+        &.tag-mobile{
+          background-color: #00CFFF;
+        }
+
+      }
+    }
+  }
+
+}

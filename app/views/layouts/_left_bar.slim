@@ -1,7 +1,9 @@
 =cache "left_menu_bars" do
   div.list-group.left-menus
     -Menutyp.menus('A').each do |root|
-      span.list-group-item.root =root.sdesc
+      a.list-group-item.root[href="#"]
+        i.fa.fa-fw>[class="#{root.icon}"]
+        span =root.sdesc
       -root.subitems_b.each do |item|
         a.list-group-item[href="/repos/#{root.key}/#{item.key.downcase}"]
           i.fa>[class="#{item.icon}"]
