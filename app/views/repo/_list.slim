@@ -57,13 +57,16 @@ div.panel.panel-default.list-wraper
     -@items.each do |item|
       div.col-sm-4
         div.thumbnail
-          a[href="#{item.link_url}"]: img[src="http://isux.tencent.com/wp-content/uploads/2015/04/20150427180506952-385x220.jpg"]
+          a[href="#{item.link_url}"]: img.cover[src="http://isux.tencent.com/wp-content/uploads/2015/04/20150427180506952-385x220.jpg"]
           div.caption
             a[href="#{item.link_url}"]: h3 =item.name
             p =item.description
           ul
-            li.tag-github: a: i.fa.fa-github.fa-fw
-            li.tag-mobile: a: i.fa.fa-mobile.fa-fw
+            li.tag-github: a GI
+            li.tag-mobile: a MO
+            li.tag-bootstrap: a BO
+            li.tag-html5: a HT
+            li.tag-css3: a CS
           
 div#page-repo.pagenation.pagination-lg
 javascript:

@@ -215,15 +215,24 @@ padding: 0 10px;border-radius: 10px;
       }
       a{color: #333333;  text-decoration: none}
     }
+    .cover{width: 100%}
     & > ul{
-      margin: 0; padding: 0;
+      margin: 0; padding: 0; margin-top: 10px;
       li{
-        display: inline-block; list-style: none; background-color: #E33B79;height: 30px;padding: 0 10px;line-height: 30px;  float: right;
+        display: inline-block; list-style: none; background-color: #4078C0;height: 30px;padding: 0 10px;line-height: 30px;  float: right;
         a{color: #FFF;}
         &.tag-mobile{
           background-color: #00CFFF;
         }
-
+        &.tag-bootstrap{
+          background-color: #494171;
+        }
+        &.tag-html5{
+          background-color: #EA5413;
+        }
+        &.tag-css3{
+          background-color: #E33B79;
+        }
       }
     }
   }
