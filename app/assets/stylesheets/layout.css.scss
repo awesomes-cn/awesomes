@@ -213,3 +213,16 @@ user-select: none;
   
 }
 
+
+
+// font-awesome patch
+.tag-icon{
+  background-image: url("tag-icon.png"); width: 18px; height: 20px; margin-top: 5px;
+}
+.fa-jquery{
+  @extend .tag-icon;  background-position: 0px -4px;
+}
+
+.fa-bootstrap{
+  @extend .tag-icon;   background-position: -3px 69px;
+}

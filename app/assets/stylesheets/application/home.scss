@@ -220,9 +220,10 @@ padding: 0 10px;border-radius: 10px;
       margin: 0; padding: 0; margin-top: 10px;
       li{
         display: inline-block; list-style: none; background-color: #4078C0;height: 30px;padding: 0 10px;line-height: 30px;  float: right;
+        font-size: 14px;
         a{color: #FFF;}
         &.tag-mobile{
-          background-color: #00CFFF;
+          background-color: #A4C50B;font-size: 16px;
         }
         &.tag-bootstrap{
           background-color: #494171;
@@ -232,6 +233,9 @@ padding: 0 10px;border-radius: 10px;
         }
         &.tag-css3{
           background-color: #E33B79;
+        }
+        &.tag-jquery{
+          background-color: #78CFF5;
         }
       }
     }
