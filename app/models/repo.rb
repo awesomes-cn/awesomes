@@ -41,4 +41,8 @@ class Repo < ActiveRecord::Base
   def tag
     super || 'github'
   end
+
+  def cover
+    super || 'default.jpg'
+  end
 end

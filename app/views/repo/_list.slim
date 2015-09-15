@@ -57,7 +57,7 @@ div.panel.panel-default.list-wraper
     -@items.each do |item|
       div.col-sm-4
         div.thumbnail
-          a[href="#{item.link_url}"]: img.cover[src="http://isux.tencent.com/wp-content/uploads/2015/04/20150427180506952-385x220.jpg"]
+          a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
           div.caption
             a[href="#{item.link_url}"]: h3 =item.name
             p =item.description

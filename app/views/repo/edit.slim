@@ -38,18 +38,19 @@
             td[width="50px"] 标签
             td =f.text_field(:tag,class:'form-control')
 
-          /tr
-            /td[width="50px"] 中文简介 
-            /td 
-              /=f.hidden_field(:about_zh)
-              /textarea#sim_editor[data-autosave="/simditor/editor-content" data-for="#repo_about_zh" markdown="true"]  
-              /=render "layouts/simditor"
-              /script#tmp-con[type="text/html"] =raw @item.about_zh
-              /javascript:
-              /  $(function(){
-              /    myeditor.setValue($("#tmp-con").html());
-              /  })
-
+          tr
+            td[width="50px"] 封面
+            td 
+              input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片 385*220" data-folder="repo" data-width="385" data-height="220"]
+              img#cover-privew[src="#{access_path 'repo'}#{@item.cover}"]
+              =f.hidden_field(:cover,class:'form-control')
+              
+              javascript:
+                //上传
+                uplaod_form($('#upload_file'),function(data){
+                  $("#cover-privew").attr("src",data.file_path);
+                  $("#repo_cover").val(data.src);
+                })  
 
           tr
             td

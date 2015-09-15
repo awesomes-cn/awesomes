@@ -226,3 +226,17 @@ user-select: none;
 .fa-bootstrap{
   @extend .tag-icon;   background-position: -3px 69px;
 }
+
+
+// bootstrap patch
+.navbar{
+  background-color: #FFF; border: 0; box-shadow: 1px 1px 1px #BEBEBE;
+  a{
+    &:link,&:visited{
+      color:#777777;
+    }
+    &:hover,&:active{
+      color:#111;
+    }
+  }
+}
