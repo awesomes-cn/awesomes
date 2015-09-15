@@ -37,4 +37,8 @@ class Repo < ActiveRecord::Base
     _mems = readmes.where({:status=> 'READED'}).order("id desc").pluck("mem_id")
     Mem.find(_mems)
   end
+
+  def tag
+    super || 'github'
+  end
 end

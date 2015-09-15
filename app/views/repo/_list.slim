@@ -62,12 +62,8 @@ div.panel.panel-default.list-wraper
             a[href="#{item.link_url}"]: h3 =item.name
             p =item.description
           ul
-            li.tag-github: a[href="?tag=github"]: i.fa.fa-github.fa-fw
-            li.tag-mobile: a: i.fa.fa-mobile.fa-fw
-            li.tag-bootstrap: a: i.fa.fa-bootstrap.fa-fw
-            li.tag-html5: a: i.fa.fa-html5.fa-fw
-            li.tag-css3: a: i.fa.fa-css3.fa-fw
-            li.tag-jquery: a: i.fa.fa-jquery.fa-fw
+            -item.tag.split(',').each do |tag|
+              li[class="tag-#{tag}"]: a[href="?tag=#{tag}"]: i.fa.fa-fw[class="fa-#{tag}"]
           
 div#page-repo.pagenation.pagination-lg
 javascript:
