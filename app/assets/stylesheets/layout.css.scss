@@ -60,9 +60,19 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
   *{border-left-color: #bce8f1;border-right-color: #bce8f1;}
   
   .list-group-item{
-    display: none;border-left: 0;border-right: 0;border-color: #EEE; border-radius: 0;
-    &.root{display: block}
+    border-left: 0;border-right: 0;border-color: #EEE; border-radius: 0; position: relative; overflow: visible;
+    &.root{
+      display: block;
+      &:hover{
+        .sub-menus{display: block;}
+      }
+    }
   }
+  .sub-menus{
+    display: none;
+    .list-group-item{background-color: #F9F9F9;}
+  }
+  
 }
 
 .logo{

@@ -22,7 +22,7 @@
 }
 
 .list-wraper{
-  border: none;box-shadow: none;
+  border: none;box-shadow: none; background-color: #FFF;
   & > .nav-heading {
     padding: 5px; font-size: 12px;border-color: #EEE;
     & > ol{
@@ -43,7 +43,9 @@
       /* color: #999; */
     }
   }
-  .panel-heading{font-size: 12px;}
+  .breadcrumb{background-color: #FFF}
+  .panel-heading{font-size: 12px; background-color: #FFF}
+
 }
 .nolist{
     text-align: center;
