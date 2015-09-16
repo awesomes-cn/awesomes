@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150915145738) do
     t.string   "outdated",          limit: 1,          default: "0"
     t.string   "tag",               limit: 255
     t.string   "cover",             limit: 255
+    t.integer  "recommend",         limit: 4,          default: 0
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
