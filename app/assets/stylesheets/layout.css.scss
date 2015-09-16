@@ -19,17 +19,17 @@ a{
 }
 
 .footer{
-  border-top: 1px solid #e9eaef;text-shadow: 1px 1px 1px #0D0D0D;background: #222222;color: #5C5C5C; margin-top: 100px; padding: 20px;
+  border-top: 1px solid #e9eaef;text-shadow: 1px 1px 1px #D2D2D2;background: #ECECEC;color: #5C5C5C; margin-top: 100px; padding: 20px;
   .menus{
     padding: 0; float: right;  padding-top: 30px;
     li{list-style: none; display: inline-block; margin-left: 15px; }
     
   }
-  a{color: #8E8E8E}
+  a{color: #606B8C;}
   p{text-align: right;}
 
   .bottom-wraper{  
-    border-top: #2C2C2C 1px solid;    margin: 40px 0;    padding: 40px 0;  
+    border-top: #D3D3D3 1px solid;    margin: 40px 0;    padding: 40px 0;  
     font-size: 12px;  color: #5C5C5C;
     p{text-align: center;}
   }
