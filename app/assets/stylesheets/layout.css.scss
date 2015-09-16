@@ -247,6 +247,14 @@ user-select: none;
   @extend .tag-icon;   background-position: -3px 69px;
 }
 
+.fa-angular{
+  @extend .tag-icon;   background-position:  1px 153px;
+}
+
+.fa-node{
+  @extend .tag-icon;   background-position:  1px 233px;
+}
+
 
 // bootstrap patch
 .navbar{
