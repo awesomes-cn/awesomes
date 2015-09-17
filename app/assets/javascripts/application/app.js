@@ -17,6 +17,7 @@ $(function(){
   })
 })
 Turbolinks.enableProgressBar();
+Turbolinks.pagesCached(0);
 
 function open_login(){
   if (!Rails.islogin) {

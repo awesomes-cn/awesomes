@@ -2,7 +2,7 @@
   div.list-group.left-menus
     -Menutyp.menus('A').each do |root|
       a.list-group-item.root[href=""]
-        i.fa.fa-fw>[class="#{root.icon}"]
+        /i.fa.fa-fw>[class="#{root.icon}"]
         span =root.sdesc
         i.fa.fa-angle-down.right
       div.sub-menus[style="display: #{params[:root] == root.key ? 'block' : ''}"]
@@ -12,10 +12,9 @@
             span =item.sdesc
     
     javascript:
-      $(function(){
-        $(".left-menus .root").click(function(){
-          $(this).next('.sub-menus').slideToggle().siblings('.sub-menus').slideUp();
-        })
+      $(".left-menus .root").click(function(){
+        $(this).next('.sub-menus').slideToggle().siblings('.sub-menus').slideUp();
       })
+      
 
 

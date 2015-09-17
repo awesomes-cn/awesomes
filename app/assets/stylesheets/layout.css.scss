@@ -70,7 +70,17 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
   }
   .sub-menus{
     display: none;
-    .list-group-item{background-color: #F9F9F9;}
+    .list-group-item{
+      background-color: #F9F9F9;
+      &:link,&:visited{
+        color: #B8B8B8;
+      }
+      &:hover,&:active{
+        color: #333;
+      }
+      
+
+    }
   }
   
 }

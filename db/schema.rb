@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20150915145738) do
   end
 
   create_table "mem_repos", force: :cascade do |t|
-    t.string   "name",             limit: 255
     t.integer  "mem_id",           limit: 4
+    t.string   "name",             limit: 255
     t.string   "description",      limit: 255
     t.string   "html_url",         limit: 255
     t.integer  "stargazers_count", limit: 4
@@ -104,16 +104,10 @@ ActiveRecord::Schema.define(version: 20150915145738) do
     t.integer  "repo_id",    limit: 4
     t.text     "about",      limit: 4294967295
     t.text     "old",        limit: 4294967295
-    t.string   "sdesc",      limit: 200
+    t.string   "sdesc",      limit: 200,        default: "初始化文档"
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-  end
-
-  create_table "repo_notifies", force: :cascade do |t|
-    t.integer  "repo_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
   end
 
   create_table "repo_resources", force: :cascade do |t|
