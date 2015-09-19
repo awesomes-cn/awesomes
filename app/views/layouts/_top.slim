@@ -14,6 +14,10 @@ header.navbar
         li: a[href="/repos/Images/sliders"] 幻灯片
         li: a[href="/repos/Applications/builds"] 构建工具
 
+      form.navbar-form.navbar-left.search-form[action="/repos" method="get"]
+        input.form-control[type="text" placeholder="查找库" name="keyword"]
+        button[type="submit"]: i.fa.fa-search  
+
       
       ul.nav.navbar-nav.navbar-right
         -if !current_mem

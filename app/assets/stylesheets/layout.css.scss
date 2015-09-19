@@ -6,16 +6,16 @@ a{
   text-decoration: none;
   -webkit-transition:all,.5s,ease,0s; 
 }
-.header{
-  background-color: #409ADA; padding-bottom: 100px; text-align: center; margin-bottom: 20px; 
-  h2{-webkit-font-smoothing: antialiased;color: #fff;font-size: 30px;font-weight: 400;text-rendering: optimizeLegibility; margin: 0; padding-bottom: 20px; padding-top: 100px}
+.search-form{
   .search{border: none; padding: 8px 20px; outline: none; border-radius: 100px; margin: 20px 0; width: 250px;padding-right: 40px;}
-  a{color: #FFF}
-  .fa-search{
-    margin-left: -30px;background: none;border: none;color: #B2B2B2; outline: none;
-    &:hover{color: #444}
+  .form-control{
+    box-shadow: none;border: 1px solid #F5F5F5;
+    &::-webkit-input-placeholder {
+      color: #EEE;
+    }
   }
-
+  button{border: 0; background: none;margin-left: -30px;outline: none;}
+  i{ color: #CACACA;}
 }
 
 .footer{
@@ -268,3 +268,4 @@ user-select: none;
     }
   }
 }
+
