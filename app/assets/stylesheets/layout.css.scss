@@ -237,22 +237,22 @@ user-select: none;
 
 // font-awesome patch
 .tag-icon{
-  background-image: url("tag-icon.png"); width: 18px; height: 20px; margin-top: 5px;
+  background-image: url("tag-icon.png");   background-repeat: no-repeat;width: 18px; height: 20px; margin-top: 5px;
 }
 .fa-jquery{
   @extend .tag-icon;  background-position: 0px -4px;
 }
 
 .fa-bootstrap{
-  @extend .tag-icon;   background-position: -3px 69px;
+  @extend .tag-icon;   background-position: 0px -25px;
 }
 
 .fa-angular{
-  @extend .tag-icon;   background-position:  1px 153px;
+  @extend .tag-icon;   background-position:  0px -46px;
 }
 
 .fa-node{
-  @extend .tag-icon;   background-position:  1px 233px;
+  @extend .tag-icon;   background-position:  0px -68px;
 }
 
 

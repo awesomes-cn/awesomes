@@ -32,10 +32,24 @@ module HomeHelper
       _where_search = "name like ?","%#{_search}%"
     end
 
-    @items = data_list(Repo.where(_where).where(_where_search).order(_order_by))
-    @count = Repo.where(_where).where(_where_search).count
+    if !(_tag = params[:tag]).blank?
+      _tag_search = "tag like ?","%#{_tag}%"
+    end
+
+
+
+    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_order_by))
+    @count = Repo.where(_where).where(_where_search).where(_tag_search).count
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]
+  end
+
+  def repos_title
+    _typ = Menutyp.find_by_key params[:typ]
+    _root =  Menutyp.find_by_key params[:root]
+    return _typ.sdesc if _typ
+    return _root.sdesc if _root
+    "前端资源"
   end
 
   def menus_b

@@ -30,7 +30,9 @@
     }
   }
   .sub-repo{
-    float: right;  margin-right: 10px;  margin-top: 5px;
+    float: right;  margin-right: 10px;  margin-top: 5px; text-decoration: none;
+    &:link,&:visited{color: #C0C0C0}
+    &:active,&:hover{color: #000}
   }
 
   .filter{

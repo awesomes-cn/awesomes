@@ -63,7 +63,7 @@ div.panel.panel-default.list-wraper
             p =item.description
           ul
             -item.tag.split(',').each do |tag|
-              li[class="tag-#{tag}"]: a[href="?tag=#{tag}"]: i.fa.fa-fw[class="fa-#{tag}"]
+              li[class="tag-#{tag}"]: a[href="?tag=#{tag}" title="#{tag}"]: i.fa.fa-fw[class="fa-#{tag}"]
           
 div#page-repo.pagenation.pagination-lg
 javascript:
