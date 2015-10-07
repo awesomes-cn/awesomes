@@ -123,7 +123,7 @@
 .repo-list-wraper{
   background-color: #FFF;
   & > div{
-     padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px;
+     padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px; min-height: 130px;
     .caption{
       & > p{ 
         color: #999999;overflow: hidden; margin: 0;
