@@ -96,3 +96,94 @@ a.repo-title{
   }
 }
 
+
+
+.view-wraper{
+  & > .nav-heading {
+    padding: 5px; font-size: 12px; background-color: #FFF;
+    & > ol{
+      padding-bottom: 0;margin-bottom: 0; background-color: #FFF;
+    }
+
+  }
+  & > .main-heading{
+    padding: 20px; padding-right: 200px; position: relative; border-bottom: 0;min-height: 120px; background-color: #FFF;
+    & > h2{font-size: 20px; font-weight: bolder; margin: 0; padding: 0; padding-bottom: 10px;} 
+    & > .menu{
+      position: absolute; right: 20px; top: 20px; width: 150px; 
+      & > *{
+        display: block; background-color: #19C2FF; text-decoration: none;  width: 100%; margin-bottom: 10px; padding: 5px 10px; text-align: center; color: #FFF;
+        &.gitbtn{background-color: #EF4245;color: #FFF;}
+
+        
+      }
+      .com{
+        padding: 0;
+        & > a{
+          display: inline-block; width: 50%; text-align: center; color: #FFF;padding: 5px 0; text-decoration: none;
+        }
+        a + a{
+            background-color: #E7E7E7;   color: #19C2FF;
+        }
+      }
+    }
+    & > p{color: #7E7E7E}
+  }
+
+  & > .params{
+    overflow: hidden;color: #868686;background-color: #FFF; color: rgba(81, 162, 81, .91);font-size: 12px;font-weight: bold;
+    & > div{
+      border: #E4E4E4 1px solid; padding: 10px; border-right: 0; text-align: center;
+    }
+  } 
+
+  & > .banner-title{
+    border: #E4E4E4 1px solid; text-align: center; font-size: 20px; padding: 10px 0; border-left: 0; border-right: 0;
+  }
+
+
+
+  & > .detail{
+    padding: 30px; /* padding-right: 150px;  */position: relative; display: block;font-size: 16px;
+    img{max-width: 100%}
+    & > .bar{
+      position: absolute; right: 0px; top: 20px;
+      ul{
+        margin:0 ;padding: 0;
+        li{
+          display: block; padding: 10px;color: hsl(0, 0%, 60%);; font-weight: bold;
+
+        }
+      }
+    }
+    & > .lang{
+      position: absolute; z-index: 10; right: 20px; display: inline-block; font-size: 12px; top: 20px;background-color: #EEE;padding: 0 10px;border-radius: 10px;
+      span{
+        color: #C2C2C2;  cursor: pointer;
+        &.on{
+          color: rgb(255, 123, 123)
+        }
+      }
+      span + span:before{
+        padding: 0 5px;color: #ccc;content: "/\00a0";
+      }
+    }
+
+    &>article{
+      z-index: -1;
+      & > .no-zh{
+        text-align: center; 
+        h4{margin: 20px 0;}
+      }
+    }
+  }
+
+  &>.panel-footer{
+    color: #919191;
+    a{color: #444}
+  }
+
+  .edit-footer{
+    border-top: #C5C5C5 1px dashed;  padding: 20px 0; color: #999;  font-size: 13px; margin-top: 20px;
+  }
+}

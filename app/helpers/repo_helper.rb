@@ -4,6 +4,6 @@ module RepoHelper
   end
 
   def recommends
-    Repo.order('recommend desc').limit(3).offset(0)
+    Repo.order('recommend desc').limit(6).offset(0)
   end
 end

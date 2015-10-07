@@ -38,10 +38,6 @@ class Repo < ActiveRecord::Base
     Mem.find(_mems)
   end
 
-  def tag
-    super || 'github'
-  end
-
   def cover
     super || 'default.jpg'
   end

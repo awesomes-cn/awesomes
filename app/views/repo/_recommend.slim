@@ -1,5 +1,6 @@
-div.row
-  -recommends.each do |item|
-    div.col-md-4.repo-list-wraper 
-      div.thumbnail
-        a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
+div.repo-recommends-wraper
+  div.row
+    -recommends.each do |item|
+      div.col-md-2
+        div
+          a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]

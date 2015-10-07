@@ -53,17 +53,16 @@ div.panel.panel-default.list-wraper
         | 你可以快速
         a<[href="/repo/new"] 提交一个库
 -else
-  div.row.repo-list-wraper
+  div.repo-list-wraper
     -@items.each do |item|
-      div.col-sm-4
-        div.thumbnail
-          a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
-          div.caption
-            a[href="#{item.link_url}"]: h3 =item.name
-            p =item.description
-          ul
-            -item.tag.split(',').each do |tag|
-              li[class="tag-#{tag}"]: a[href="?tag=#{tag}" title="#{tag}"]: i.fa.fa-fw[class="fa-#{tag}"]
+      div
+        a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
+        div.caption
+          a[href="#{item.link_url}"]: h3 =item.name
+          p =item.description
+        ul
+          -item.tag.to_s.split(',').each do |tag|
+            li: a[href="?tag=#{tag}" title="#{tag}"] =tag
           
 div#page-repo.pagenation.pagination-lg
 javascript:

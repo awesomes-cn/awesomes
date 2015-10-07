@@ -1,4 +1,4 @@
-body{line-height: 25px; color: #333;background-color: #F2F2F2; font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
+body{line-height: 25px; color: #333;font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
 .left{float: left; }
 .right{float: right}
 .clear{clear: both}
@@ -60,7 +60,7 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
   *{border-left-color: #bce8f1;border-right-color: #bce8f1;}
   
   .list-group-item{
-    border-left: 0;border-right: 0;border-color: #EEE; border-radius: 0; position: relative; overflow: visible;
+    border-color: #EEE; border-radius: 0; position: relative; overflow: visible;
     &.root{
       display: block;
       &:hover{
@@ -258,7 +258,7 @@ user-select: none;
 
 // bootstrap patch
 .navbar{
-  background-color: #FFF; border: 0; box-shadow: 1px 1px 1px #BEBEBE;
+  background-color: #FFF; border: 0;   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   a{
     &:link,&:visited{
       color:#777777;
