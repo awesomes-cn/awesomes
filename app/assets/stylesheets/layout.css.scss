@@ -18,6 +18,11 @@ a{
   i{ color: #CACACA;}
 }
 
+.logo-wraper{
+  img{  position: absolute;  top: 13px; width: 25px;}
+  span{  color: #da552f;  margin-left: 29px;font-size: 17px;}
+}
+
 .footer{
   border-top: 1px solid #e9eaef;background: #ECECEC;color: #999; margin-top: 100px; padding: 20px;padding-top: 30px;
   .menus{
