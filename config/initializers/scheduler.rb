@@ -8,7 +8,7 @@ scheduler.cron '0 2 * * *' do
   GithubJob.sync_repo
 end 
 
-# 每隔3天执行
-scheduler.cron '0 4 */3 * *' do
+# 每隔4天执行
+scheduler.cron '0 6 */4 * *' do
   GithubJob.repo_trend
 end 
