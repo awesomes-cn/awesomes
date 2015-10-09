@@ -19,14 +19,14 @@ a{
 }
 
 .footer{
-  border-top: 1px solid #e9eaef;background: #ECECEC;color: #999; margin-top: 100px; padding: 20px;
+  border-top: 1px solid #e9eaef;background: #ECECEC;color: #999; margin-top: 100px; padding: 20px;padding-top: 30px;
   .menus{
-    padding: 0; float: right;  padding-top: 30px;
+    padding: 0; float: right;  
     li{list-style: none; display: inline-block; margin-left: 15px; }
     
   }
   a{color: #575757;}
-  p{text-align: right;}
+ 
 
   .bottom-wraper{  
     border-top: #D3D3D3 1px solid;    margin: 40px 0;    padding: 40px 0;   padding-bottom: 0;

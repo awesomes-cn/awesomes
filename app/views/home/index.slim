@@ -1,16 +1,15 @@
 =content_for :banner
-  /div.doc-banner.repo-banner
-  /  h3 也许是最好的免费开源的前端资源库
-  /  h4 The definitive source of the best  Web libraries, frameworks, and plugins
-  /  form[action="/repos" method="get"]
-  /    input.txt[type="text" placeholder="查找库" name="keyword"]
-  /    button.serach-btn[type="submit"]: i.fa.fa-search
+
+=content_for :footer_extra    
+  =render "footer_index"
 
 =content_for :con
   =cache "home_repos",skip_digest: true,:expires_in => 1.day do 
     =render "repo/recommend"
   =cache "home_menus",skip_digest: true,:expires_in => 2.day do 
     =render "list"
+
+
   
 
   

@@ -2,8 +2,22 @@ footer.footer
   div.container
     div.row
       div.col-md-6
-        img[src="/assets/footer-logo.png"]
-      div.col-md-6
+        /img[src="/assets/footer-logo.png"]
+        p
+          | 京ICP备14011059号-1 | 本站采用
+          a<>[href="http://creativecommons.org/licenses/by/4.0/" target="blank"]  识共享署名 4.0 国际许可协议
+          | 进行许可
+        /img[src="/assets/seal.png"]
+        p
+          | 本站已通过
+          a<>[href="http://webscan.360.cn/index/checkwebsite/url/www.awesomes.cn" name="9f7397b639fc54f2f6b9e31257486317" target="_blank"] 360网站安全检测平台</a>
+          | 和
+          a<>[href="http://zhanzhang.anquan.org/physical/report/?domain=www.awesomes.cn" target="_blank"] 安全联盟
+          | 的检测 
+          | 来
+          a<>[href="http://koubei.baidu.com/s/awesomes.cn"  target="_blank"]  百度口碑
+          | 为我们点赞吧
+      div.col-md-6.text-right
         ul.menus
           li: a[href="/site/about"] 关于
           li: a[href="/site/contact"] 联系我们
@@ -11,40 +25,7 @@ footer.footer
           li: a[href="/site/history"] 发展历程
         div.clear  
         p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
-    div.bottom-wraper
-      p
-        | Awesomes.cn 采用
-        a<>[href="/markdown"] Markdown
-        | 格式
-        a<>[href="/site/api"] 开放了API
-        | And A 
-        a<>[href="/site/api#translation"] Translation Icon
-        | 并将代码开源在了
-        a<>[href="https://github.com/awesomes-cn/awesomes" target="blank"] Github
-        | 上，期待您的参与
-      p 
-        | 京ICP备14011059号-1 | 本站采用
-        a<>[href="http://creativecommons.org/licenses/by/4.0/" target="blank"]  识共享署名 4.0 国际许可协议
-        | 进行许可
-      /img[src="/assets/seal.png"]
-      p
-        | 本站已通过
-        a<>[href="http://webscan.360.cn/index/checkwebsite/url/www.awesomes.cn" name="9f7397b639fc54f2f6b9e31257486317" target="_blank"] 360网站安全检测平台</a>
-        | 和
-        a<>[href="http://zhanzhang.anquan.org/physical/report/?domain=www.awesomes.cn" target="_blank"] 安全联盟
-        | 的检测 
-        | 来
-        a<>[href="http://koubei.baidu.com/s/awesomes.cn"  target="_blank"]  百度口碑
-        | 为我们点赞吧
-      p.third-contact
-        a[href="http://weibo.com/awesomescn" target="_blank"]: i.fa.fa-weibo
-        a[href="https://github.com/awesomes-cn" target="_blank"]: i.fa.fa-github
-        a[href="https://twitter.com/awesomescn"  target="_blank"]: i.fa.fa-twitter
-    div.bottom-wraper.link-wraper
-      span 合作伙伴：
-      a[href="http://www.niudana.com/" target="_blank" title="设计师导航"] 牛大拿设计师导航
-      a[href="http://www.AlloyTeam.com/" target="_blank" title="腾讯 AlloyTeam"] 腾讯 AlloyTeam
-      a[href="http://www.iamue.com/" target="_blank" title="腾讯 AlloyTeam"] 交互设计
+    =yield :footer_extra
 
 // login Modal
 div.modal.fade[id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
