@@ -12,6 +12,7 @@ class Github
         :stargazers_count=> item['stargazers_count']
       })
     end
+  rescue
   end
 
   def self.sync_repo_attr repo
@@ -30,6 +31,7 @@ class Github
     }
     repo.update_attributes(_para)
     repo
+  rescue  
   end 
 
   

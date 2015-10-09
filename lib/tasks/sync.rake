@@ -1,10 +1,10 @@
 namespace :repo do 
-  task :sync,[:table] => :environment do |t,args|
-   GithubJob.sync_repo 
+  task :sync,[:start] => :environment do |t,args|
+   GithubJob.sync_repo args[:start]
   end
 
-  task :trend,[:table] => :environment do |t,args|
-   GithubJob.repo_trend 
+  task :trend,[:start] => :environment do |t,args|
+   GithubJob.repo_trend args[:start]
   end
 end
 

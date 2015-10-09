@@ -1,17 +1,17 @@
 require "github"
 class GithubJob < ApiController
-  def self.sync_repo
+  def self.sync_repo start = 1
     Thread.new{
-      Repo.all.each do |repo|
+      Repo.where("id >= #{start.to_i}").each do |repo|
         _repo = Github.sync_repo_attr(repo)
-        p "====成功同步：#{repo.id}======="
+        p "====#{repo.id}======="
         sleep 5 
       end
     }.join
   end
 
-  def self.repo_trend
-    Repo.all.each do |item|
+  def self.repo_trend start = 1
+    Repo.where("id >= #{start.to_i}").each do |item|
       item.update_trend
       p "====#{item.id}======="
     end
