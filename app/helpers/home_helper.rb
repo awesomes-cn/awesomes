@@ -9,7 +9,7 @@ module HomeHelper
   end
 
   def repo_list
-    @sort = params[:sort] || "hot"
+    @sort = params[:sort].blank? ? "hot" : params[:sort]
     _where = {}
     
     #if !(_typ = params[:typ]).blank? and (_menu = Menutyp.find_by_key(_typ))
