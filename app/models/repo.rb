@@ -1,6 +1,7 @@
 class Repo < ActiveRecord::Base
   has_many :readmes
   has_many :repo_notifies
+  has_many :repo_trends
 
   after_create do |item|
     ActionController::Base.new.expire_fragment  %r{repo_list_.+} 
@@ -40,5 +41,16 @@ class Repo < ActiveRecord::Base
 
   def cover
     super || 'default.jpg'
+  end
+
+  def overall
+    stargazers_count + forks_count + subscribers_count
+  end
+
+  def update_trend
+    repo_trends.find_or_create_by({:date=> Date.today}).update_attributes({:overall=> overall})
+    _trend_prev = repo_trends.order("id desc").second
+    _trend = _trend_prev ? (overall - _trend_prev.overall) / (Date.today - _trend_prev.date)  : 0
+    update_attributes({:trend=> _trend})
   end
 end

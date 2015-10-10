@@ -53,6 +53,10 @@ div.panel.panel-default.list-wraper
         | 你可以快速
         a<[href="/repo/new"] 提交一个库
 -else
+  div.sort-banner[class="on-#{@sort}"]
+    a.hot[href="?sort=hot" title="最多关注"] 热门
+    a.new[href="?sort=new"  title="最新创建"] 最新
+    a.trend[href="?sort=trend"  title="发展趋势"] 趋势
   div.repo-list-wraper
     -@items.each do |item|
       div
@@ -72,7 +76,7 @@ javascript:
       current_page : #{page},
       //link_to:"?page=__id__",
       callback: function(page){
-        Turbolinks.visit("?page="+(page +1) );
+        Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
       }
     }) 
   })

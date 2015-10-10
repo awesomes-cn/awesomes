@@ -26,7 +26,11 @@ class Github
       :forks_count=> _result['forks_count'],
       :subscribers_count=> _result['subscribers_count'],
       :pushed_at=> _result['pushed_at'],
+      :github_created_at=> _result['created_at'],
     }
     repo.update_attributes(_para)
-  end
+    repo
+  end 
+
+  
 end

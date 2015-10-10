@@ -7,3 +7,8 @@ scheduler = Rufus::Scheduler.new
 scheduler.cron '0 2 * * *' do
   GithubJob.sync_repo
 end 
+
+# 每隔3天执行
+scheduler.cron '0 4 */3 * *' do
+  GithubJob.repo_trend
+end 

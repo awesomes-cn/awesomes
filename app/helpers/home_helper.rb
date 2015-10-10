@@ -9,7 +9,7 @@ module HomeHelper
   end
 
   def repo_list
-    _order_by = '(stargazers_count+forks_count+subscribers_count) desc'
+    @sort = params[:sort] || "hot"
     _where = {}
     
     #if !(_typ = params[:typ]).blank? and (_menu = Menutyp.find_by_key(_typ))
@@ -36,9 +36,11 @@ module HomeHelper
       _tag_search = "tag like ?","%#{_tag}%"
     end
 
+    _map = {:hot=> "(stargazers_count + forks_count + subscribers_count)",:new=> "github_created_at",:trend=> "trend"}
+    _sort = "#{_map[@sort.to_sym]} desc" 
 
 
-    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_order_by))
+    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_sort))
     @count = Repo.where(_where).where(_where_search).where(_tag_search).count
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]

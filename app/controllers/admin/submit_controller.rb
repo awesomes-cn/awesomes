@@ -35,7 +35,8 @@ class Admin::SubmitController < AdminController
       :pushed_at=> _result['pushed_at'],
       :typcd=> _submit.typcd,
       :rootyp=> _submit.rootyp,
-      :owner=> _result['owner']['login']
+      :owner=> _result['owner']['login'],
+      :github_created_at=> _result['created_at'],
 
     }
     _repo = Repo.create(_para)

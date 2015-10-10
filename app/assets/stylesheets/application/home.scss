@@ -143,6 +143,21 @@
   h3{font-weight: 600; font-size: 21px; margin-top: 10px; margin-bottom: 5px;}
 
 }
+.sort-banner{
+  text-align: center; padding-top: 10px;
+  a{
+    display: inline-block; margin-left: 10px; color: #444;
+  }
+  &.on-hot{
+    .hot{color: #3997d9}
+  }
+  &.on-new{
+    .new{color: #3997d9}
+  }
+  &.on-trend{
+    .trend{color: #3997d9}
+  }
+}
 
 .repo-recommends-wraper{
   background-color: #FFF; padding: 20px;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915145738) do
+ActiveRecord::Schema.define(version: 20151010073316) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20150915145738) do
     t.integer  "repo_id",    limit: 4
   end
 
+  create_table "repo_trends", force: :cascade do |t|
+    t.integer  "repo_id",    limit: 4
+    t.integer  "overall",    limit: 4
+    t.date     "date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "repos", force: :cascade do |t|
     t.string   "name",              limit: 255
     t.string   "full_name",         limit: 255
@@ -144,6 +152,8 @@ ActiveRecord::Schema.define(version: 20150915145738) do
     t.string   "tag",               limit: 255
     t.string   "cover",             limit: 255
     t.integer  "recommend",         limit: 4,          default: 0
+    t.integer  "trend",             limit: 4,          default: 0
+    t.datetime "github_created_at"
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
