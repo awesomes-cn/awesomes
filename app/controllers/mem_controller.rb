@@ -23,13 +23,11 @@ class MemController < ApplicationController
       _mem = current_mem
       if _mauth
         create _data, _provider, _avatar_url
-      end
-      _mem.mauths.create(_para)
-      session[:mem] = _mem.id
+      end 
     else 
       _mem = _mauth.mem
       if _mem.avatar.blank?
-         _mem.update_attributes({:avatar=> _avatar_url})
+        _mem.update_attributes({:avatar=> _avatar_url})
       end
       session[:mem] = _mem.id
     end
@@ -58,6 +56,8 @@ class MemController < ApplicationController
       :github=> _raw_info['login']
     })
     Github.mem_sync_repo _mem
+    _mem.mauths.create(_para)
+    session[:mem] = _mem.id
   rescue
   end
 
