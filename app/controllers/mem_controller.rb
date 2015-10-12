@@ -14,7 +14,7 @@ class MemController < ApplicationController
 
     #头像
     _avatar_url = ''
-    _raw_info = data['extra']['raw_info']
+    _raw_info = _data['extra']['raw_info']
     if _provider == 'github'
       _avatar_url = _raw_info['avatar_url']
     end
@@ -27,7 +27,7 @@ class MemController < ApplicationController
       end 
     else 
       _mem = _mauth.mem
-      if _mem.avatar.blank?
+      if _mem.avatar == 'default.png'
         _mem.update_attributes({:avatar=> _avatar_url})
       end
       session[:mem] = _mem.id
