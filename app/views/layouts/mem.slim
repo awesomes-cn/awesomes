@@ -9,7 +9,7 @@ html
       div.row
         div.col-md-9
           div.mem-wraper
-            img.tx[src="#{access_path 'mem'}#{@mem.avatar}"]
+            img.tx[src="#{@mem.avatar_url}"]
             ul
               li: h3 =@mem.nc
               li: span.desc 第 #{@mem.index} 位会员，于 #{@mem.created_at} 加入

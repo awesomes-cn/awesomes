@@ -17,6 +17,10 @@ class Mem < ActiveRecord::Base
     super.blank? ? 'default.png' : super
   end
 
+  def avatar_url
+    /^http.+\/\/.+$/.match(avatar).nil? ? "#{Rails.application.config.source_access_path}mem/#{avatar}" : avatar
+  end
+
   def index
     Mem.where("id < ?",id).count + 1
   end

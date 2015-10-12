@@ -11,35 +11,39 @@ class MemController < ApplicationController
       :uid => _data['uid']
     }
     _mauth = Mauth.where(_para).first
+
+    #头像
+    _avatar_url = ''
+    if provider == 'github'
+      _avatar_url = _raw_info['avatar_url']
+    end
     
     #注册 /  绑定账号
     if _mauth.nil?
       _mem = current_mem
-      if !_mem
-        create _data, _provider
+      if _mauth
+        create _data, _provider, _avatar_url
       end
       _mem.mauths.create(_para)
       session[:mem] = _mem.id
     else 
-      session[:mem] = _mauth.mem.id
+      _mem = _mauth.mem
+      if _mem.avatar.blank?
+         _mem.update_attributes({:avatar=> _avatar_url})
+      end
+      session[:mem] = _mem.id
     end
     #render json: _data and return
     redirect_to session[:login_callback]
   end
 
-  def create data,provider
+  def create data,provider,avatar_url
     _raw_info = data['extra']['raw_info']
-    _photo = ''
-    if provider == 'github'
-      _photo = _raw_info['avatar_url']
-    end
+    
 
-    #require 'uuidtools'   
-    #_filename =  UUIDTools::UUID.timestamp_create.to_s + '.jpg'
-    #upload_remote(_photo,_filename,'mem') 
     _mem = Mem.create({
       :nc => data['info']['nickname'], 
-      #:avatar => _filename,
+      :avatar => avatar_url,
       :email => _raw_info[:email]
     })
 

@@ -12,6 +12,6 @@
               a.right[href="#{@item.link_url}/diff/#{item.id}"] 查看更新
             p
               a>[href="/mem/#{item.mem_id}"]
-                img.tx[src="#{access_path 'mem'}#{item.mem.avatar}"]
+                img.tx[src="#{item.mem.avatar_url}"]
                 span< =item.mem.nc 
               span.right =item.friendly_time
