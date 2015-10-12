@@ -5,7 +5,14 @@ namespace :repo do
 
   task :trend,[:start] => :environment do |t,args|
    GithubJob.repo_trend args[:start]
-  end
+  end 
+   
 end
 
+
+namespace :mem do 
+  task :avatar,[:start] => :environment do |t,args| 
+    MemJob.aync_avatar
+  end
+end
 

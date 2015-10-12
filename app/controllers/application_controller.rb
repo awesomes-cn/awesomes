@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
   def data_list_asc query
     query.order('id asc').limit(page_size).offset(page * page_size)
   end
-
+  
   def upload_pic(file,filename,folder,width,height)
     _full_path = "#{Rails.root}/public/upload/#{folder}/#{filename}"
     image = MiniMagick::Image.read(file)
@@ -100,8 +100,8 @@ class ApplicationController < ActionController::Base
       image.crop "#{width}x#{height}+#{_x}+#{_y}"
     end
     image.write  _full_path
-    FileUtils.chmod 0755, _full_path
-    return _full_path
+    FileUtils.chmod 0755, _full_path 
+    aliyun_upload File.open(_full_path),"#{folder}/#{filename}"
   end
 
   def aliyun_upload file,target
@@ -115,10 +115,16 @@ class ApplicationController < ActionController::Base
     _connection.put(target, file)
   end
 
-  def upload_remote(remote_src,filename,dir)
+  def upload_remote(remote_src,filename,folder)
+    _full_path = "#{Rails.root}/public/upload/#{folder}/#{filename}"
     require 'open-uri' 
-    web_contents  = open(remote_src).read
-    aliyun_upload web_contents,"#{dir}/#{filename}"
+    open(remote_src) {|f|
+      File.open(_full_path,"wb") do |file|
+        file.puts f.read
+      end
+    }
+    
+    aliyun_upload File.open(_full_path),"#{folder}/#{filename}"
   end
 
   def clear_fragment key

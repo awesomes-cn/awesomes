@@ -9,8 +9,7 @@ class UploadController < ApplicationController
     _width = params[:width].to_i
     _height =  params[:height].to_i
     _file_name = get_filename(_file)
-    _path = upload_pic(_file,_file_name,_folder,_width,_height)
-    _path = aliyun_upload File.open("#{Rails.root}/public/upload/#{_folder}/#{_file_name}"),"#{_folder}/#{_file_name}"
+    upload_pic(_file,_file_name,_folder,_width,_height) 
     render text: {status: true,file_path: "#{Rails.application.config.source_access_path}#{_folder}/#{_file_name}",src: _file_name}.to_json
   end 
 end
