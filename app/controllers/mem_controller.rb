@@ -14,7 +14,7 @@ class MemController < ApplicationController
 
     #头像
     _avatar_url = ''
-    if provider == 'github'
+    if _provider == 'github'
       _avatar_url = _raw_info['avatar_url']
     end
     
