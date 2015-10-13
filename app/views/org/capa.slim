@@ -4,7 +4,7 @@
   h2.doc-title 中国信息无障碍产品联盟
   div.capa-list
     div.row
-      -Dir.foreach("#{Rails.root}/public/capa") do |file|
+      -Dir.foreach("/www/capa") do |file|
         -if /.+\.pdf$/.match(file)
           div.col-md-4
             i.fa.fa-file-pdf-o>
