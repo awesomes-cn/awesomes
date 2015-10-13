@@ -1,0 +1,19 @@
+=content_for :title 
+  | 中国信息无障碍产品联盟 - awesomes
+=content_for :con 
+  h2.doc-title 中国信息无障碍产品联盟
+  div.capa-list
+    div.row
+      -Dir.foreach("#{Rails.root}/public/capa") do |file|
+        -if /.+\.pdf$/.match(file)
+          div.col-md-4
+            i.fa.fa-file-pdf-o>
+            a[href="/capa/#{file}"] =file
+    
+  div.text-center
+    img.capa-logo[src="/capa/logo-CAPA.png"]
+    p
+      |  此文档内容由“
+      a[href="http://www.siaa.org.cn/" target="_blank"] 中国信息无障碍产品联盟
+      | ”收集提供。开发者若有兴趣了解信息无障碍相关的更多内容，可联系：梁振宇，Link@siaa.org.cn
+    p Awesomes.cn 创立的宗旨是开源开放，为web开发提供高质量的资源，我们支持任何形式的有利于促进web发展的技术和组织，我们愿与中国信息无障碍产品联盟一起推广信息无障碍的发展和普及
