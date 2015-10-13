@@ -27,6 +27,13 @@ data:
     fdesc: '实现代码的模块化，加速优化代码的组织结构'
     icon: "fa-circle-o-notch"
 
+  - key: PackageManager
+    sdesc: "包管理器"
+    parent: Applications
+    typcd: B
+    fdesc: '前端JS包管理器'
+    icon: "fa-suitcase"
+
   - key: Templating
     sdesc: "模板引擎"
     parent: Applications
