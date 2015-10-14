@@ -1,3 +1,9 @@
+.note-wraper {
+  color: #BDBDBD; text-align: center; border-bottom: #EEE 1px solid;  padding: 20px 0;  margin-bottom: 20px; position: relative; display: none;
+  .fa-close{
+    cursor: pointer;  display: inline-block; position: absolute;right: 0;  top: 20px;  font-size: 20px;
+  }
+}
 .menu-typs{
   display: block; /* border-right: #DDD 1px solid; */
   li{
