@@ -237,3 +237,10 @@ data:
     fdesc: "web图表"
     icon: "fa-bar-chart"
     home_index: 12
+
+  - key: Processing
+    sdesc: "图片处理"
+    parent: Images
+    typcd: B
+    fdesc: "图片的缩放、剪切等处理的函数库"
+    icon: "fa-scissors"
