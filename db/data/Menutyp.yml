@@ -237,6 +237,13 @@ data:
     fdesc: "图片展示和轮播效果图"
     icon: "fa-camera"
 
+  - key: Lightboxs
+    sdesc: "灯箱"
+    parent: Images
+    typcd: B
+    fdesc: "图片灯箱插件，弹出预览，相册轮播"
+    icon: "fa-lightbulb-o"
+
   - key: Charts
     sdesc: "图表"
     parent: Images
@@ -250,4 +257,6 @@ data:
     parent: Images
     typcd: B
     fdesc: "图片的缩放、剪切等处理的函数库"
-    icon: "fa-scissors"
+    icon: "fa-crop"
+
+
