@@ -231,7 +231,7 @@ data:
     home_index: 22
 
   - key: Sliders
-    sdesc: "幻灯片"
+    sdesc: "轮播"
     parent: Images
     typcd: B
     fdesc: "图片展示和轮播效果图"
