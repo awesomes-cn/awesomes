@@ -182,10 +182,10 @@ data:
     home_index: 14
 
   - key: Alerts
-    sdesc: "弹出框"
+    sdesc: "通知提示"
     parent: Dom
     typcd: B
-    fdesc: "弹出层和弹出框"
+    fdesc: "各种通知提示弹出框"
     icon: "fa-chevron-circle-up"  
 
   - key: Uploads
