@@ -1,3 +1,4 @@
+
 namespace :repo do 
   task :sync,[:start] => :environment do |t,args|
    GithubJob.sync_repo args[:start]
