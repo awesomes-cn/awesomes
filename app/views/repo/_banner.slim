@@ -1,11 +1,12 @@
 div.panel-heading.nav-heading 
   =render "repo/crumbs"
 div.panel-heading.main-heading
-  a.repo-title[href="#{@item.link_url}"]: h2 =@item.name
-  p =@item.description
   div.menu.hidden-xs
     a[href="#{@item.homepage}"  target="_blank"] 官 网 
-    a.gitbtn[href="#{@item.html_url}" target="_blank"] Github  
+    a.gitbtn[href="#{@item.html_url}" target="_blank"] Github 
+  a.repo-title[href="#{@item.link_url}"]: h2 =@item.name
+  p =@item.description
+   
 div.params.hidden-xs
   / div.col-md-2[style="border-left: 0;"]
   /   i.fa.fa-area-chart>
