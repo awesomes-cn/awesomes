@@ -74,6 +74,7 @@ module HomeHelper
           {:title=>(Menutyp.current item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}"},
           {:title=>(Menutyp.current item.typcd).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}/#{item.typcd}"}
         ],
+        :thumbnail=> "#{access_path 'repo'}#{item.cover}"
       }
     end
   end
