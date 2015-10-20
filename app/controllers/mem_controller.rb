@@ -22,44 +22,32 @@ class MemController < ApplicationController
     #注册 /  绑定账号
     if _mauth.nil?
       _mem = current_mem
-      if _mauth
-        create _data, _provider, _avatar_url
+      if !_mem
+        _mem = Mem.create({
+          :nc => _data['info']['nickname'], 
+          :avatar => _avatar_url,
+          :email => _raw_info[:email]
+        })
+        _mem.mem_info.update_attributes({
+          :gender => _data['extra']['gender'],
+          :location=> _raw_info['location'],
+          :html_url=> _raw_info['html_url'],
+          :blog=> _raw_info['blog'],
+          :followers=> _raw_info['followers'],
+          :following=> _raw_info['following'],
+          :github=> _raw_info['login']
+        })
+        Github.mem_sync_repo _mem
+        _mem.mauths.create(_para)
       end 
     else 
       _mem = _mauth.mem
       if _mem.avatar == 'default.png'
         _mem.update_attributes({:avatar=> _avatar_url})
       end
-      session[:mem] = _mem.id
     end
-    #render json: _data and return
-    redirect_to session[:login_callback]
-  end
-
-  def create data,provider,avatar_url
-    _raw_info = data['extra']['raw_info']
-    
-
-    _mem = Mem.create({
-      :nc => data['info']['nickname'], 
-      :avatar => avatar_url,
-      :email => _raw_info[:email]
-    })
-
-
-    _mem.mem_info.update_attributes({
-      :gender => data['extra']['gender'],
-      :location=> _raw_info['location'],
-      :html_url=> _raw_info['html_url'],
-      :blog=> _raw_info['blog'],
-      :followers=> _raw_info['followers'],
-      :following=> _raw_info['following'],
-      :github=> _raw_info['login']
-    })
-    Github.mem_sync_repo _mem
-    _mem.mauths.create(_para)
     session[:mem] = _mem.id
-  rescue
+    redirect_to session[:login_callback]
   end
 
   def login
