@@ -3,10 +3,10 @@ div.panel-heading.nav-heading
 div.panel-heading.main-heading
   a.repo-title[href="#{@item.link_url}"]: h2 =@item.name
   p =@item.description
-  div.menu
+  div.menu.hidden-xs
     a[href="#{@item.homepage}"  target="_blank"] 官 网 
     a.gitbtn[href="#{@item.html_url}" target="_blank"] Github  
-div.params
+div.params.hidden-xs
   / div.col-md-2[style="border-left: 0;"]
   /   i.fa.fa-area-chart>
   /   span 0
