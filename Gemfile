@@ -50,7 +50,7 @@ gem 'github-markdown', '~> 0.6.8'
 
 gem 'oneapm_rpm'
 
-gem 'rufus-scheduler', '~> 3.1.4'
+gem 'whenever', :require => false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
