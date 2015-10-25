@@ -43,11 +43,11 @@
   
   input#tmp-con[type="hidden" value="#{@item.about_zh.blank? ? @item.about : @item.about_zh}"]
   javascript:
-    if(localStorage.markdown_readme){
-      markdown_editor.setValue(localStorage.markdown_readme); 
+    if(localStorage["markdown_readme_#{@item.id}"]){
+      markdown_editor.setValue(localStorage["markdown_readme_#{@item.id}"]); 
     }
     markdown_editor.on("change",function(){
-      localStorage.markdown_readme = markdown_editor.getValue();
+      localStorage["markdown_readme_#{@item.id}"] = markdown_editor.getValue();
     })
 
     if(markdown_editor.getValue() == ''){
