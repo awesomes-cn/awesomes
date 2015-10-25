@@ -52,4 +52,5 @@ module ApplicationHelper
   def comment_list typ,idcd
     @comments = Comment.where({:typ=> typ,:idcd=> idcd})
   end
+
 end

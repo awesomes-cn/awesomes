@@ -40,7 +40,7 @@ module HomeHelper
     _sort = "#{_map[@sort.to_sym]} desc" 
 
 
-    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_sort))
+    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_sort)).includes(:repo_trends)
     @count = Repo.where(_where).where(_where_search).where(_tag_search).count
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]

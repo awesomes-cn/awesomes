@@ -62,11 +62,16 @@ div.panel.panel-default.list-wraper
       div
         a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
         div.caption
-          a[href="#{item.link_url}"]: h3 =item.name
+          a[href="#{item.link_url}"]
+            h3 
+              span =item.name
+              span.line< =item.repo_trends.pluck('trend').join(',')
+
           p =item.description
         ul
           -item.tag.to_s.split(',').each do |tag|
-            li: a[href="?tag=#{tag}" title="#{tag}"] =tag
+            li: a[href="?tag=#{tag}" title="#{tag}"] =tag 
+              
           
 div#page-repo.pagenation.pagination-lg
 javascript:
@@ -79,4 +84,6 @@ javascript:
         Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
       }
     }) 
+
+    $(".line").peity("line");
   })

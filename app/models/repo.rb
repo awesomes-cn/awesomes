@@ -48,9 +48,11 @@ class Repo < ActiveRecord::Base
   end
 
   def update_trend
-    repo_trends.find_or_create_by({:date=> Date.today}).update_attributes({:overall=> overall})
+    _repo_trend = repo_trends.find_or_create_by({:date=> Date.today})
+    _repo_trend.update_attributes({:overall=> overall})
     _trend_prev = repo_trends.order("id desc").second
     _trend = _trend_prev ? (overall - _trend_prev.overall) / (Date.today - _trend_prev.date)  : 0
     update_attributes({:trend=> _trend})
+    _repo_trend.update_attributes({:trend=> _trend})
   end
 end
