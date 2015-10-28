@@ -277,11 +277,3 @@ user-select: none;
     }
   }
 }
-
-
-
-html.turbolinks-progress-bar::before {
-  position: absolute !important;
-  background-color: #EB5424 !important;
-  height: 2px !important;
-}
