@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'mem_bar'
 =content_for :con
-  table.table#mem-list
+  table.table#admin-app
     thead
       tr
         th #
@@ -29,4 +29,5 @@
   
   coffee:
     $ ()->
-      admin.list_data('#mem-list',"mem")
+      admin.list_data
+        model: 'mem'

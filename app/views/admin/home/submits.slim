@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#submit-list
+  table.table#admin-app
     thead
       tr
         th #
@@ -28,4 +28,6 @@
   
   coffee:
     $ ()->
-      admin.list_data '#submit-list',"submit",{fetching: false}
+      admin.list_data
+        model: 'submit'
+        item_propers: {fetching: false}

@@ -1,31 +1,41 @@
 window.admin =
-  list_data: ($el,model,item_propers,data_callback)->
-    return if !$el
-    list_url = '/admin/' + model + 's.json'
-    destory_url = '/admin/'+ model + '/destroy'
-    fetch_url = '/admin/'+ model + '/fetch'
+  list_data: (opt)->
+    defaults =
+      $el: '#admin-app'
+      model: ''
+      item_propers: null
+      data_callback: null
+      pagesize: 15
+
+
+    options = $.extend({}, defaults, opt || {})
+
+
+    list_url = '/admin/' + options.model + 's.json'
+    destory_url = '/admin/'+ options.model + '/destroy'
+    fetch_url = '/admin/'+ options.model + '/fetch'
 
 
     app = new Vue
-      el: $el
+      el: options.$el
       data:
         items: []
         count: '加载中..'
         search: {}
       
       methods:
-        list: (page,pagesize,$pagnation)->
+        list: (page,$pagnation)->
           page |= 1
-          pagesize  |=  15
+          pagesize = options.pagesize
           $pagnation  = $pagnation || $("#pagenation")
           $.get list_url, {page : page,pagesize: pagesize,filter: app.search}, (data)->
-            if item_propers
+            if options.item_propers
               _.each data.items, (item)->
-                _.each item_propers, (value, key)->
+                _.each options.item_propers, (value, key)->
                   item[key] = value
 
-            if data_callback
-              data = data_callback(data)
+            if options.data_callback
+              data = options.data_callback(data)
             app.items = data.items
             app.count = data.count
             if $pagnation
@@ -35,7 +45,7 @@ window.admin =
                   current_page : page - 1
                   callback : (page)->
                     now_page = page 
-                    app.list page + 1, pagesize, $pagnation
+                    app.list page + 1, $pagnation
         
         destroy: (item) ->
           if confirm('确定删除该记录？')

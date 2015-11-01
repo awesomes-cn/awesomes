@@ -1,0 +1,16 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  div#admin-app
+    ul.list-group.categorys-wrap
+      li.list-group-item[v-for="item in items" class="{{item.typcd == 'A' ? 'list-group-item-success' : ''}}"]
+        span {{item.sdesc}}
+        span.right.oper-wrap
+          i.fa.fa-pencil[v-on:click="edit(item)"]
+          i.fa.fa-trash<>[v-on:click="destroy(item)"]
+  
+  coffee:
+    $ ()->
+      admin.list_data
+        model: 'category'
+        pagesize: 100

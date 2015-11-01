@@ -30,4 +30,8 @@ class Admin::HomeController < AdminController
   def comments
     adminlists Comment,[:typ,:idcd,:mem_id,:con],:include => {:mem => {:only=>[:nc,:id]}},:methods=> ['target_url']
   end
+
+  def categorys
+    adminlists Menutyp,[:key,:sdesc,:icon,:typcd]
+  end
 end

@@ -25,3 +25,15 @@ body{background-color: #FFF!important}
 td.synced{
 	a{color: red;}
 }
+
+.categorys-wrap{
+  & > li{
+    .oper-wrap{
+      display: none;
+      i{display: inline-block; cursor: pointer; color: #666}
+    }
+    &:hover{
+      .oper-wrap{display: inline-block;}
+    }
+  }
+}

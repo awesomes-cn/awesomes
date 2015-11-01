@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#readme-list
+  table.table#admin-app
     thead
       tr
         th #
@@ -30,4 +30,5 @@
   
   coffee:
     $ ()->
-      admin.list_data('#readme-list',"readme")
+      admin.list_data
+        model: 'readme'

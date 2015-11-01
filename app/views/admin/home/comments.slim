@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#comment-list
+  table.table#admin-app
     thead
       tr
         th #
@@ -29,11 +29,5 @@
 
   coffee:
     $ ()->
-      admin.list_data('#comment-list',"comment")
-
-  javascript:
-    $(function(){
-      $("body").on("click",".sync-btn",function(){
-        $(this).find("i").attr("class","fa fa-spinner fa-spin")
-      })
-    })
+      admin.list_data
+        model: 'comment'
