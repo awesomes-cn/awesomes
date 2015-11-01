@@ -34,12 +34,6 @@ function open_login(){
 }
 
 
-
-
-
-
-
-
 //上传文件uplaod_form
 function uplaod_form($file,callback){
   $file.wrap('<div class="upwrap"></div>')
@@ -78,27 +72,6 @@ function uplaod_form($file,callback){
     });
   });
 }
-
-
-
-var siteApp = angular.module('siteApp',[])
-
-siteApp.config(['$httpProvider',function($httpProvider) {
-  $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-}])
-
-$(document).on('ready page:load', function(){
-   angular.bootstrap(document.body, ['siteApp'])
- }
-)
-
-siteApp.controller('CommentCtrl',['$scope','$http',function($scope,$http){
-  $scope.comments = {}
-  $scope.create = function(){
-    
-  }
-}])
-
 
 
 function list_data($scope,$http,list_url,$scopeitems,$pagnation,callback){

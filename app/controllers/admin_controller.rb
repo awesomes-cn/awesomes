@@ -38,11 +38,21 @@ class AdminController < ActionController::Base
   def adminlists items,permits,jsonextra={}
     respond_to do |format|
       format.html
-      format.json { 
-        _reitems = items.select(permits+[:created_at,:id])
+      format.json {
+        
+        _filter =  {}
+        _fields = []
+        if params[:filter]
+          params[:filter].each do |key, value|
+            _fields << key if value != ''
+          end
+          _filter = params.require(:filter).permit(_fields)
+        end
+
+        _reitems = items.select(permits+[:created_at,:id]).where(_filter)
         render json: {
           items: data_list(_reitems),
-          count: items.count
+          count: items.where(_filter).count
         }.to_json(jsonextra)
       }
     end

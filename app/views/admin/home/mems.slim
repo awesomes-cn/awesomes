@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'mem_bar'
 =content_for :con
-  table.table#list[ng-controller="MemCtrl" ng-init="get_list(1)"]
+  table.table#mem-list
     thead
       tr
         th #
@@ -10,19 +10,23 @@
         th 注册时间 
         th 操作
     tbody 
-      tr[ng-repeat="item in items" class="{{item.status}}"]
+      tr[v-for="item in items" class="{{item.status}}"]
         td {{item.id}}
         td: a(href='/mem/{{item.id}}' target='_blank') {{item.nc}} 
         td {{item.email}}
         td {{item.created_at}}  
         td[ng-class="item.synced ?  'synced' : '' "]
           a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
-          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
-          a<>[href="#" data-id="{{item.id}}" ng-click="sync(item)"]: i.fa.fa-exchange
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          /a<>[href="#" data-id="{{item.id}}" ng-click="sync(item)"]: i.fa.fa-exchange
     tfoot
       tr
         td[colspan='8'] 
           span 总记录：
-          span#totalc 加载中..
+          span {{count}}
   div#pagenation
   input#menubar[type="hidden" value="mems"]
+  
+  coffee:
+    $ ()->
+      admin.list_data('#mem-list',"mem")

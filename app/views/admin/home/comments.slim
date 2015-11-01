@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#list[ng-controller="CommentCtrl" ng-init="get_list(1)"]
+  table.table#comment-list
     thead
       tr
         th #
@@ -11,21 +11,25 @@
         th 内容 
         th 操作
     tbody 
-      tr[ng-repeat="item in items" class="recsts{{item.recsts}}" ]
+      tr[v-for="item in items" class="recsts{{item.recsts}}" ]
         td {{item.id}}
         td {{item.typ}} 
         td: a[href="{{item.target_url}}" target="_blank"] {{item.idcd}}
         td: a[href="/mem/{{item.mem_id}}" target="_blank"] {{item.mem.nc}}
         td {{item.con}}
         td
-          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
     tfoot
       tr
         td[colspan='8'] 
           span 总记录：
-          span#totalc 加载中..
+          span {{count}}
   div#pagenation
   input#menubar[type="hidden" value="comments"] 
+
+  coffee:
+    $ ()->
+      admin.list_data('#comment-list',"comment")
 
   javascript:
     $(function(){

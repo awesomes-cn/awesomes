@@ -1,37 +1,40 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#list[ng-controller="RepoCtrl" ng-init="get_list(1,{order_by: 'outdated desc'})"]
+  table.table#repo-list
     thead
       tr
-        th #
+        th[width="100"] #
         th 库名
         th 地址
         th 类型 
         th Readme
         th 操作
+      tr
+        td: input.form.form-control[type="text"  v-model="search.id" debounce="800"]
+        td: input.form.form-control[type="text"  v-model="search.name" debounce="800"]
+        td
+        td
+        td    
     tbody 
-      tr[ng-repeat="item in items" class="recsts{{item.recsts}}" ]
+      tr[v-for="item in items" class="recsts{{item.recsts}}" ]
         td {{item.id}}
         td: a[href='{{item.link_url}}' target='_blank'] {{item.name}} 
         td: a[href='{{item.html_url}}' target='_blank'] {{item.html_url}} 
         td {{item.rootyp}}-{{item.typcd}}  
         td: a[href="{{item.link_url}}/syncreadme" title="查看更新" target="_blank"] {{item.outdated == '1' ? '有更新' : ''}}
         td[ng-class="item.synced ?  'synced' : '' "]
-          a.sync-btn<>[href="" data-id="{{item.id}}" ng-click="sync(item)" title="同步Github数据"]: i.fa.fa-globe
-          a<>[href="#" data-id="{{item.id}}" ng-click="destroy(item.id)"]: i.fa.fa-trash
+          /a.sync-btn<>[href="" data-id="{{item.id}}" ng-click="sync(item)" title="同步Github数据"]: i.fa.fa-globe
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
           a[href="/repo/{{item.owner}}/{{item.alia}}/edit" title='编辑']: i.fa.fa-pencil
     tfoot
       tr
         td[colspan='8'] 
           span 总记录：
-          span#totalc 加载中..
+          span {{count}}
   div#pagenation
   input#menubar[type="hidden" value="repos"] 
 
-  javascript:
-    $(function(){
-      $("body").on("click",".sync-btn",function(){
-        $(this).find("i").attr("class","fa fa-spinner fa-spin")
-      })
-    })
+  coffee:
+    $ ()->
+      admin.list_data('#repo-list',"repo")
