@@ -1,7 +1,7 @@
 /=cache "left_menu_bars" do
 div.list-group.left-menus
   -Menutyp.menus('A').each do |root|
-    a.list-group-item.root[href=""]
+    a.list-group-item.root[href="javascript: return false;"]
       /i.fa.fa-fw>[class="#{root.icon}"]
       span =root.sdesc
       i.fa.fa-angle-down.right
