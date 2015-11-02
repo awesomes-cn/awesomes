@@ -8,12 +8,14 @@ window.admin =
       pagesize: 15
 
 
+
     options = $.extend({}, defaults, opt || {})
 
 
     list_url = '/admin/' + options.model + 's.json'
     destory_url = '/admin/'+ options.model + '/destroy'
     fetch_url = '/admin/'+ options.model + '/fetch'
+    
 
 
     app = new Vue
@@ -22,6 +24,7 @@ window.admin =
         items: []
         count: '加载中..'
         search: {}
+        edit_item: {}
       
       methods:
         list: (page,$pagnation)->
@@ -50,14 +53,19 @@ window.admin =
         destroy: (item) ->
           if confirm('确定删除该记录？')
             $.post destory_url, {id : item.id}, (data)->
-              app.items = _.without app.items, item
+              if data.status
+                app.items = _.without app.items, item
+              
 
         fetch: (item) ->
           item.fetching = true
           $.post fetch_url,{id : item.id}, (data)-> 
             item.status = "READED"
             item.fetching = false 
-
+        
+      
+          
+        
       watch:
         "search":
           handler: (Val, oldVal)->
@@ -66,4 +74,6 @@ window.admin =
  
                       
     app.list()
+
+    app
                   

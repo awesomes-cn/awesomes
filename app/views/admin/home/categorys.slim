@@ -1,16 +1,65 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  div#admin-app
-    ul.list-group.categorys-wrap
-      li.list-group-item[v-for="item in items" class="{{item.typcd == 'A' ? 'list-group-item-success' : ''}}"]
-        span {{item.sdesc}}
+  div#admin-app.categorys-wrap 
+
+    div.panel.panel-default[v-for="item in items | filterBy 'A' in 'typcd'"]
+      div.panel-heading
+        i.fa>[class="{{item.icon}}"]
+        | {{item.key}} - {{item.sdesc}}
         span.right.oper-wrap
+          i.fa.fa-plus<>[v-on:click="edit({typcd: 'A',parent: item.key})"]
           i.fa.fa-pencil[v-on:click="edit(item)"]
           i.fa.fa-trash<>[v-on:click="destroy(item)"]
+      div.panel-body
+        ul.list-group
+          li.list-group-item[v-for="sub in items | filterBy item.key in 'parent'"]
+            i.fa>[class="{{sub.icon}}"]
+            | {{sub.key}} - {{sub.sdesc}}
+            span.right.oper-wrap
+              i.fa.fa-pencil[v-on:click="edit(sub)"]
+              i.fa.fa-trash<>[v-on:click="destroy(sub)"]
+    
+    button.btn.btn-default[v-on:click="edit({})"]
+      i.fa.fa-plus>
+      span 添加分类  
+    //- 弹出框
+    div.modal.fade#myModal[tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
+      div.modal-dialog[role="document"]
+        div.modal-content
+          div.modal-header
+            button[type="button" class="close" data-dismiss="modal" aria-label="Close"] &times;
+            h4.modal-title#myModalLabel {{edit_item.key}} - {{edit_item.sdesc}}
+
+          div.modal-body
+            -['key','typcd','sdesc','parent','icon'].each do |field|
+              div.form-group
+                label =field
+                input.form-control[type="text"  v-model="edit_item.#{field}"]
+
+          div.modal-footer
+            button[type="button" class="btn btn-primary" v-on:click="save()"] 提 交
+
   
   coffee:
     $ ()->
-      admin.list_data
+      app = admin.list_data
         model: 'category'
         pagesize: 100
+
+      
+      app.$set 'edit', (item)-> 
+        app.edit_item = item
+        $('#myModal').modal('show')
+
+      app.$set 'save', ()->
+          $.post '/admin/category/save',app.edit_item,(data)->
+            if app.edit_item.id != data.id
+              app.items.push data
+            app.edit_item = data
+            
+            $('#myModal').modal('hide')
+            
+
+            
+

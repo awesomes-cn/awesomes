@@ -27,10 +27,13 @@ td.synced{
 }
 
 .categorys-wrap{
-  & > li{
+  & > .panel-default{margin-top: 10px;}
+  .oper-wrap{
+    i{display: inline-block; cursor: pointer; color: #BABABA}
+  }
+  .list-group-item{
     .oper-wrap{
       display: none;
-      i{display: inline-block; cursor: pointer; color: #666}
     }
     &:hover{
       .oper-wrap{display: inline-block;}
