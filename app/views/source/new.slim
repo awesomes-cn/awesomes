@@ -1,0 +1,12 @@
+-content_for :con
+  div.topic-wraper
+    =form_for(@item,url: "",html:{id: 'item_form',method: 'post'}) do |item|
+      div.form-group
+        =item.label :title,"标题"
+        =item.text_field :title,{class: 'form-control'}
+
+      div.form-group
+        =item.label :origin,"代码来源"
+        =item.text_field :origin,{class: 'form-control'}  
+
+      button.btn.btn-primary 确认发布
