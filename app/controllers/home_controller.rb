@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :admin_login,:only=> ["trend"]
   def repos
     @typ = Menutyp.where({:key=> params[:root],:typcd=> 'B'}).first
     render :layout=> nil
