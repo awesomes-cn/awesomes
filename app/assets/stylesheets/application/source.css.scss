@@ -18,6 +18,7 @@
       }
     }
   }
+
 }
 
 .topic-author{
@@ -28,4 +29,36 @@
 .topic-extra{
   border: #EEE 1px solid;  border-top: 0; margin: 0 auto; max-width: 700px; padding: 10px;padding-bottom: 0;
   .pub{position: absolute; left: 50%; font-size: 15px; color: #DDD}
+  .next{font-size: 20px; }
+}
+
+
+.source-list{
+  max-width: 800px; margin: 0 auto;
+  .favor{
+    width: 50px; float: left; text-align: center; font-size: 12px;
+    i{font-size: 15px;}
+  }
+  .title{
+    font-size: 15px;
+  }
+  .code{color: #CCC}
+  .extra{
+    float: right;color: #B6B6B6;  
+    & > *{
+      margin-right: 10px;
+    }
+    .tx{width: 20px; height: 20px; border-radius: 100%; margin-right: 0}
+    .fa{margin-right: 5px;}
+   
+  }
+  .list-group-item{
+    padding:  15px;  position: relative;
+    &:hover{
+      .extra{color: #555}
+    } 
+  }
+
+  a{text-decoration: none; color: #444}
+  
 }

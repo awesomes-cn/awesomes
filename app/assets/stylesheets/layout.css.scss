@@ -66,17 +66,8 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
 .left-menus
 {
   border-color: #bce8f1;
-  *{border-left-color: #bce8f1;border-right-color: #bce8f1;}
+  *{border-left-color: #bce8f1;border-right-color: #bce8f1;} 
   
-  .list-group-item{
-    border-color: #EEE; border-radius: 0; position: relative; overflow: visible;
-    &.root{
-      display: block;
-      &:hover{
-        .sub-menus{display: block;}
-      }
-    }
-  }
   .sub-menus{
     display: none;
     .list-group-item{
@@ -112,6 +103,20 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
 .modal-backdrop.in{opacity: 0.9;filter: alpha(opacity=90);}
 .modal-backdrop{background-color:#FFF; z-index: 100}
 .modal{z-index: 1000}
+.list-group-item{
+  border-color: #EEE; border-radius: 0!important; position: relative; overflow: visible;
+  text-overflow:ellipsis;//让超出的用...实现
+  white-space:nowrap;//禁止换行
+  overflow:hidden;//超出的隐藏
+  display: block;
+  &.root{
+    display: block;
+    &:hover{
+      .sub-menus{display: block;}
+    }
+  }
+}
+
 
 // simditor
 .markdown-editor-wraper{
@@ -203,13 +208,6 @@ user-select: none;
 
 .panel,.list-group-item{
   border-radius: 0;border-color: #E5E5E5;
-}
-.list-group-item{
-  
-  text-overflow:ellipsis;//让超出的用...实现
-  white-space:nowrap;//禁止换行
-  overflow:hidden;//超出的隐藏
-  display: block;
 }
 .panel-heading{border-radius: 0}
 

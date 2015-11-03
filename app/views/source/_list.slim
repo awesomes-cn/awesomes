@@ -1,0 +1,34 @@
+-sources_list
+div.source-list
+  div.list-group
+    -@items.each do |item|
+      div.list-group-item
+        a.title[href="/source/#{item.id}"]
+          strong =item.title
+        a[href="/"]  
+          span.code< < jquery.validate />
+
+        div.extra
+          -if item.favor > 0
+            i.fa.fa-heart
+            span =item.favor
+
+          -if item.comment > 0
+            i.fa.fa-comment
+            span =item.comment
+
+          a[href="/mem/#{item.mem.id}" title="#{item.mem.nc}"]: img.tx[src="#{item.mem.avatar_url}"] 
+  div#page-repo.pagenation.pagination-lg
+  javascript:
+    $(function(){
+      $("#page-repo").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        //link_to:"?page=__id__",
+        callback: function(page){
+          Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
+        }
+      }) 
+
+      $(".line").peity("line");
+    })        

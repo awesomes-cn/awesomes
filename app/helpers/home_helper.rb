@@ -61,6 +61,11 @@ module HomeHelper
     return nil
   end
 
+  def sources_list
+    @items = data_list(Topic.where({:typcd=> 'SOURCE'}).order('id desc')).includes(:mem)
+     @count = Topic.where({:typcd=> 'SOURCE'}).count
+  end
+
   def sitemap 
     Repo.order('id desc').all.map do |item|
       {

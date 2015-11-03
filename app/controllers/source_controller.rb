@@ -7,7 +7,7 @@ class SourceController < ApplicationController
   end
 
   def index
-    @comment = {:typ=> 'SOURCE',:idcd=> 1}
+    @comment = {:typ=> 'SOURCE',:idcd=> @item.id}
   end
 
   def new

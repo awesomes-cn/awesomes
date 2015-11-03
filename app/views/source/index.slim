@@ -1,14 +1,13 @@
 =content_for :con
   div.topic-wraper
     div.title
-      h3 疲劳常见症状是头疼脑涨
-      a[href="#"]: img.tx[src="http://assets.renjk.com/mem/15110311364229168909.jpg"] 
+      h3 =@item.title
+      a[href="/mem/#{@item.mem.id}"]: img.tx[src="#{@item.mem.avatar_url}"] 
       /small 发布于 2012-12-12 阅读 123次
 
 
-    article.con 
-      | 眼睛疲劳常见症状是头疼脑涨、眼睛发干。在防护上，除了注意用眼卫生外，平时宜多吃益于眼睛的食品。那么有什么食物可以补充眼睛的营养呢?　　首先是蛋白质，比如瘦肉、禽肉、动物的内脏、鱼虾、奶类、蛋类、豆类等。蛋白质是人体组织修补必要的原料，当然也对眼睛非常重要了。　　其次是维生素A和C，维生素A可以预防干眼病和夜盲症，消除眼睛的疲劳，长期缺乏维生素A的时候，视力会急剧减退，所以每天应该摄入足够的维生素A。维生素C是组成眼球水晶体的成分之一，如果缺乏维生素C就容易患白内障病。所以缺乏维生素A和C的朋友应该多吃各种新鲜蔬菜和水果，尤其是胡萝卜、苋菜、青椒、黄瓜、菜花、小白菜、鲜枣、生梨、橘子等。　　最后我们经常提到的眼保健操不可忽视，经常按摩左右眉头、眉毛中点、下眼眶中点、内眼角，对视力有帮助。
-      | 眼睛疲劳常见症状是头疼脑涨、眼睛发干。在防护上，除了注意用眼卫生外，平时宜多吃益于眼睛的食品。那么有什么食物可以补充眼睛的营养呢?　　首先是蛋白质，比如瘦肉、禽肉、动物的内脏、鱼虾、奶类、蛋类、豆类等。蛋白质是人体组织修补必要的原料，当然也对眼睛非常重要了。　　其次是维生素A和C，维生素A可以预防干眼病和夜盲症，消除眼睛的疲劳，长期缺乏维生素A的时候，视力会急剧减退，所以每天应该摄入足够的维生素A。维生素C是组成眼球水晶体的成分之一，如果缺乏维生素C就容易患白内障病。所以缺乏维生素A和C的朋友应该多吃各种新鲜蔬菜和水果，尤其是胡萝卜、苋菜、青椒、黄瓜、菜花、小白菜、鲜枣、生梨、橘子等。　　最后我们经常提到的眼保健操不可忽视，经常按摩左右眉头、眉毛中点、下眼眶中点、内眼角，对视力有帮助。
+    article.con
+      | #{@item.con}
 
       div.info
         /ul
@@ -22,11 +21,11 @@
         /wb:like[appkey="6pvjia"]
         p.favor.on
           i.fa.fa-heart
-          p 213
+          p =@item.favor
       div.info  
         p
-          a<>[href="#"] 笔墨伺候
-          | 于 2012-12-13 原创发布 访问 1342次
+          a<>[href="/mem/#{@item.mem.id}"] =@item.mem.nc
+          | 于 2012-12-13 原创发布 访问 #{@item.visit} 次
         p 
           | 本文遵循
           a<>[href="#"] 共享署名 4.0 国际许可协议
@@ -41,10 +40,12 @@
   
   div.topic-extra
     wb:share-button[appkey="3977462330" addition="number" type="button" default_text="#{}"]
+  
     a.pub[href="/source/new" title="发布主题"]
       i.fa.fa-plus
     div.right
-      wb:like[appkey="6pvjia" type="number"]
+      /wb:like[appkey="6pvjia" type="number"]
+      a.next[href="#"]: i.fa.fa-angle-right
   
   div.topic-extra
     =render "layouts/comment"
