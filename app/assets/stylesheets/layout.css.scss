@@ -112,6 +112,7 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
 .modal-backdrop.in{opacity: 0.9;filter: alpha(opacity=90);}
 .modal-backdrop{background-color:#FFF; z-index: 100}
 .modal{z-index: 1000}
+.list-group-item:first-child,.list-group-item:last-child{border-radius: 0}
 
 // simditor
 .markdown-editor-wraper{
