@@ -1,5 +1,10 @@
 class CategoryController < ApplicationController
   before_filter :category_lost
+
+  def category_lost 
+     @item = Menutyp.where({:key=> params[:typ],:typcd=> 'B'}).first
+  end
+  
   def home
     render :layout=> 'no_right_bar'
   end

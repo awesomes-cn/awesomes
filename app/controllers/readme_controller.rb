@@ -1,6 +1,10 @@
 class ReadmeController < ApplicationController
   before_filter :readme_lost
 
+  def readme_lost
+    @item = Readme.find_by_id(params[:id]) 
+  end
+  
   def new
     _repo = Repo.find(params[:rid])
   	Readme.create({:repo_id=> _repo.id,:about=> params[:markdown],:mem_id=> current_mem.id,:old=> _repo.about_zh,:sdesc=> params[:sdesc]}) 

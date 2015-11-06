@@ -3,6 +3,10 @@ class RepoController < ApplicationController
   before_filter :admin_login,:only=> ["edit","update","readme_en",'syncreadme','avoid','accept']
   before_filter :mem_login,:only=>['readme']
   
+  def repo_lost
+    @item = @repo = Repo.find_by({:owner=> params[:owner],:alia=> params[:alia]})
+  end
+
   def index
     @lang = params[:lang] || (@item.about_zh.blank? ? 'en' : 'zh')
     @comment = {:typ=> 'REPO',:idcd=> @item.id}

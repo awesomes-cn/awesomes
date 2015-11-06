@@ -28,32 +28,7 @@ class ApplicationController < ActionController::Base
     end
     #redirect_to '/tip',:notice=> t('mem_novalid') and return if @mem.recsts == '1'
     @isme = (@mem == current_mem)
-  end
-
-  def repo_lost
-    @item = @repo = Repo.find_by({:owner=> params[:owner],:alia=> params[:alia]})
-  end
-
-  def doc_lost
-    @item = @doc = Doc.find_by_name(params[:typ])
-  end
-
-  def docsub_lost
-    @item = @sub = Docsub.find_by_id(params[:id])
-  end
-
-  def readme_lost
-    @item = Readme.find_by_id(params[:id]) 
-  end
-
-  def comment_lost
-    @item = Comment.find(params[:id])
-    render json: {status: false} and return if @item.mem != current_mem
-  end
-  
-  def category_lost 
-     @item = Menutyp.where({:key=> params[:typ],:typcd=> 'B'}).first
-  end
+  end  
 
   def max_page_size
     100
