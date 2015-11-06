@@ -3,7 +3,7 @@
 =content_for :con
   div#admin-app.categorys-wrap 
 
-    div.panel.panel-default[v-for="item in items | filterBy 'A' in 'typcd'"]
+    div.panel.panel-default[v-for="item in items | show 'typcd' 'A'"]
       div.panel-heading
         i.fa>[class="{{item.icon}}"]
         | {{item.key}} - {{item.sdesc}}
@@ -13,7 +13,7 @@
           i.fa.fa-trash<>[v-on:click="destroy(item)"]
       div.panel-body
         ul.list-group
-          li.list-group-item[v-for="sub in items | filterBy item.key in 'parent'"]
+          li.list-group-item[v-for="sub in items | show 'parent' item.key"]
             i.fa>[class="{{sub.icon}}"]
             | {{sub.key}} - {{sub.sdesc}}
             span.right.oper-wrap
@@ -59,7 +59,9 @@
             app.edit_item = data
             
             $('#myModal').modal('hide')
-            
+  
+
+
 
             
 

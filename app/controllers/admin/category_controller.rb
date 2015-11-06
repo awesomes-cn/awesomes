@@ -19,7 +19,18 @@ class Admin::CategoryController < AdminController
       :icon=> params[:icon]
     }
 
-    _item = Menutyp.find_by_id(params[:id]) || Menutyp.new
+    _item = Menutyp.find_by_id(params[:id])
+    if _item
+      _repos = Repo.where({:rootyp=> _item.parent,:typcd=> _item.key})
+      if _item.parent != params[:parent]
+        _repos.update_all({:rootyp=> params[:parent]})
+      end
+      if _item.key != params[:key]
+        _repos.update_all({:typcd=> params[:key]})
+      end
+    else
+      _item = Menutyp.new
+    end
 
     _item.update_attributes _para
     render json: _item

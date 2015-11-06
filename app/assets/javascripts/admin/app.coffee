@@ -16,6 +16,9 @@ window.admin =
     destory_url = '/admin/'+ options.model + '/destroy'
     fetch_url = '/admin/'+ options.model + '/fetch'
     
+    Vue.filter 'show', (items,field,val)->
+      _.filter items, (item)->
+        item[field] == val
 
 
     app = new Vue
