@@ -202,7 +202,12 @@ a.repo-title{
 #repo-trends{
   max-width: 750px; margin: 0 auto; background-color:#FFF; color:#FFF;
   .trend-head{
-    background-color: #DA552F;padding:20px 50px;
-    .logo{float: left;}
+    background-color: #DA552F;padding:20px 50px; text-align: center; position: relative;
+    
+    .category{background-color:rgba(0, 0, 0, 0.3); color: #DA552F; padding: 10px; border-radius: 100px; display: inline-block}
+    .period{position: absolute; right: 20px; bottom: 10px;}
+    &.bottom{
+      background-color: #DDD; text-align: center;color: #696969;
+    }
   }
 }
