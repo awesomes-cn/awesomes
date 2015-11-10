@@ -1,0 +1,38 @@
+=content_for :con
+  -repo_list
+  div#repo-trends
+    div.repo-list-wraper
+      div.trend-head
+        img.logo[src="/assets/logo-100.png"]
+        h2 前端趋势
+        h4
+          i.fa>[class="#{@typ.icon}"]
+          | #{@root.sdesc} > #{@typ.sdesc}
+        h4.right 第 #{ Time.now.strftime("%Y-%m-%d")} 期
+        /h3 #{@root.sdesc} > #{@typ.sdesc}
+
+      -@items.each do |item|
+        div
+          a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
+          div.caption
+            a[href="#{item.link_url}"]
+              h3 
+                span =item.name
+                span.line< =item.repo_trends.pluck('trend')[0..8].join(',')
+
+            p =item.description
+          ul
+            -item.tag.to_s.split(',').each do |tag|
+              li: a[href="?tag=#{tag}" title="#{tag}"] =tag
+
+
+  input.form-control[type="text" value="#前端趋势# 「#{@root.sdesc} > #{@typ.sdesc}」 最新趋势。 详情-> http://www.awesomes.cn/repos/#{@root.key}/#{@typ.key}?sort=trend" style="margin-top: 50px;"]      
+
+  css:
+    body{background: #EEE;}
+  
+  coffee:
+    $ ()->
+      $(".line").peity("line")
+
+

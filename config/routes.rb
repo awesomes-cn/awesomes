@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   match "/:controller(/:id)(/:action)(/:search)(.:format)", :controller =>  /admin\/[^\/]+/,id: /\d+/,via: ['get','post']
   match "/admin/:action(/:page)(/:search)(.:format)", :controller =>  "admin/home",id: /\d+/,via: ['get','post']
   
-  match "/doc/:typ(/:action)(/:addition)", :controller =>  'doc',via: ['get','post']
   
   match "/:controller(/:id)(/:action)(/:search)(.:format)", :controller =>  /mem\/[^\/]+/,id: /\d+/,via: ['get','post']
   
@@ -24,8 +23,7 @@ Rails.application.routes.draw do
   
   match ":action(.:format)" ,controller: 'home',via: ['get','post']
   
-  match "repos/:root(/:typ)(.:format)" ,controller: 'home',action: 'repos',via: ['get','post']
-   
+  match ":action/:root(/:typ)(.:format)" ,controller: 'home',via: ['get','post']
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
