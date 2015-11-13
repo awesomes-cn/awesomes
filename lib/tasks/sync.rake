@@ -24,6 +24,10 @@ namespace :repo do
     end
     p "======success======"
   end 
+
+  task :cover,[:start] => :environment do |t,args|
+    GithubJob.repo_cover
+  end
    
 end
 
