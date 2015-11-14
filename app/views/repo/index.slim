@@ -18,19 +18,19 @@
         span[v-bind:class="lang == 'en' ? 'on' : ''" v-on:click="switch('en')"] EN
         span[v-bind:class="lang == 'zh' ? 'on' : ''" v-on:click="switch('zh')"] 中
         input[type="hidden" v-model="lang" value="#{@lang}"]
-      article[v-show="lang == 'en'"]
+      div[v-show="lang == 'en'"]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
-          =raw GitHub::Markdown.render @item.about
+          article[v-pre] = raw GitHub::Markdown.render @item.about
           div.edit-footer
             p
               | Find this readme outdated? please just
               a<>[href="#{@item.link_url}/notify"] click to tell me
               | now! We will update the readme and chinese translation immediately.
 
-      article[v-show="lang == 'zh'"]
+      div[v-show="lang == 'zh'" ]
         =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
           -if !@item.about_zh.blank? 
-            =raw GitHub::Markdown.render @item.about_zh
+            article[v-pre] =raw GitHub::Markdown.render @item.about_zh
             div.edit-footer
               p
                 | 版权声明：
