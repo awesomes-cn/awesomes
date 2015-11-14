@@ -171,11 +171,12 @@ a.repo-title{
     }
 
     &>article{
-      z-index: -1;
-      & > .no-zh{
-        text-align: center; 
-        h4{margin: 20px 0;}
-      }
+      z-index: -1; 
+    }
+
+    .no-zh{
+      text-align: center; 
+      h4{margin: 20px 0;}
     }
   }
 
