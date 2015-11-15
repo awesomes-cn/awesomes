@@ -10,7 +10,7 @@
     .tx{width: 60px; height: 60px; border-radius: 100%; display: inline-block; position: absolute;  background-color: #FFF;  padding: 10px; left: 50%; margin-left: -30px;  bottom: -30px;}
   }
   .info{
-    padding: 20px 0; color: #888; text-align: center;
+    padding: 20px 0; color: #888; text-align: center; font-size: 13px;
     .favor{
       border:#EEE 1px solid; border-radius: 100%; width: 50px; height: 50px; display: inline-block; text-align: center; line-height: 50px; font-size: 20px; cursor: pointer; color: #DDD;
       &.on{
@@ -27,9 +27,12 @@
 }
 
 .topic-extra{
-  border: #EEE 1px solid;  border-top: 0; margin: 0 auto; max-width: 700px; padding: 10px;padding-bottom: 0;
+  border: #EEE 1px solid;  border-top: 0; margin: 0 auto; max-width: 700px; padding: 10px;
   .pub{position: absolute; left: 50%; font-size: 15px; color: #DDD}
   .next{font-size: 20px; }
+  &.opers{
+    a{ color: #DDD}
+  }
 }
 
 

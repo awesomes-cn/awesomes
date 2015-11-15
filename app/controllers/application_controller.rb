@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     @isme = (@mem == current_mem)
   end  
 
+  def is_admin? 
+    redirect_to "/" and return  if session[:mem] != 1
+  end
+
   def max_page_size
     100
   end

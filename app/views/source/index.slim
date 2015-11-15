@@ -1,5 +1,6 @@
 =content_for :con
-  div.topic-wraper
+  div.topic-wraper 
+
     div.title
       h3 =@item.title
       a[href="/mem/#{@item.mem.id}" title="#{@item.mem.nc}"]: img.tx[src="#{@item.mem.avatar_url}"] 
@@ -24,12 +25,21 @@
           p[v-text="favor_count"]
       div.info  
         p
+          | 代码来自
+          a<>[href="#{@item.origin}" target="_blank"] =@item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')
+          | 由
           a<>[href="/mem/#{@item.mem.id}"] =@item.mem.nc
           | 于 2012-12-13 原创发布 访问 #{@item.visit} 次
         p 
           | 本文遵循
-          a<>[href="#"] 共享署名 4.0 国际许可协议
-          | 如需转载，请注明来源 
+          a<>[href="http://creativecommons.org/licenses/by/4.0/" target="_blank"] 共享署名 4.0 国际许可协议
+          | 如需转载，请务必注明来源 
+        
+        -if is_author or is_admin
+          p
+            a.btn.btn-default[href="/source/#{@item.id}/edit"] 
+              i.fa.fa-pencil>
+              | 编辑
 
 
     /div.topic-author
@@ -38,14 +48,16 @@
     /  /wb:follow-button[uid="2991975565" type="red_2" width="136" height="24"]
         
   
-  div.topic-extra
-    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="#{}"]
+  div.topic-extra.opers[style="padding-bottom: 0;"]
+    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」详情请戳 http://www.awesomes.cn/source/#{@item.id}"]
   
     a.pub[href="/source/new" title="发布主题"]
       i.fa.fa-plus
     div.right
       /wb:like[appkey="6pvjia" type="number"]
-      a.next[href="#"]: i.fa.fa-angle-right
+      a.next[href="/source/#{@next.id}"]
+        | NEXT
+        i.fa.fa-angle-right<>
   
   div.topic-extra
     =render "layouts/comment"
@@ -58,6 +70,13 @@
       id: "#{@item.id}",
       favor: "#{@item.favor}"
     }
+    $(function(){
+      setTimeout(function(){
+        $.post("/source/#{@item.id}/visit", {} , function(){
+
+        })
+      },3000)
+    })
 
   coffee:
     $ ()->
@@ -82,7 +101,10 @@
               app.favor_count = data.count
 
 
-      app.init()      
+      app.init()
+
+       
+
               
                   
 

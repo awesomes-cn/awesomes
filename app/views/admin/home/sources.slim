@@ -1,0 +1,44 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th #
+        th 标题
+        th 作者
+        th 访问
+        th 喜欢
+        th 评论
+        th 发布时间
+        th 操作
+    tbody 
+      tr[v-for="item in items" class="recsts-{{item.state}}"]
+        td {{item.id}}
+        td: a[href='/source/{{item.id}}' target='_blank'] {{item.title}} 
+        td: a[href='/mem/{{item.mem.id}}' target='_blank']  {{item.mem.nc}}
+        td {{item.visit}}
+        td {{item.favor}}
+        td {{item.comment}}
+        td {{item.created_at}}  
+        td
+          a[href='/source/{{item.id}}/edit']: i.fa.fa-pencil
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          a.review-btn[href="#" v-on:click="review(item)" v-if="item.state == '1'" title='审核']: i.fa.fa-check-circle
+          
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+  div#pagenation
+  input#menubar[type="hidden" value="sources"]
+  
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'source'
+
+      app.$set 'review', (item)-> 
+        $.post '/admin/source/' + item.id + '/review', {}, (data)->
+          item.state = data

@@ -62,7 +62,7 @@ module HomeHelper
   end
 
   def sources_list
-    @items = data_list(Topic.where({:typcd=> 'SOURCE'}).order('id desc')).includes(:mem)
+    @items = data_list(Topic.where({:typcd=> 'SOURCE',:state=> '0'}).order('id desc')).includes(:mem)
      @count = Topic.where({:typcd=> 'SOURCE'}).count
   end
 

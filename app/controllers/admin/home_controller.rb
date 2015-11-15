@@ -34,4 +34,8 @@ class Admin::HomeController < AdminController
   def categorys
     adminlists Menutyp.order("id asc"),[:key,:sdesc,:icon,:typcd,:parent,:icon]
   end
+
+  def sources
+    adminlists Topic,[:title,:visit,:favor,:comment,:state,:mem_id],:include => {:mem => {:only=>[:nc,:id]}}
+  end
 end

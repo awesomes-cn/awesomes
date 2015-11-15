@@ -5,8 +5,8 @@ div.source-list
       div.list-group-item
         a.title[href="/source/#{item.id}"]
           strong =item.title
-        a[href="/"]  
-          span.code< < jquery.validate />
+         
+        span.code< < #{item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')} />
 
         div.extra
           -if item.favor > 0

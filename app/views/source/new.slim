@@ -1,20 +1,23 @@
 
 -content_for :con
   div
-    =form_for(@item,url: "/source/save",html:{id: 'inform',method: 'post'}) do |item|
+    =form_for(@item,url: @suburl,html:{id: 'inform',method: 'post'}) do |item|
       div.form-group
         =item.label :title,"标题"
         =item.text_field :title,{class: 'form-control'}
 
       div.form-group
         =item.label :origin,"代码来源"
+        p
+          | 代码 Github地址 + L行数。如：
+          a[href="https://github.com/jrburke/requirejs/blob/master/require.js#L2019" target="_blank"] https://github.com/jrburke/requirejs/blob/master/require.js#L2019
         =item.text_field :origin,{class: 'form-control'} 
 
       
   
       div.form-group
         label 源码解读
-        div[style="height: 500px;"]
+        div[style="height: 700px;"]
           =render "layouts/markdown_editor"
 
       div.form-group
@@ -23,7 +26,8 @@
 
       input#tmp-con[type="hidden" value="#{@item.con}"]
       =item.hidden_field :con,{class: 'editor-val'}
-      button.btn.btn-danger[type="submit"] 确认发布
+      input[type="hidden" name="id" value="#{@item.id}"]
+      button.btn.btn-danger[type="submit"] 确认提交
 
     javascript:
       $('#inform').validate({ 
@@ -31,21 +35,29 @@
           'topic[title]':{
             required: true,
           },
+          'topic[origin]':{
+            required: true,
+          },
           
         },
         messages:{
           'topic[title]':'',
+          'topic[origin]':''
         }, 
       }); 
 
-      if(localStorage["markdown_source"]){
-        markdown_editor.setValue(localStorage["markdown_source"]); 
+      if($("#tmp-con").val() != ''){
+        markdown_editor.setValue($("#tmp-con").val());
+      }else{
+        if(localStorage["markdown_source"]){
+          markdown_editor.setValue(localStorage["markdown_source"]); 
+        }
       }
+  
+
+      
       markdown_editor.on("change",function(){
         localStorage["markdown_source"] = markdown_editor.getValue();
       })
 
-      if(markdown_editor.getValue() == ''){
-        markdown_editor.setValue($("#tmp-con").val());
-      }  
-  
+      
