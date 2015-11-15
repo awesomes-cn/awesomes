@@ -12,7 +12,7 @@ class SourceController < ApplicationController
   end
 
   def admin_or_author_filter
-    redirect_to '/' and return if admin_or_author
+    redirect_to '/' and return if !admin_or_author
   end
 
   def index
@@ -37,7 +37,7 @@ class SourceController < ApplicationController
 
   def save
     _para = params[:topic]
-    Topic.create({:title=> _para[:title],:typcd=> 'SOURCE',:origin=> params[:origin],:con=> _para[:con],:mem_id=> current_mem.id,:tag=> _para['tag']})
+    Topic.create({:title=> _para[:title],:typcd=> 'SOURCE',:origin=> _para[:origin],:con=> _para[:con],:mem_id=> current_mem.id,:tag=> _para['tag']})
     redirect_to "/tip/source"
   end
 
