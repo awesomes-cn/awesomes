@@ -35,10 +35,11 @@ html
           div.mem-main
             div.menus
               ul
-                li[data-val="doc"]: a[href="/mem/#{@mem.id}"] 文档
-                li[data-val="comments"]: a[href="/mem/#{@mem.id}/comments"] 评论
+                li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] 文章
+                li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] 文档
+                li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] 评论
                 -if @isme
-                  li.right[data-val="info"]: a[href="/mem/info"] 个人资料
+                  li.right[class="#{navon 'info'}"]: a[href="/mem/info"] 个人资料
             div.con-wrap
               =yield :con
                 
@@ -60,10 +61,4 @@ html
         
           
     =render 'layouts/footer'
-
-    javascript:
-      $(function(){
-        $(".mem-main .menus li[data-val="+$("#mem-nav").val()+"]").addClass("on");
-      })
-    
 

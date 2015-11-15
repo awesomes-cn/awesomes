@@ -28,7 +28,7 @@ module HomeHelper
       _where = _where.merge({:typcd=> _typ})
     end
 
-    if !(_search = params[:keyword]).blank?
+    if !(_search = params[:keyword].to_s.strip).blank?
       _where_search = "name like ?","%#{_search}%"
     end
 

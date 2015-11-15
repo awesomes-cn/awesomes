@@ -130,7 +130,7 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    omniauth-weibo-oauth2 (0.4.0)
+    omniauth-weibo-oauth2 (0.3.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
     oneapm_rpm (1.2.4)
@@ -239,7 +239,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.16)
   omniauth (~> 1.2.2)
   omniauth-github (~> 1.1.2)
-  omniauth-weibo-oauth2 (~> 0.4.0)
+  omniauth-weibo-oauth2 (~> 0.3.0)
   oneapm_rpm
   rails (= 4.2.4)
   rest-client (~> 1.8.0)
@@ -255,3 +255,6 @@ DEPENDENCIES
   uuidtools
   web-console (~> 2.0)
   whenever
+
+BUNDLED WITH
+   1.10.5

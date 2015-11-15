@@ -15,6 +15,7 @@ zh-CN:
     trend: '趋势'
     sub_repo: '提交一个库'
   site: 
+    signin: '登陆'
     search_repo: '查找库'
     animation: '动画'
     slider: '幻灯片'
@@ -43,3 +44,6 @@ zh-CN:
     name: '细说源码'
     slogan: '剖开优秀库，寻找那段精彩的代码，追寻不同版本的变迁，试着像大神一样去思考'
     share: '我要分享'
+  home:
+    slogan: '也许是最好的开源前端库、框架和插件集合'
+    view: '马上浏览'

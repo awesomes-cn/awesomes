@@ -10,7 +10,6 @@ header.navbar
 
     div#bs-navbar-collapse.collapse.navbar-collapse 
       ul.nav.navbar-nav.navbar-left.menus
-        /li: a[href="/docs"] 中文文档库
         li: a[href="/repos/Dom/animation"] =t('site.animation')
         li: a[href="/repos/Images/sliders"] =t('site.slider')
         li: a[href="/repos/Applications/builds"] =t('site.build')
@@ -25,7 +24,7 @@ header.navbar
       
       ul.nav.navbar-nav.navbar-right
         -if !current_mem
-          li: a.open-login[href=""] 登录
+          li: a.open-login[href=""] =t('site.signin')
         -else
           li: a[href="/mem"] =current_mem.nc
          

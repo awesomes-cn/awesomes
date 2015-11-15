@@ -34,6 +34,7 @@ en:
     trend: 'Trending'
     sub_repo: 'Submit a Library'
   site: 
+    signin: 'Sign in'
     search_repo: 'Search repo'
     animation: 'Animations'
     slider: 'Sliders'
@@ -62,3 +63,6 @@ en:
     name: 'Source Resolve'
     slogan: 'Divide excellent library,look for the wonderful codes.Follow the changes of different versions,try to think like a great god.'
     share: 'I want share'
+  home:
+    slogan: 'Maybe the best JavaScript libraries, frameworks, and plugins.'
+    view: 'Ready? Go'

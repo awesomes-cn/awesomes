@@ -1,21 +1,2 @@
 =content_for :con
-  ul.list-group.mem-list-wraper
-    -@items.each do |item|
-      li.list-group-item
-        a.repo[href="#{item.repo.link_url}"] =item.repo.name
-        i.fa.fa-angle-right<>
-        a[href="#{item.repo.link_url}/diff/#{item.id}"] =item.sdesc
-        span.right =item.created_at.strftime("%Y-%m-%d")
-  div#page-mem      
-  input#mem-nav[type="hidden" value="doc"]
-  javascript:
-    $(function(){
-      $("#page-mem").pagination(#{@count},{
-        items_per_page : #{default_page_size},
-        current_page : #{page},
-        //link_to:"?page=__id__",
-        callback: function(page){
-          Turbolinks.visit("?page="+(page +1) );
-        }
-      }) 
-    })
+

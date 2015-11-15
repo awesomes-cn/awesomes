@@ -61,7 +61,12 @@ class MemController < ApplicationController
     redirect_to "/auth/#{params[:from]}"
   end
 
-  def index
+  def topics
+    @items = data_list_asc @mem.topics
+    @count = @mem.topics.count
+  end
+
+  def docs
     @items = data_list_asc @mem.readmes
     @count = @mem.readmes.count
   end

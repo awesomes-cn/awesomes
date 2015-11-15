@@ -47,7 +47,7 @@
     li{
       list-style: none; display: inline-block; padding: 10px; margin: 0 10px;padding-top: 13px;
       a{text-decoration: none; color: #ADADAD}
-      &.on{
+      &.active{
         border-bottom: #DA552F 3px solid;   margin-bottom: -3px;
         a{
           color: #616161;

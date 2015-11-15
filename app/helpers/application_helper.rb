@@ -16,9 +16,9 @@ module ApplicationHelper
   end
 
   def current_mem
-    #if !session[:mem] and Rails.env == 'development'
-    #  session[:mem] = 1
-    #end
+    if !session[:mem] and Rails.env == 'development'
+      session[:mem] = 1
+    end
     Mem.find_by_id(session[:mem])  
   end
 
@@ -55,6 +55,10 @@ module ApplicationHelper
 
   def comment_list typ,idcd
     @comments = Comment.where({:typ=> typ,:idcd=> idcd})
+  end
+
+  def navon action
+    params[:action] == action ? 'active' : ''
   end
 
 end

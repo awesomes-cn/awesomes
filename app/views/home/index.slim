@@ -4,29 +4,46 @@
   =render "footer_index"
 
 =content_for :con
-  div.note-wraper 
-    p
-      span 我们致力于打造高质量的前端资源库，深度对接到 Github，分析热度和未来的发展趋势，并开放中文文档的翻译和编辑
-    p 
-      span 我们期待您的加入，并且会持续在微博上推荐优秀前端库，请
-      a<[href="http://weibo.com/awesomescn"target="_blank"] 关注我们
+  /div.note-wraper 
+    / p
+    /   span 我们致力于打造高质量的前端资源库，深度对接到 Github，分析热度和未来的发展趋势，并开放中文文档的翻译和编辑
+    / p 
+    /   span 我们期待您的加入，并且会持续在微博上推荐优秀前端库，请
+    /   a<[href="http://weibo.com/awesomescn"target="_blank"] 关注我们
 
-    i.fa.fa-close[title="关闭提示，不再显示"]
-    javascript:
-      $(function(){ 
-        if(Cookies.get("show_note") != "no"){
-          $(".note-wraper").show();
-        }
+    / i.fa.fa-close[title="关闭提示，不再显示"]
+    / javascript:
+    /   $(function(){ 
+    /     if(Cookies.get("show_note") != "no"){
+    /       $(".note-wraper").show();
+    /     }
 
-        $(".note-wraper .fa-close").click(function(){
-          $(".note-wraper").fadeOut();
-          Cookies.set('show_note', "no");
-        })
-      })
-  =cache "home_repos",skip_digest: true,:expires_in => 1.day do 
-    =render "repo/recommend"
-  =cache "home_menus",skip_digest: true,:expires_in => 2.day do 
-    =render "list"
+    /     $(".note-wraper .fa-close").click(function(){
+    /       $(".note-wraper").fadeOut();
+    /       Cookies.set('show_note', "no");
+    /     })
+    /   })
+  /=cache "home_repos",skip_digest: true,:expires_in => 1.day do 
+  /  =render "repo/recommend"
+  /=cache "home_menus",skip_digest: true,:expires_in => 2.day do 
+  /  =render "list"
+  div.home-wraper
+    h3
+      | 「 #{t('home.slogan')} 」
+    a.btn.btn-danger.btn-lg[href="/repos/Applications/frameworks"]
+      | #{t('home.view')} -
+      i.fa.fa-angle-right<
+
+    form.search-form[action="/repos" method="get"]
+      input.search-txt[type="text" placeholder="#{t('site.search_repo')}" name="keyword"]
+      button[type="submit"]: i.fa.fa-search 
+
+    p 已收录 #{Repo.count} 个优秀的前端库
+
+    div.home-bottom
+      -Menutyp.menus('A').each do |root|
+        a[href="/"] =switl root.key,root.sdesc
+        span
 
 
   
