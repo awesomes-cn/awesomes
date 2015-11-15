@@ -1,7 +1,7 @@
 =content_for :con
-  ul.mem-list-wraper
+  ul.list-group
     -@items.each do |item|
-      li
+      li.list-group-item
         a[href="#{item.target_url}"] =item.target.name
         span<> =item.friendly_time
         div =raw item.raw_con

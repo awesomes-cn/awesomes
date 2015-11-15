@@ -3,4 +3,4 @@ div.repo-recommends-wraper
     -recommends.each do |item|
       div.col-md-2
         div
-          a[href="#{item.link_url}"]: img.cover[src="#{access_path 'repo'}#{item.cover}"]
+          a[href="#{item.link_url}"]: img.cover[src="#{access_path "repo/#{item.cover}"}"]

@@ -8,7 +8,7 @@ div.comment-wraper
             a>[href="/mem/#{item.mem.id}" target="_blank"]: img.tx[src="#{item.mem.avatar_url}"]
             a>[href="/mem/#{item.mem.id}" target="_blank"] =item.mem.nc
             span =item.friendly_time
-            a.oper.reply-btn[href="" data-mem="#{item.mem.nc}"]: i.fa.fa-reply
+            a.oper.reply-btn[href="javascript: void(0)" data-mem="#{item.mem.nc}"]: i.fa.fa-reply
             a.oper[href="/comment/#{item.id}/edit" ]: i.fa.fa-pencil
             a.oper[href="" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
             =raw item.raw_con

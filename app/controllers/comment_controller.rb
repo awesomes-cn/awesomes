@@ -13,6 +13,7 @@ class CommentController < ApplicationController
       _item.update_attributes({:con=> params[:con]})
     else
       _item = Comment.create({:typ=> params[:typ],:idcd=> params[:idcd],:con=> params[:con],:mem_id=> current_mem.id})
+      _item.target.update_comment
     end
     render json: {status: true,url: _item.target_url} 
 	end

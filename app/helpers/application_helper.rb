@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def access_path folder
-    "#{Rails.application.config.source_access_path}#{folder}/"
+  def access_path filepath
+    "#{Rails.application.config.source_access_path}#{filepath}#{ENV['REPO_PIC_STYLE']}"
   end
 
   def is_login

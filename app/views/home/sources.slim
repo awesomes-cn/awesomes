@@ -2,8 +2,7 @@
   | 源码萃取 - awesomes
 
 =content_for :con
-
-  div.source-banner
+  =render 'source/banner'
   
   =cache "source_list",skip_digest: true,:expires_in => 2.day do 
     =render 'source/list'

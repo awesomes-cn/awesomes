@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106081825) do
+ActiveRecord::Schema.define(version: 20151114234753) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 20151106081825) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "home_index", limit: 4,     default: 0
+  end
+
+  create_table "opers", force: :cascade do |t|
+    t.string   "typ",        limit: 255
+    t.integer  "idcd",       limit: 4
+    t.integer  "mem_id",     limit: 4
+    t.string   "opertyp",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "readmes", force: :cascade do |t|

@@ -13,7 +13,7 @@
 
 
 .mem-wraper{
-  padding: 10px; position: relative; background-color: #FFF; box-shadow: 1px 1px 1px #DADADA; padding-left: 100px; min-height: 100px;
+  padding: 10px; position: relative; background-color: #FFF;  padding-left: 100px; min-height: 100px;
   .tx{width: 80px; height: 80px; border-radius: 5px; display: inline-block; position: absolute; left: 10px; top: 10px;}
   h3{margin: 0;}
   .desc{color: #999}
@@ -40,15 +40,15 @@
 }
 
 .mem-main{
-  background-color: #FFF; box-shadow: 1px 1px 1px #DADADA; margin-top: 20px; 
+  background-color: #FFF;  margin-top: 20px; 
   .menus{
-    border-bottom: #EEE 1px solid;
+    border: #EEE 1px solid;border-bottom: #DDD 3px solid;
     ul{margin: 0; padding: 0;}
     li{
       list-style: none; display: inline-block; padding: 10px; margin: 0 10px;padding-top: 13px;
       a{text-decoration: none; color: #ADADAD}
       &.on{
-        border-bottom: #616161 3px solid; 
+        border-bottom: #DA552F 3px solid;   margin-bottom: -3px;
         a{
           color: #616161;
         }
@@ -56,18 +56,14 @@
     }
   }
   .con-wrap{
-    padding: 20px;
+    
 
   }
 }
 
 .mem-list-wraper
 {
-  padding: 0;
-  li{
-    list-style: none; display: block; border-bottom: #EEE 1px solid; padding: 10px 0; 
-    a.repo{color: #333}
-  }
+  a.repo{color: #333}
 }
 
 

@@ -55,4 +55,8 @@ class Repo < ActiveRecord::Base
     update_attributes({:trend=> _trend})
     _repo_trend.update_attributes({:trend=> _trend})
   end
+
+  def update_comment
+    
+  end
 end

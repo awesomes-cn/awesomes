@@ -26,5 +26,8 @@ class Comment < ActiveRecord::Base
     if typ == "REPO"
       "#{target.link_url}"
     end
+    if typ == "TOPIC"
+      "/source/#{idcd}"
+    end
   end
 end

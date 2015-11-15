@@ -2,14 +2,14 @@
   div.topic-wraper
     div.title
       h3 =@item.title
-      a[href="/mem/#{@item.mem.id}"]: img.tx[src="#{@item.mem.avatar_url}"] 
+      a[href="/mem/#{@item.mem.id}" title="#{@item.mem.nc}"]: img.tx[src="#{@item.mem.avatar_url}"] 
       /small 发布于 2012-12-12 阅读 123次
 
 
     article.con
-      | #{@item.con}
+      | #{raw GitHub::Markdown.render @item.con}
 
-      div.info
+      div.info#source-extra
         /ul
         /  li
         /    | 版权声明：自由转载-非商用-非衍生-保持署名
@@ -19,9 +19,9 @@
         /wb:share-button[appkey="3977462330" addition="number" type="button" default_text="#{}"]
 
         /wb:like[appkey="6pvjia"]
-        p.favor.on
-          i.fa.fa-heart
-          p =@item.favor
+        p.favor[class="{{isfavor ? 'on' : ''}}"  v-on:click="favor()"]
+          i.fa.fa-heart.open-login[title="喜欢"]
+          p[v-text="favor_count"]
       div.info  
         p
           a<>[href="/mem/#{@item.mem.id}"] =@item.mem.nc
@@ -50,7 +50,44 @@
   div.topic-extra
     =render "layouts/comment"
 
-
+  
   script[src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js"]
+  
+  javascript:
+    var source_item={
+      id: "#{@item.id}",
+      favor: "#{@item.favor}"
+    }
+
+  coffee:
+    $ ()->
+      app = new Vue
+        el: "#source-extra"
+        data:
+          isfavor: false
+          favor_count: source_item.favor
+          para: 
+            opertyp: 'FAVOR'
+            typ: 'TOPIC'
+            idcd: source_item.id
+        
+        methods:
+          init: ()->
+            if Rails.islogin
+              $.post "/oper/whether",app.para,(data)->
+                app.isfavor =  data
+          favor: ()->
+            $.post "/oper/update",app.para,(data)->
+              app.isfavor =  data.state
+              app.favor_count = data.count
+
+
+      app.init()      
+              
+                  
+
+
+
+
 
 

@@ -23,6 +23,8 @@ a{
   span{  color: #da552f;  margin-left: 29px;font-size: 17px;}
 }
 
+article.con{font-size: 15px }
+
 .footer{
   border-top: 1px solid #e9eaef;background: #ECECEC;color: #999; margin-top: 100px; padding: 20px;padding-top: 30px; font-size: 12px;
   .menus{
@@ -117,6 +119,7 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
   }
 }
 
+.list-group-item:first-child,.list-group-item:last-child{border-radius: 0}
 
 // simditor
 .markdown-editor-wraper{
@@ -275,3 +278,10 @@ user-select: none;
     }
   }
 }
+
+
+//- validate
+.form-control.error{border-color: #d9534f }
+
+//- prism
+:not(pre) > code[class*="language-"], pre[class*="language-"]{background-color: #FFF;}

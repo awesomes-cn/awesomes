@@ -34,5 +34,16 @@ class Github
   rescue  
   end 
 
+  def self.get_repo_cover repo
+    _url = repo.html_url
+    _api_url = "https://api.github.com/repos#{_url.split(/http(s)?:\/\/github.com/).last}?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
+    
+    require 'rest-client'
+    _response = RestClient.get _api_url
+    _result = JSON.parse(_response.body)
+    _result['owner']['avatar_url']
+  rescue  
+  end 
+
   
 end
