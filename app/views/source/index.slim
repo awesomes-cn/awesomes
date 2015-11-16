@@ -51,7 +51,7 @@
   div.topic-extra.opers[style="padding-bottom: 0;"]
     wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」- 源码来自 #{@item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')} 详情请戳"]
   
-    a.pub[href="/source/new" title="发布主题"]
+    a.pub.open-login[href="/source/new" title="发布主题"]
       i.fa.fa-plus
     div.right
       /wb:like[appkey="6pvjia" type="number"]
