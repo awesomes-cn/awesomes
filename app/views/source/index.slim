@@ -1,3 +1,9 @@
+=content_for :title 
+  | #{@item.title} - awesomes
+
+=content_for :keywords
+  | #{@item.reponm}源码,#{@item.tag},源码解析
+
 =content_for :con
   div.topic-wraper 
 
@@ -26,7 +32,7 @@
       div.info  
         p
           | 代码来自
-          a<>[href="#{@item.origin}" target="_blank"] =@item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')
+          a<>[href="#{@item.origin}" target="_blank"] =@item.reponm
           | 由
           a<>[href="/mem/#{@item.mem.id}"] =@item.mem.nc
           | 于 2012-12-13 原创发布 访问 #{@item.visit} 次
@@ -49,7 +55,7 @@
         
   
   div.topic-extra.opers[style="padding-bottom: 0;"]
-    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」- 源码来自 #{@item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')} 详情请戳"]
+    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」- 源码来自 #{@item.reponm} 详情请戳"]
   
     a.pub.open-login[href="/source/new" title="发布主题"]
       i.fa.fa-plus

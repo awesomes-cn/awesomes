@@ -6,7 +6,7 @@ div.source-list
         a.title[href="/source/#{item.id}"]
           strong =item.title
          
-        span.code< < #{item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')} />
+        span.code< < #{item.reponm} />
 
         div.extra
           -if item.favor > 0
