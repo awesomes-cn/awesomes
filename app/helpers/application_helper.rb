@@ -18,6 +18,10 @@ module ApplicationHelper
     Mem.find_by_id(session[:mem])  
   end
 
+  def is_en?
+    I18n.locale == 'en'
+  end
+
   def max_page_size
     100
   end

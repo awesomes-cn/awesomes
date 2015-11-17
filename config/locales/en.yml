@@ -28,3 +28,8 @@ en:
   second: "seconds"
   justnow: 'justnow'
   ago: 'ago'
+  topic_review: "该主题目前处于审核状态，请等待审核通过！"
+  site:
+    signin: 'Sign in'
+    search_repo: 'Search repo'
+    source_nav: 'Source parsing'

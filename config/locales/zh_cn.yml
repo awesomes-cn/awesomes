@@ -9,3 +9,8 @@ zh-CN:
   justnow: '刚刚'
   ago: '前'
   topic_review: "该主题目前处于审核状态，请等待审核通过！"
+  site:
+    signin: '登录'
+    search_repo: '查找库'
+    source_nav: '细说源码'
+

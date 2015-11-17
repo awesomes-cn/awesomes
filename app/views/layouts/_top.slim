@@ -10,22 +10,21 @@ header.navbar
 
     div#bs-navbar-collapse.collapse.navbar-collapse 
       ul.nav.navbar-nav.navbar-left.menus
-        /li: a[href="/docs"] 中文文档库
         li: a[href="/repos/Dom/animation"] 动画
         li: a[href="/repos/Images/sliders"] 幻灯片
         li: a[href="/repos/Applications/builds"] 构建工具
-        li: a[href="/sources"] 细说源码
+        li: a[href="/sources"] =t('site.source_nav')
         
 
 
       form.navbar-form.navbar-left.search-form[action="/repos" method="get"]
-        input.form-control[type="text" placeholder="查找库" name="keyword"]
+        input.form-control[type="text" placeholder="#{t('site.search_repo')}" name="keyword"]
         button[type="submit"]: i.fa.fa-search  
 
       
       ul.nav.navbar-nav.navbar-right
         -if !current_mem
-          li: a.open-login[href=""] 登录
+          li: a.open-login[href=""] =t('site.signin')
         -else
           li: a[href="/mem"] =current_mem.nc
          
