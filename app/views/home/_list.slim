@@ -1,29 +1,29 @@
 div.row.repo-list 
   div.col-md-3
     a.repo-item.item-1.h-2[href="#{hometyp[0].link}"]
-      h3 =hometyp[0].sdesc
+      h3 =switl hometyp[0].key, hometyp[0].sdesc
       i.fa[class="#{hometyp[0].icon}"]
   div.col-md-9
     div.row
       div.col-md-4
         a.repo-item.item-2[href="#{hometyp[1].link}"]
-          h3 =hometyp[1].sdesc
+          h3 =switl hometyp[1].key, hometyp[1].sdesc
           i.fa[class="#{hometyp[1].icon}"]
       div.col-md-4
         a.repo-item.item-3[href="#{hometyp[2].link}"]
-          h3 =hometyp[2].sdesc
+          h3 =switl hometyp[2].key, hometyp[2].sdesc
           i.fa[class="#{hometyp[2].icon}"]
       div.col-md-4
         a.repo-item.item-4[href="#{hometyp[3].link}"] 
-          h3 =hometyp[3].sdesc
+          h3 =switl hometyp[3].key, hometyp[3].sdesc
           i.fa[class="#{hometyp[3].icon}"]
       div.col-md-4
         a.repo-item.item-5[href="#{hometyp[4].link}"] 
-          h3 =hometyp[4].sdesc
+          h3 =switl hometyp[4].key, hometyp[4].sdesc
           i.fa[class="#{hometyp[4].icon}"]
       div.col-md-4
         a.repo-item.item-6[href="#{hometyp[5].link}"]
-          h3 =hometyp[5].sdesc
+          h3 =switl hometyp[5].key, hometyp[5].sdesc
           i.fa[class="#{hometyp[5].icon}"]
       div.col-md-4
         a.repo-item.item-11[href="/org/capa"]
@@ -31,22 +31,22 @@ div.row.repo-list
           i.fa.fa-file-pdf-o       
   div.col-md-3
     a.repo-item.item-7[href="#{hometyp[6].link}"] 
-      h3 =hometyp[6].sdesc
+      h3 =switl hometyp[6].key, hometyp[6].sdesc
       i.fa[class="#{hometyp[6].icon}"]
   div.col-md-3
     a.repo-item.item-8[href="#{hometyp[7].link}"] 
-      h3 =hometyp[7].sdesc
+      h3 =switl hometyp[7].key, hometyp[7].sdesc
       i.fa[class="#{hometyp[7].icon}"]
   div.col-md-3
     a.repo-item.item-9[href="#{hometyp[8].link}"] 
-      h3 =hometyp[8].sdesc
+      h3 =switl hometyp[8].key, hometyp[8].sdesc
       i.fa[class="#{hometyp[8].icon}"]
   div.col-md-3
     a.repo-item.item-10[href="#{hometyp[9].link}"]
-      h3 =hometyp[9].sdesc
+      h3 =switl hometyp[9].key, hometyp[9].sdesc
       i.fa[class="#{hometyp[9].icon}"]
 
   div.clear    
   a.more[href="/repos/Applications"]
     i.fa.fa-align-justify>
-    span 更多分类
+    span =t('site.more')

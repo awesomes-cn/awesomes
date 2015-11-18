@@ -3,31 +3,31 @@
   div
     =form_for(@item,url: @suburl,html:{id: 'inform',method: 'post'}) do |item|
       div.form-group
-        =item.label :title,"标题"
+        =item.label :title,"#{t('form.title')}"
         =item.text_field :title,{class: 'form-control'}
 
       div.form-group
-        =item.label :origin,"代码来源"
+        =item.label :origin,"#{t('form.origin')}"
         p
-          | 代码 Github地址 + L行数。如：
-          a[href="https://github.com/jrburke/requirejs/blob/master/require.js#L2019" target="_blank"] https://github.com/jrburke/requirejs/blob/master/require.js#L2019
+          | #{t('form.origin_desc')}
+          a<[href="https://github.com/jrburke/requirejs/blob/master/require.js#L2019" target="_blank"] https://github.com/jrburke/requirejs/blob/master/require.js#L2019
         =item.text_field :origin,{class: 'form-control'} 
 
       
   
       div.form-group
-        label 源码解读
+        label =t('source.name')
         div[style="height: 700px;"]
           =render "layouts/markdown_editor"
 
       div.form-group
-        =item.label :tag,"标签（多个标签以 , 分隔）"
+        =item.label :tag,"#{t('form.tag')}（#{t('form.tag_spilt')}）"
         =item.text_field :tag,{class: 'form-control'}     
 
       input#tmp-con[type="hidden" value="#{@item.con}"]
       =item.hidden_field :con,{class: 'editor-val'}
       input[type="hidden" name="id" value="#{@item.id}"]
-      button.btn.btn-danger[type="submit"] 确认提交
+      button.btn.btn-danger[type="submit"] =t('form.sub')
 
     javascript:
       $('#inform').validate({ 

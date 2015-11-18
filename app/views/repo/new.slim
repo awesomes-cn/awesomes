@@ -1,27 +1,23 @@
 =content_for :con
   div.main.new-lib
     =form_for(Submit.new,url: "/submit/save" ,method:'post',html:{id: 'inform'}) do |item|
-      h2 仅需1秒即可提交你的库
+      h2 =t('site.sub_title')
       p 
-        | 请确保提交的库是
-        strong<> 前端库
-        | 并且github有
-        strong<> 50 star
-        | 以上
+        =raw t('site.sub_tip')
         p: input.txt[type="text" name="html_url" placeholder= "https://github.com/jquery/jquery"]
 
       P
-        span 选择一个类型： 
+        span> =t('site.select_cato')
         select#root-typ[name="typ"]
           -Menutyp.flat_show.each do |item|
             -if params[:typ] == item[:key]
-              option[value="#{item[:key]}" selected] =item[:sdesc]
+              option[value="#{item[:key]}" selected] =switl item[:key], item[:sdesc]
             -else
-              option[value="#{item[:key]}"] =item[:sdesc]
+              option[value="#{item[:key]}"] =switl item[:key], item[:sdesc]
 
         
 
-      p: button.btn.btn-primary[type="submit"] 确定提交
+      p: button.btn.btn-danger[type="submit"] =t('form.sub')
 
     javascript:
       $('#inform').validate({ 

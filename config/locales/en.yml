@@ -20,11 +20,42 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  year: "years"
-  month: "months"
-  day: "days"
+  year: " years"
+  month: " months"
+  day: " days"
   hour: "hours"
-  minute: "minutes"
-  second: "seconds"
+  minute: " minutes"
+  second: " seconds"
   justnow: 'justnow'
-  ago: 'ago'
+  ago: ' ago'
+  repo:
+    new: 'New'
+    hot: 'Hot'
+    trend: 'Trending'
+    sub_repo: 'Submit a Library'
+  site: 
+    search_repo: 'Search repo'
+    animation: 'Animations'
+    slider: 'Sliders'
+    build: 'Builds'
+    more: 'More'
+    about: 'About'
+    contact: 'Contact'
+    development: 'Development'
+    infor_access: 'Information Accessibility'
+    friend_link: 'Friend Link'
+    api: 'API'
+    select_cato: 'Select a category for the library'
+    sub_title: 'Just take 1 seconds to Add your library'
+    sub_tip: 'Please make sure the submission is a <b>clientside library</b>, and has at least <b>80 stars</b> on Github.'
+  form:
+    sub: 'Submit'
+    title: 'Title'
+    origin: 'Origin'
+    origin_desc: 'Code Github address + L row number. For example:'
+    tag: 'Tag'
+    tag_spilt: 'use , split Multiple tags'
+  source:
+    name: 'Source Resolve'
+    slogan: 'Divide excellent library,look for the wonderful codes.Follow the changes of different versions,try to think like a great god.'
+    share: 'I want share'

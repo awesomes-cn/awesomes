@@ -16,8 +16,8 @@
     div.panel-body.detail#repo-wraper
       div.lang.hidden-xs
         span[v-bind:class="lang == 'en' ? 'on' : ''" v-on:click="switch('en')"] EN
-        span[v-bind:class="lang == 'zh' ? 'on' : ''" v-on:click="switch('zh')"] 中
-        input[type="hidden" v-model="lang" value="#{@lang}"]
+        span[v-bind:class="lang == 'zh-CN' ? 'on' : ''" v-on:click="switch('zh-CN')"] 中
+        input[type="hidden" v-model="lang" value="#{I18n.locale}"]
       div[v-show="lang == 'en'"]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
           article[v-pre] = raw GitHub::Markdown.render @item.about
@@ -27,7 +27,7 @@
               a<>[href="#{@item.link_url}/notify"] click to tell me
               | now! We will update the readme and chinese translation immediately.
 
-      div[v-show="lang == 'zh'" ]
+      div[v-show="lang == 'zh-CN'" ]
         =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
           -if !@item.about_zh.blank? 
             article[v-pre] =raw GitHub::Markdown.render @item.about_zh

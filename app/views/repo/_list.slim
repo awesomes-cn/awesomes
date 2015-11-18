@@ -5,14 +5,14 @@ div.panel.panel-default.list-wraper
       li: a[href="/"] Home
       -if @root
         -if @typ
-          li: a[href="/repos/#{@root.key}"] =@root.sdesc
-          li.active: span =@typ.sdesc
+          li: a[href="/repos/#{@root.key}"] #{switl @root.key, @root.sdesc}
+          li.active: span #{switl @typ.key, @typ.sdesc}
         -else
-          li.active =@root.sdesc
+          li.active #{switl @root.key, @root.sdesc}
     -if @typ
       a.sub-repo[href="/repo/new?typ=#{@root.key}-#{@typ.key}"]
         i.fa.fa-plus>
-        | 提交一个库      
+        | #{t("repo.sub_repo")}      
     / -if !params[:keyword].blank?
     /   span.right
     /     | 共搜索到
@@ -25,17 +25,17 @@ div.panel.panel-default.list-wraper
     -if @root
       div[style="padding-left: 10px;"]
         h3 
-          | #{@root.sdesc} 
+          | #{switl @root.key, @root.sdesc} 
           -if @typ
-            | - #{@typ.sdesc}
+            | - #{switl @typ.key, @typ.sdesc}
         -if @typ
-          small =@typ.fdesc
+          small #{switl @typ.key, @typ.fdesc}
         -else
           ul.list-typs
             -@root.subitems_b.each do |item|
               li
                 a[href="/repos/#{@root.key}/#{item.key.downcase}"]
-                  | #{item.sdesc}
+                  | #{switl item.key, item.sdesc}
                   span =item.num
     -if !params[:keyword].blank?
       span 我们为您找到 #{@count} 个与 #{params[:keyword]} 有关的前端库
@@ -54,9 +54,9 @@ div.panel.panel-default.list-wraper
         a<[href="/repo/new"] 提交一个库
 -else
   div.sort-banner[class="on-#{@sort}"]
-    a.hot[href="?sort=hot" title="最多关注"] 热门
-    a.new[href="?sort=new"  title="最新创建"] 最新
-    a.trend[href="?sort=trend"  title="发展趋势"] 趋势
+    a.hot[href="?sort=hot" title="最多关注"] =t('repo.hot')
+    a.new[href="?sort=new"  title="最新创建"] =t('repo.new')
+    a.trend[href="?sort=trend"  title="发展趋势"] =t('repo.trend')
   div.repo-list-wraper
     -@items.each do |item|
       div

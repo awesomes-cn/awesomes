@@ -11,6 +11,10 @@ module ApplicationHelper
     session[:mem] == 1
   end
 
+  def switl en,zh
+    @is_en? en : zh
+  end
+
   def current_mem
     if !session[:mem] and Rails.env == 'development'
       session[:mem] = 1

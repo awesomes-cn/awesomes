@@ -2,6 +2,6 @@
 -@typ = Menutyp.find_by_key @item.typcd
 ol.breadcrumb
   li: a[href="/"] Home 
-  li: a[href="/repos/#{@root.key}"] =@root.sdesc
-  li: a[href="/repos/#{@root.key}/#{@typ.key}"] =@typ.sdesc
+  li: a[href="/repos/#{@root.key}"] =switl @root.key, @root.sdesc
+  li: a[href="/repos/#{@root.key}/#{@typ.key}"] =switl @typ.key, @typ.sdesc
   li.active =@item.name

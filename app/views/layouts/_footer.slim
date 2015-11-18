@@ -19,10 +19,10 @@ footer.footer
           | 为我们点赞吧
       div.col-md-6.text-right
         ul.menus
-          li: a[href="/site/about"] 关于
-          li: a[href="/site/contact"] 联系我们
-          li: a[href="/site/history"] 发展历程
-          li: a[href="/org/capa"] 信息无障碍文档共享
+          li: a[href="/site/about"] =t('site.about')
+          li: a[href="/site/contact"] =t('site.contact')
+          li: a[href="/site/history"] =t('site.development')
+          li: a[href="/org/capa"] =t('site.infor_access')
         div.clear  
         p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
     =yield :footer_extra

@@ -11,11 +11,11 @@ html
           div.panel-body
             div.col-md-2
               div.list-group.left-menus
-                a.list-group-item[href="/site/about"] 关于
-                a.list-group-item[href="/site/history"] 发展历程
-                a.list-group-item[href="/site/contact"] 联系我们
-                a.list-group-item[href="/site/link"] 友情链接
-                a.list-group-item[href="/site/api"] 开放API
+                a.list-group-item[href="/site/about"] =t('site.about')
+                a.list-group-item[href="/site/history"] =t('site.development')
+                a.list-group-item[href="/site/contact"] =t('site.contact')
+                a.list-group-item[href="/site/link"] =t('site.friend_link')
+                a.list-group-item[href="/site/api"] =t('site.api')
           
             div.col-md-10.
               =yield :con 
