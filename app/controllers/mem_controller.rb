@@ -44,9 +44,8 @@ class MemController < ApplicationController
         if _provider == 'github'
           Github.mem_sync_repo _mem
         end
-        
-        _mem.mauths.create(_para)
       end 
+      _mem.mauths.create(_para)
     else 
       _mem = _mauth.mem
       if _mem.avatar == 'default.png'
