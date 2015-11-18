@@ -95,7 +95,7 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
 
 #loginModal{
   .modal-body{text-align:center}
-  .fa-github{font-size: 100px;}
+  .fa-github,.fa-weibo{font-size: 60px; display: inline-block; margin: 20px;}
   a{color: #333}
   .modal-content{box-shadow: 0 1px 2px rgba(166, 166, 166, 0.5);border: 1px solid rgba(189, 189, 189, 0.2)}
   .modal-footer{text-align:center}

@@ -45,6 +45,7 @@ gem 'carrierwave-aliyun'
 
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-github', '~> 1.1.2'
+gem 'omniauth-weibo-oauth2', '~> 0.4.0'
 
 gem 'github-markdown', '~> 0.6.8'
 

@@ -16,7 +16,10 @@ class MemController < ApplicationController
     _avatar_url = ''
     _raw_info = _data['extra']['raw_info']
     if _provider == 'github'
-      _avatar_url = _raw_info['avatar_url']
+      _avatar_url = _raw_info['avatar_url'] 
+    end
+    if _provider == 'weibo'
+      _avatar_url = _data['extra']['raw_info']['avatar_hd']
     end
     
     #注册 /  绑定账号
@@ -37,7 +40,11 @@ class MemController < ApplicationController
           :following=> _raw_info['following'],
           :github=> _raw_info['login']
         })
-        Github.mem_sync_repo _mem
+
+        if _provider == 'github'
+          Github.mem_sync_repo _mem
+        end
+        
         _mem.mauths.create(_para)
       end 
     else 
