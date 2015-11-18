@@ -1,20 +1,20 @@
-=cache "left_menu_bars_#{I18n.locale}" do
-  div.list-group.left-menus
-    -Menutyp.menus('A').each do |root|
-      a.list-group-item.root[href="javascript: return false;"]
-        /i.fa.fa-fw>[class="#{root.icon}"]
-        span #{switl root.key, root.sdesc}
-        i.fa.fa-angle-down.right
-      div.sub-menus[style="display: #{params[:root] == root.key ? 'block' : ''}"]
-        -root.subitems_b.each do |item| 
-          a.list-group-item[href="/repos/#{root.key}/#{item.key.downcase}"]
-            i.fa>[class="#{item.icon}"]
-            span #{switl item.key, item.sdesc}
+/=cache "left_menu_bars_#{I18n.locale}" do
+div.list-group.left-menus
+  -Menutyp.menus('A').each do |root|
+    a.list-group-item.root[href="javascript: return false;"]
+      /i.fa.fa-fw>[class="#{root.icon}"]
+      span #{switl root.key, root.sdesc}
+      i.fa.fa-angle-down.right
+    div.sub-menus[style="display: #{params[:root] == root.key ? 'block' : ''}"]
+      -root.subitems_b.each do |item| 
+        a.list-group-item[href="/repos/#{root.key}/#{item.key.downcase}"]
+          i.fa>[class="#{item.icon}"]
+          span #{switl item.key, item.sdesc}
+
+javascript:
+  $(".left-menus .root").click(function(){
+    $(this).next('.sub-menus').slideToggle().siblings('.sub-menus').slideUp();
+  })
   
-  javascript:
-    $(".left-menus .root").click(function(){
-      $(this).next('.sub-menus').slideToggle().siblings('.sub-menus').slideUp();
-    })
-    
 
 
