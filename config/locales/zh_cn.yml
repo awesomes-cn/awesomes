@@ -36,6 +36,9 @@ zh-CN:
     origin_desc: '代码 Github地址 + L行数。如：'
     tag: '标签'
     tag_spilt: '多个标签以 , 分隔'
+    add_comment: '提交评论'
+    markdown: 'Markdown 排版说明'
+    discussion: '讨论区'
   source:
     name: '细说源码'
     slogan: '剖开优秀库，寻找那段精彩的代码，追寻不同版本的变迁，试着像大神一样去思考'

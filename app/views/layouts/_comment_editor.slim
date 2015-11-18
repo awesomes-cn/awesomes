@@ -6,9 +6,9 @@
       input[type="hidden" name="idcd" value="#{@comment[:idcd]}"]
       input[type="hidden" name="id" value="#{@comment[:id]}"]
       input.editor-val[type="hidden" name="con" id="com-con"]
-      button.btn.btn-primary.open-login[ng-click="item"] 提交评论 
+      button.btn.btn-primary.open-login[ng-click="item"] =t('form.add_comment') 
 
-      a[href="/markdown" target="_blank"] Markdown 排版说明
+      a[href="/markdown" target="_blank"] =t('form.markdown')
 
 javascript:
   markdown_editor.setValue("");  

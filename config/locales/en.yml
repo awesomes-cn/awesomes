@@ -55,6 +55,9 @@ en:
     origin_desc: 'Code Github address + L row number. For example:'
     tag: 'Tag'
     tag_spilt: 'use , split Multiple tags'
+    add_comment: 'Commit'
+    markdown: 'Markdown typesetting instructions'
+    discussion: 'Discussion Area'
   source:
     name: 'Source Resolve'
     slogan: 'Divide excellent library,look for the wonderful codes.Follow the changes of different versions,try to think like a great god.'
