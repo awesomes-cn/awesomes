@@ -8,7 +8,10 @@ class RepoController < ApplicationController
   end
 
   def index
-    @lang = params[:lang] || (@item.about_zh.blank? ? 'en' : 'zh')
+    @lang = I18n.locale
+    @lang = 'en' if @item.about_zh.blank?
+    @lang = params[:lang] || @lang
+
     @comment = {:typ=> 'REPO',:idcd=> @item.id}
   end 
 
