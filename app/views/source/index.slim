@@ -49,7 +49,7 @@
         
   
   div.topic-extra.opers[style="padding-bottom: 0;"]
-    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」详情请戳 http://www.awesomes.cn/source/#{@item.id}"]
+    wb:share-button[appkey="3977462330" addition="number" type="button" default_text="「#{@item.title}」- 源码来自 #{@item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')} 详情请戳"]
   
     a.pub[href="/source/new" title="发布主题"]
       i.fa.fa-plus
