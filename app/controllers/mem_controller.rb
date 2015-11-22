@@ -1,6 +1,6 @@
 require "github"
 class MemController < ApplicationController
-  before_filter :is_me?,:except=>['login','auth']
+  before_filter :is_me?,:except=>['login','auth','ckemail','cknc']
   def auth
     _data = request.env["omniauth.auth"] 
     #render json: _data and return
@@ -80,5 +80,21 @@ class MemController < ApplicationController
     Github.mem_sync_repo current_mem
     redirect_to request.referer
   end
+
+  def ckemail
+    render json: !(Mem.find_by_email params[:email]).nil?
+  end
+
+  def cknc
+    _nc = params[:nc] || params[:mem][:nc]
+    render json: true and return if current_mem and current_mem.nc == _nc
+    render json: (Mem.find_by_nc _nc).nil?
+  end
   
+  def update
+    @mem.update_attributes(params.require(:mem).permit('nc'))
+    @mem.mem_info.update_attributes(params.require(:mem_info).permit(MemInfo.attribute_names))
+    redirect_to request.referer
+  end
+
 end

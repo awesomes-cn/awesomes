@@ -1,0 +1,33 @@
+=content_for :con
+  =form_tag '/pwd_reset.json',method: "get",id: 'inform'
+    div.panel.panel-default.login-panel
+      div.panel-heading: h3.panel-title 重置密码
+      div.panel-body
+        div.form-group
+          label 密码
+          input.form-control#pwd[type="password" name="pwd"]
+
+        div.form-group
+          label 确认密码
+          input.form-control[type="password" name="pwd_again"]  
+
+        div.form-group
+          button.btn.btn-default 提交
+  
+  coffee:
+    $ ()->
+      $('#inform').validate
+        rules:
+          pwd:
+            required: true
+            minlength: 6
+          pwd_again:
+            equalTo: "#pwd"
+        messages:
+          pwd:
+            required: '密码不能为空'
+            minlength: '密码至少为6个字符'
+          pwd_again:
+            equalTo: "两次密码输入不一致"  
+      
+         

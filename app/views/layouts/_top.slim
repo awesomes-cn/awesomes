@@ -24,7 +24,17 @@ header.navbar
       
       ul.nav.navbar-nav.navbar-right
         -if !current_mem
-          li: a.open-login[href=""] =t('site.signin')
+          li: a.open-login[href="/mem/login"] =t('site.signin')
         -else
+          /li: a[href="/mem"]: i.fa.fa-bell
           li: a[href="/mem"] =current_mem.nc
-         
+          li.nav-extra
+            a[href=""]:  i.fa.fa-ellipsis-h
+            ul.extra-menu
+              li: a[href='/mem/favors'] 我的收藏
+              li: a[href='/mem/info'] 个人资料
+              li: a[href='/logout'] =t('mem.logout')
+
+
+        
+  

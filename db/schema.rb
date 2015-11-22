@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114234753) do
+ActiveRecord::Schema.define(version: 20151116143237) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20151114234753) do
     t.datetime "updated_at",             null: false
     t.string   "github",     limit: 255
     t.string   "twitter",    limit: 255
+    t.string   "weibo_nc",   limit: 255
+    t.string   "weibo_url",  limit: 255
   end
 
   create_table "mem_repos", force: :cascade do |t|
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(version: 20151114234753) do
     t.string   "avatar",     limit: 100
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "pwd",        limit: 255
   end
 
   add_index "mems", ["nc", "email"], name: "search", using: :btree

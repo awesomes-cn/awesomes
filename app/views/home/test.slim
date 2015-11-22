@@ -1,2 +1,25 @@
-=content_for :con
-  =render 'layouts/simditor'
+doctype html 
+html  
+  head  
+    meta[http-equiv="Content-Type" content="text/html; charset=utf-8"] 
+  body
+    div.main[style="width:70%;margin:0 auto; background-color:#EEE;box-shadow: 0px 0px 8px #ccc; border-radius:5px;border: solid 1px #aaa;font-family: 微软雅黑;font-size:14px;"]
+      div.header[style=" padding: 10px;border-radius: 5px 5px 0 0; font-size: 16px; font-weight:bold"] 
+        span Awesomes-cn 官方网站
+        i[style="float:right;color:#AAA"] Look For Less,Do More
+      div[style=" padding: 50px; background-color:#FFF;border: solid 1px #ccc; border-left:0;border-right:0"] 
+      
+        =yield
+
+      div.footer[style=" padding: 10px;border-radius: 0 0 5px 5px; text-align:right "] 
+        a[href="http://www.awesomes.cn/sources" style="color:#818181" target="_blank"] 细说源码
+        a<[href="http://www.awesomes.cn/repos/Dom/animation" style="color:#818181"  target="_blank"] 动画
+        a<[href="http://www.awesomes.cn/repos/Images/sliders" style="color:#818181"  target="_blank"] 幻灯片
+        a<[href="http://www.awesomes.cn/repos/Media" style="color:#818181"  target="_blank"] 多媒体
+        a<[href="http://www.awesomes.cn/repos/Applications/frameworks" style="color:#818181"  target="_blank"] 应用框架
+        a<[href="http://www.awesomes.cn/repos/Applications/editor" style="color:#818181"  target="_blank"] 富文本编辑器
+        a<[href="http://www.awesomes.cn/repos/Images/charts" style="color:#818181"  target="_blank"] 图表
+
+
+
+

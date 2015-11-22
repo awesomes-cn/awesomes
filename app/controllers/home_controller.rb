@@ -36,5 +36,62 @@ class HomeController < ApplicationController
 
   end
   
+  def test 
+    render :layout=> nil
+  end
+
+  def login
+    respond_to do |format|
+      format.html{
+        session[:login_callback] = request.referer
+      }
+      format.json{
+        _pwd = Digest::MD5.hexdigest  params[:pwd]
+        _mem = Mem.find_by({:email=> params[:email]})
+
+        #登陆
+        if _mem
+          redirect_to request.referer,:notice=> t('tip.pwd_error') and return if _mem.pwd != _pwd
+        else
+          _mem = Mem.create({:email=> params[:email], :pwd=> _pwd, :nc=> params[:nc]})
+        end
+
+        session[:mem] = _mem.id
+        redirect_to session[:login_callback] || '/mem'
+        
+      }
+    end
+  end
+
+  def logout
+    session['mem'] = nil
+    redirect_to '/'
+  end
+
+  def find_pwd
+    respond_to do |format|
+      format.html{
+        
+      }
+      format.json{
+        _email = params[:email]
+        _url = "#{ENV["BASE_URL"]}/pwd_reset/"
+        MemMailer.find_pwd({:to=> _email,:url=> _url}).deliver
+        redirect_to request.referer,:notice=> 'OK'
+      }
+    end
+  end
+
+  def pwd_reset
+    respond_to do |format|
+      format.html{
+        
+      }
+      format.json{
+        
+      }
+    end
+  end
+  
   
 end

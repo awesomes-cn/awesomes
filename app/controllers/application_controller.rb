@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def mem_login
     #true
-    redirect_to "/" and return if !current_mem
+    redirect_to "/login" and return if !current_mem
   end
 
   def is_me?
@@ -118,5 +118,22 @@ class ApplicationController < ActionController::Base
   def clear_fragment key
     ActionController::Base.new.expire_fragment(key)
   end
+
+  def encode(str)  
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])  
+    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])  
+    des.encrypt  
+    cipher = des.update(str)  
+    cipher << des.final  
+    return Base64.encode64(cipher) #Base64编码，才能保存到数据库  
+  end 
+
+  def decode(str)  
+    str = Base64.decode64(str)  
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])  
+    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])  
+    des.decrypt  
+    des.update(str) + des.final  
+  end  
 
 end

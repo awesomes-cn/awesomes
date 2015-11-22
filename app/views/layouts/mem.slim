@@ -4,60 +4,21 @@ html
     =render 'layouts/header'
   body
     =render 'layouts/top'
-    =yield :banner
-    div.container.l-margin.main-container
-      div.row
-        div.col-md-9
-          div.mem-wraper
-            img.tx[src="#{@mem.avatar_url}"]
-            ul
-              li: h3 =@mem.nc
-              li: span.desc 第 #{@mem.index} 位会员，于 #{@mem.created_at} 加入
-              li.thirds
-                -if !@mem.mem_info.blog.blank?
-                  a.home[href="#{@mem.mem_info.blog}" target="_blank"]
-                    i.fa.fa-home
-                    | #{@mem.mem_info.blog}
+    
+    div.container.mem-wraper
+      div.banner
+        a[href="/mem/#{@mem.id}"]: img.tx[src="http://awesomes.img-cn-beijing.aliyuncs.com/mem/151014235057-52.jpg"]
+        h4 =@mem.nc
+      div.inner
+        ul.menu
+          li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] =t('mem.topic')
+          li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] =t('mem.doc')
+          li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] =t('mem.comment')
+          -if @isme
+            li[class="#{navon 'info'}"]: a[href="/mem/info"] =t('mem.edit_info')
 
-                -if !@mem.mem_info.twitter.blank?
-                  a.twitter[href="https://twitter.com/#{@mem.mem_info.twitter}" target="_blank"]
-                    i.fa.fa-twitter
-                    | #{@mem.mem_info.twitter}
-
-                -if !@mem.mem_info.github.blank?
-                  a.github[href="https://github.com/#{@mem.mem_info.github}" target="_blank"]
-                    i.fa.fa-github
-                    | #{@mem.mem_info.github}
-
-                a.location[href="#"]
-                  i.fa.fa-map-marker
-                  | #{@mem.mem_info.location}
-          div.mem-main
-            div.menus
-              ul
-                li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] 文章
-                li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] 文档
-                li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] 评论
-                -if @isme
-                  li.right[class="#{navon 'info'}"]: a[href="/mem/info"] 个人资料
-            div.con-wrap
-              =yield :con
-                
-        div.col-md-3
-          div.panel.panel-default.github-list
-            div.panel-heading 
-              span GitHub Public Repos
-              -if @isme
-                a.sync[href="/mem/sync_repo" title="从GitHub同步"]: i.fa.fa-exchange
-            div.list-group
-              -@mem.mem_repos.all.each do |item|
-                div.list-group-item
-                  a[href="#{item.html_url}" target="_blank"]: strong =item.name
-                  p: small =item.description
-                  span.stars =item.stargazers_count
-            div.panel-footer
-              a.right[href="https://github.com/#{@mem.mem_info.github}" target="_blank"] More on GitHub
-              div.clear
+        div.con
+          =yield :con
         
           
     =render 'layouts/footer'
