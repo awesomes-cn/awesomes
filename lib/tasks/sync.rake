@@ -38,3 +38,9 @@ namespace :mem do
   end
 end
 
+
+namespace :baidu do 
+  task :push,[:start] => :environment do |t,args| 
+    Topic.push_seo
+  end
+end
