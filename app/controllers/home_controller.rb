@@ -37,8 +37,6 @@ class HomeController < ApplicationController
   end
   
   def test 
-    MemMailer.find_pwd({:to=> "1246996371@qq.com",:url=> "_url"}).deliver_now
-    render :layout=> nil
   end
 
   def login

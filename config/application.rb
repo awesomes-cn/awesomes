@@ -34,21 +34,15 @@ module Webs
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_mailer.delivery_method = :smtp
+    
     config.action_mailer.smtp_settings = {
       :address              =>  'smtpcloud.sohu.com',
       :port                 => 25,
-      :user_name            => 'AWESOMES',
-      :password             =>  'J3rEiKBEgcZWokGi',
-      :authentication       => 'login'
+      :user_name            => ENV['SMTP_USER_NAME'],
+      :password             =>  ENV['SMTP_PASSWORD'],
+      :authentication       => 'login',
+      :enable_starttls_auto => true
     }
-    #config.action_mailer.smtp_settings = {
-    #  :address              =>  'smtp.qq.com',
-    #  :port                 => 25,
-    #  :user_name            => "1246996371@qq.com",
-    #  :password             =>  "hxh568701382@?",
-    #  :authentication       => 'plain',
-    #  :enable_starttls_auto => true
-    #}
 
    
     config.source_access_path = ENV['SOURCE_ACCESS_PATH']
