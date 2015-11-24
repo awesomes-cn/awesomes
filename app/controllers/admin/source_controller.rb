@@ -12,6 +12,7 @@ class Admin::SourceController < AdminController
 
   def review
     @item.update_attributes({:state=> '0'})
+    Topic.push_seo
     render json: @item.state
   end
 end
