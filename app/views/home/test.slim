@@ -1,2 +1,21 @@
 =content_for :con
-  =render 'layouts/simditor'
+  button.btn#btn 评了一个论
+
+  ul#eeee
+  css:
+    header,footer{display: none}
+  javascript:
+    var socket = io('http://192.168.0.103:8080');
+      socket.on('hello', function(data){
+        console.log(data)
+        $("#eeee").append("<li>"+data.some+"</li>")
+      });
+
+       socket.emit('set',{id: 1});
+
+    $(function(){
+      $("#btn").click(function(){
+        $.post("/test.json",{},function(){})
+      })
+    })
+

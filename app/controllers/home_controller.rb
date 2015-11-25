@@ -35,6 +35,18 @@ class HomeController < ApplicationController
     end
 
   end
-  
+
+  def test
+    respond_to do |format|
+      format.html{}
+      format.json{
+        require 'rest-client'
+        _response = RestClient.post 'http://192.168.0.103:8080/tip?name=hxh', {:mem=> 1}
+        render json: true
+      }
+    end
+  end
+
+
   
 end
