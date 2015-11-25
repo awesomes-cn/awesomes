@@ -36,11 +36,11 @@ module Webs
     config.action_mailer.delivery_method = :smtp
     
     config.action_mailer.smtp_settings = {
-      :address              =>  'smtpcloud.sohu.com',
+      :address              =>  ENV['SMTP_ADDRESS'],
       :port                 => 25,
       :user_name            => ENV['SMTP_USER_NAME'],
       :password             =>  ENV['SMTP_PASSWORD'],
-      :authentication       => 'login',
+      :authentication       => 'plain',
       :enable_starttls_auto => true
     }
 
