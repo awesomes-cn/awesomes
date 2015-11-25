@@ -7,7 +7,7 @@ html
     
     div.container.mem-wraper
       div.banner
-        a[href="/mem/#{@mem.id}"]: img.tx[src="http://awesomes.img-cn-beijing.aliyuncs.com/mem/151014235057-52.jpg"]
+        a[href="/mem/#{@mem.id}"]: img.tx[src="#{@mem.avatar_url}"]
         h4 =@mem.nc
       div.inner
         ul.menu
