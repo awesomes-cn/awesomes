@@ -1,0 +1,37 @@
+=content_for :con
+  -if flash[:notice].nil?
+    =form_tag '/find_pwd.json',method: "get",id: 'inform'
+      div.panel.panel-default.login-panel
+        div.panel-heading: h3.panel-title 找回密码
+        div.panel-body
+          div.form-group
+            label 邮箱
+            input.form-control[type="text" name="email"]
+
+          div.form-group
+            button.btn.btn-default 提交
+    
+    coffee:
+      $ ()->
+        $('#inform').validate
+          rules:
+            email:
+              required: true
+              email: true
+          messages:
+            email:
+              required: '邮箱不能为空'
+              email: '你确定你输入的是邮箱么'
+
+  -if flash[:notice] == 'OK'
+    div.panel.panel-default.login-panel
+      div.panel-heading: h3.panel-title 邮件成功发送
+      div.panel-body
+        p 我们给你发送了一个允许你重置密码的链接，你需要在24小时之内完成。
+        p 请查看你的邮箱，如果未收到，请确认是否被放入了垃圾箱。
+        a[href="/login"] 返回登陆
+
+  
+  
+
+  

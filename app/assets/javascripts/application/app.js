@@ -26,8 +26,7 @@ $(document).on('page:restore', function() { NProgress.remove(); });
 
 function open_login(){
   if (!Rails.islogin) {
-    $('#loginModal').modal('show');
-    return false;
+    window.location.href="/login"
   }else{
     return true;
   }

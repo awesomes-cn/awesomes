@@ -1,2 +1,27 @@
 =content_for :con
+  div.home-wraper
+    h3 =@mem.nc
+    p
+      h3: i.fa[class="#{gender_icon}"]
+    p
+      span =@mem.mem_info.location
 
+    div.row.sites
+      div
+        a[href="#{@mem.mem_info.blog}" target="_blank"]: i.fa.fa-home 
+      
+
+      div
+        a[href="https://github.com/#{@mem.mem_info.github}" target="_blank"]: i.fa.fa-github
+
+      div
+        a[href="https://twitter.com/#{@mem.mem_info.twitter}" target="_blank"]: i.fa.fa-twitter  
+
+      div
+        a[href="#{@mem.mem_info.weibo_url}" target="_blank"]: i.fa.fa-weibo   
+
+    div.text-center
+      h4 第 #{@mem.index} 位会员
+      p 于 #{@mem.created_at} 加入
+
+    

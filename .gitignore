@@ -17,3 +17,5 @@
 /tmp
 /config/local_env.yml
 /public/upload/*/*.*
+# Ignore application configuration
+/config/application.yml

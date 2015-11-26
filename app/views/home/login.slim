@@ -1,0 +1,66 @@
+=content_for :con
+  /a[href="/mem/login?from=github" data-no-turbolink]: i.fa.fa-github
+  /a[href="/mem/login?from=weibo" data-no-turbolink]: i.fa.fa-weibo
+  =form_tag '/login.json',method: "get",id: 'inform'
+    div.panel.panel-default.login-panel
+      div.panel-heading: h3.panel-title =t('mem.login_tip')
+      div.panel-body
+        div.form-group
+          label =t('mem.email')
+          input.form-control[type="text" name="email" v-on:focusout="check_act()" v-model="email"]
+        
+        div.form-group
+          label
+            | #{t('mem.pwd')}
+            a[href="/find_pwd"] （#{t('mem.forgot_pwd')}）
+          input.form-control[type="password" name="pwd"]
+
+        div.form-group[style="display: none" v-show="!islogin"]
+          label =t('mem.nc')
+          input.form-control[type="text" name="nc"]
+
+          
+        div.form-group
+          button.btn.btn-default =t('mem.login')
+        
+        -if flash[:notice]
+          div.alert.alert-danger =flash[:notice]
+  
+  coffee:
+    $('#inform').validate
+      rules:
+        email:
+          required: true
+          email: true
+
+        pwd:
+          required: true
+          minlength: 6  
+
+        nc:
+          required: true
+          remote: '/mem/cknc'
+
+       
+      messages:
+        email:
+          required: '邮箱不能为空'
+          email: '你确定你输入的是邮箱么'
+        
+        pwd:
+          required: '密码不能为空'
+          minlength: '密码至少为6个字符'
+
+        nc:
+          required: '昵称不能为空'
+          remote: '该昵称已被占用'  
+
+    $ ()->
+      app = new Vue
+        el: ".login-panel"
+        data:
+          islogin: true
+        methods:
+          check_act: ()->
+            $.post '/mem/ckemail',{email: app.email}, (data)->
+              app.islogin = data

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def mem_login
     #true
-    redirect_to "/" and return if !current_mem
+    redirect_to "/login" and return if !current_mem
   end
 
   def is_me?
@@ -119,4 +119,24 @@ class ApplicationController < ActionController::Base
     ActionController::Base.new.expire_fragment(key)
   end
 
+
+  def encode(des_text)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.encrypt
+    des.key = ENV['ENCODE_KEY']
+    des.iv = ENV['ENCODE_IV']
+    result = des.update(des_text)
+    result << des.final
+    return Base64.encode64 result
+  end
+
+  def decode(des_text)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.decrypt
+    des.key = ENV['ENCODE_KEY']
+    des.iv = ENV['ENCODE_IV']
+    result = des.update(Base64.decode64 des_text)
+    result << des.final
+    return result
+  end
 end

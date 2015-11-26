@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="socket.io.js"></script>
+  <script>
+    var socket = io('http://192.168.0.103:8080');
+    socket.on('connect', function(){
+      console.log('connect')
+    });
+    socket.on('hello', function(data){
+      console.log(data)
+    });
+    socket.on('disconnect', function(){
+      console.log('disconnect')
+    });
+  </script>
+</head>
+<body>
+
+</body>
+</html>

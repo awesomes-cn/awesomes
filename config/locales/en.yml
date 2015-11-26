@@ -66,3 +66,21 @@ en:
   home:
     slogan: 'Maybe the best JavaScript libraries, frameworks, and plugins.'
     view: 'Ready? Go'
+
+  mem:
+    topic: 'Topic'
+    doc: 'Doc'
+    comment: 'Comment'
+    edit_info: 'Edit Info'  
+    nc: 'Nickname'
+    gender: 'Gender'
+    city: 'City'
+    home: 'Personal home page'
+    wibo_nc: 'Webio Nickname'
+    weibo_url: 'Webio Url'
+    login: 'Sign in'
+    logout: 'Sign out'
+    login_tip: 'Sign in - no Sign up '
+    email: 'Email'
+    pwd: 'Password'
+    forgot_pwd: 'forgot password'

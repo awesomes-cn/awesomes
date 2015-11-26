@@ -47,3 +47,22 @@ zh-CN:
   home:
     slogan: '也许是最好的开源前端库、框架和插件集合'
     view: '马上浏览'
+  tip:
+    pwd_error: '密码错误'
+  mem:
+    topic: '文章'
+    doc: '文档'
+    comment: '评论'
+    edit_info: '编辑资料'
+    nc: '昵称'
+    gender: '性别（男：M / 女：F）'
+    city: '城市'
+    home: '个人主页'
+    wibo_nc: '微博昵称'
+    weibo_url: '微博主页'
+    login: '登陆'
+    logout: '注销'
+    login_tip: '登陆-免注册 '
+    email: '邮箱'
+    pwd: '密码'
+    forgot_pwd: '忘记密码'

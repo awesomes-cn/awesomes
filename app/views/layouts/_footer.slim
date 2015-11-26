@@ -27,18 +27,3 @@ footer.footer
         p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
     =yield :footer_extra
 
-// login Modal
-div.modal.fade[id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
-  div.modal-dialog[role="document"]
-    div.modal-content
-      div.modal-header
-        button[type="button" class="close" data-dismiss="modal" aria-label="Close"]
-          span[aria-hidden="true"] &times;
-        h4.modal-title 登陆到 Awesomes
-
-      div.modal-body
-        a[href="/mem/login?from=github" data-no-turbolink]: i.fa.fa-github
-        /a[href="/mem/login?from=weibo" data-no-turbolink]: i.fa.fa-weibo
-      div.modal-footer
-        /span 目前支持Github和微博账号登录，如需两种方式，则应该以绑定的形式登录另外一个账号
-        span 目前只支持Github登录

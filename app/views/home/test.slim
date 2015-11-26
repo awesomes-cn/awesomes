@@ -1,4 +1,5 @@
 =content_for :con
+  h1 = @str 
   button.btn#btn 评了一个论
 
   ul#eeee
@@ -11,7 +12,7 @@
         $("#eeee").append("<li>"+data.some+"</li>")
       });
 
-       socket.emit('set',{id: 1});
+       socket.emit('set',{id: '143'});
 
     $(function(){
       $("#btn").click(function(){

@@ -1,3 +1,57 @@
-=content_for :con     
-  input#mem-nav[type="hidden" value="info"]
- 
+=content_for :con 
+  =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
+    div.form-group
+      =item.label :nc,t('mem.nc')
+      =item.text_field :nc,{class: 'form-control'}
+
+    =form_for(current_mem.mem_info, url: '',html:{method: 'post'}) do |info|  
+      div.form-group
+        =info.label :gender,t('mem.gender')
+        =info.text_field :gender,{class: 'form-control'}
+
+      div.form-group
+        =info.label :location,t('mem.city')
+        =info.text_field :location,{class: 'form-control'}  
+
+      div.form-group
+        =info.label :blog,t('mem.home')
+        =info.text_field :blog,{class: 'form-control'} 
+
+      
+      div.form-group
+        =info.label :github,"Github" 
+        div.input-group
+          span.input-group-addon  https://github.com/
+          =info.text_field :github,{class: 'form-control'}
+        
+
+      div.form-group
+        =info.label :twitter,"Twitter"
+        div.input-group
+          span.input-group-addon  http://twitter.com/
+          =info.text_field :twitter,{class: 'form-control'} 
+
+      div.form-group
+        =info.label :weibo_nc,t('mem.weibo_nc')
+        =info.text_field :weibo_nc,{class: 'form-control'} 
+
+      div.form-group
+        =info.label :weibo_url,t('mem.weibo_url')
+        =info.text_field :weibo_url,{class: 'form-control'}
+
+      button.btn.btn-danger =t('form.sub') 
+
+
+  
+  coffee:
+    $('#inform').validate
+      rules:
+        "mem[nc]":
+          required: true
+          remote: '/mem/cknc'
+
+       
+      messages:
+        "mem[nc]":
+          required: '邮箱不能为空'
+          remote: '该昵称已被占用'
