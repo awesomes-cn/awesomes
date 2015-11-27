@@ -27,3 +27,11 @@ footer.footer
         p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
     =yield :footer_extra
 
+-if is_login
+  javascript:
+    var socket = io('http://192.168.0.103:8080');
+      socket.on('notify', function(data){
+        $("#tip-bell label").text(data.count)
+      });
+
+      socket.emit('auth',{mem: "#{enc_socket.strip}"});

@@ -5,11 +5,10 @@ var crypto = require('crypto'),
 
 
 if(!global.SETTING){
-  YAML.load("/home/hxh/share/ruby/awesomes/config/local_env.yml", function(result){
+  YAML.load(/.+awesomes/.exec(__dirname)[0] + "/config/local_env.yml", function(result){
     global.SETTING = result;
   })
 }
-
 
 exports.mycrypto = {
   encrypt: function(text){

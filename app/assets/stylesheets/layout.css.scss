@@ -20,7 +20,7 @@ a{
 
 header{
   .extra-menu{
-    border: #EEE 1px solid;  width: 120px; display: block;  padding: 0; right: 0; border-bottom: 0;
+    border: #EEE 1px solid;  width: 120px; display: block;  padding: 0; right: 0; border-bottom: 0; background-color: #FFF;
     position: absolute; display: none;
     li{list-style: none; display: block; border-bottom: #EEE 1px solid;}
     a{ padding: 10px 20px;display: block;width: 100%; height: 100%; text-decoration: none;}
@@ -28,6 +28,8 @@ header{
   .nav-extra:hover{
     .extra-menu{display: block;}
   }
+
+  #tip-bell{color: Red}
 
 }
 

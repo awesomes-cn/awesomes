@@ -6,14 +6,15 @@ var _ = require('underscore'),
 
 var server = require('http').createServer(function(req,res){
   req_para(req,res,function(para){
-    var id = mc.decrypt(para.mem);
+    var mem = mc.decrypt(para.mem).split('-')[0];
+    
     var items = _.filter(sockets,function(item){
-      return item.id == id
+      return item.mem == mem
     })
     items.forEach(function(item){
       var s = io.sockets.connected[item.socket];
       if(s){
-        s.emit('hello', { some: id});
+        s.emit('notify', { data: para.count});
       }
     })
     
@@ -42,10 +43,10 @@ var sockets = []
 io.on('connection', function(socket){
   
   //- 标识每个客户端
-  socket.on('set', function(data){
+  socket.on('auth', function(data){
     sockets[sockets.length] = {
       socket: socket.id,
-      id: data.id
+      mem: mc.decrypt(data.mem).split('-')[0]
     }
     socket.mem_id = data.id
   });

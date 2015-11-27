@@ -61,4 +61,28 @@ module ApplicationHelper
     params[:action] == action ? 'active' : ''
   end
 
+  def encode(des_text)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.encrypt
+    des.key = ENV['ENCODE_KEY']
+    des.iv = ENV['ENCODE_IV']
+    result = des.update(des_text)
+    result << des.final
+    return Base64.encode64 result
+  end
+
+  def decode(des_text)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.decrypt
+    des.key = ENV['ENCODE_KEY']
+    des.iv = ENV['ENCODE_IV']
+    result = des.update(Base64.decode64 des_text)
+    result << des.final
+    return result
+  end
+
+  def enc_socket
+    encode "#{session[:mem]}-#{Time.now.to_i}"
+  end
+
 end

@@ -26,7 +26,10 @@ header.navbar
         -if !current_mem
           li: a.open-login[href="/mem/login"] =t('site.signin')
         -else
-          /li: a[href="/mem"]: i.fa.fa-bell
+          li
+            a#tip-bell[href="/mem"]
+              i.fa.fa-bell>
+              label 
           li: a[href="/mem"] =current_mem.nc
           li.nav-extra
             a[href=""]:  i.fa.fa-ellipsis-h
