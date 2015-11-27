@@ -14,8 +14,7 @@ class CommentController < ApplicationController
     else
       _item = Comment.create({:typ=> params[:typ],:idcd=> params[:idcd],:con=> params[:con],:mem_id=> current_mem.id})
       _item.target.update_comment
-      require 'rest-client'
-      RestClient.post 'http://192.168.0.103:8080/tip', {:mem=> encode("#{session[:mem]}-#{Time.now.to_i}"),:count=> 3}
+      web_notify  current_mem.id
     end
     render json: {status: true,url: _item.target_url} 
 	end

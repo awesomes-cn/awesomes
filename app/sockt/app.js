@@ -6,7 +6,7 @@ var _ = require('underscore'),
 
 var server = require('http').createServer(function(req,res){
   req_para(req,res,function(para){
-    var mem = mc.decrypt(para.mem).split('-')[0];
+    var mem = mc.decrypt(req.headers['authorization']).split('-')[0];
     
     var items = _.filter(sockets,function(item){
       return item.mem == mem
@@ -14,7 +14,7 @@ var server = require('http').createServer(function(req,res){
     items.forEach(function(item){
       var s = io.sockets.connected[item.socket];
       if(s){
-        s.emit('notify', { data: para.count});
+        s.emit('notify', { amount: para.amount});
       }
     })
     
