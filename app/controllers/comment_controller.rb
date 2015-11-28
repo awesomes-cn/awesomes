@@ -1,5 +1,5 @@
 class CommentController < ApplicationController
-	before_filter :mem_login
+  before_filter :mem_login
   before_filter :comment_lost,:except=> ['save']
 
   def comment_lost
@@ -7,8 +7,8 @@ class CommentController < ApplicationController
     render json: {status: false} and return if @item.mem != current_mem
   end
   
-	def save
-		if (_id = params[:id]) and (_item = Comment.find_by_id(_id))
+  def save
+    if (_id = params[:id]) and (_item = Comment.find_by_id(_id))
       comment_lost
       _item.update_attributes({:con=> params[:con]})
     else
@@ -17,7 +17,7 @@ class CommentController < ApplicationController
       web_notify  current_mem.id
     end
     render json: {status: true,url: _item.target_url} 
-	end
+  end
 
   def destroy 
     @item.destroy

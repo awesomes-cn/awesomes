@@ -301,3 +301,7 @@ label.error{color: #d9534f}
 
 //- prism
 :not(pre) > code[class*="language-"], pre[class*="language-"]{background-color: #FFF;}
+
+[v-cloak] {
+  display: none;
+}

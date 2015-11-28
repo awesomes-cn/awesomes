@@ -29,22 +29,33 @@ footer.footer
 
 
   javascript:
+    var doc_title = document.title;
     $(function(){
       var top_app = new Vue({
         el: "#tip-bell",
         data: {
-          amount: 0
+          amount: #{notify_amount}
         }
       })
 
       if(Rails.islogin){
-        var socket = io('http://192.168.0.103:8080');
+        modify_title(#{notify_amount});
+        var socket = io('http://192.168.141.128:8080');
         socket.on('notify', function(data){
           top_app.amount = data.amount;
-          console.log(data)
+          modify_title(data.amount);
         });
 
         socket.emit('auth',{mem: "#{enc_socket.strip}"});
       }
       
     })
+
+  
+    function modify_title(amount){
+      if(amount > 0){
+        document.title = "("+ amount+")" + doc_title;
+      }else{
+        document.title = doc_title;
+      }
+    }

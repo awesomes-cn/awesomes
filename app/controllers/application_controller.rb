@@ -147,9 +147,8 @@ class ApplicationController < ActionController::Base
     _amount = _notify.amount + 1
     _notify.amount = _amount
     _notify.save
-    RestClient.post "http://192.168.0.103:8080/tip", 
-    {:amount=> _amount},
-    {:Authorization=> encode("#{session[:mem]}-#{Time.now.to_i}")}
+    RestClient.post "http://192.168.141.128:8080/notify", 
+    {:amount=> _amount,:mem=> encode("#{session[:mem]}-#{Time.now.to_i}")}
   end
 
 end

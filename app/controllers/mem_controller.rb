@@ -76,6 +76,11 @@ class MemController < ApplicationController
     @count = @mem.comments.count
   end
 
+  def notifies
+    @items = data_list_asc @mem.topics
+    @count = @mem.topics.count
+  end
+
   def sync_repo
     Github.mem_sync_repo current_mem
     redirect_to request.referer
