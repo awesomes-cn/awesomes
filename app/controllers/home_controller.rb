@@ -37,16 +37,12 @@ class HomeController < ApplicationController
   end
 
   def test
-    respond_to do |format|
-      format.html{
-        @str =  encode('1')
-      }
-      format.json{
-        require 'rest-client'
-        _response = RestClient.post 'http://192.168.0.103:8080/tip?name=hxh', {:mem=> encode('143')}
-        render json: true
-      }
-    end
+    require 'rest-client'
+    RestClient.post "http://192.168.141.128:8080/notify",{
+      :mem=> encode("102-#{Time.now.to_i}"),
+      :COMMENT=> 222
+    }
+    render json: true
   end
 
   def login

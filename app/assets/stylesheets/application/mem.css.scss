@@ -16,13 +16,13 @@
 
 .mem-wraper{
   max-width: 800px;
-  a{color: #333}
   .banner{text-align: center;}
   .tx{width: 70px; height: 70px;  border-radius: 100%; margin-bottom: 10px;}
   .inner{ border-top:#DDD 1px solid }
   .menu{
     text-align: center; display: block; border-bottom: #DDD 1px solid; padding: 5px; 
     li{list-style: none; display: inline-block; margin: 10px;}
+    a{color: #333}
     li.active{
       a{color: Red}
     }
@@ -33,7 +33,14 @@
       i{font-size: 30px;}
       & > div{display: inline-block; margin: 10px;}
     }
-    .home-wraper{max-width: 500px;  margin: 0 auto;  border: #F0F0F0 1px solid;  padding: 50px;  margin-top: 50px;}
+    .home-wraper{
+      max-width: 500px;  margin: 0 auto;  border: #F0F0F0 1px solid;  padding: 50px;  margin-top: 50px;
+      a{color: #333}
+    }
+  }
+
+  .mem-list-wraper{
+    
   }
 
 

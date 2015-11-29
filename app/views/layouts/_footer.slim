@@ -34,28 +34,41 @@ footer.footer
       var top_app = new Vue({
         el: "#tip-bell",
         data: {
-          amount: #{notify_amount}
+          amount: 0,
+          item: {}
         }
-      })
+      }) 
 
       if(Rails.islogin){
-        modify_title(#{notify_amount});
+        $.post("/mem/notify",{},function(data){
+          notify_item(data.item);
+        }) 
+        
         var socket = io('http://192.168.141.128:8080');
         socket.on('notify', function(data){
-          top_app.amount = data.amount;
-          modify_title(data.amount);
+          console.log(data.item.COMMENT)
+          notify_item(data.item);
         });
 
         socket.emit('auth',{mem: "#{enc_socket.strip}"});
       }
-      
+
+
+
+      function notify_item(item){
+        top_app.item = item;
+        top_app.amount = _.reduce(_.values(item), function(memo, num){ return memo + parseInt(num); }, 0);
+        modify_title(top_app.amount);
+      }
     })
 
   
     function modify_title(amount){
       if(amount > 0){
-        document.title = "("+ amount+")" + doc_title;
+        document.title = "("+ amount+") " + doc_title;
       }else{
         document.title = doc_title;
       }
     }
+
+    

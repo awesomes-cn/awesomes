@@ -14,6 +14,7 @@ class OperController < ApplicationController
       _oper.destroy
     else
       _tmp = Oper.create(para)
+      ActiveSupport::Notifications.instrument 'oper.create',{:item=> _item,mem: current_mem}
     end
     render json: {
       state: Oper.where(para).count > 0,

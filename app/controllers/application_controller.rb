@@ -141,14 +141,5 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def web_notify to
-    require 'rest-client'
-    _notify = Notify.find_or_create_by({:typcd=> 'COMMENT',:desc=> '你有新的评论',:mem_id=> to,:state=> 'UNREAD'})
-    _amount = _notify.amount + 1
-    _notify.amount = _amount
-    _notify.save
-    RestClient.post "http://192.168.141.128:8080/notify", 
-    {:amount=> _amount,:mem=> encode("#{session[:mem]}-#{Time.now.to_i}")}
-  end
 
 end

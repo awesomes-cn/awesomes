@@ -26,15 +26,23 @@ header.navbar
         -if !current_mem
           li: a.open-login[href="/login"] =t('site.signin')
         -else
-          li.nav-extra
-            a#tip-bell[href="/mem" v-bind:class="amount > 0 ? 'active' : ''"]
+          li.nav-extra#tip-bell[v-bind:class="amount > 0 ? 'active' : ''"]
+            a[href="/mem/notifies" ]
               i.fa.fa-bell>
               span[v-show="amount > 0" v-cloak] {{amount}}
             ul.extra-menu
-              li: a[href='/mem/favors'] @我的
-              li: a[href='/mem/info'] 评论
-              li: a[href='/logout'] 赞
-              li: a[href='/logout'] 粉丝
+              li: a[href='/mem/notifies?typ=at' ]
+                | @我的
+                span.badge {{item.AT}}
+              li: a[href='/mem/notifies?typ=comment']
+                | 评论
+                span.badge {{item.COMMENT}}
+              li: a[href='/mem/notifies?typ=favor']
+                | 赞
+                span.badge {{item.FAVOR}}
+              li: a[href='/mem/notifies?typ=fans']
+                | 粉丝
+                span.badge {{item.FANS}}
             
                   
           li: a[href="/mem"] =current_mem.nc

@@ -85,9 +85,4 @@ module ApplicationHelper
     encode "#{session[:mem]}-#{Time.now.to_i}"
   end
 
-
-  def notify_amount
-    is_login ? Notify.where({:mem_id=> current_mem.id,:state=> 'UNREAD'}).pluck('amount').reduce(:+).to_i : 0
-  end
-
 end

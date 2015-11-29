@@ -33,6 +33,8 @@ module Webs
     config.i18n.default_locale = 'zh-CN'
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.active_job.queue_adapter = :resque
+
     config.action_mailer.delivery_method = :smtp
     
     config.action_mailer.smtp_settings = {

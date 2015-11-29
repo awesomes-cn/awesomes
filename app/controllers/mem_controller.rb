@@ -77,8 +77,16 @@ class MemController < ApplicationController
   end
 
   def notifies
-    @items = data_list_asc @mem.topics
-    @count = @mem.topics.count
+    _where =  (_typ = params[:typ]).blank? ? {} : {:typcd=> _typ.upcase}
+    _items = Notify.where({:mem_id=> @mem.id,:state=> 'UNREAD'}.merge _where)
+    @items = data_list_asc _items
+    @count = _items.count
+  end
+
+  def notify
+    render json:{
+      :item=> Notify.socket(current_mem.id)
+    }
   end
 
   def sync_repo

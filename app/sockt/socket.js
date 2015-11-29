@@ -4,17 +4,11 @@ var _ = require('underscore'),
 function start(server){
   global.io = require('socket.io')(server);
 
-  global.sockets |= [];
-
   global.io.on('connection', function(socket){
     
     //- 标识每个客户端
     socket.on('auth', function(data){
-      global.sockets[global.sockets.length] = {
-        socket: socket.id,
-        mem: mc.decrypt(data.mem).split('-')[0]
-      }
-      socket.mem_id = data.id
+      socket.mem_id = mc.decrypt(data.mem).split('-')[0];
     });
 
     socket.on('disconnect', function(){

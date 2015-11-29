@@ -2,12 +2,12 @@
   ul.list-group.mem-list-wraper
     -@items.each do |item|
       li.list-group-item
-        a.repo[href="/source/#{item.id}"] =item.title
-        i.fa.fa-angle-right<>
-        | < #{item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')}  />
-        span.right =item.created_at.strftime("%Y-%m-%d")
+        span =raw GitHub::Markdown.render item.desc
+        a.right[href="#{item.link}"]: i.fa.fa-link
   div#page-mem      
   input#mem-nav[type="hidden" value="doc"]
+  css:
+    .list-group-item p{margin: 0; display: inline-block}
   javascript:
     $(function(){
       $("#page-mem").pagination(#{@count},{

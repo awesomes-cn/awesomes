@@ -6,6 +6,7 @@ class CreateNotifies < ActiveRecord::Migration
       t.integer :amount,:default=> 0   #消息數量
       t.string :desc
       t.string :fdesc
+      t.string :link
       t.string :state,:default=> 'UNREAD'     #UNREAD  READED
       t.timestamps null: false
     end

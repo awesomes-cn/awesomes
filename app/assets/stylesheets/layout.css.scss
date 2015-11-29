@@ -29,7 +29,12 @@ header{
     .extra-menu{display: block;}
   }
 
-  #tip-bell.active{color: Red}
+  #tip-bell{
+    &.active > a{color: Red}
+    .extra-menu{
+      .badge{color: #FFF;float: right; background-color: #FF7979; font-weight: normal;}
+    }
+  }
 
 }
 

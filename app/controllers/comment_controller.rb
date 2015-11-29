@@ -14,7 +14,7 @@ class CommentController < ApplicationController
     else
       _item = Comment.create({:typ=> params[:typ],:idcd=> params[:idcd],:con=> params[:con],:mem_id=> current_mem.id})
       _item.target.update_comment
-      web_notify  current_mem.id
+      ActiveSupport::Notifications.instrument 'comment.create',{:item=> _item,mem: current_mem}
     end
     render json: {status: true,url: _item.target_url} 
   end

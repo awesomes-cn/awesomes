@@ -53,8 +53,7 @@ gem 'oneapm_rpm'
 
 gem 'whenever', :require => false
 
-#gem 'evernote-thrift', '~> 1.25', '>= 1.25.1'
-gem 'evernote_oauth', '~> 0.2.3'
+gem 'resque'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
