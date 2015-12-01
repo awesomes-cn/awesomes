@@ -1,8 +1,9 @@
 .topic-wraper{
-  font-size: 14px; border: #EEE 1px solid; padding:0 50px;  margin: 0 auto; max-width: 700px;
+  font-size: 14px; border: #EEE 1px solid; padding:0 50px;  margin: 0 auto; max-width: 750px;
 
   & > article{
     border: #EEE 1px solid; border-left: 0; border-right: 0; padding: 50px 0; border-bottom: 0;
+    img{max-width: 100%;}
   }
 
   .title{
