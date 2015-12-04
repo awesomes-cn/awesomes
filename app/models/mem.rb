@@ -2,13 +2,13 @@ class Mem < ActiveRecord::Base
   include LetterAvatar::AvatarHelper
   has_many :readmes
   has_many :mauths
-  has_many :docsubs
-  has_many :docs
-  has_many :repo_resources
   has_one :mem_infos
   has_many :comments
   has_many :mem_repos
   has_many :topics
+
+  validates :nc,:email,:pwd,presence: true
+  validates :nc,:email, uniqueness: true
 
 
   def mem_info

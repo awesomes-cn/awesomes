@@ -24,7 +24,7 @@ header.navbar
       
       ul.nav.navbar-nav.navbar-right
         -if !current_mem
-          li: a.open-login[href="/mem/login"] =t('site.signin')
+          li: a.open-login[href="/login"] =t('site.signin')
         -else
           /li: a[href="/mem"]: i.fa.fa-bell
           li: a[href="/mem"] =current_mem.nc

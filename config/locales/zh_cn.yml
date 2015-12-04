@@ -49,6 +49,7 @@ zh-CN:
     view: '马上浏览'
   tip:
     pwd_error: '密码错误'
+    nc_empty: '昵称不能为空'
   mem:
     topic: '文章'
     doc: '文档'
@@ -66,3 +67,17 @@ zh-CN:
     email: '邮箱'
     pwd: '密码'
     forgot_pwd: '忘记密码'
+
+  activerecord:
+    errors:
+      models:
+        mem:
+          attributes:
+            nc:
+              blank: '昵称不能为空'
+              taken: '该昵称已被占用，请另外选择'
+            email:
+              blank: '邮箱不能为空'
+              taken: '该邮箱已被注册，请直接登录'
+            pwd:
+              blank: '密码不能为空'

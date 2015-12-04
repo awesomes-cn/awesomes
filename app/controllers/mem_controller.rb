@@ -86,14 +86,15 @@ class MemController < ApplicationController
   end
 
   def cknc
-    _nc = params[:nc] || params[:mem][:nc]
+    _nc = (params[:nc] || params[:mem][:nc]).strip
     render json: true and return if current_mem and current_mem.nc == _nc
     render json: (Mem.find_by_nc _nc).nil?
   end
   
   def update
-    @mem.update_attributes(params.require(:mem).permit('nc'))
-    @mem.mem_info.update_attributes(params.require(:mem_info).permit(MemInfo.attribute_names))
+    @mem.update(params.require(:mem).permit('nc'))
+    redirect_to request.referer,:notice=> @mem.errors.messages.values.flatten.join("，") and return if @mem.invalid? 
+    @mem.mem_info.update(params.require(:mem_info).permit(MemInfo.attribute_names))
     redirect_to request.referer
   end
 

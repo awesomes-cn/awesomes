@@ -52,7 +52,8 @@ class HomeController < ApplicationController
         if _mem
           redirect_to request.referer,:notice=> t('tip.pwd_error') and return if _mem.pwd != _pwd
         else
-          _mem = Mem.create({:email=> params[:email], :pwd=> _pwd, :nc=> params[:nc]})
+          _mem = Mem.create({:email=> params[:email], :pwd=> _pwd, :nc=> params[:nc].strip})
+          redirect_to request.referer,:notice=> _mem.errors.messages.values.flatten.join("，") and return if _mem.invalid?          
         end
 
         session[:mem] = _mem.id

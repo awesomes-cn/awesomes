@@ -66,7 +66,9 @@ en:
   home:
     slogan: 'Maybe the best JavaScript libraries, frameworks, and plugins.'
     view: 'Ready? Go'
-
+  tip:
+    pwd_error: 'Password is invalid'
+    nc_empty: "Nickname can't be empty"
   mem:
     topic: 'Topic'
     doc: 'Doc'
@@ -84,3 +86,17 @@ en:
     email: 'Email'
     pwd: 'Password'
     forgot_pwd: 'forgot password'
+
+  activerecord:
+    errors:
+      models:
+        mem:
+          attributes:
+            nc:
+              blank: "Nickname can't be empty"
+              taken: "This nickname has been used,please make other choice"
+            email:
+              blank: "Email can't be empty"
+              taken: "This email has been registered,please login directly"
+            pwd:
+              blank: "Password can't be empty"

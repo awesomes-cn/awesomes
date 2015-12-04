@@ -41,6 +41,9 @@
 
       button.btn.btn-danger =t('form.sub') 
 
+      -if flash[:notice]
+        div.alert.alert-danger =flash[:notice]
+
 
   
   coffee:
@@ -48,10 +51,12 @@
       rules:
         "mem[nc]":
           required: true
-          remote: '/mem/cknc'
+          remote: 
+            url: '/mem/cknc'
+            method: 'post'
 
        
       messages:
         "mem[nc]":
-          required: '邮箱不能为空'
+          required: '昵称不能为空'
           remote: '该昵称已被占用'
