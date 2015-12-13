@@ -28,8 +28,8 @@
 }
 
 .list-wraper{
-  box-shadow: none; background-color: #FFF; margin-bottom: 0;
-  .panel-heading{font-size: 12px; background-color: #FFF; border-color: #FFF}
+  box-shadow: none; background-color: #FFF; margin-bottom: 0;  border-left: none;  border-right: none;
+  .panel-heading{font-size: 12px; background-color: #FFF; border-color: #FFF; text-align: center;}
   .nav-heading {
     padding: 5px; font-size: 12px;border-color: #EEE;
     & > ol{
@@ -129,7 +129,7 @@
 .repo-list-wraper{
   background-color: #FFF;
   & > div{
-     padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px; min-height: 130px;
+     padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px; padding-right: 30px; min-height: 130px;
     .caption{
       & > p{ 
         color: #999999;overflow: hidden; margin: 0;
@@ -148,9 +148,16 @@
 
   h3{font-weight: 600; font-size: 21px; margin-top: 10px; margin-bottom: 5px;}
 
+  .fresh{
+    display: inline-block; background-color: #EEE; border-radius: 100%; width: 15px; height: 15px;
+    position: absolute; right: 0; top: 56px;
+    &.outdated{background-color: #FFBCBC}
+    &.often{background-color: #A4EDA4}
+  }
+
 }
 .sort-banner{
-  text-align: center; padding-top: 10px;
+  text-align: center; padding-top: 10px;  border-top: #EEE 1px solid;
   a{
     display: inline-block; margin-left: 10px; color: #444;
   }

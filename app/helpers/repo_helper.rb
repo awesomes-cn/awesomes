@@ -6,4 +6,19 @@ module RepoHelper
   def recommends
     Repo.order('recommend desc').limit(6).offset(0)
   end
+
+  def fresh date
+    _val = Time.now.to_i - date.to_i
+
+    if _val > 2 * 30 * 24 * 3600
+      return ['outdated', '过期']
+    end
+
+    if _val < 7 * 24 * 3600
+      return ['often', '频繁']
+    end
+
+    return ['normal', '正常']
+
+  end
 end

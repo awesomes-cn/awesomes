@@ -7,11 +7,13 @@
 =content_for :description
   | #{@item.description}
 
-=content_for :right_bar 
-  =render 'layouts/right_bar'
+
+=content_for :banner
+  =render "banner"
+
 =content_for :con
   div.panel.panel-default.view-wraper
-    =render "banner" 
+    /=render "banner" 
     
     div.panel-body.detail#repo-wraper
       div.lang.hidden-xs

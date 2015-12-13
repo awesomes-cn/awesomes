@@ -1,46 +1,4 @@
 -repo_list
-div.panel.panel-default.list-wraper
-  div.panel-heading.nav-heading
-    ol.breadcrumb
-      li: a[href="/"] Home
-      -if @root
-        -if @typ
-          li: a[href="/repos/#{@root.key}"] #{switl @root.key, @root.sdesc}
-          li.active: span #{switl @typ.key, @typ.sdesc}
-        -else
-          li.active #{switl @root.key, @root.sdesc}
-    -if @typ
-      a.sub-repo[href="/repo/new?typ=#{@root.key}-#{@typ.key}"]
-        i.fa.fa-plus>
-        | #{t("repo.sub_repo")}      
-    / -if !params[:keyword].blank?
-    /   span.right
-    /     | 共搜索到
-    /     i.num<> =@count
-    /     | 个结果 
-
-    
-    div.clear
-  div.panel-heading
-    -if @root
-      div[style="padding-left: 10px;"]
-        h3 
-          | #{switl @root.key, @root.sdesc} 
-          -if @typ
-            | - #{switl @typ.key, @typ.sdesc}
-        -if @typ
-          small #{switl @typ.key, @typ.fdesc}
-        -else
-          ul.list-typs
-            -@root.subitems_b.each do |item|
-              li
-                a[href="/repos/#{@root.key}/#{item.key.downcase}"]
-                  | #{switl item.key, item.sdesc}
-                  span =item.num
-    -if !params[:keyword].blank?
-      span 我们为您找到 #{@count} 个与 #{params[:keyword]} 有关的前端库
-
-
 
 -if @count < 1
   div.view-wraper
@@ -71,6 +29,10 @@ div.panel.panel-default.list-wraper
         ul
           -item.tag.to_s.split(',').each do |tag|
             li: a[href="?tag=#{tag}" title="#{tag}"] =tag 
+        
+        -_fresh = fresh item.pushed_at
+        span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+
               
           
 div#page-repo.pagenation.pagination-lg

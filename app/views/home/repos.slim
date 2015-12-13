@@ -8,14 +8,25 @@ html
   body
     =render 'layouts/top'
     =yield :banner
-    div.container.l-margin.main-container
-      div.row
-        div.col-md-2
-          =render 'layouts/left_bar'
+    div.container.main-container
+      =cache "repos_banner_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do 
+        div.repo-menus
+          -Menutyp.menus('A').each do |item|
+            a[href="/repos/#{item.key}" class="#{repo_active params[:root], item.key, 'active'}"]
+              i.fa>[class="#{item.icon}"]
+              span #{switl item.key, item.sdesc}
 
-        div.col-md-10
-          =cache "repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do 
-            =render 'repo/list'
+        div.sub-menus
+          -Menutyp.menus('B').each do |item|
+            a[href="/repos/#{item.parent}/#{item.key}" data-root="#{item.parent}" class="#{repo_active params[:root], item.parent, 'on'}" class="#{repo_active params[:typ], item.key, 'active'}"]
+              i.fa>[class="#{item.icon}"]
+              span #{switl item.key, item.sdesc}
+
+
+
+
+      =cache "repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do 
+        =render 'repo/list'
           
     =render 'layouts/footer'
     
