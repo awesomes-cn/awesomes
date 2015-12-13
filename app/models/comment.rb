@@ -24,10 +24,19 @@ class Comment < ActiveRecord::Base
 
   def target_url
     if typ == "REPO"
-      "#{target.link_url}"
+      return  "#{target.link_url}"
     end
     if typ == "TOPIC"
-      "/source/#{idcd}"
+      return  "/source/#{idcd}"
+    end
+  end
+
+  def target_name
+    if typ == "REPO"
+      return target.name
+    end
+    if typ == "TOPIC"
+      return  target.title
     end
   end
 end

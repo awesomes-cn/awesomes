@@ -2,12 +2,11 @@
   ul.list-group
     -@items.each do |item|
       li.list-group-item
-        a[href="#{item.target_url}"] =item.target.name
+        a[href="#{item.target_url}"] =item.target_name
         span<> =item.friendly_time
         div =raw item.raw_con
   div#page-mem 
   input#mem-nav[type="hidden" value="comments"]
-
   javascript:
     $(function(){
       $("#page-mem").pagination(#{@count},{

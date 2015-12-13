@@ -16,13 +16,13 @@
 
 .mem-wraper{
   max-width: 800px;
-  a{color: #333}
   .banner{text-align: center;}
   .tx{width: 70px; height: 70px;  border-radius: 100%; margin-bottom: 10px;}
   .inner{ border-top:#DDD 1px solid }
   .menu{
     text-align: center; display: block; border-bottom: #DDD 1px solid; padding: 5px; 
     li{list-style: none; display: inline-block; margin: 10px;}
+    a{color: #333}
     li.active{
       a{color: Red}
     }
@@ -62,10 +62,7 @@
   }
 }
 
-.mem-list-wraper
-{
-  a.repo{color: #333}
-}
+
 
 
 .github-list{
