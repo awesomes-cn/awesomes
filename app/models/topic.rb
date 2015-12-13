@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
 
 
   def update_comment
-    update_attributes({:comment=> Comment.where({:typ=> 'TOPIC'}).count})
+    update_attributes({:comment=> Comment.where({:typ=> 'TOPIC',:idcd=> id}).count})
   end
 
   def reponm
