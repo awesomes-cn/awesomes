@@ -85,6 +85,6 @@ module HomeHelper
   end
 
   def repo_active a,b,style
-    a.downcase == b.downcase ? style : ''
+    a.to_s.downcase == b.to_s.downcase ? style : ''
   end
 end
