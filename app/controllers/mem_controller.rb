@@ -98,4 +98,9 @@ class MemController < ApplicationController
     redirect_to request.referer
   end
 
+  def nc
+    _mem = Mem.find_by_nc params[:search]
+    redirect_to "/mem/#{_mem.id}"
+  end
+
 end

@@ -33,9 +33,13 @@
       i{font-size: 30px;}
       & > div{display: inline-block; margin: 10px;}
     }
-    .home-wraper{max-width: 500px;  margin: 0 auto;  border: #F0F0F0 1px solid;  padding: 50px;  margin-top: 50px;}
   }
 
+
+  .home-wraper{
+    max-width: 500px;  margin: 0 auto;  border: #F0F0F0 1px solid;  padding: 50px;  margin-top: 50px;
+    a{color: #444}
+  } 
 
 }
 
