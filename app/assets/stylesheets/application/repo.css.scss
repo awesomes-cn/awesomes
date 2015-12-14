@@ -145,17 +145,19 @@
       }
     }
     & > .lang{
-      position: absolute; z-index: 10; right: 20px; display: inline-block; font-size: 12px; top: 20px;background-color: #EEE;padding: 0 10px;border-radius: 10px;
-      span{
-        color: #C2C2C2;  cursor: pointer;
-        &.on{
-          color: rgb(255, 123, 123)
+        display: inline-block;  background-color: #EEE;padding: 0 10px;position: absolute; right: 20px; top: 20px; font-size: 12px; z-index: 100;
+        span{
+          color: #C2C2C2;  cursor: pointer;
+          &.on{
+            color: rgb(255, 123, 123)
+          }
         }
-      }
-      span + span:before{
-        padding: 0 5px;color: #ccc;content: "/\00a0";
-      }
+        span + span:before{
+          padding: 0 5px;color: #ccc;content: "/\00a0";
+        }
+      
     }
+   
 
     &>article{
       z-index: -1; 
@@ -220,7 +222,7 @@
 }
 
 .repo-banner{
-  border-bottom: #EEE 1px solid; padding: 30px 0;
+  border-bottom: #EEE 1px solid; padding: 30px 0;  padding-top: 0px;
   .repo-title{
     text-align: center;  
     a{text-decoration: none; color: #333;}
@@ -239,4 +241,18 @@
     text-align: center;  color: rgba(81,162,81,0.91);font-weight: bold; 
     div{display: inline-block; margin: 20px;}
   }
+
+  .repo-crumb{
+    max-width: 1000px; margin: 0 auto; padding: 30px; padding-bottom: 10px;
+    a{
+      display: inline-block; width: 40px; height: 30px; text-align: center; line-height: 30px;
+      background-color: #F5F5F5; color: #DDD;
+      
+      &.root{
+         background-color: #DDD;  color: #FFF;
+      }
+    }
+  }
+
+  
 }

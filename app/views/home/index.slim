@@ -15,7 +15,10 @@
       input.search-txt[type="text" placeholder="#{t('site.search_repo')}" name="keyword"]
       button[type="submit"]: i.fa.fa-search 
 
-    p 已收录 #{Repo.count} 个优秀的前端库
+    p
+      | 已收录
+      b<> < #{Repo.count} >
+      | 个优秀的前端库
 
     div.home-bottom
       -Menutyp.menus('A').each do |root|

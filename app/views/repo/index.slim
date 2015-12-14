@@ -20,6 +20,8 @@
         span[v-bind:class="lang == 'en' ? 'on' : ''" v-on:click="switch('en')"] EN
         span[v-bind:class="lang == 'zh-CN' ? 'on' : ''" v-on:click="switch('zh-CN')"] 中
         input[type="hidden" v-model="lang" value="#{@lang}"]
+
+
       div[v-show="lang == 'en'"]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
           article[v-pre] = raw GitHub::Markdown.render @item.about

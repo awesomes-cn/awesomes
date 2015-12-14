@@ -1,7 +1,9 @@
 -@root = Menutyp.find_by_key @item.rootyp
 -@typ = Menutyp.find_by_key @item.typcd
-ol.breadcrumb
-  li: a[href="/"] Home 
-  li: a[href="/repos/#{@root.key}"] =switl @root.key, @root.sdesc
-  li: a[href="/repos/#{@root.key}/#{@typ.key}"] =switl @typ.key, @typ.sdesc
-  li.active =@item.name
+div.repo-crumb.hidden-xs
+  /li: a[href="/"] Home 
+  a.root[href="/repos/#{@root.key}" title="#{switl @root.key, @root.sdesc}"] 
+    i.fa[class="#{@root.icon}"]
+ 
+  a[href="/repos/#{@root.key}/#{@typ.key}" title="#{switl @typ.key, @typ.sdesc}"]  
+    i.fa[class="#{@typ.icon}"]

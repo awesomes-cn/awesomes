@@ -23,6 +23,7 @@ header.navbar
 
       
       ul.nav.navbar-nav.navbar-right
+        li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>
         -if !current_mem
           li: a.open-login[href="/login"] =t('site.signin')
         -else

@@ -1,4 +1,5 @@
 div.repo-banner
+  =render "crumbs"
   div.repo-title
     h1 =@item.name.capitalize 
     p =@item.description
@@ -24,3 +25,5 @@ div.repo-banner
     div[title="关注数量"]
       i.fa.fa-eye>
       span =@item.subscribers_count
+
+
