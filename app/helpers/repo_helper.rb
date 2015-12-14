@@ -21,4 +21,8 @@ module RepoHelper
     return ['normal', '正常']
 
   end
+
+  def trends repo
+    repo.repo_trends.order('id desc').pluck('trend')[0..8].reverse.join(',')
+  end
 end

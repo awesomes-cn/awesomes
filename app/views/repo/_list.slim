@@ -23,7 +23,7 @@
           a[href="#{item.link_url}"]
             h3 
               span =item.name
-              span.line< =item.repo_trends.pluck('trend')[0..8].join(',')
+              span.line< =trends item
 
           p =item.description
         ul
