@@ -234,6 +234,11 @@
       background-color: #EEE;  margin: 0 20px;  border-radius: 100px;  background-color: #19C2FF;
       
       &.gitbtn{background-color: #EF4245}
+      &.download{
+        background-color: #FFF; border-radius: 100%; font-size: 35px; text-align: center; margin: 0 5px;
+        padding: 0;  color: #29B996; position: relative;  width: 50px;  height: 10px;
+        i{ position: absolute; top: -12px; left: 0;}
+      }
     }
   }
 

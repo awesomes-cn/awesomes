@@ -7,6 +7,8 @@ div.repo-banner
     a[href="#{@item.homepage}"  target="_blank"]
       i.fa.fa-home>
       | 官 网 
+    a.download[href="https://api.github.com/repos/#{@item.full_name}/zipball"  target="_blank" title="下载 ZIP"]
+      i.fa.fa-cloud-download
     a.gitbtn[href="#{@item.html_url}" target="_blank"]
       i.fa.fa-github>
       | Github 
