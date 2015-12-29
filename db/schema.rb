@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116143237) do
+ActiveRecord::Schema.define(version: 20151229201515) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -102,6 +102,18 @@ ActiveRecord::Schema.define(version: 20151116143237) do
     t.integer  "home_index", limit: 4,     default: 0
   end
 
+  create_table "notifies", force: :cascade do |t|
+    t.integer  "mem_id",     limit: 4
+    t.string   "typcd",      limit: 255
+    t.integer  "amount",     limit: 4,   default: 0
+    t.string   "desc",       limit: 255
+    t.string   "fdesc",      limit: 255
+    t.string   "state",      limit: 255, default: "UNREAD"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "link",       limit: 255
+  end
+
   create_table "opers", force: :cascade do |t|
     t.string   "typ",        limit: 255
     t.integer  "idcd",       limit: 4
@@ -173,6 +185,7 @@ ActiveRecord::Schema.define(version: 20151116143237) do
     t.integer  "recommend",         limit: 4,          default: 0
     t.integer  "trend",             limit: 4,          default: 0
     t.datetime "github_created_at"
+    t.integer  "mark",              limit: 4,          default: 0
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree

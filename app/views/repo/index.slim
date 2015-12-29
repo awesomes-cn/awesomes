@@ -70,10 +70,33 @@
         a<>[href="http://stackoverflow.com/" target="_blank"] stackoverflow 
         | ，注意打上相应的Tag）
   
+  javascript:
+    var source_item={
+      id: "#{@item.id}",
+      mark: "#{@item.mark}"
+    }
+
   coffee:
     $ ()->
       app = new Vue
-        el: "#repo-wraper"
+        el: "body"
+        data:
+          ismark: false
+          markcount: source_item.mark
+          para: 
+            opertyp: 'MARK'
+            typ: 'REPO'
+            idcd: source_item.id
         methods:
           switch: (la)->
             app.lang = la 
+          init: ()->
+            if Rails.islogin
+              $.post "/oper/whether",app.para,(data)->
+                app.ismark =  data
+          mark: ()->
+            $.post "/oper/update",app.para,(data)->
+              app.ismark =  data.state
+              app.markcount = data.count
+      
+      app.init()

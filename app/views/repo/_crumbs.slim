@@ -7,3 +7,8 @@ div.repo-crumb.hidden-xs
  
   a[href="/repos/#{@root.key}/#{@typ.key}" title="#{switl @typ.key, @typ.sdesc}"]  
     i.fa[class="#{@typ.icon}"]
+
+  
+  div.collect[class="{{ismark ? 'on' : ''}}" ]
+    i.fa.fa-bookmark[title="收藏" v-on:click="mark()" ]
+    p[v-text="markcount"]
