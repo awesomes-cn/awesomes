@@ -16,7 +16,7 @@ class Mem < ActiveRecord::Base
   end
 
   def avatar_url
-    avatar.blank? ? letter_avatar_for(nc_for_avatar, 150).sub(/public/,'') : "#{Rails.application.config.source_access_path}mem/#{avatar}"
+    avatar.blank? ? "http://svpa.awesomes.cn/#{nc}?size=100" : "#{Rails.application.config.source_access_path}mem/#{avatar}"
   end
 
   def index
