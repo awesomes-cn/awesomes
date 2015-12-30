@@ -16,7 +16,7 @@ class Mem < ActiveRecord::Base
   end
 
   def avatar_url
-    avatar.blank? ? "http://svpa.awesomes.cn/#{nc}?size=100" : "#{Rails.application.config.source_access_path}mem/#{avatar}"
+    avatar.blank? ? "http://svpa.awesomes.cn/avatar/#{nc}?size=100" : "#{Rails.application.config.source_access_path}mem/#{avatar}"
   end
 
   def index
