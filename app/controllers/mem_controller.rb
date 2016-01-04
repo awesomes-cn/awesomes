@@ -62,8 +62,14 @@ class MemController < ApplicationController
   end
 
   def topics
-    @items = data_list_asc @mem.topics
+    @items = data_list @mem.topics
     @count = @mem.topics.count
+  end
+
+  def marks
+    _query = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:mem_id=> current_mem.id})
+    @items = data_list _query
+    @count = _query.count
   end
 
   def docs
@@ -72,7 +78,7 @@ class MemController < ApplicationController
   end
 
   def comments
-    @items = data_list_asc @mem.comments
+    @items = data_list @mem.comments
     @count = @mem.comments.count
   end
 

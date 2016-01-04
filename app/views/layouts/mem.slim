@@ -12,6 +12,7 @@ html
       div.inner
         ul.menu
           li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] =t('mem.topic')
+          li[class="#{navon 'marks'}"]: a[href="/mem/#{@mem.id}/marks"] =t('mem.mark')
           li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] =t('mem.doc')
           li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] =t('mem.comment')
           -if @isme

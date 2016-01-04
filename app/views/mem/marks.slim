@@ -1,0 +1,34 @@
+=content_for :con
+  div.row.mark-list
+    -@items.each do |item|
+      -repo = item.target
+      div.col-sm-4.col-md-3
+        div.thumbnail
+          a[href="#{repo.link_url}"]
+            img[src='#{access_path "repo/#{repo.cover}"}']
+          div.caption
+            h4 =repo.name
+          i.fa.fa-times-circle.close[data-id="#{repo.id}"]
+  div#page-mem          
+  
+  javascript:
+    $(function(){
+      $("#page-mem").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        //link_to:"?page=__id__",
+        callback: function(page){
+          Turbolinks.visit("?page="+(page +1) );
+        }
+      })
+
+      $(".fa-times-circle.close").click(function(){
+        var item = $(this);
+        $.post("/oper/update",{opertyp: 'MARK',typ: 'REPO',idcd: item.attr('data-id')},function(data){
+          if(data.state == false){
+            item.closest(".col-sm-4").fadeOut();
+          }
+        })
+      })
+      
+    })      

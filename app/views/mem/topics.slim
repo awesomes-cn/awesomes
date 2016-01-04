@@ -6,8 +6,7 @@
         i.fa.fa-angle-right<>
         | < #{item.origin.to_s.gsub(/http(.+)\/(.+)?#(.+)/,'\2')}  />
         span.right =item.created_at.strftime("%Y-%m-%d")
-  div#page-mem      
-  input#mem-nav[type="hidden" value="doc"]
+  div#page-mem
   javascript:
     $(function(){
       $("#page-mem").pagination(#{@count},{

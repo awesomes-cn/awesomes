@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 20151229201515) do
     t.string   "state",      limit: 255, default: "UNREAD"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
-    t.string   "link",       limit: 255
   end
 
   create_table "opers", force: :cascade do |t|
@@ -132,12 +131,6 @@ ActiveRecord::Schema.define(version: 20151229201515) do
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-  end
-
-  create_table "repo_notifies", force: :cascade do |t|
-    t.integer  "repo_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
   end
 
   create_table "repo_resources", force: :cascade do |t|
@@ -219,12 +212,12 @@ ActiveRecord::Schema.define(version: 20151229201515) do
     t.integer  "visit",      limit: 4,     default: 0
     t.integer  "favor",      limit: 4,     default: 0
     t.integer  "comment",    limit: 4,     default: 0
-    t.string   "tag",        limit: 255
     t.string   "var1",       limit: 255
     t.string   "var2",       limit: 255
     t.integer  "var3",       limit: 4
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "tag",        limit: 45
   end
 
 end

@@ -86,6 +86,7 @@ en:
     email: 'Email'
     pwd: 'Password'
     forgot_pwd: 'forgot password'
+    mark: 'Marks'
 
   activerecord:
     errors:
