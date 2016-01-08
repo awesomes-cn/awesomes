@@ -1,0 +1,58 @@
+=content_for :con
+  div.panel.panel-default
+    div.panel-heading
+      h3
+        | 专题编辑/添加
+        a<[href=""] =@item.title
+
+    div.panel-body
+      =form_for(@item,url: "/subject/update" ,method:'post',html:{id: 'inform'}) do |f|
+        table.table
+          tr
+            td[width="50px"] KEY
+            td =f.text_field(:key,class:'form-control')
+
+          tr
+            td[width="50px"] 标题
+            td =f.text_field(:title,class:'form-control')
+
+          tr
+            td[width="50px"] 描述
+            td =f.text_field(:sdesc,class:'form-control')
+
+          tr
+            td[width="50px"] 排序
+            td =f.text_field(:order,class:'form-control')
+
+        
+
+          tr
+            td[width="50px"] 封面
+            td 
+              input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片 1000*300" data-folder="subject" data-width="1000" data-height="300"]
+              img#cover-privew[src="#{access_path "subject/#{@item.cover}"}"]
+              =f.hidden_field(:cover,class:'form-control')
+              =f.hidden_field(:id,class:'form-control')
+              
+              javascript:
+                //上传
+                uplaod_form($('#upload_file'),function(data){
+                  $("#cover-privew").attr("src",data.file_path);
+                  $("#subject_cover").val(data.src);
+                })  
+
+          tr
+            td
+            td
+              button.btn.btn-danger.right 更新
+
+  
+  coffee:
+    $('#inform').validate
+      rules:
+        "subject[title]":
+          required: true
+       
+      messages:
+        "subject[title]":
+          required: '标题不能为空'

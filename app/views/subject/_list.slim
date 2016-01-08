@@ -1,0 +1,24 @@
+-subject_list
+
+diw.row
+  -@items.each do |item|
+    div.col-md-6.col-sm-6
+      a.card[href="/subject/#{item.key}"]
+        img.cover[src="http://i.9iphp.com/wp-content/uploads/2015/12/coder-salary-money-book.jpg"]
+        div.layer: h5 =item.title
+
+
+div#page-repo.pagenation.pagination-lg
+javascript:
+  $(function(){
+    $("#page-repo").pagination(#{@count},{
+      items_per_page : #{default_page_size},
+      current_page : #{page},
+      //link_to:"?page=__id__",
+      callback: function(page){
+        Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
+      }
+    }) 
+
+    $(".line").peity("line");
+  })

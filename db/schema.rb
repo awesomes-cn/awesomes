@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229201515) do
+ActiveRecord::Schema.define(version: 20160108062445) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "recsts",     limit: 1,     default: "0"
@@ -192,6 +192,17 @@ ActiveRecord::Schema.define(version: 20151229201515) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.string   "key",        limit: 255
+    t.string   "title",      limit: 255
+    t.string   "cover",      limit: 255
+    t.string   "sdesc",      limit: 255
+    t.integer  "order",      limit: 4,   default: 0
+    t.integer  "amount",     limit: 4,   default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
   create_table "submits", force: :cascade do |t|
     t.string   "html_url",   limit: 255
     t.string   "rootyp",     limit: 255
@@ -212,12 +223,12 @@ ActiveRecord::Schema.define(version: 20151229201515) do
     t.integer  "visit",      limit: 4,     default: 0
     t.integer  "favor",      limit: 4,     default: 0
     t.integer  "comment",    limit: 4,     default: 0
+    t.string   "tag",        limit: 255
     t.string   "var1",       limit: 255
     t.string   "var2",       limit: 255
     t.integer  "var3",       limit: 4
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "tag",        limit: 45
   end
 
 end

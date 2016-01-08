@@ -146,16 +146,18 @@
     }
   }
 
-  h3{font-weight: 600; font-size: 21px; margin-top: 10px; margin-bottom: 5px;}
-
-  .fresh{
-    display: inline-block; background-color: #EEE; border-radius: 100%; width: 15px; height: 15px;
-    position: absolute; right: 0; top: 56px;
-    &.outdated{background-color: #FFBCBC}
-    &.often{background-color: #A4EDA4}
-  }
+  h3{font-weight: 600; font-size: 21px; margin-top: 10px; margin-bottom: 5px;} 
 
 }
+
+.fresh{
+  display: inline-block; background-color: #EEE; border-radius: 100%; width: 15px; height: 15px;
+  position: absolute; right: 0; top: 56px;
+  &.outdated{background-color: #FFBCBC}
+  &.often{background-color: #A4EDA4}
+}
+
+  
 .sort-banner{
   text-align: center; padding-top: 10px;  border-top: #EEE 1px solid;
   a{

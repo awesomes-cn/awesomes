@@ -1,0 +1,38 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th #
+        th KEY
+        th 标题
+        th 排序 
+        th 创建时间
+        th 操作
+    tbody 
+      tr[v-for="item in items"  class="{{item.status}}"]
+        td {{item.id}}
+        td: a(href='{{item.html_url}}' target='_blank') {{item.key}} 
+        td {{item.title}} 
+        td {{item.order}} 
+        td {{item.created_at}}  
+        td
+          a[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash<>
+          a[href="/subject/{{item.key}}/edit"]: i.fa.fa-pencil
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+  a.btn.btn-danger[href="/subject/new"] 添加专题        
+  div#pagenation
+
+
+  input#menubar[type="hidden" value="subjects"]
+  
+  coffee:
+    $ ()->
+      admin.list_data
+        model: 'subject'
+        item_propers: {fetching: false}

@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   get "/repo/new" => "repo#new"
   match "/repo/:owner/:alia(/:action)(/:oid)",controller: "repo",oid:  /\d+/,via: ['get','post']
   
+
+  ["new","update"].each do |act|
+    match "/subject/#{act}",controller: "subject" ,:action=> act , via: ['get','post']
+  end
+  
+  match "/subject/:key(/:action)",controller: "subject", via: ['get','post']
+  
   
   match "/:controller(/:id)(/:action)(/:search)(.:format)",id:  /\d+/,via: ['get','post']
   
@@ -24,6 +31,7 @@ Rails.application.routes.draw do
   match ":action(.:format)" ,controller: 'home',via: ['get','post']
   
   match ":action/:root(/:typ)(.:format)" ,controller: 'home',via: ['get','post']
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

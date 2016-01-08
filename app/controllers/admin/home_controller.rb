@@ -38,4 +38,8 @@ class Admin::HomeController < AdminController
   def sources
     adminlists Topic,[:title,:visit,:favor,:comment,:state,:mem_id],:include => {:mem => {:only=>[:nc,:id]}}
   end
+
+  def subjects
+    adminlists Subject,[:title,:key,:amount,:order]
+  end
 end

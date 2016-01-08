@@ -1,13 +1,21 @@
 class Menutyp < ActiveRecord::Base
   @@CACHE_KEY="MENUTYP"
 
-  def self.current(key)
+  def self.current(key,parent)
     Rails.cache.write(@@CACHE_KEY, Menutyp.all) if Rails.cache.read(@@CACHE_KEY).nil?
-    Rails.cache.read(@@CACHE_KEY).find_all{|r|r.key == key}.first || Menutyp.new
+    Rails.cache.read(@@CACHE_KEY).find_all{|r|r.key == key and r.parent == parent}.first || Menutyp.new
   end
 
   def link
     parent ? "/repos/#{parent}/#{key}" : "/repos/#{key}"
+  end
+
+  def self.menu_a key
+    Menutyp.find_by_key key
+  end
+
+  def self.menu_b key,parent
+    Menutyp.find_by({:key=> key, :parent=> parent})
   end
 
   def self.menus typcd

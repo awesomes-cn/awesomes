@@ -1,0 +1,33 @@
+-subject_repo_list
+
+div.row
+  -@items.each do |item|
+    div.col-md-3.col-sm-4
+      div.card.card-small
+        a[href="#{item.link_url}"]: img.cover[src='#{access_path "repo/#{item.cover}"}']
+        h4 =item.name
+        div.sdesc =item.description
+        div.extra 
+          -_root = Menutyp.menu_a item.rootyp
+          -_typ = Menutyp.menu_b item.typcd,item.rootyp
+          a[href="/repos/#{_root.key}"] =switl _root.key, _root.sdesc
+          span<> >
+          a[href="/repos/#{_root.key}/#{_typ.key}"] =switl _typ.key, _typ.sdesc
+
+          -_fresh = fresh item.pushed_at
+          span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+
+div#page-repo.pagenation.pagination-lg
+javascript:
+  $(function(){
+    $("#page-repo").pagination(#{@count},{
+      items_per_page : #{default_page_size},
+      current_page : #{page},
+      //link_to:"?page=__id__",
+      callback: function(page){
+        Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
+      }
+    }) 
+
+    $(".line").peity("line");
+  })
