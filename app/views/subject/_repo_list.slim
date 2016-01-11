@@ -4,7 +4,7 @@ div.row
   -@items.each do |item|
     div.col-md-3.col-sm-4
       div.card.card-small
-        a[href="#{item.link_url}"]: img.cover[src='#{access_path "repo/#{item.cover}"}']
+        a[href="#{item.link_url}"]: img.cover[src='#{repo_cover_path item.cover}']
         h4 =item.name
         div.sdesc =item.description
         div.extra 

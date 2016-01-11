@@ -4,6 +4,6 @@
       a[href="/subjects"]: i.fa.fa-bars
       span< =@item.title
       div.card
-        img.cover[src="#{access_path "subject"}/#{@item.cover}"]
+        img.cover[src="#{subject_cover_path @item.cover}"]
   =cache "subject_repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do
     =render "repo_list"
