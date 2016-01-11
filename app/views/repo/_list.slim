@@ -21,7 +21,7 @@
   div.repo-list-wraper
     -@items.each do |item|
       div
-        a[href="#{item.link_url}"]: img.cover[src='#{access_path "repo/#{item.cover}"}']
+        a[href="#{item.link_url}"]: img.cover[src='#{access_path "repo"}/#{item.cover}']
         div.caption
           a[href="#{item.link_url}"]
             h3 

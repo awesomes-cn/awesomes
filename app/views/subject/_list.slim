@@ -4,7 +4,7 @@ diw.row
   -@items.each do |item|
     div.col-md-6.col-sm-6
       a.card[href="/subject/#{item.key}"]
-        img.cover[src="http://i.9iphp.com/wp-content/uploads/2015/12/coder-salary-money-book.jpg"]
+        img.cover[src="#{access_path "subject"}/#{item.cover}"]
         div.layer: h5 =item.title
 
 
