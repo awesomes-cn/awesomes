@@ -6,7 +6,7 @@ module SubjectHelper
   end
 
   def subject_list
-    @items = data_list(Subject)
+    @items = Subject.order('`order` desc,id desc').limit(page_size).offset(page * page_size)
     @count = Subject.count
   end
 end
