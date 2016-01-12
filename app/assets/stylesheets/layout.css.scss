@@ -6,6 +6,18 @@ a{
   text-decoration: none;
   -webkit-transition:all,.5s,ease,0s; 
 }
+
+a{
+  &.normal{
+    text-decoration: none;
+    &:visited,&:link{
+      color: #333;
+    }
+    &:hover,&:active{
+      color: #da552f;
+    }
+  }
+}
 .search-form{
   .search{border: none; padding: 8px 20px; outline: none; border-radius: 100px; margin: 20px 0; width: 250px;padding-right: 40px;}
   .form-control{
@@ -20,7 +32,7 @@ a{
 
 
 .main-container{
-  max-width: 1000px; margin: 0 auto;
+  max-width: 1000px; margin: 0 auto;    position: relative;
 }
 
 

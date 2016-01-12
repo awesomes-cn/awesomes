@@ -25,7 +25,7 @@ javascript:
       current_page : #{page},
       //link_to:"?page=__id__",
       callback: function(page){
-        Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
+        Turbolinks.visit("?page="+(page +1));
       }
     }) 
 

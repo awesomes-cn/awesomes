@@ -21,3 +21,14 @@
     & > img{border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
   }
 }
+
+.overview{
+  text-align: center;    position: relative;
+  .navs{
+    position: absolute; top: 0; left: 0;
+  }
+}
+
+.subject-banner{
+  text-align: center;
+}

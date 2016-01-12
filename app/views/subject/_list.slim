@@ -1,10 +1,14 @@
 -subject_list
 
 diw.row
-  -@items.each do |item|
+  div.col-md-12
+    a.card[href="/subject/#{@items[0].key}"]
+      img.cover[src="#{subject_cover_path @items[0].cover}"]
+      div.layer: h5 =@items[0].title
+  -@items[1..-1].each do |item|
     div.col-md-6.col-sm-6
       a.card[href="/subject/#{item.key}"]
-        img.cover[src="#{subject_cover_path item.cover}"]
+        img.cover[src="#{subject_cover_path item.cover}@1e_1c_0o_0l_250h_500w_98q.src"]
         div.layer: h5 =item.title
 
 
@@ -16,7 +20,7 @@ javascript:
       current_page : #{page},
       //link_to:"?page=__id__",
       callback: function(page){
-        Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
+        Turbolinks.visit("?page="+(page +1));
       }
     }) 
 

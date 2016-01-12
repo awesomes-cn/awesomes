@@ -1,9 +1,21 @@
+=content_for :title 
+  | #{@item.title} - awesomes
+
+=content_for :keywords
+  | #{@item.title},#{@item.title}专题,#{@item.title}资源
+
+=content_for :description
+  | #{@item.sdesc}
+
 =content_for :con
-  div.row
-    div.col-md-12
-      a[href="/subjects"]: i.fa.fa-bars
-      span< =@item.title
-      div.card
-        img.cover[src="#{subject_cover_path @item.cover}"]
+  div.overview
+    a.normal[href="#{@item.website}" title="点击访问官网" target="_blank"]: h2 =@item.title
+    p =@item.sdesc 
+    /div.btn-group.navs
+    /  a.btn.btn-danger[href="/subjects"]: i.fa.fa-th-list
+    /  a[type="button" class="btn btn-primary"] 官网
+    
+  div.card
+    img.cover[src="#{subject_cover_path @item.cover}"]
   =cache "subject_repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do
     =render "repo_list"
