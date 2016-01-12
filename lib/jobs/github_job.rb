@@ -19,7 +19,7 @@ class GithubJob < ApplicationController
 
   def self.repo_cover start = 1
     _app = ApplicationController.new
-    Repo.where(:cover=> nil).each do |item| 
+    Repo.where(:cover=> [nil,'default.jpg']).each do |item| 
       _cover = Github.get_repo_cover item
       p "========#{_cover}=========="
       _name = "#{Time.now.strftime("%y%m%d%H%M%S")}-#{rand(99).to_s}.jpg"
