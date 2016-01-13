@@ -33,6 +33,11 @@ every 1.day, :at => '3:00 am' do
   rake "repo:cover"
 end
 
+every 1.day, :at => '5:00 am' do
+  rake "mem:rank"
+end
+
+
 
 every 4.day, :at => '6:00 am' do
   rake "repo:trend"

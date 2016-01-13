@@ -29,8 +29,4 @@ class Mem < ActiveRecord::Base
   end
 
 
-  def mem_rank
-    MemRank.find_or_create_by({:mem_id=> id})
-  end
-
 end

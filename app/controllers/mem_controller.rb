@@ -1,6 +1,16 @@
 require "github"
 class MemController < ApplicationController
   before_filter :is_me?,:except=>['login','auth','ckemail','cknc']
+  
+  def index
+    if @mem.mem_rank.blank? and !@mem.mem_info.github.blank?
+
+      @mem.mem_rank = MemRank.create
+      @mem.save
+      Github.sync_mem_rank @mem
+    end
+  end
+
   def auth
     _data = request.env["omniauth.auth"] 
     #render json: _data and return

@@ -45,16 +45,20 @@ class Github
   rescue  
   end 
 
-  def self.sync_mem_rank github
-    _api_url = "http://github-awards.com//api/v0/users/#{github}.json"
+  def self.sync_mem_rank  mem
+    _api_url = "http://github-awards.com//api/v0/users/#{mem.mem_info.github}.json"
     
     require 'rest-client'
     _response = RestClient.get _api_url
     _result = JSON.parse(_response.body)
     _rank = _result["user"]["rankings"]
-    if _rank
-      
-    end
+    return if _rank.blank?    
+    _data = _rank.select{|m| m["language"] == "javascript"}.first
+    return if _data.blank?
+    mem.mem_rank.update_attributes({
+      :worldwide=> _data["world_rank"],
+      :country=> _data["country_rank"]
+    })
   rescue  
   end
 

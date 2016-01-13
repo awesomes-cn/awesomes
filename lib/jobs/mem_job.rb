@@ -12,11 +12,12 @@ class MemJob < ApplicationController
   end
 
   def self.aync_rank
-    Mem.each do |mem|
+    Mem.all.each do |mem|
       if !(_github = mem.mem_info.github).blank?
-        Github.sync_mem_rank _github
+        Github.sync_mem_rank mem
+        p "=====aync rank  #{mem.id}====="
       end
-    end    
+    end   
     p "=====success aync rank====="
   end
 end

@@ -27,11 +27,13 @@
 
     div#rank-wraper
       p.data
-        | Github 前端排名（
-        strong {{rank[level][0]}}
-        | ）点击切换
+        | Github 前端排名
+        -if !@mem.mem_rank.blank?  
+          | （
+          strong {{rank[level][0]}}
+          | ）点击切换
 
-      -if @mem.mem_info.github.blank?
+      -if @mem.mem_rank.blank?
         -if @isme
           p
             | 请先
@@ -51,25 +53,26 @@
       | 排名数据由
       a.normal<>[href="http://github-awards.com/" target="_blank"] github-awards
       | 提供
-
-  javascript:
-    var rank_data = {
-      country: ['本国',"#{@mem.mem_rank.country || '暂无排名'}"],
-      worldwide: ['世界',"#{@mem.mem_rank.worldwide || '暂无排名'}"]
-    }
   
-  coffee:
-    $ ()->
-      rank_app = new Vue
-        el: "#rank-wraper"
-        data:
-          rank: rank_data
-          level: 'worldwide'
-
-        methods:
-          switch: ()->
-            rank_app.level = (if rank_app.level == 'worldwide' then 'country' else 'worldwide')
-
+  -if !@mem.mem_rank.blank?
+    javascript:
+      var rank_data = {
+        country: ['本国',"#{@mem.mem_rank.country || '暂无排名'}"],
+        worldwide: ['世界',"#{@mem.mem_rank.worldwide || '暂无排名'}"]
+      }
     
+    coffee:
+      $ ()->
+        rank_app = new Vue
+          el: "#rank-wraper"
+          data:
+            rank: rank_data
+            level: 'worldwide'
 
-    
+          methods:
+            switch: ()->
+              rank_app.level = (if rank_app.level == 'worldwide' then 'country' else 'worldwide')
+
+      
+
+      
