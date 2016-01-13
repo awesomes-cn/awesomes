@@ -13,10 +13,10 @@
       tr[v-for="item in items" class="{{item.status}}"]
         td {{item.id}}
         td {{item.name}} 
-        td {{item.visit}}
+        td {{item.position}}
         td {{item.visit}}  
         td[ng-class="item.synced ?  'synced' : '' "]
-          a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
+          a[href='/ad/{{item.id}}/edit'  title='']: i.fa.fa-pencil
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
     tfoot
       tr
@@ -25,6 +25,8 @@
           span {{count}}
   div#pagenation
   input#menubar[type="hidden" value="ads"]
+
+  a.btn.btn-danger[href="/ad/new"] 新加广告
   
   coffee:
     $ ()->

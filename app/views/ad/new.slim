@@ -1,0 +1,50 @@
+-content_for :con
+  div
+    =form_for(@item,url: @suburl,html:{id: 'inform',method: 'post'}) do |item|
+      div.form-group
+        =item.label :name,"广告名"
+        =item.text_field :name,{class: 'form-control'}
+
+      
+      div.form-group
+        =item.label :position,"广告位"
+        =item.text_field :position,{class: 'form-control'}
+
+      
+      div.form-group
+        =item.label :link,"链接地址"
+        =item.text_field :link,{class: 'form-control'}
+
+      div.form-group
+        =item.label :html,"html内容"
+        =item.text_area :html,{class: 'form-control'}
+
+      div.form-group
+        =item.label :image,"图片"
+        td 
+          input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片" data-folder="ad" ]
+          img#cover-privew[src="#{access_path "ad/#{@item.image}"}"]
+          =item.hidden_field :image
+          
+          javascript:
+            //上传
+            uplaod_form($('#upload_file'),function(data){
+              $("#cover-privew").attr("src",data.file_path);
+              $("#ad_image").val(data.src);
+            })
+
+      =item.hidden_field :id
+      button.btn.btn-danger[type="submit"] =t('form.sub')
+
+    javascript:
+      $('#inform').validate({ 
+        rules:{
+          'ad[name]':{
+            required: true,
+          },
+          
+        },
+        messages:{
+          'ad[name]':''
+        }, 
+      }); 

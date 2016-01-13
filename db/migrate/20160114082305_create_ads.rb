@@ -1,7 +1,7 @@
 class CreateAds < ActiveRecord::Migration
   def change
     create_table :ads do |t|
-      t.belongs_to :adpostion
+      t.string :position
       t.string :name
       t.string :image
       t.string :link

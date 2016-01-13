@@ -44,7 +44,7 @@ class Admin::HomeController < AdminController
   end
 
   def ads
-    adminlists Ad,[:name,:visit]
+    adminlists Ad,[:name,:visit,:position]
   end
   def adpositions
     adminlists Adposition,[:name,:key]

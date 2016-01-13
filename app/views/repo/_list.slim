@@ -37,7 +37,15 @@
         span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
 
               
-          
+// -ad
+div.ad-wraper-1
+  div.row
+    div.col-md-6.col-sm-6
+      =render "layouts/ad", position: 'REPO_LIST_LEFT'  
+    div.col-md-6.col-sm-6
+      =render "layouts/ad", position: 'REPO_LIST_RIGHT' 
+
+
 div#page-repo.pagenation.pagination-lg
 javascript:
   $(function(){
