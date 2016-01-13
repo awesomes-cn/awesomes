@@ -45,5 +45,17 @@ class Github
   rescue  
   end 
 
-  
+  def self.sync_mem_rank github
+    _api_url = "http://github-awards.com//api/v0/users/#{github}.json"
+    
+    require 'rest-client'
+    _response = RestClient.get _api_url
+    _result = JSON.parse(_response.body)
+    _rank = _result["user"]["rankings"]
+    if _rank
+      
+    end
+  rescue  
+  end
+
 end

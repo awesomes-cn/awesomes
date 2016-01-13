@@ -39,7 +39,17 @@
   .home-wraper{
     max-width: 500px;  margin: 0 auto;  border: #F0F0F0 1px solid;  padding: 50px;  margin-top: 50px;
     a{color: #444}
+    #rank-wraper{
+      .data,h3{color: #DA552F};
+      h3{cursor: pointer; display: inline-block}
+    }
   } 
+
+  .home-extra{
+    text-align: center; padding-top: 50px;
+    .rank-note{font-size: 10px; color: #989898;}
+    
+  }
 
 }
 

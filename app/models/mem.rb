@@ -6,6 +6,7 @@ class Mem < ActiveRecord::Base
   has_many :comments
   has_many :mem_repos
   has_many :topics
+  has_one :mem_rank
 
   validates :nc,:email,:pwd,presence: true
   validates :nc,:email, uniqueness: true
@@ -25,6 +26,11 @@ class Mem < ActiveRecord::Base
 
   def nc_for_avatar
     Pinyin.t(nc)
+  end
+
+
+  def mem_rank
+    MemRank.find_or_create_by({:mem_id=> id})
   end
 
 end

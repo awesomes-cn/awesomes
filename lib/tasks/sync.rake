@@ -36,6 +36,10 @@ namespace :mem do
   task :avatar,[:start] => :environment do |t,args| 
     MemJob.aync_avatar
   end
+
+  task :rank,[:start] => :environment do |t,args| 
+    MemJob.aync_rank
+  end
 end
 
 
