@@ -1,0 +1,32 @@
+-content_for :menu
+  =render 'site_bar'
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th #
+        th 广告名
+        th 所属广告位 
+        th 点击
+        th 操作
+    tbody 
+      tr[v-for="item in items" class="{{item.status}}"]
+        td {{item.id}}
+        td {{item.name}} 
+        td {{item.visit}}
+        td {{item.visit}}  
+        td[ng-class="item.synced ?  'synced' : '' "]
+          a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+  div#pagenation
+  input#menubar[type="hidden" value="ads"]
+  
+  coffee:
+    $ ()->
+      admin.list_data
+        model: 'ad'

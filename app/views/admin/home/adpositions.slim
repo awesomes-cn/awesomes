@@ -1,0 +1,65 @@
+-content_for :menu
+  =render 'site_bar'
+=content_for :con
+  div#admin-app
+    table.table
+      thead
+        tr
+          th #
+          th 广告位名
+          th KEY 
+          th 操作
+      tbody 
+        tr[v-for="item in items" class="{{item.status}}"]
+          td {{item.id}}
+          td {{item.name}} 
+          td {{item.key}}
+          td[ng-class="item.synced ?  'synced' : '' "]
+            a[href='###' v-on:click="edit(item)"]: i.fa.fa-pencil
+            a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+      tfoot
+        tr
+          td[colspan='8'] 
+            span 总记录：
+            span {{count}}
+    div#pagenation
+    input#menubar[type="hidden" value="adpositions"]
+
+    =form_for(Adposition.new,url: "/ad/psave",html:{id: 'inform',method: 'post'}) do |item|
+      div.row
+        div.col-md-5
+          input.form-control[type="text" name="adposition[name]" placeholder= "广告位名" v-model="edit_item.name"]
+        div.col-md-5
+          input.form-control[type="text" name="adposition[key]" placeholder= "KEY" v-model="edit_item.key"]
+        div.col-md-2
+          input[type="hidden"  name="adposition[id]"  v-model="edit_item.id"]
+          button.btn.btn-primary[v-on:click="save()"] 更新
+  
+  coffee:
+    $ ()->
+      app= admin.list_data
+        model: 'adposition'
+
+      app.$set 'edit', (item)-> 
+        app.items = _.without(app.items,item)
+        app.edit_item = item
+
+      $('#inform').validate 
+        rules:
+          'adposition[name]':
+            required: true
+
+          'adposition[key]':
+            required: true
+
+        messages:
+          'adposition[name]':''
+          'adposition[key]':''
+
+        submitHandler: (form)->
+          $(form).ajaxSubmit
+            success: (data)->
+              if(data.status)
+                app.items.push(data.item)
+                app.edit_item = {}
+

@@ -42,4 +42,11 @@ class Admin::HomeController < AdminController
   def subjects
     adminlists Subject,[:title,:key,:amount,:order]
   end
+
+  def ads
+    adminlists Ad,[:name,:visit]
+  end
+  def adpositions
+    adminlists Adposition,[:name,:key]
+  end
 end
