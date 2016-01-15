@@ -2,7 +2,7 @@
   div.comment-wraper
     h4 
       | 你当前正在编辑
-      a<>[href="#{@item.target_url}"] #{@item.target.name}
+      a<>[href="#{@item.target_url}"] #{@item.target_name}
       | 评论
     =render "layouts/comment_editor"
     input.editor-val[type="hidden" name="con" id="com-con"]
