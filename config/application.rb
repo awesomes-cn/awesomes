@@ -63,7 +63,7 @@ class ActiveSupport::TimeWithZone
     def friendly
         require 'time_diff'
         Time.diff(self, Time.new).each do |k,v|
-            return [v,k] if v > 0
+            return [v,k] if v.to_i > 0
         end
         [0, 'second']
     end

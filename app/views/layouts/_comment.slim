@@ -1,5 +1,4 @@
 div.comment-wraper
- / =cache "comments_#{@comment[:typ]}_#{@comment[:idcd]}",skip_digest: true do 
   -comment_list @comment[:typ],@comment[:idcd]
   -if @comments.count > 0
     ul.comment-list
@@ -10,12 +9,9 @@ div.comment-wraper
           span =item.friendly_time
           a.oper.reply-btn[href="javascript: void(0)" data-mem="#{item.mem.nc}"]: i.fa.fa-reply
           a.oper[href="/comment/#{item.id}/edit" ]: i.fa.fa-pencil
-          a.oper[href="" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
+          a.oper[href="javascript: void(0)" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
           =raw item.raw_con
 
-      
-
-  -else
   =render "layouts/comment_editor"
 
   javascript:
@@ -37,5 +33,4 @@ div.comment-wraper
           $(obj).closest("li").fadeOut();
         }
       })
-      
     }  
