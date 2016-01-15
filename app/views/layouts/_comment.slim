@@ -1,5 +1,5 @@
 div.comment-wraper
-  /=cache "comments_#{@comment[:typ]}_#{@comment[:idcd]}",skip_digest: true do 
+ / =cache "comments_#{@comment[:typ]}_#{@comment[:idcd]}",skip_digest: true do 
   -comment_list @comment[:typ],@comment[:idcd]
   -if @comments.count > 0
     ul.comment-list
@@ -13,9 +13,9 @@ div.comment-wraper
           a.oper[href="" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
           =raw item.raw_con
 
-        
+      
 
-    -else
+  -else
   =render "layouts/comment_editor"
 
   javascript:
