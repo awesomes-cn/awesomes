@@ -34,7 +34,7 @@
 }
 
 .topic-extra{
-  border: #EEE 1px solid;  border-top: 0; margin: 0 auto; max-width: 750px; padding: 10px;
+  border: #EEE 1px solid;  border-top: 0; margin: 0 auto; max-width: 750px; padding: 10px;overflow: hidden;
   .pub{position: absolute; left: 50%; font-size: 15px; color: #DDD}
   .next{font-size: 20px; }
   &.opers{

@@ -1,4 +1,14 @@
 -_ad = ad_tag(position) 
 -if _ad
-  div.ad-item
-    a[href="#{_ad.link}" target="_blank"]: img.cover[src="#{access_path "ad/#{_ad.image}"}"] 
+
+  -if _ad.image.blank?
+    script[type="text/html" class="position-#{position}"]
+      div.ad-item =raw _ad.html
+    javascript:
+      $(window).load(function(){
+        $("<div></div>").insertAfter($(".position-#{position}")).html($(".position-#{position}").html())
+      })
+  -else
+    div.ad-item
+      a[href="#{_ad.link}" target="_blank"]: img.cover[src="#{access_path "ad/#{_ad.image}"}"] 
+  
