@@ -1,13 +1,13 @@
 class Comment < ActiveRecord::Base
 	belongs_to :mem
 
-  after_create do |item|
-    ActionController::Base.new.expire_fragment "comments_#{item.typ}_#{item.idcd}"
-  end
-
-  after_destroy do |item|
-    ActionController::Base.new.expire_fragment "comments_#{item.typ}_#{item.idcd}"
-  end
+  #after_create do |item|
+  #  ActionController::Base.new.expire_fragment "comments_#{item.typ}_#{item.idcd}"
+  #end
+#
+  #after_destroy do |item|
+  #  ActionController::Base.new.expire_fragment "comments_#{item.typ}_#{item.idcd}"
+  #end
 
 	def friendly_time 
     created_at.friendly_i18n  
