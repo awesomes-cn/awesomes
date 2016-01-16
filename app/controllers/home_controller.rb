@@ -104,8 +104,10 @@ class HomeController < ApplicationController
   def rss
     _items = Readme.order("id desc").limit(15).offset(0).includes("repo")
     @items = _items.map do |item|
+      _root = Menutyp.menu_a item.repo.rootyp
+      _typ = Menutyp.menu_b item.repo.typcd,item.repo.rootyp
       {
-        :title=> item.repo.name,
+        :title=> "[#{_root.sdesc}-#{_typ.sdesc}] #{item.repo.name}",
         :author=> item.repo.owner,
         :link=> "#{Rails.application.config.base_url}repo/#{item.repo.owner}/#{item.repo.alia}",
         :date=> item.created_at,

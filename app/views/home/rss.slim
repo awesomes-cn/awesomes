@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
-rss[version="2.0" xmlns:blogChannel="http://backend.userland.com/blogChannelModule"] 
-  channel
-    title Awesomes-前端资源库
-    link https://www.awesomes.cn
-    description 免费开源的高质量前端库、框架和插件
-    language zh-cn
-    webMaster 1246996371@qq.com
-    generator Rails 4.2.4
-    copyright Copyright © 2016-2020 Awesomes.cn 1.0.0. 
-    docs https://www.awesomes.cn/rss.xml
-
-    -@items.each do |item|  
-      item
-        title =item[:title]
-        author =raw "<![CDATA[#{item[:author]}]]>"
-        link =item[:link]
-        pubDate =raw "<![CDATA[#{item[:date]}]]>"
-        description =raw "<![CDATA[#{item[:desc]}]]>"
-        category =raw "<![CDATA[#{item[:category]}]]>" 
+=content_for :title 
+  | RSS订阅 - awesomes
+=content_for :con
+  div.main.txt-center[style="line-height: 40px;"]
+    h3 RSS 订阅
+    p 为了将最新的有价值的前端优秀框架推荐给用户，我们提供了RSS Feed源方便用户阅读，你可以使用任何RSS阅读器
+    p 默认我们推荐使用 HTTPS 源：
+    h4
+      | https://www.awesomes.cn/rss.xml
+      a<[href="https://www.awesomes.cn/rss.xml"]: small: i.fa.fa-link
+    p 如果你的RSS阅读器不支持 HTTPS，请使用 HTTP源：
+    h4
+      | http://rss.awesomes.cn/rss.xml
+      a<[href="http://rss.awesomes.cn/rss.xml"]: small: i.fa.fa-link
+    p 针对QQ邮箱用户，我们还提供了邮箱的直接订阅
+    a.btn.btn-danger[href="http://list.qq.com/cgi-bin/qf_invite?id=d242881476619bfc51ffdd6c0f68d70c699e1f0342aad24d" target="_blank"]
+      i.fa.fa-envelope>
+      | QQ邮箱订阅

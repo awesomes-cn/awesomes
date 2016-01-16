@@ -22,7 +22,18 @@ class MemJob < ApplicationController
   end
 
   def self.promotion
-    MemMailer.promotion("").deliver
+    _arr = []
+    File.open("/home/hxh/share/emails.txt") do |file|  
+      file.each_line do |line| 
+        _arr << line 
+      end
+      file.close();  
+    end
+    _arr.uniq.each_with_index do |item,index|
+      MemMailer.promotion(item).deliver
+      puts "send  #{index} : #{item}"
+      sleep 30
+    end
     p "======send promotion email ok ============="
   end
 end

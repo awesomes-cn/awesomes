@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+rss[version="2.0" xmlns:blogChannel="http://backend.userland.com/blogChannelModule"] 
+  channel
+    title Awesomes-前端资源库
+    link https://www.awesomes.cn
+    description 免费开源的高质量前端库、框架和插件
+    language zh-cn
+    webMaster 1246996371@qq.com
+    generator Rails 4.2.4
+    copyright Copyright © 2016-2020 Awesomes.cn 1.0.0. 
+    docs https://www.awesomes.cn/rss.xml
+
+    -@items.each do |item|  
+      item
+        title =item[:title]
+        author =raw "<![CDATA[#{item[:author]}]]>"
+        link =item[:link]
+        pubDate =raw "<![CDATA[#{item[:date]}]]>"
+        description =raw "<![CDATA[#{item[:desc]}]]>"
+        category =raw "<![CDATA[#{item[:category]}]]>" 
