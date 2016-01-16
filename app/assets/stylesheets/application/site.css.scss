@@ -8,3 +8,12 @@
   img{margin-right: 50px;}
   p{margin-top: 40px;}
 }
+
+.links-wraper{
+  a{
+    display: inline-block; padding: 0px 20px; height: 40px; line-height: 40px;background-color: #F5F5F5; margin: 10px 20px; margin-left: 0;  color: #888;  text-decoration: none; font-weight: bold;
+   
+    &.noborder{border: none}
+    img{height: 40px;}
+  }
+}
