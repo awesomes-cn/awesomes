@@ -24,8 +24,7 @@ javascript:
         $(form).ajaxSubmit({
           success:function(data){
             if(data.status){
-              //window.location.reload();
-              Turbolinks.visit(data.url);
+              window.location.reload();
             }else{
             } 
           }

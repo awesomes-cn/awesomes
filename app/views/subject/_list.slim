@@ -18,10 +18,7 @@ javascript:
     $("#page-repo").pagination(#{@count},{
       items_per_page : #{default_page_size},
       current_page : #{page},
-      //link_to:"?page=__id__",
-      callback: function(page){
-        Turbolinks.visit("?page="+(page +1));
-      }
+      link_to:"?page=__id__"
     }) 
 
     $(".line").peity("line");

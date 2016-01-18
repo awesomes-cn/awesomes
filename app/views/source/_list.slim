@@ -24,10 +24,7 @@ div.source-list
       $("#page-repo").pagination(#{@count},{
         items_per_page : #{default_page_size},
         current_page : #{page},
-        //link_to:"?page=__id__",
-        callback: function(page){
-          Turbolinks.visit("?page="+(page +1) + "&sort=#{params[:sort]}&tag=#{params[:tag]}");
-        }
+        link_to:"?page=__id__&sort=#{params[:sort]}&tag=#{params[:tag]}"
       }) 
 
       $(".line").peity("line");

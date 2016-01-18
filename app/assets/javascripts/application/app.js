@@ -14,15 +14,11 @@ $(function(){
   
   $("article table").each(function(){
     $(this).attr('class','table');
-  })
+  }) 
+  
 })
 
-//Turbolinks.enableProgressBar();
-Turbolinks.pagesCached(0); 
 
-$(document).on('page:fetch',   function() { NProgress.start(); });
-$(document).on('page:change',  function() { NProgress.done(); });
-$(document).on('page:restore', function() { NProgress.remove(); });
 
 function open_login(){
   if (!Rails.islogin) {
