@@ -73,11 +73,11 @@ module HomeHelper
         :lastmod => item.updated_at,
         :changefreq => 'daily',
         :title =>item.name,
-        :tag => [item.name,(Menutyp.current item.typcd).sdesc],
+        :tag => [item.name,Menutyp.current(item.typcd,item.rootyp).sdesc],
         :pubTime => item.created_at,
         :breadCrumb =>[
-          {:title=>(Menutyp.current item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}"},
-          {:title=>(Menutyp.current item.typcd).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}/#{item.typcd}"}
+          {:title=> Menutyp.current(item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}"},
+          {:title=> Menutyp.current(item.typcd,item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}/#{item.typcd}"}
         ],
         :thumbnail=> "#{access_path 'repo'}#{item.cover}"
       }
