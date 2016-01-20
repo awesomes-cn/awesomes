@@ -20,4 +20,9 @@ class MemJob < ApplicationController
     end   
     p "=====success aync rank====="
   end
+
+  def self.promotion
+    MemMailer.promotion("").deliver
+    p "======send promotion email ok ============="
+  end
 end

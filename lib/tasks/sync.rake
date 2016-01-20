@@ -40,6 +40,10 @@ namespace :mem do
   task :rank,[:start] => :environment do |t,args| 
     MemJob.aync_rank
   end
+
+  task :email,[:start] => :environment do |t,args| 
+    MemJob.promotion
+  end
 end
 
 
