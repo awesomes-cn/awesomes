@@ -77,7 +77,7 @@ class MemController < ApplicationController
   end
 
   def marks
-    _query = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:mem_id=> current_mem.id})
+    _query = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:mem_id=> @mem.id})
     @items = data_list _query
     @count = _query.count
   end
