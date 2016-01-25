@@ -4,11 +4,8 @@ class SiteController < ApplicationController
 		render :layout=> 'application'
 	end
 
-  def test
-    client = EvernoteOAuth::Client.new
-    @@client = request_token = client.request_token(:oauth_callback => "#{request.protocol + request.host_with_port}/site/callback")
-    redirect_to request_token.authorize_url
-    
+  def link
+    @items = Link.order("`order` desc")
   end
 
   def callback

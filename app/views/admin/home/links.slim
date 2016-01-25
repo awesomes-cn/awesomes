@@ -1,0 +1,102 @@
+-content_for :menu
+  =render 'site_bar'
+=content_for :con
+  div#admin-app
+    table.table
+      thead
+        tr
+          th #
+          th 网站名
+          th 网站链接 
+          th 排序
+          th 操作
+      tbody 
+        tr[v-for="item in items" class="{{item.status}}"]
+          td {{item.id}}
+          td {{item.name}} 
+          td {{item.url}}
+          td {{item.order}}  
+          td[ng-class="item.synced ?  'synced' : '' "]
+            a[href='#'  v-on:click="edit(item)"]: i.fa.fa-pencil
+            a<>[href="#" v-on:click="destroy(item)"]: i.fa.fa-trash
+      tfoot
+        tr
+          td[colspan='8'] 
+            span 总记录：
+            span {{count}}
+    div#pagenation
+    input#menubar[type="hidden" value="links"]
+
+
+    =form_for(Link.new,url: "/admin/link/save",html:{id: 'inform',method: 'post'}) do |item|
+      table
+        tr
+          td[width="80px"] 网站名
+          td
+            input.form-control[type="text" name="link[name]"  v-model="edit_item.name"]
+        tr
+          td 网站链接
+          td 
+            input.form-control[type="text" name="link[url]" v-model="edit_item.url"]
+        tr
+          td 排序
+          td 
+            input.form-control[type="text" name="link[order]" v-model="edit_item.order"] 
+
+        tr
+          td 简介
+          td 
+            input.form-control[type="text" name="link[sdesc]" v-model="edit_item.sdesc"] 
+
+        tr
+          td Logo
+          td 
+            input#upload_file[type="file" name="filedata" data-post="/upload/pic" data-text="上传Logo" data-folder="link"]
+            img#cover-privew[src="#{access_path "link"}/{{edit_item.logo}}"]
+            input[type="hidden" name="link[logo]" id="link_logo" v-model="edit_item.logo"] 
+            
+            javascript:
+              //上传
+              uplaod_form($('#upload_file'),function(data){
+                $("#cover-privew").attr("src",data.file_path);
+                $("#link_logo").val(data.src);
+              })  
+
+        tr
+          td
+          td 
+            input[type="hidden"  name="link[id]"  v-model="edit_item.id"]
+            button.btn.btn-primary[v-on:click="save()"] 更新
+
+      
+
+  
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'link'
+
+      app.$set 'edit', (item)-> 
+        app.items = _.without(app.items,item)
+        app.edit_item = item
+
+      $('#inform').validate 
+        rules:
+          'link[name]':
+            required: true
+
+          'link[url]':
+            required: true
+
+        messages:
+          'link[name]':''
+          'link[url]':''
+
+        submitHandler: (form)->
+          $(form).ajaxSubmit
+            success: (data)->
+              if(data.status)
+                app.items.push(data.item)
+                app.edit_item = {}
+
+  

@@ -49,4 +49,8 @@ class Admin::HomeController < AdminController
   def adpositions
     adminlists Adposition,[:name,:key]
   end
+
+   def links
+    adminlists Link,[:name,:url,:order]
+  end
 end
