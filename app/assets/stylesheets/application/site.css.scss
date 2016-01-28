@@ -11,10 +11,11 @@
 
 .links-wraper{
   a{
-    display: inline-block; padding: 0px 20px; height: 40px; line-height: 40px;background-color: #EEE; margin: 10px 20px; margin-left: 0; 
-     color: #888;  text-decoration: none; font-weight: bold; font-size: 12px; border-radius: 4px;
+    display: inline-block; padding: 0px 10px; height: 40px; line-height: 40px; margin: 10px 20px; margin-left: 0; 
+     color: #888;  text-decoration: none; font-weight: bold;  border-radius: 4px;
    
     &.noborder{border: none}
     img{height: 40px;  border-radius: 4px;}
   }
+  *{font-size: smaller}
 }

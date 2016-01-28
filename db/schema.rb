@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160125024809) do
     t.string   "state",      limit: 255, default: "UNREAD"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.string   "link",       limit: 255
   end
 
   create_table "opers", force: :cascade do |t|
@@ -167,6 +168,12 @@ ActiveRecord::Schema.define(version: 20160125024809) do
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+  end
+
+  create_table "repo_notifies", force: :cascade do |t|
+    t.integer  "repo_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "repo_resources", force: :cascade do |t|
