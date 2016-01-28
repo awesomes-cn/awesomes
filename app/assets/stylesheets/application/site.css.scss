@@ -11,9 +11,7 @@
 
 .links-wraper{
   a{
-    display: inline-block; padding: 0px 10px; height: 40px; line-height: 40px; margin: 10px 20px; margin-left: 0; 
-     color: #888;  text-decoration: none; font-weight: bold;  border-radius: 4px;
-   
+    display: inline-block; margin: 5px 20px; margin-left: 0; color: #888;    
     &.noborder{border: none}
     img{height: 40px;  border-radius: 4px;}
   }
