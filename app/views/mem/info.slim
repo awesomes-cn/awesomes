@@ -17,7 +17,9 @@
         =info.label :blog,t('mem.home')
         =info.text_field :blog,{class: 'form-control'} 
 
-      
+      div.alert.alert-warning[role="alert"]
+        | 建议正确填写社交资料，方便我们在各个平台上做相关的推荐
+
       div.form-group
         =info.label :github,"Github" 
         div.input-group
@@ -31,13 +33,17 @@
           span.input-group-addon  http://twitter.com/
           =info.text_field :twitter,{class: 'form-control'} 
 
+      
+      div.form-group
+        =info.label :weibo_url,t('mem.weibo_url')
+        div.input-group
+          span.input-group-addon  http://weibo.com/
+          =info.text_field :weibo_url,{class: 'form-control'} 
+      
       div.form-group
         =info.label :weibo_nc,t('mem.weibo_nc')
         =info.text_field :weibo_nc,{class: 'form-control'} 
 
-      div.form-group
-        =info.label :weibo_url,t('mem.weibo_url')
-        =info.text_field :weibo_url,{class: 'form-control'}
 
       button.btn.btn-danger =t('form.sub') 
 

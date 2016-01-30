@@ -60,7 +60,7 @@ zh-CN:
     gender: '性别（男：M / 女：F）'
     city: '城市'
     home: '个人主页'
-    wibo_nc: '微博昵称'
+    weibo_nc: '微博昵称'
     weibo_url: '微博主页'
     login: '登录'
     logout: '注销'
