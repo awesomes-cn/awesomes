@@ -11,7 +11,7 @@ class RepoController < ApplicationController
     @lang = I18n.locale
     @lang = 'en' if @item.about_zh.blank?
     @lang = params[:lang] || @lang
-
+    @trends = @item.repo_trends.order('id desc').pluck('trend')[0..10].reverse.join(',')
     @comment = {:typ=> 'REPO',:idcd=> @item.id}
   end 
 

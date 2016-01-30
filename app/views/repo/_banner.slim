@@ -29,3 +29,13 @@ div.repo-banner
       i.fa.fa-eye>
       span =@item.subscribers_count
 
+  div#repot_rend
+
+  javascript:
+    $(function(){
+      $(window).resize(function(){
+        draw_line($("#repot_rend"),[#{@trends}],$(document).width(),200,"rgba(0,0,0,0.023)","rgba(0,0,0,0.028)")
+      }).resize();
+     
+    })    
+

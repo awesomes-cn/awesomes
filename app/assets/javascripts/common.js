@@ -36,3 +36,25 @@ function uplaod_form($file,callback){
     });
   });
 }
+
+
+//- 折线图
+function draw_line($ele,data,wraper_w,wraper_h,color,stroke){
+  var postion_x = 0,
+    max = _.max(data),
+    scale_y = parseInt(wraper_h / max) + 1,
+    step_x = parseInt(wraper_w / (data.length - 1)) + 1,
+    path = "M0 " + wraper_h + " "
+    path += " L0 " + (max - data[0]) * scale_y  + " "; 
+  for(var i = 1; i < data.length ; i++ ){
+    postion_x += step_x;
+
+    path += " L" + postion_x + " " + (max - data[i]) * scale_y   + " "; 
+  }
+  path += " L" + postion_x + " " + max * scale_y + " ";
+  console.log(path)
+  $ele.html("<svg height='"+ wraper_h +"px' width='"+wraper_w+"px'><path d='" + path + " Z' fill='"+color+ "' stroke='"+stroke+"'></path></svg>")
+}
+
+
+
