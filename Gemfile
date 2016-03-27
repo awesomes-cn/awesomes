@@ -2,11 +2,11 @@ source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '5.0.0.beta3'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2', '~> 0.3.16'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.4'
 gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -43,9 +43,9 @@ gem "mini_magick"
 
 gem 'carrierwave-aliyun'
 
-gem 'omniauth', '~> 1.2.2'
-gem 'omniauth-github', '~> 1.1.2'
-gem 'omniauth-weibo-oauth2', '~> 0.3.0'
+#gem 'omniauth', '~> 1.2.2'
+#gem 'omniauth-github', '~> 1.1.2'
+#gem 'omniauth-weibo-oauth2', '~> 0.3.0'
 
 gem 'github-markdown', '~> 0.6.8'
 
