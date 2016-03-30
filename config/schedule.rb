@@ -20,23 +20,21 @@ set :output, "/var/log/whnever_cron_log.log"
 # Learn more: http://github.com/javan/whenever
 
 
+every 1.day, :at => '1:00 am' do
+  rake "mem:avatar"
+end
 
 every 1.day, :at => '2:00 am' do
   rake "repo:sync"
-end
-
-every 1.day, :at => '1:00 am' do
-  rake "mem:avatar"
 end
 
 every 1.day, :at => '3:00 am' do
   rake "repo:cover"
 end
 
-every 1.day, :at => '5:00 am' do
-  rake "mem:rank"
+every 2.day, :at => '4:00 am' do
+  rake "repo:issue"
 end
-
 
 
 every 4.day, :at => '6:00 am' do

@@ -28,4 +28,11 @@ class GithubJob < ApplicationController
       p "====#{item.id}======="
     end
   end
+
+  def self.repo_issue
+    Repo.all.each do |item| 
+      Github.get_repo_issue(item)
+      p "====#{item.id}======="
+    end
+  end
 end

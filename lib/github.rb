@@ -62,4 +62,24 @@ class Github
   rescue  
   end
 
+  def self.get_repo_issue  repo
+    _api_url = "https://api.github.com/repos/#{repo.full_name}/issues?state=all&page=1&per_page=20"
+    
+    require 'rest-client'
+    _response = RestClient.get _api_url
+    _result = JSON.parse(_response.body)
+
+    _times = _result.map do |item|
+      if item['state'] == 'open'
+        (Time.now - item['created_at'].to_time) / (item['comments'] == 0 ? 1 : item['comments'])
+      else
+        item['closed_at'].to_time - item['created_at'].to_time
+      end
+    end
+    repo.update_attributes({
+      :issue_res=> (_times.reduce(:+) / _times.count).to_i
+    })
+  rescue
+  end
+
 end

@@ -28,6 +28,10 @@ namespace :repo do
   task :cover,[:start] => :environment do |t,args|
     GithubJob.repo_cover
   end
+
+  task :issue,[:start] => :environment do |t,args|
+    GithubJob.repo_issue
+  end
    
 end
 
