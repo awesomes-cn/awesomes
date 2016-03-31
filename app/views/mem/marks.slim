@@ -8,7 +8,8 @@
             img[src='#{access_path "repo/#{repo.cover}"}@1e_300w_207h_1c_0i_1o_1x.png']
           div.caption
             h4 =repo.name
-          i.fa.fa-times-circle.close[data-id="#{repo.id}"]
+          -if @isme  
+            i.fa.fa-times-circle.close[data-id="#{repo.id}"]
   div#page-mem          
   
   javascript:
