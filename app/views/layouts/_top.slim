@@ -19,7 +19,7 @@ header.navbar
 
 
       form.navbar-form.navbar-left.search-form[action="/search" method="get"]
-        input.form-control[type="text" placeholder="#{t('site.search_repo')}" name="keyword" value="#{params[:keyword]}"]
+        input.form-control[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
         button[type="submit"]: i.fa.fa-search  
 
       

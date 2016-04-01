@@ -48,7 +48,7 @@ class HomeController < ApplicationController
           fields: ['full_name', 'description','description_cn']
         }
       }
-    ).records.to_json({:include=> ['repo_trends']})
+    ).total_count 
 
   end
 

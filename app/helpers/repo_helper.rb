@@ -25,4 +25,12 @@ module RepoHelper
   def trends repo
     repo.repo_trends.order('id desc').pluck('trend')[0..8].reverse.join(',')
   end
+
+  def page_param
+    _para = ['sort','tag','q'].select do |item|
+      params[item.to_sym]
+    end.map do |item|
+      "#{item}=#{params[item.to_sym]}"
+    end.join('&')
+  end
 end

@@ -49,16 +49,19 @@ module HomeHelper
   end
 
   def search_list
-    @items = Repo.search(
+    _search = 
+    Repo.search(
       query: {
         multi_match: {
-          query: params[:keyword].to_s,
-          fields: ['full_name','typcd_zh', 'typcd','rootyp_zh','rootyp','description','description_cn','tag']
-        }
-      }
-    ).records
-
-    @count = @items.count
+          query: params[:q].to_s,
+          fields: ['full_name','typcd_zh', 'typcd','rootyp_zh','rootyp','description','description_cn','tag'],
+        },
+      },
+      size: page_size,
+      from: page * page_size
+    )
+    @items = _search.records
+    @count = _search.total_count 
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]
   end

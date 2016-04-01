@@ -1,21 +1,30 @@
 =content_for :description
   | #{@root ? @root.fdesc : '免费开源的高质量前端库、框架和插件'} , #{@typ ? @typ.fdesc : ''}
 
+
 -if @count < 1
   div.view-wraper
     div.nolist
       h3 
         | 未搜索到
-        strong<> =params[:keyword] 
+        strong<> =params[:q] 
         | 的相关库
       p
         | 你可以快速
         a<[href="/repo/new"] 提交一个库
 -else
-  div.sort-banner[class="on-#{@sort}"]
-    a.hot[href="?sort=hot" title="最多关注"] =t('repo.hot')
-    a.new[href="?sort=new"  title="最新创建"] =t('repo.new')
-    a.trend[href="?sort=trend"  title="发展趋势"] =t('repo.trend')
+  -if params[:action] == 'search'
+    div.sort-banner
+      | 共有 
+      span.mc<> =@count
+      | 条关于
+      span.mc<> =params[:q]
+      | 的搜索结果
+  -else
+    div.sort-banner[class="on-#{@sort}"]
+      a.hot[href="?sort=hot" title="最多关注"] =t('repo.hot')
+      a.new[href="?sort=new"  title="最新创建"] =t('repo.new')
+      a.trend[href="?sort=trend"  title="发展趋势"] =t('repo.trend')
   div.repo-list-wraper
     -@items.each do |item|
       div
@@ -51,7 +60,7 @@ javascript:
     $("#page-repo").pagination(#{@count},{
       items_per_page : #{default_page_size},
       current_page : #{page},
-      link_to:"?page=__id__&sort=#{params[:sort]}&tag=#{params[:tag]}"
+      link_to:"?page=__id__&#{raw page_param}"
     }) 
 
     $(".line").peity("line");
