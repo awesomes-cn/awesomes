@@ -43,7 +43,7 @@ class Admin::SubmitController < AdminController
       _readme_url = "https://api.github.com/repos/#{_result['full_name']}/readme?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
       _response = RestClient.get _readme_url, {:accept => "application/vnd.github.VERSION.raw"}
       _readme = _response.body
-      _repo.about = _readme
+      _repo.about = _readme.force_encoding('utf-8')
       _repo.save
       _repo.up_typ_zh
       _repo.update_typ_num 
