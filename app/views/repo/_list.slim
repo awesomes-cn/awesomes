@@ -28,7 +28,8 @@
               span =item.name
               span.line.hide< =trends item
 
-          p =item.description
+          p
+            span =item.description
         ul
           -item.tag.to_s.split(',').each do |tag|
             li: a[href="?tag=#{tag}" title="#{tag}"] =tag 

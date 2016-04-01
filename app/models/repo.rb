@@ -24,6 +24,10 @@ class Repo < ActiveRecord::Base
     pushed_at.friendly_i18n  
   end
 
+  def issue_friendly
+    Time.at(Time.new.to_i - issue_res).friendly_i18n 
+  end
+
   def readme_contributors
     Mem.where({:id=> readmes.pluck("mem_id")})
   end

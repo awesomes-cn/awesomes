@@ -78,3 +78,24 @@ class ActiveSupport::TimeWithZone
         end
     end
 end
+
+
+class Time
+    def friendly
+        require 'time_diff'
+        Time.diff(self, Time.new).each do |k,v|
+            return [v,k] if v.to_i > 0
+        end
+        [0, 'second']
+    end
+
+    def friendly_i18n
+        _diff = friendly
+        if _diff[1] == 'sec'
+          I18n.t('justnow')
+        else
+
+          "#{_diff[0]}#{I18n.t(_diff[1])}"
+        end
+    end
+end

@@ -25,9 +25,12 @@ div.repo-banner
     div[title="Fork数量"]
       i.fa.fa-code-fork>
       span =@item.forks_count
-    div[title="关注数量"]
-      i.fa.fa-eye>
-      span =@item.subscribers_count
+    /div[title="关注数量"]
+    /  i.fa.fa-eye>
+    /  span =@item.subscribers_count
+    div[title="issue 响应速度"]
+      i.fa.fa-exclamation-circle>
+      span =@item.issue_friendly
 
   div#repot_rend
 

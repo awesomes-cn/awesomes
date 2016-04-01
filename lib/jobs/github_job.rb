@@ -33,6 +33,7 @@ class GithubJob < ApplicationController
     Repo.all.each do |item| 
       Github.get_repo_issue(item)
       p "====#{item.id}======="
+      sleep 2
     end
   end
 end
