@@ -49,6 +49,7 @@ class RepoController < ApplicationController
     params[:repo][:typcd] = _typ[1..-1].join('-')
     #params[:repo][:about_zh] = "" if params[:repo][:about_zh].gsub(/<\w>\s+?<\/\w>/,"") == ""
     @item.update_attributes(params.require(:repo).permit(Repo.attribute_names))
+    @item.up_typ_zh
     redirect_to request.referer 
   end
 

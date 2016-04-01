@@ -46,7 +46,7 @@ class Github
   end 
 
   def self.sync_mem_rank  mem
-    _api_url = "http://github-awards.com//api/v0/users/#{mem.mem_info.github}.json"
+    _api_url = "http://github-awards.com//api/v0/users/#{mem.mem_info.github}.json?client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
     
     require 'rest-client'
     _response = RestClient.get _api_url
@@ -63,7 +63,7 @@ class Github
   end
 
   def self.get_repo_issue  repo
-    _api_url = "https://api.github.com/repos/#{repo.full_name}/issues?state=all&page=1&per_page=20"
+    _api_url = "https://api.github.com/repos/#{repo.full_name}/issues?state=all&page=1&per_page=20&client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
     
     require 'rest-client'
     _response = RestClient.get _api_url
@@ -77,7 +77,7 @@ class Github
       end
     end
     repo.update_attributes({
-      :issue_res=> (_times.reduce(:+) / _times.count).to_i
+      :issue_res=> _times[0] ? (_times.reduce(:+) / _times.count).to_i : 0
     })
   rescue
   end

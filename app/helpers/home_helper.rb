@@ -28,9 +28,11 @@ module HomeHelper
       _where = _where.merge({:typcd=> _typ})
     end
 
-    if !(_search = params[:keyword].to_s.strip).blank?
-      _where_search = "name like ?","%#{_search}%"
-    end
+    #if !(_search = params[:keyword].to_s.strip).blank?
+    #  _where_search = "name like ?","%#{_search}%" 
+    #end
+
+
 
     if !(_tag = params[:tag]).blank?
       _tag_search = "tag like ?","%#{_tag}%"
@@ -40,8 +42,23 @@ module HomeHelper
     _sort = "#{_map[@sort.to_sym]} desc" 
 
 
-    @items = data_list(Repo.where(_where).where(_where_search).where(_tag_search).order(_sort)).includes(:repo_trends)
-    @count = Repo.where(_where).where(_where_search).where(_tag_search).count
+    @items = data_list(Repo.where(_where).where(_tag_search).order(_sort)).includes(:repo_trends)
+    @count = Repo.where(_where).where(_tag_search).count
+    @root = Menutyp.find_by_key params[:root]
+    @typ = Menutyp.find_by_key params[:typ]
+  end
+
+  def search_list
+    @items = Repo.search(
+      query: {
+        multi_match: {
+          query: params[:keyword].to_s,
+          fields: ['full_name','typcd_zh', 'typcd','rootyp_zh','rootyp','description','description_cn','tag']
+        }
+      }
+    ).records
+
+    @count = @items.count
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]
   end

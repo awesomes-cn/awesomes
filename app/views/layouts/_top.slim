@@ -18,8 +18,8 @@ header.navbar
         
 
 
-      form.navbar-form.navbar-left.search-form[action="/repos" method="get"]
-        input.form-control[type="text" placeholder="#{t('site.search_repo')}" name="keyword"]
+      form.navbar-form.navbar-left.search-form[action="/search" method="get"]
+        input.form-control[type="text" placeholder="#{t('site.search_repo')}" name="keyword" value="#{params[:keyword]}"]
         button[type="submit"]: i.fa.fa-search  
 
       

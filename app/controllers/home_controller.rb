@@ -41,6 +41,15 @@ class HomeController < ApplicationController
   end
   
   def test 
+    render json: Repo.search(
+      query: {
+        multi_match: {
+          query: params[:keyword].to_s,
+          fields: ['full_name', 'description','description_cn']
+        }
+      }
+    ).records.to_json({:include=> ['repo_trends']})
+
   end
 
   def login

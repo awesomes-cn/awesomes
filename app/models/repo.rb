@@ -1,7 +1,10 @@
 class Repo < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   has_many :readmes
   has_many :repo_notifies
   has_many :repo_trends
+
 
   after_create do |item|
     ActionController::Base.new.expire_fragment  %r{repo_list_.+} 
@@ -61,6 +64,13 @@ class Repo < ActiveRecord::Base
   end
 
   def update_comment
-    
+  end
+
+  def up_typ_zh
+    p id
+    update_attributes({
+      :rootyp_zh=>  Menutyp.menu_a(rootyp).sdesc,
+      :typcd_zh=>  Menutyp.menu_b(typcd, rootyp).sdesc
+    })
   end
 end

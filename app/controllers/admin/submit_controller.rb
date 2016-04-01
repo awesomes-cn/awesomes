@@ -45,6 +45,7 @@ class Admin::SubmitController < AdminController
       _readme = _response.body
       _repo.about = _readme
       _repo.save
+      _repo.up_typ_zh
       _repo.update_typ_num 
     end
       

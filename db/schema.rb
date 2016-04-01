@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330175325) do
+ActiveRecord::Schema.define(version: 20160401033024) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -223,6 +223,8 @@ ActiveRecord::Schema.define(version: 20160330175325) do
     t.datetime "github_created_at"
     t.integer  "mark",                                 default: 0
     t.integer  "issue_res",                            default: 0
+    t.string   "typcd_zh"
+    t.string   "rootyp_zh"
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree

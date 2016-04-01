@@ -11,7 +11,7 @@ class Menutyp < ActiveRecord::Base
   end
 
   def self.menu_a key
-    Menutyp.find_by_key key
+    Menutyp.find_by({:key=> key, :parent=> ''})
   end
 
   def self.menu_b key,parent

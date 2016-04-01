@@ -2,10 +2,10 @@
 -@typ = Menutyp.find_by_key @item.typcd
 div.repo-crumb.hidden-xs
   /li: a[href="/"] Home 
-  a.root[href="/repos/#{@root.key}" title="#{switl @root.key, @root.sdesc}"] 
+  a.root[href="/repos/#{@root.key}" title="#{switl @item.rootyp, @item.rootyp_zh}"] 
     i.fa[class="#{@root.icon}"]
  
-  a[href="/repos/#{@root.key}/#{@typ.key}" title="#{switl @typ.key, @typ.sdesc}"]  
+  a[href="/repos/#{@root.key}/#{@typ.key}" title="#{switl @item.typcd, @item.typcd_zh}"]  
     i.fa[class="#{@typ.icon}"]
 
   
