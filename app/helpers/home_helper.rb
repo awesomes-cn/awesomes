@@ -49,8 +49,7 @@ module HomeHelper
   end
 
   def search_list
-    _search = 
-    Repo.search(
+    _search = Repo.search(
       query: {
         multi_match: {
           query: params[:q].to_s,
