@@ -28,6 +28,24 @@ footer.footer
         p 由全国的开发者共同维护，打造开放自由免费的高质量前端资源库  
     =yield :footer_extra
 
+// 美恰在线客服
+a.kefu-btn[href="javascript:void(0)" onclick="_MEIQIA._SHOWPANEL()"]
+  i.fa.fa-commenting
+javascript:
+  (function(m, ei, q, i, a, j, s) {
+      m[a] = m[a] || function() {
+          (m[a].a = m[a].a || []).push(arguments)
+      };
+      j = ei.createElement(q),
+          s = ei.getElementsByTagName(q)[0];
+      j.async = true;
+      j.charset = 'UTF-8';
+      j.src = i + '?v=' + new Date().getUTCDate();
+      s.parentNode.insertBefore(j, s);
+  })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+  _MEIQIA('entId', 11313);
+
+
 javascript:
   NProgress.start();
   NProgress.done();

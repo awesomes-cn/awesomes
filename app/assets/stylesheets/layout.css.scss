@@ -332,3 +332,14 @@ label.error{color: #d9534f}
 
 //- 主要颜色
 .mc{color: #da552f}
+
+//- 客服
+#MEIQIA-BTN-HOLDER{display: none!important;}
+.kefu-btn{
+  background-color: #F7F7F7; display: inline-block;  cursor: pointer;
+  border-radius: 100%; position: fixed; width: 35px; height: 35px;text-align: center;
+  bottom: 20px; right: 20px;color: #da552f; line-height: 35px;   box-shadow: 0 0 14px 0 rgba(0,0,0,.16);
+  &:hover{
+    color: #F7F7F7; background-color: #da552f;
+  }
+}
