@@ -1,9 +1,9 @@
 class Repo < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   has_many :readmes
   has_many :repo_notifies
   has_many :repo_trends
+
+  searchkick batch_size: 20000
 
 
   after_create do |item|

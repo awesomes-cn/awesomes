@@ -41,15 +41,7 @@ class HomeController < ApplicationController
   end
   
   def test 
-    render json: Repo.search(
-      query: {
-        multi_match: {
-          query: params[:keyword].to_s,
-          fields: ['full_name', 'description','description_cn']
-        }
-      }
-    ).total_count 
-
+    #render json: Repo.search("apples", limit: 10, offset: 0).total_count
   end
 
   def login
