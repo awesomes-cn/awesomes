@@ -6,6 +6,39 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1)); }
   var modeHighlightFormatting = CodeMirror.getMode({tabSize: 4}, {name: "markdown", highlightFormatting: true});
   function FT(name) { test.mode(name, modeHighlightFormatting, Array.prototype.slice.call(arguments, 1)); }
+  var modeAtxNoSpace = CodeMirror.getMode({tabSize: 4}, {name: "markdown", allowAtxHeaderWithoutSpace: true});
+  function AtxNoSpaceTest(name) { test.mode(name, modeAtxNoSpace, Array.prototype.slice.call(arguments, 1)); }
+  var modeFenced = CodeMirror.getMode({tabSize: 4}, {name: "markdown", fencedCodeBlocks: true});
+  function FencedTest(name) { test.mode(name, modeFenced, Array.prototype.slice.call(arguments, 1)); }
+  var modeOverrideClasses = CodeMirror.getMode({tabsize: 4}, {
+    name: "markdown",
+    strikethrough: true,
+    tokenTypeOverrides: {
+      "header" : "override-header",
+      "code" : "override-code",
+      "quote" : "override-quote",
+      "list1" : "override-list1",
+      "list2" : "override-list2",
+      "list3" : "override-list3",
+      "hr" : "override-hr",
+      "image" : "override-image",
+      "linkInline" : "override-link-inline",
+      "linkEmail" : "override-link-email",
+      "linkText" : "override-link-text",
+      "linkHref" : "override-link-href",
+      "em" : "override-em",
+      "strong" : "override-strong",
+      "strikethrough" : "override-strikethrough"
+  }});
+  function TokenTypeOverrideTest(name) { test.mode(name, modeOverrideClasses, Array.prototype.slice.call(arguments, 1)); }
+  var modeFormattingOverride = CodeMirror.getMode({tabsize: 4}, {
+    name: "markdown",
+    highlightFormatting: true,
+    tokenTypeOverrides: {
+      "formatting" : "override-formatting"
+  }});
+  function FormatTokenTypeOverrideTest(name) { test.mode(name, modeFormattingOverride, Array.prototype.slice.call(arguments, 1)); }
+
 
   FT("formatting_emAsterisk",
      "[em&formatting&formatting-em *][em foo][em&formatting&formatting-em *]");
@@ -110,7 +143,7 @@
   // Block code using single backtick (shouldn't work)
   MT("blockCodeSingleBacktick",
      "[comment `]",
-     "foo",
+     "[comment foo]",
      "[comment `]");
 
   // Unclosed backticks
@@ -172,6 +205,16 @@
   // http://spec.commonmark.org/0.19/#example-25
   MT("noAtxH1WithoutSpace",
      "#5 bolt");
+
+  // CommonMark requires a space after # but most parsers don't
+  AtxNoSpaceTest("atxNoSpaceAllowed_H1NoSpace",
+     "[header&header-1 #foo]");
+
+  AtxNoSpaceTest("atxNoSpaceAllowed_H4NoSpace",
+     "[header&header-4 ####foo]");
+
+  AtxNoSpaceTest("atxNoSpaceAllowed_H1Space",
+     "[header&header-1 # foo]");
 
   // Inline styles should be parsed inside headers
   MT("atxH1inline",
@@ -409,6 +452,18 @@
      "",
      "hello");
 
+  MT("listCommonMarkIndentationCode",
+     "[variable-2 * Code blocks also affect]",
+     "  [variable-3 * The next level starts where the contents start.]",
+     "   [variable-3 *    Anything less than that will keep the item on the same level.]",
+     "       [variable-3 * Each list item can indent the first level further and further.]",
+     "  [variable-3 * For the most part, this makes sense while writing a list.]",
+     "    [keyword * This means two items with same indentation can be different levels.]",
+     "     [keyword *  Each level has an indent requirement that can change between items.]",
+     "       [keyword * A list item that meets this will be part of the next level.]",
+     "   [variable-3 * Otherwise, it will be part of the level where it does meet this.]",
+     " [variable-2 * World]");
+
   // Blockquote
   MT("blockquote",
      "[variable-2 * foo]",
@@ -498,14 +553,14 @@
     "",
     "    [variable-3 * bar]",
     "",
-    "       [variable-2 hello]"
+    "       [variable-3 hello]"
   );
   MT("listNested",
     "[variable-2 * foo]",
     "",
     "    [variable-3 * bar]",
     "",
-    "      [variable-3 * foo]"
+    "      [keyword * foo]"
   );
 
   // Code followed by text
@@ -592,7 +647,7 @@
   MT("linkReferenceEmStrong",
      "[link [[][link&strong **][link&em&strong *foo**][link&em *][link ]]][string&url [[bar]]] hello");
 
-  // Reference-style links with optional space separator (per docuentation)
+  // Reference-style links with optional space separator (per documentation)
   // "You can optionally use a space to separate the sets of brackets"
   MT("linkReferenceSpace",
      "[link [[foo]]] [string&url [[bar]]] hello");
@@ -628,7 +683,7 @@
   MT("labelTitleSingleQuotes",
      "[link [[foo]]:] [string&url http://example.com/  'bar']");
 
-  MT("labelTitleParenthese",
+  MT("labelTitleParentheses",
      "[link [[foo]]:] [string&url http://example.com/  (bar)]");
 
   MT("labelTitleInvalid",
@@ -645,13 +700,22 @@
      "[link [[foo]]:] [string&url http://example.com/]",
      "[string 'bar'] hello");
 
-  MT("labelTitleNextParenthese",
+  MT("labelTitleNextParentheses",
      "[link [[foo]]:] [string&url http://example.com/]",
      "[string (bar)] hello");
 
   MT("labelTitleNextMixed",
      "[link [[foo]]:] [string&url http://example.com/]",
      "(bar\" hello");
+
+  MT("labelEscape",
+     "[link [[foo \\]] ]]:] [string&url http://example.com/]");
+
+  MT("labelEscapeColon",
+     "[link [[foo \\]]: bar]]:] [string&url http://example.com/]");
+
+  MT("labelEscapeEnd",
+     "[[foo\\]]: http://example.com/");
 
   MT("linkWeb",
      "[link <http://example.com/>] foo");
@@ -760,16 +824,128 @@
      "\\",
      "[em *foo*]");
 
+  // Class override tests
+  TokenTypeOverrideTest("overrideHeader1",
+    "[override-header&override-header-1 # Foo]");
+
+  TokenTypeOverrideTest("overrideHeader2",
+    "[override-header&override-header-2 ## Foo]");
+
+  TokenTypeOverrideTest("overrideHeader3",
+    "[override-header&override-header-3 ### Foo]");
+
+  TokenTypeOverrideTest("overrideHeader4",
+    "[override-header&override-header-4 #### Foo]");
+
+  TokenTypeOverrideTest("overrideHeader5",
+    "[override-header&override-header-5 ##### Foo]");
+
+  TokenTypeOverrideTest("overrideHeader6",
+    "[override-header&override-header-6 ###### Foo]");
+
+  TokenTypeOverrideTest("overrideCode",
+    "[override-code `foo`]");
+
+  TokenTypeOverrideTest("overrideCodeBlock",
+    "[override-code ```]",
+    "[override-code foo]",
+    "[override-code ```]");
+
+  TokenTypeOverrideTest("overrideQuote",
+    "[override-quote&override-quote-1 > foo]",
+    "[override-quote&override-quote-1 > bar]");
+
+  TokenTypeOverrideTest("overrideQuoteNested",
+    "[override-quote&override-quote-1 > foo]",
+    "[override-quote&override-quote-1 >][override-quote&override-quote-2 > bar]",
+    "[override-quote&override-quote-1 >][override-quote&override-quote-2 >][override-quote&override-quote-3 > baz]");
+
+  TokenTypeOverrideTest("overrideLists",
+    "[override-list1 - foo]",
+    "",
+    "    [override-list2 + bar]",
+    "",
+    "        [override-list3 * baz]",
+    "",
+    "            [override-list1 1. qux]",
+    "",
+    "                [override-list2 - quux]");
+
+  TokenTypeOverrideTest("overrideHr",
+    "[override-hr * * *]");
+
+  TokenTypeOverrideTest("overrideImage",
+    "[override-image ![[foo]]][override-link-href&url (http://example.com/)]")
+
+  TokenTypeOverrideTest("overrideLinkText",
+    "[override-link-text [[foo]]][override-link-href&url (http://example.com)]");
+
+  TokenTypeOverrideTest("overrideLinkEmailAndInline",
+    "[override-link-email <][override-link-inline foo@example.com>]");
+
+  TokenTypeOverrideTest("overrideEm",
+    "[override-em *foo*]");
+
+  TokenTypeOverrideTest("overrideStrong",
+    "[override-strong **foo**]");
+
+  TokenTypeOverrideTest("overrideStrikethrough",
+    "[override-strikethrough ~~foo~~]");
+
+  FormatTokenTypeOverrideTest("overrideFormatting",
+    "[override-formatting-escape \\*]");
 
   // Tests to make sure GFM-specific things aren't getting through
 
   MT("taskList",
      "[variable-2 * [ ]] bar]");
 
-  MT("fencedCodeBlocks",
-     "[comment ```]",
+  MT("noFencedCodeBlocks",
+     "~~~",
      "foo",
-     "[comment ```]");
+     "~~~");
+
+  FencedTest("fencedCodeBlocks",
+     "[comment ```]",
+     "[comment foo]",
+     "[comment ```]",
+     "bar");
+
+  FencedTest("fencedCodeBlocksMultipleChars",
+     "[comment `````]",
+     "[comment foo]",
+     "[comment ```]",
+     "[comment foo]",
+     "[comment `````]",
+     "bar");
+
+  FencedTest("fencedCodeBlocksTildes",
+     "[comment ~~~]",
+     "[comment foo]",
+     "[comment ~~~]",
+     "bar");
+
+  FencedTest("fencedCodeBlocksTildesMultipleChars",
+     "[comment ~~~~~]",
+     "[comment ~~~]",
+     "[comment foo]",
+     "[comment ~~~~~]",
+     "bar");
+
+  FencedTest("fencedCodeBlocksMultipleChars",
+     "[comment `````]",
+     "[comment foo]",
+     "[comment ```]",
+     "[comment foo]",
+     "[comment `````]",
+     "bar");
+
+  FencedTest("fencedCodeBlocksMixed",
+     "[comment ~~~]",
+     "[comment ```]",
+     "[comment foo]",
+     "[comment ~~~]",
+     "bar");
 
   // Tests that require XML mode
 

@@ -1,0 +1,46 @@
+=content_for :banner
+  link[rel="stylesheet" type="text/css" href="codemirror/lib/codemirror.css"]
+  
+  div.code-editor#code-wraper
+    div.toolbar
+      //i.fa.fa-play[v-on:click="preview()"]
+      //i.fa.fa-save.right
+      a[href="javascript:void(0)"]: i.fa.fa-pencil>
+      strong vuejs基础用法
+      a.right[href="javascript:void(0)"]: i.fa.fa-save
+      a.right[href="javascript:void(0)"]: i.fa.fa-share-alt
+      a.right[href="javascript:void(0)"]
+        i.fa.fa-link>
+        span Vuejs
+
+    div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
+      textarea#code-html
+      span.online-label HTML
+
+    div.splitx[v-on:mousedown="moveX($event, p1, p2)" v-bind:style="{height: p1.h}"]
+
+    div.p2.unselect[v-bind:style="{width: p2.w, height: p1.h}"]
+      textarea#code-js
+      span.online-label JavaScript
+
+    div.splitx[v-on:mousedown="moveX($event, p2, p3)" v-bind:style="{height: p1.h}"]
+
+    div.p3[v-bind:style="{width: p3.w, height: p1.h}"]
+      textarea#code-css
+      span.online-label CSS
+
+    div.clear
+    div.splity[v-on:mousedown="moveY($event)"]
+    div.p4[v-bind:style="{height: p4.h}"]
+      iframe.code-preview#preview
+      div.window-cover
+
+
+  
+  //script[src="codemirror/lib/codemirror.js"]
+  script[src="codemirror/addon/edit/closetag.js"]
+  script[src="codemirror/addon/fold/xml-fold.js"]
+  script[src="codemirror/mode/javascript/javascript.js"]
+  //script[src="codemirror/mode/xml/xml.js"]
+  script[src="codemirror/mode/css/css.js"] 
+  script[src="codemirror/online.js"] 
