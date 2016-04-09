@@ -1,11 +1,23 @@
 =content_for :banner
-  link[rel="stylesheet" type="text/css" href="codemirror/lib/codemirror.css"]
+  link[rel="stylesheet" type="text/css" href="/codemirror/lib/codemirror.css"]
   
   div.code-outer#code-wraper
     div.left-bar[v-bind:style="{width: left.w}"]
       div.inner-bar
         span.fold[v-on:click="switchLeft($event)"]
           i.fa.fa-angle-left
+        div.inner-out
+          div.repo  
+            a[href="#{@item.link_url}" target="_blank"]
+              img.cover[src='#{repo_cover_path @item.cover}']
+              h4 =@item.name
+          ul
+            -10.times
+              li
+                a[href="#"]
+                  i.fa.fa-angle-right>
+                  | 基本用法
+
 
     div.code-editor
       div.toolbar
@@ -13,11 +25,15 @@
         //i.fa.fa-save.right
         a[href="javascript:void(0)"]: i.fa.fa-pencil>
         strong vuejs基础用法
-        a.right[href="javascript:void(0)"]: i.fa.fa-save
-        a.right[href="javascript:void(0)"]: i.fa.fa-share-alt
         a.right[href="javascript:void(0)"]
-          i.fa.fa-link>
-          span Vuejs
+          i.fa.fa-save>
+          | 保存
+        a.right[href="javascript:void(0)"]
+          i.fa.fa-heart>
+          | 收藏
+        a.right[href="javascript:void(0)"]
+          i.fa.fa-share-alt> 
+          | 分享
 
       div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
         textarea#code-html
@@ -49,11 +65,11 @@
     }
   
   //script[src="codemirror/lib/codemirror.js"]
-  script[src="codemirror/addon/edit/closetag.js"]
-  script[src="codemirror/addon/fold/xml-fold.js"]
-  script[src="codemirror/mode/javascript/javascript.js"]
+  script[src="/codemirror/addon/edit/closetag.js"]
+  script[src="/codemirror/addon/fold/xml-fold.js"]
+  script[src="/codemirror/mode/javascript/javascript.js"]
   //script[src="codemirror/mode/xml/xml.js"]
-  script[src="codemirror/mode/css/css.js"] 
-  script[src="codemirror/online.js"] 
+  script[src="/codemirror/mode/css/css.js"] 
+  script[src="/codemirror/online.js"] 
 
 
