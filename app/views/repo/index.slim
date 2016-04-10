@@ -85,8 +85,8 @@
 
   coffee:
     $ ()->
-      app = new Vue
-        el: "body"
+      repovue = new Vue
+        el: ".view-wraper"
         data:
           ismark: false
           markcount: source_item.mark
@@ -96,14 +96,14 @@
             idcd: source_item.id
         methods:
           switch: (la)->
-            app.lang = la 
+            repovue.lang = la 
           init: ()->
             if Rails.islogin
-              $.post "/oper/whether",app.para,(data)->
-                app.ismark =  data
+              $.post "/oper/whether",repovue.para,(data)->
+                repovue.ismark =  data
           mark: ()->
-            $.post "/oper/update",app.para,(data)->
-              app.ismark =  data.state
-              app.markcount = data.count
+            $.post "/oper/update",repovue.para,(data)->
+              repovue.ismark =  data.state
+              repovue.markcount = data.count
       
-      app.init()
+      repovue.init()

@@ -235,45 +235,7 @@
     text-align: center; line-height: 60px; cursor: pointer; opacity: 0.5
   }
 }
-.code-editor{
-  width: 100%;height: 700px; border: #EEE 2px solid; margin: 0 auto;  border-left: #EEE 1px solid; 
 
- 
-  
-  .toolbar{
-    height: 40px; border-bottom: #EEE 1px solid; padding:0 10px; line-height: 40px;
-    & > a{
-       cursor: pointer;  text-decoration: none;
-      &:visited, &:link{color: #DDD}
-      &:hover, &:active{color: #444}
-      &.right{
-        margin: 0 10px;
-      }
-    }
-  }
-  .p1, .p2, .p3, .p4{
-    float: left;position: relative;  -webkit-user-select: none; -moz-user-select: none; -khtml-user-select: none;  
-    -ms-user-select: none; -o-user-select: none;  user-select: none;
-  }
-  .p4{float: none}
-
-  .splitx{
-    width: 5px; border: 0; float: left; border-left: #EEE 1px solid; cursor: move;
-    &:hover{ border-right: #DDD 1px dashed;}
-  }
-  .splity{
-    height: 5px; border: 0;  border-top: #EEE 1px solid; cursor: move;
-    &:hover{ border-top: #DDD 1px dashed;}
-  }
-
-  .code-preview{
-    width: 100%; height: 100%; border: 0;
-  }
-
-  .window-cover{position: absolute; width: 100%; height: 100%;  top: 0; display: none}
-  .online-label{ border: solid 1px #F1F1F1;background: #fff;display: inline-block;height: 22px;padding: 0 6px;line-height: 22px;position: absolute;top: 7px;right: 6px;text-align: center;font-size: 12px;color: #777;border-radius: 1px;z-index: 30; opacity: 0.5}
-  textarea{border: none;}
-}
 
 .CodeMirror{height: 100%!important;;}
 .CodeMirror-hscrollbar{overflow-x: hidden!important;}

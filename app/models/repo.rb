@@ -4,6 +4,7 @@ class Repo < ActiveRecord::Base
   has_many :readmes
   has_many :repo_notifies
   has_many :repo_trends
+  has_many :codes
 
 
   after_create do |item|

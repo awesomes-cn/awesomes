@@ -2,6 +2,11 @@ $(function(){
   $(".open-login").click(function(){
     return open_login();
   })
+  $(".close-modal").click(function(){
+    $(this).closest('.modal-wraper').animate({top: '-100%'}, function(){
+      $(this).hide()
+    })
+  })
   $("pre").each(function(){
     var pre = $(this);
     var _lang = pre.attr('lang');
@@ -22,12 +27,19 @@ $(function(){
 
 function open_login(){
   if (!Rails.islogin) {
-    window.location.href="/login"
+    //window.location.href="/login"
+    $('.login-wraper').show().animate({top: 0})
+    return false
   }else{
     return true;
   }
 }
 
+function close_login(){
+  $('.login-wraper').animate({top: '-100%'}, function(){
+    $(this).hide()
+  })
+}
 
 
 function list_data($scope,$http,list_url,$scopeitems,$pagnation,callback){

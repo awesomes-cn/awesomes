@@ -13,6 +13,8 @@ class HomeController < ApplicationController
   	render :layout=> nil
   end
 
+  
+
   def markdown
   	@item =  Site.find_by({:typ=> 'MARKDOWN'}) || Site.create({:typ=> 'MARKDOWN'})
   	respond_to do |format|
@@ -63,15 +65,23 @@ class HomeController < ApplicationController
 
         #登陆
         if _mem
-          redirect_to request.referer,:notice=> t('tip.pwd_error') and return if _mem.pwd != _pwd
+          #redirect_to request.referer,:notice=> t('tip.pwd_error') and return if _mem.pwd != _pwd
+          render json: {status: false, notice: t('tip.pwd_error')} and return if _mem.pwd != _pwd
         else
           _mem = Mem.create({:email=> params[:email], :pwd=> _pwd, :nc=> params[:nc].strip})
-          redirect_to request.referer,:notice=> _mem.errors.messages.values.flatten.join("，") and return if _mem.invalid?          
+          #redirect_to request.referer,:notice=> _mem.errors.messages.values.flatten.join("，") and return if _mem.invalid?          
+          render json: {status: false, notice: _mem.errors.messages.values.flatten.join("，")} and return if _mem.invalid?
         end
 
         session[:mem] = _mem.id
-        redirect_to session[:login_callback] || '/mem'
-        
+        #redirect_to session[:login_callback] || '/mem'
+        render json: {
+          status: true,
+          mem: {
+            nc: _mem.nc,
+            id: _mem.id
+          }
+        } 
       }
     end
   end

@@ -9,6 +9,8 @@ $(function(){
   })
 
   initCodeMirror()
+
+
 })
 
 
@@ -23,10 +25,17 @@ function initEditor(id){
       p4: {h: 100, oh: 0},
       ox: 0,
       oy: 0,
-      left: {w: 200, ow: 200, state: 'fold'}
+      left: {w: 200, ow: 200, state: 'fold'},
+      isauto: localStorage.autoruncode || false
 
+    },
+    computed: {
+      isauthor: function () {
+        return Rails.mem.id == codeAuthor
+      }
     }
   })
+
   
   // 初始化
   var editareaw = $(id).find('.code-editor').width()
@@ -124,9 +133,20 @@ function initEditor(id){
    
   }
 
+  // 切换自动运行
+  editor.switchAuto = function(){
+    editor.isauto = !editor.isauto;
+    localStorage.autoruncode = editor.isauto
+  }
 
-
-
+  //fork
+  editor.fork = function(){
+    if(open_login()){
+      $('#fork-wraper').show().animate({top: 0})
+    }
+    
+  }
+ 
 
   return editor
 }
@@ -137,7 +157,26 @@ function initCodeMirror(){
   cssCodeMirror =  AddCodeMirror('#code-css', 'css')
 
   init_code()
+
+  
+  htmlCodeMirror.on("change", function(){
+    if (editorVue.isauto) {
+      run_code()
+    };
+  })
+  cssCodeMirror.on("change", function(){
+    if (editorVue.isauto) {
+      run_code()
+    };
+  })
+  jsCodeMirror.on("change", function(){
+    if (editorVue.isauto) {
+      run_code()
+    };
+  })
 }
+
+
 
 function AddCodeMirror(textareaId, mode){
   return  CodeMirror.fromTextArea($(textareaId)[0],{

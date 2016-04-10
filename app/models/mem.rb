@@ -7,6 +7,7 @@ class Mem < ActiveRecord::Base
   has_many :mem_repos
   has_many :topics
   has_one :mem_rank
+  has_many :codes
 
   validates :nc,:email,:pwd,presence: true
   validates :nc,:email, uniqueness: true

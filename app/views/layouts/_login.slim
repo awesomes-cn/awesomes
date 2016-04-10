@@ -1,0 +1,98 @@
+css:
+  [v-cloak] { display: none; }
+div.login-wraper.modal-wraper
+  =form_tag '/login.json',method: "get",id: 'inform'
+    h3 =t('mem.login_tip')
+    div.panel.panel-default.login-panel
+      //div.panel-heading: h3.panel-title =t('mem.login_tip')
+      div.panel-body
+        div.form-group
+          label =t('mem.email')
+          input.form-control[type="text" name="email" v-on:focusout="check_act()" v-model="email"]
+        
+        div.form-group
+          label
+            | #{t('mem.pwd')}
+            a[href="/find_pwd"] （#{t('mem.forgot_pwd')}）
+          input.form-control[type="password" name="pwd"]
+
+        div.form-group[v-show="login.action == 'signup'"]
+          label =t('mem.nc')
+          input.form-control[type="text" name="nc"]
+
+          
+        div.form-group
+          button.btn.btn-default =t('mem.login')
+        
+        
+        div.alert.alert-danger[v-show="login.tip"] {{login.tip}}
+  
+  i.fa.fa-close.close-modal
+  
+  javascript:
+    $(function(){
+      window.app = new Vue({
+        el: "header.navbar",
+        data:{
+          login: {
+            status: #{is_login},
+            action: 'signin',
+            tip: null,
+            mem: {
+              nc: '#{is_login ? current_mem.nc : ''}'
+            }
+          }
+        },
+        methods:{
+          check_act: function(){
+            $.post('/mem/ckemail', {email: app.email}, function(data){
+              app.login.action = (data ? 'signin' : 'signup')
+            })
+          }
+        }
+      })
+    })
+
+  coffee:
+    $('#inform').validate
+      rules:
+        email:
+          required: true
+          email: true
+
+        pwd:
+          required: true
+          minlength: 6  
+
+        nc:
+          required: true
+          remote: '/mem/cknc'
+
+       
+      messages:
+        email:
+          required: '邮箱不能为空'
+          email: '你确定你输入的是邮箱么'
+        
+        pwd:
+          required: '密码不能为空'
+          minlength: '密码至少为6个字符'
+
+        nc:
+          required: '昵称不能为空'
+          remote: '该昵称已被占用'  
+      
+      submitHandler: (form)->
+        $(form).ajaxSubmit
+          success: (data)->
+            if(data.status)
+              app.login.status = true
+              app.login.mem = data.mem.nc
+              Rails.islogin = true
+              Rails.mem.id = data.mem.id
+              close_login()
+            else
+              app.login.tip = data.notice
+             
+        
+  

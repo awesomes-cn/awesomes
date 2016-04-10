@@ -5,17 +5,19 @@ meta[http-equiv="X-UA-Compatible" content="IE=edge"]
 meta[name="description" content="#{(_description = yield :description) =='' ? '免费开源的高质量前端库、框架和插件' : _description}"]
 meta[name="keywords" content="#{(_keywords = yield :keywords) =='' ? 'html5,h5,css3,jquery,web框架,js框架,jquery插件,免费开源,中文文档' : _keywords}"]
 javascript:
- var Rails = {
-   config: {
-     source_access_path : "#{Rails.application.config.source_access_path}"
-   },
-   access_path: function(folder){
-     return this.config.source_access_path + folder + '/';
-   },
-   islogin: #{is_login},
-   mem_id: #{session[:mem] || 'undefined'}
+  var Rails = {
+    config: {
+      source_access_path : "#{Rails.application.config.source_access_path}"
+    },
+    access_path: function(folder){
+      return this.config.source_access_path + folder + '/';
+    },
+    mem: {
+      id: #{session[:mem] || 'null'}
+    },
+    islogin: #{is_login}
 
- };
+  };
 
 = stylesheet_link_tag "application", media: "all"
 = javascript_include_tag "application"

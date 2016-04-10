@@ -8,9 +8,9 @@
           i.fa.fa-angle-left
         div.inner-out
           div.repo  
-            a[href="#{@item.link_url}" target="_blank"]
-              img.cover[src='#{repo_cover_path @item.cover}']
-              h4 =@item.name
+            a[href="#{@repo.link_url}" target="_blank"]
+              img.cover[src='#{repo_cover_path @repo.cover}']
+              h4 =@repo.name
           ul
             -10.times
               li
@@ -23,13 +23,19 @@
       div.toolbar
         //i.fa.fa-play[v-on:click="preview()"]
         //i.fa.fa-save.right
-        a[href="javascript:void(0)"]: i.fa.fa-pencil>
-        strong vuejs基础用法
+        //a[href="javascript:void(0)"]: i.fa.fa-pencil>
+        a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
+        strong =@item.title
+        a[href="javascript:void(0)" v-show="isauthor"]: i.fa.fa-pencil<
         
 
-        a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
+        a.right[href="javascript:void(0)" v-on:click="switchAuto()" v-show="isauthor"]
           i.fa.fa-save>
           | 保存 
+
+        a.right[href="javascript:void(0)" v-on:click="fork()"]
+          i.fa.fa-code-fork>
+          | Fork 
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
           i.fa>[class="{{isauto ? 'fa-check-square' : 'fa-square-o'}}" ]
@@ -69,14 +75,25 @@
         iframe.code-preview#preview
         div.window-cover
 
-  
+  div#fork-wraper.modal-wraper
+    =form_tag '/code/fork',method: "get",id: 'inform'
+      div.panel.panel-default
+        div.panel-body
+          div.form-group
+            label 确认要Fork该代码吗？
 
+          div.form-group
+            a.btn.btn-default[href="/code/#{@item.id}/fork"] 确认
+    i.fa.fa-close.close-modal      
+  
   css:
     .container {
       width: 100%;
     }
   
-  //script[src="codemirror/lib/codemirror.js"]
+  javascript:
+    var codeAuthor = #{@item.mem.id}
+
   script[src="/codemirror/addon/edit/closetag.js"]
   script[src="/codemirror/addon/fold/xml-fold.js"]
   script[src="/codemirror/mode/javascript/javascript.js"]
