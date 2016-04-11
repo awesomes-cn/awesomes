@@ -40,14 +40,16 @@ function initEditor(id){
   
   // 初始化
   var editareaw = $(id).find('.code-editor').width()
-  console.log($(id).width())
+
+  var editareah = $(id).find('.code-editor').height()
+  
   var basew = parseInt(editareaw / 3)
-  var baseh = parseInt(($(id).height() - 40) * 0.4)
+  var baseh = parseInt((editareah - 40) * 0.4)
   editor.p1.w = basew + 'px'
   editor.p1.h = baseh + 'px'
   editor.p2.w = basew + 'px'
   editor.p3.w = (editareaw - basew * 2 - 5 * 2) + 'px'
-  editor.p4.h = (($(id).height() - 40) - baseh - 5) + 'px'
+  editor.p4.h = ((editareah - 40) - baseh - 5) + 'px'
 
 
   
@@ -226,9 +228,9 @@ function init_code(){
   
 
   setTimeout(function(){
-    //htmlCodeMirror.setValue(jsCon || _html);
-    //jsCodeMirror.setValue($("#jscon").html());
-    //cssCodeMirror.setValue($("#csscon").html());
+    htmlCodeMirror.setValue($('#code-html').val() || _html);
+    jsCodeMirror.setValue($("#code-js").val());
+    cssCodeMirror.setValue($("#code-css").val());
     editorVue.issaved = true
   }, 1)
 }

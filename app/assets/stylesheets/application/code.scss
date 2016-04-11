@@ -6,7 +6,7 @@
   .toolbar{
     height: 40px; border-bottom: #EEE 1px solid; padding:0 10px; line-height: 40px;
     & > a{
-       cursor: pointer;  text-decoration: none; margin-right: 10px;
+       cursor: pointer;  text-decoration: none; margin-right: 5px;
       &:visited, &:link{color: #BBB}
       &:hover, &:active{color: #444}
       &.right{
@@ -23,7 +23,7 @@
 
   .splitx{
     width: 5px; border: 0; float: left; border-left: #EEE 1px solid; cursor: move;
-    &:hover{ border-right: #DDD 1px dashed;}
+    &:hover{ border-left: #DDD 1px dashed;}
   }
   .splity{
     height: 5px; border: 0;  border-top: #EEE 1px solid; cursor: move;
