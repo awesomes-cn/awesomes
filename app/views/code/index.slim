@@ -26,12 +26,11 @@
         //a[href="javascript:void(0)"]: i.fa.fa-pencil>
         a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
         strong {{title}}
-        a[href="javascript:void(0)" v-show="isauthor" v-on:click="openInfo()"]: i.fa.fa-pencil<
+        a[href="javascript:void(0)" v-show="isauthor" v-on:click="openInfo()" title="编辑"]: i.fa.fa-pencil<
         
 
-        a.right[href="javascript:void(0)" v-on:click="switchAuto()" v-show="isauthor"]
-          i.fa.fa-save>
-          | 保存 
+        a<[href="javascript:void(0)"  v-show="isauthor && !issaved" title="保存" v-on:click="save(#{@item.id})"]
+          i.fa.fa-save
 
         a.right[href="javascript:void(0)" v-on:click="fork()"]
           i.fa.fa-code-fork>
@@ -54,19 +53,19 @@
         /   | 分享
 
       div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
-        textarea#code-html
+        textarea#code-html =@item.html
         span.online-label HTML
 
       div.splitx[v-on:mousedown="moveX($event, p1, p2)" v-bind:style="{height: p1.h}"]
 
       div.p2.unselect[v-bind:style="{width: p2.w, height: p1.h}"]
-        textarea#code-js
+        textarea#code-js =@item.js
         span.online-label JavaScript
 
       div.splitx[v-on:mousedown="moveX($event, p2, p3)" v-bind:style="{height: p1.h}"]
 
       div.p3[v-bind:style="{width: p3.w, height: p1.h}"]
-        textarea#code-css
+        textarea#code-css =@item.css
         span.online-label CSS
 
       div.clear
@@ -99,8 +98,12 @@
             div.form-group
               input[type="hidden" value="#{@item.id}" name="id"]
               button.btn.btn-default[type="submit"] 确认
-      i.fa.fa-close.close-modal      
+      i.fa.fa-close.close-modal
 
+  
+  script[type="text/html" id="csscon"] =raw @item.css
+  script[type="text/html" id="jscon"] =raw @item.js
+  script[type="text/html" id="htmlcon"] =raw @item.html
 
   css:
     .container {

@@ -10,7 +10,6 @@ $(function(){
 
   initCodeMirror()
 
-
 })
 
 
@@ -27,7 +26,8 @@ function initEditor(id){
       oy: 0,
       left: {w: 200, ow: 200, state: 'fold'},
       isauto: localStorage.autoruncode || false,
-      login: Rails.login
+      login: Rails.login,
+      issaved: true
 
     },
     computed: {
@@ -154,11 +154,19 @@ function initEditor(id){
       $('#info-wraper').show().animate({top: 0})
     }
   }
-
-  editor.openInfo = function(){
-    if(open_login()){
-      $('#info-wraper').show().animate({top: 0})
-    }
+  
+  // 保存
+  editor.save = function(id){
+    $.post("/code/save", {
+      css: cssCodeMirror.getValue(),
+      js: jsCodeMirror.getValue(),
+      html: htmlCodeMirror.getValue(),
+      id: id
+    }, function(data){
+      if (data.status) {
+        editorVue.issaved = true
+      };
+    })
   }
 
 
@@ -174,20 +182,21 @@ function initCodeMirror(){
 
   
   htmlCodeMirror.on("change", function(){
-    if (editorVue.isauto) {
-      run_code()
-    };
+    editorChangeHander()
   })
   cssCodeMirror.on("change", function(){
-    if (editorVue.isauto) {
-      run_code()
-    };
+    editorChangeHander()
   })
   jsCodeMirror.on("change", function(){
-    if (editorVue.isauto) {
-      run_code()
-    };
+    editorChangeHander()
   })
+}
+
+function editorChangeHander(){
+  editorVue.issaved = false
+  if (editorVue.isauto) {
+    run_code()
+  };
 }
 
 
@@ -215,10 +224,12 @@ function init_code(){
 <\/body>\n\
 <\/html>"; 
   
+
   setTimeout(function(){
-    htmlCodeMirror.setValue(_html);
-    jsCodeMirror.setValue('');
-    cssCodeMirror.setValue('');
+    //htmlCodeMirror.setValue(jsCon || _html);
+    //jsCodeMirror.setValue($("#jscon").html());
+    //cssCodeMirror.setValue($("#csscon").html());
+    editorVue.issaved = true
   }, 1)
 }
 

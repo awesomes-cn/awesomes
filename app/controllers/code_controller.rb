@@ -20,4 +20,13 @@ class CodeController < ApplicationController
     @item.update_attributes({:title=> params[:title]})
     render json: {status: true}
   end
+
+  def save
+    @item.update_attributes({
+      :js=> params[:js],
+      :css=> params[:css],
+      :html=> params[:html]
+    })
+    render json: {status: true}
+  end
 end

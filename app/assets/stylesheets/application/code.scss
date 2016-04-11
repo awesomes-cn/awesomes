@@ -6,7 +6,7 @@
   .toolbar{
     height: 40px; border-bottom: #EEE 1px solid; padding:0 10px; line-height: 40px;
     & > a{
-       cursor: pointer;  text-decoration: none;
+       cursor: pointer;  text-decoration: none; margin-right: 10px;
       &:visited, &:link{color: #BBB}
       &:hover, &:active{color: #444}
       &.right{
