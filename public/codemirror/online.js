@@ -26,12 +26,13 @@ function initEditor(id){
       ox: 0,
       oy: 0,
       left: {w: 200, ow: 200, state: 'fold'},
-      isauto: localStorage.autoruncode || false
+      isauto: localStorage.autoruncode || false,
+      login: Rails.login
 
     },
     computed: {
       isauthor: function () {
-        return Rails.mem.id == codeAuthor
+        return this.login.mem.id == codeAuthor
       }
     }
   })
@@ -146,7 +147,20 @@ function initEditor(id){
     }
     
   }
- 
+
+  // 打开修改标题框
+  editor.openInfo = function(){
+    if(open_login()){
+      $('#info-wraper').show().animate({top: 0})
+    }
+  }
+
+  editor.openInfo = function(){
+    if(open_login()){
+      $('#info-wraper').show().animate({top: 0})
+    }
+  }
+
 
   return editor
 }

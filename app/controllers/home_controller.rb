@@ -77,10 +77,14 @@ class HomeController < ApplicationController
         #redirect_to session[:login_callback] || '/mem'
         render json: {
           status: true,
-          mem: {
-            nc: _mem.nc,
-            id: _mem.id
+          login: {
+            status: true,
+            mem: {
+              nc: _mem.nc,
+              id: _mem.id
+            }
           }
+          
         } 
       }
     end
@@ -88,7 +92,7 @@ class HomeController < ApplicationController
 
   def logout
     session['mem'] = nil
-    redirect_to '/'
+    redirect_to request.referer
   end
 
   def find_pwd

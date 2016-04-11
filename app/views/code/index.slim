@@ -25,8 +25,8 @@
         //i.fa.fa-save.right
         //a[href="javascript:void(0)"]: i.fa.fa-pencil>
         a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
-        strong =@item.title
-        a[href="javascript:void(0)" v-show="isauthor"]: i.fa.fa-pencil<
+        strong {{title}}
+        a[href="javascript:void(0)" v-show="isauthor" v-on:click="openInfo()"]: i.fa.fa-pencil<
         
 
         a.right[href="javascript:void(0)" v-on:click="switchAuto()" v-show="isauthor"]
@@ -74,18 +74,34 @@
       div.p4[v-bind:style="{height: p4.h}"]
         iframe.code-preview#preview
         div.window-cover
-
-  div#fork-wraper.modal-wraper
-    =form_tag '/code/fork',method: "get",id: 'inform'
-      div.panel.panel-default
-        div.panel-body
-          div.form-group
-            label 确认要Fork该代码吗？
-
-          div.form-group
-            a.btn.btn-default[href="/code/#{@item.id}/fork"] 确认
-    i.fa.fa-close.close-modal      
   
+    // fork
+    div#fork-wraper.modal-wraper
+      =form_tag '/code/fork',method: "get",id: 'inform'
+        div.panel.panel-default
+          div.panel-body
+            div.form-group
+              label 确认要Fork该代码吗？
+
+            div.form-group
+              a.btn.btn-default[href="/code/#{@item.id}/fork"] 确认
+      i.fa.fa-close.close-modal      
+  
+    // 修改信息
+    div#info-wraper.modal-wraper
+      =form_tag '/code/info',method: "get",id: 'infoform'
+        div.panel.panel-default
+          div.panel-body
+            div.form-group
+              label 新的标题
+              input.form-control[type="text" name="title" v-model="title" value="#{@item.title}"]
+
+            div.form-group
+              input[type="hidden" value="#{@item.id}" name="id"]
+              button.btn.btn-default[type="submit"] 确认
+      i.fa.fa-close.close-modal      
+
+
   css:
     .container {
       width: 100%;
@@ -100,5 +116,20 @@
   //script[src="codemirror/mode/xml/xml.js"]
   script[src="/codemirror/mode/css/css.js"] 
   script[src="/codemirror/online.js"] 
-
+  
+  coffee:
+    $('#infoform').validate
+      rules:
+        title:
+          required: true
+       
+      messages:
+        title:
+          required: '标题不能为空'
+      
+      submitHandler: (form)->
+        $(form).ajaxSubmit
+          success: (data)->
+            if(data.status)
+              closeModal()
 

@@ -69,4 +69,18 @@ module ApplicationHelper
     params[:action] == action ? 'active' : ''
   end
 
+  def login_status
+    _mem = {nc: nil, id: nil}
+    if is_login
+      _mem = {
+        nc: current_mem.nc,
+        id: current_mem.id
+      }
+    end
+    {
+      status: is_login,
+      mem: _mem
+    }
+  end
+
 end

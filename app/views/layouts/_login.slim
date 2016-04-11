@@ -16,7 +16,7 @@ div.login-wraper.modal-wraper
             a[href="/find_pwd"] （#{t('mem.forgot_pwd')}）
           input.form-control[type="password" name="pwd"]
 
-        div.form-group[v-show="login.action == 'signup'"]
+        div.form-group[v-show="action.typ == 'signup'"]
           label =t('mem.nc')
           input.form-control[type="text" name="nc"]
 
@@ -25,7 +25,7 @@ div.login-wraper.modal-wraper
           button.btn.btn-default =t('mem.login')
         
         
-        div.alert.alert-danger[v-show="login.tip"] {{login.tip}}
+        div.alert.alert-danger[v-show="action.tip"] {{action.tip}}
   
   i.fa.fa-close.close-modal
   
@@ -34,19 +34,24 @@ div.login-wraper.modal-wraper
       window.app = new Vue({
         el: "header.navbar",
         data:{
-          login: {
-            status: #{is_login},
-            action: 'signin',
-            tip: null,
-            mem: {
-              nc: '#{is_login ? current_mem.nc : ''}'
-            }
+          login: Rails.login,
+          action: {
+            typ: 'signin',
+            tip: null
           }
+          //login: {
+          //  status: #{is_login},
+          //  action: 'signin',
+          //  tip: null,
+          //  mem: {
+          //    nc: '#{is_login ? current_mem.nc : ''}'
+          //  }
+          //}
         },
         methods:{
           check_act: function(){
             $.post('/mem/ckemail', {email: app.email}, function(data){
-              app.login.action = (data ? 'signin' : 'signup')
+              app.action.typ = (data ? 'signin' : 'signup')
             })
           }
         }
@@ -86,13 +91,17 @@ div.login-wraper.modal-wraper
         $(form).ajaxSubmit
           success: (data)->
             if(data.status)
-              app.login.status = true
-              app.login.mem = data.mem.nc
-              Rails.islogin = true
-              Rails.mem.id = data.mem.id
+              #app.login.status = true
+              #app.login.mem = data.mem.nc
               close_login()
+
+              Rails.login = data.login
+              app.login = data.login
+              
+              if(editorVue)
+                editorVue.login = data.login
             else
-              app.login.tip = data.notice
+              app.action.tip = data.notice
              
         
   

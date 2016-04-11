@@ -26,7 +26,7 @@ $(function(){
 
 
 function open_login(){
-  if (!Rails.islogin) {
+  if (!Rails.login.status) {
     //window.location.href="/login"
     $('.login-wraper').show().animate({top: 0})
     return false
@@ -37,6 +37,13 @@ function open_login(){
 
 function close_login(){
   $('.login-wraper').animate({top: '-100%'}, function(){
+    $(this).hide()
+  })
+}
+
+// 关闭弹框
+function closeModal(ele){
+  $('.modal-wraper').animate({top: '-100%'}, function(){
     $(this).hide()
   })
 }
