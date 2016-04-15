@@ -2,18 +2,41 @@ class CodeController < ApplicationController
   before_filter :code_lost 
 
   def code_lost
+    @is_new = false
     @item = Code.find_by_id(params[:id])
+    if !@item
+      @item = Code.new
+      @item.mem = current_mem
+      @item.title = "未命名"
+      @repo = Repo.find_by_id(params[:rid]) 
+      @is_author = !current_mem.nil?
+      @is_new = true
+    else
+      @repo = @item.repo
+      @is_author = (current_mem and @item.mem_id == current_mem.id)
+    end
+    
   end
 
   def index
-    @repo = @item.repo
+    if @repo
+      @relateds = @repo.codes.where({:status=> 'ACTIVED'})
+    end
   end
 
   def fork
     _item = @item.dup
     _item.mem_id = current_mem.id
+    _item.status = 'NORMAL'
     _item.save
-    redirect_to "/code/#{_item.id}"
+    if params[:typ] == 'new'
+      _item.update_attributes({
+        :js=> params[:js],
+        :css=> params[:css],
+        :html=> params[:html]
+      })
+    end
+    render json: {status: true, id: _item.id}
   end
 
   def info
@@ -22,11 +45,28 @@ class CodeController < ApplicationController
   end
 
   def save
+    render json: {status: false} and return if @item.mem_id != current_mem.id
     @item.update_attributes({
       :js=> params[:js],
       :css=> params[:css],
       :html=> params[:html]
     })
-    render json: {status: true}
+
+    if @is_new
+      @item.update_attributes({:repo_id=> params[:rid], :title=> params[:title]})
+    end
+    
+
+    render json: {status: true, id: @item.id}
+  end
+
+  def relate
+    render json: {status: false, ok: ''} and return if @item.mem_id != current_mem.id
+    _repo = params[:repo].split('/')
+    @repo = Repo.find_by({:owner=> _repo[0], :alia=> _repo[1]})
+    if @repo
+      @item.update_attributes({:repo_id=> @repo.id})
+    end
+    render json: {status: !@repo.nil?}
   end
 end

@@ -29,11 +29,6 @@ function initEditor(id){
       login: Rails.login,
       issaved: true
 
-    },
-    computed: {
-      isauthor: function () {
-        return this.login.mem.id == codeAuthor
-      }
     }
   })
 
@@ -142,31 +137,38 @@ function initEditor(id){
     localStorage.autoruncode = editor.isauto
   }
 
-  //fork
-  editor.fork = function(){
+  editor.fork = function(typ){
     if(open_login()){
-      $('#fork-wraper').show().animate({top: 0})
+      $.post('/code/fork', {
+        id: itemid,
+        css: cssCodeMirror.getValue(),
+        js: jsCodeMirror.getValue(),
+        html: htmlCodeMirror.getValue(),
+        typ: typ
+      }, function(data) {
+        if (data.status) {
+          window.location.href="/code/" + data.id
+        }
+      })
     }
-    
   }
 
-  // 打开修改标题框
-  editor.openInfo = function(){
-    if(open_login()){
-      $('#info-wraper').show().animate({top: 0})
-    }
-  }
   
   // 保存
-  editor.save = function(id){
+  editor.save = function(){
     $.post("/code/save", {
       css: cssCodeMirror.getValue(),
       js: jsCodeMirror.getValue(),
       html: htmlCodeMirror.getValue(),
-      id: id
+      id: itemid,
+      rid: rid,
+      title: editor.title
     }, function(data){
       if (data.status) {
         editorVue.issaved = true
+        if (isnew) {
+          window.location.href='/code/' + data.id 
+        }
       };
     })
   }
@@ -231,7 +233,8 @@ function init_code(){
     htmlCodeMirror.setValue($('#code-html').val() || _html);
     jsCodeMirror.setValue($("#code-js").val());
     cssCodeMirror.setValue($("#code-css").val());
-    editorVue.issaved = true
+    editorVue.issaved = !isnew
+
   }, 1)
 }
 

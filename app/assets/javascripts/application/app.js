@@ -2,11 +2,13 @@ $(function(){
   $(".open-login").click(function(){
     return open_login();
   })
+
   $(".close-modal").click(function(){
     $(this).closest('.modal-wraper').animate({top: '-100%'}, function(){
       $(this).hide()
     })
   })
+
   $("pre").each(function(){
     var pre = $(this);
     var _lang = pre.attr('lang');
@@ -15,18 +17,26 @@ $(function(){
     }
     pre.find('code').attr('class',"language-"+_lang);
   })
+
   Prism.highlightAll();
   
   $("article table").each(function(){
     $(this).attr('class','table');
   }) 
+
+  // 打开弹框
+  $(".open-login-modal").click(function(){
+    if(open_login()){
+      $('.modal-wraper[data-modal=' + $(this).attr('data-modal') + ']').show().animate({top: 0})
+    }
+  })
   
 })
 
 
 
 function open_login(){
-  if (!Rails.login.status) {
+  if (!Rails.islogin) {
     //window.location.href="/login"
     $('.login-wraper').show().animate({top: 0})
     return false
@@ -40,6 +50,7 @@ function close_login(){
     $(this).hide()
   })
 }
+
 
 // 关闭弹框
 function closeModal(ele){

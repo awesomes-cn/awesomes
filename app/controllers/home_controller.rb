@@ -78,11 +78,7 @@ class HomeController < ApplicationController
         render json: {
           status: true,
           login: {
-            status: true,
-            mem: {
-              nc: _mem.nc,
-              id: _mem.id
-            }
+            status: true
           }
           
         } 

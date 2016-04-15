@@ -12,11 +12,11 @@ javascript:
     access_path: function(folder){
       return this.config.source_access_path + folder + '/';
     },
-    //mem: {
-    //  id: #{session[:mem] || 'null'}
-    //},
-    //islogin: #{is_login},
-    login: #{(raw login_status.to_json)}
+    mem: {
+      id: #{session[:mem] || 'null'}
+    },
+    islogin: #{is_login},
+    //login: #{(raw login_status.to_json)}
 
   };
 

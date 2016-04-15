@@ -7,34 +7,44 @@
         span.fold[v-on:click="switchLeft($event)"]
           i.fa.fa-angle-left
         div.inner-out
-          div.repo  
-            a[href="#{@repo.link_url}" target="_blank"]
-              img.cover[src='#{repo_cover_path @repo.cover}']
-              h4 =@repo.name
-          ul
-            -10.times
-              li
-                a[href="#"]
-                  i.fa.fa-angle-right>
-                  | 基本用法
-
+          -if @repo
+            div.repo  
+              a[href="#{@repo.link_url}" target="_blank"]
+                img.cover[src='#{repo_cover_path @repo.cover}']
+                h4 =@repo.name
+            ul
+              -@relateds.each do |item|
+                li
+                  a[href="/code/#{item.id}"]
+                    i.fa.fa-angle-right>
+                    | #{item.title}
+          
+          -else
+            -if @is_author
+              button.btn.btn-default.open-login-modal[data-modal="relation"] 尚未关联前端库
+            -else
+              button.btn.btn-default.open-login[disabled] 尚未关联前端库
 
     div.code-editor
       div.toolbar
-        //i.fa.fa-play[v-on:click="preview()"]
-        //i.fa.fa-save.right
-        //a[href="javascript:void(0)"]: i.fa.fa-pencil>
-        a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
+        -if @item.mem
+          a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
+        -else
+          a.open-login[href="#"] [未登录]
+
         strong {{title}}
-        a[href="javascript:void(0)" v-show="isauthor" v-on:click="openInfo()" title="编辑"]: i.fa.fa-pencil<
+
+        -if @is_author
+          a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
         
-
-        a<[href="javascript:void(0)"  v-show="isauthor && !issaved" title="保存" v-on:click="save(#{@item.id})"]
-          i.fa.fa-save
-
-        a.right[href="javascript:void(0)" v-on:click="fork()"]
-          i.fa.fa-code-fork>
-          | Fork 
+        
+          a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
+            i.fa.fa-save
+        
+        -if !@is_new
+          a.right.open-login-modal[href="javascript:void(0)" data-modal="fork"]
+            i.fa.fa-code-fork>
+            | Fork 
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
           i.fa>[class="{{isauto ? 'fa-check-square' : 'fa-square-o'}}" ]
@@ -75,19 +85,21 @@
         div.window-cover
   
     // fork
-    div#fork-wraper.modal-wraper
+    div#fork-wraper.modal-wraper[data-modal="fork"]
       =form_tag '/code/fork',method: "get",id: 'inform'
         div.panel.panel-default
           div.panel-body
             div.form-group
-              label 确认要Fork该代码吗？
+              a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
+              a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
 
             div.form-group
-              a.btn.btn-default[href="/code/#{@item.id}/fork"] 确认
+              span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
+
       i.fa.fa-close.close-modal      
   
     // 修改信息
-    div#info-wraper.modal-wraper
+    div.modal-wraper[data-modal="info"]
       =form_tag '/code/info',method: "get",id: 'infoform'
         div.panel.panel-default
           div.panel-body
@@ -99,7 +111,23 @@
               input[type="hidden" value="#{@item.id}" name="id"]
               button.btn.btn-default[type="submit"] 确认
       i.fa.fa-close.close-modal
-
+    
+    // 关联库
+    div.modal-wraper[data-modal="relation"]
+      =form_tag '/code/relate',method: "get",id: 'repoform'
+        div.panel.panel-default
+          div.panel-body
+            div.form-group
+              label 请输入前端库名
+              p 取每个库的地址后面的两个单词
+              span 如：https://www.awesomes.cn/repo/
+              code jquery/jquery
+              input.form-control[type="text" name="repo" placeholder="jquery/jquery"]
+            div.form-group  
+              input[type="hidden" value="#{@item.id}" name="id"]
+              button.btn.btn-default[type="submit"] 确认关联
+            div.alert.alert-danger.hide 关联失败，确认存在该库且格式正确
+      i.fa.fa-close.close-modal      
 
   css:
     .container {
@@ -107,7 +135,9 @@
     }
   
   javascript:
-    var codeAuthor = #{@item.mem.id}
+    var isnew = #{@is_new}
+    var rid = #{@repo ? @repo.id : 0}
+    var itemid = #{@item.id || 0}
 
   script[src="/codemirror/addon/edit/closetag.js"]
   script[src="/codemirror/addon/fold/xml-fold.js"]
@@ -131,4 +161,22 @@
           success: (data)->
             if(data.status)
               closeModal()
+
+    $('#repoform').validate
+      rules:
+        repo:
+          required: true
+       
+      messages:
+        repo:
+          required: '库名不能为空'
+      
+      submitHandler: (form)->
+        $(form).ajaxSubmit
+          success: (data)->
+            if(data.status)
+              window.location.reload()
+              closeModal()
+            else
+              $('#repoform').find('.alert').show()
 

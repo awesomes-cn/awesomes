@@ -11,6 +11,8 @@ class CreateCodes < ActiveRecord::Migration[5.0]
       t.text :js
       t.text :html
 
+      t.string :status, :default=> 'NORMAL'
+
       t.timestamps
     end
   end
