@@ -92,24 +92,24 @@ function initEditor(id){
   
 
   // 切换侧栏 折叠 / 展开  
-  editor.switchSideBar = function(event, direction){
+  editor.switchSideBar = function(bar, direction){
     var field = direction == 'left' ? editor.left : editor.right
     if(field.state == 'ing') return 
 
-    var outer = $(event.target).closest('.side-bar')
+    var outer = $(bar)
     var relatep = direction == 'left' ? editor.p1 : editor.p3
 
     
     var param = {
       // 折叠
       fold: {
-        distance: field.w - 20, 
+        distance: field.w, 
         state: 'open'
 
       },
       // 展开
       open: {
-        distance: 20 - field.w, 
+        distance: - field.w, 
         state: 'fold'
 
       },

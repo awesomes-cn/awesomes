@@ -4,9 +4,8 @@
   div.code-outer#code-wraper
 
     // -左侧信息栏
-    div.side-bar.left-bar[v-bind:style="{width: left.w}"]
+    div.side-bar#left-bar[v-bind:style="{width: left.w}"]
       div.inner-bar
-        i.fa.fa-bars.fold-btn[v-on:click="switchSideBar($event, 'left')"]
         div.inner-out
           -if @repo
             div.repo  
@@ -29,12 +28,16 @@
     // 编辑器
     div.code-editor
       div.toolbar
+        i.fa.fa-bars.fold-btn>[v-on:click="switchSideBar('#left-bar', 'left')"]
+
         -if @item.mem
           a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
         -else
           a.open-login[href="#"] [未登录]
 
         strong {{title}}
+        
+        i.fa.fa-bars.fold-btn.right<>[v-on:click="switchSideBar('#toolbox', 'right')"]
 
         -if @is_author
           a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
@@ -47,6 +50,7 @@
           a.right.open-login-modal[href="javascript:void(0)" data-modal="fork"]
             i.fa.fa-code-fork>
             | Fork 
+
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
           i.fa>[class="{{isauto ? 'fa-check-square' : 'fa-square-o'}}" ]
@@ -87,8 +91,7 @@
         div.window-cover
     
     // 右侧工具栏
-    div.side-bar.toolbox[v-bind:style="{width: right.w}"]
-      i.fa.fa-bars.fold-btn[v-on:click="switchSideBar($event, 'right')"]
+    div.side-bar#toolbox[v-bind:style="{width: right.w}"]
       div.inner-out
         div.search
           input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]

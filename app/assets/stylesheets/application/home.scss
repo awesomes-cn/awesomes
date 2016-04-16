@@ -211,7 +211,7 @@
 // 在线编码
 .code-outer{
   width: 100%; padding: 20px; padding-top: 0; position: relative; padding-left: 220px; overflow: hidden; padding-right: 220px;
-  .left-bar{
+  #left-bar{
     width: 200px; height: 700px; position: absolute; left: 20px; top: 0; border: #EEE 2px solid; border-right: 0;
     .repo{
       text-align:center; margin-bottom: 20px;
@@ -236,7 +236,7 @@
     display: inline-block; width: 20px; height: 60px; top: 40%; background-color: #DDD; position: absolute; right: 0;
     text-align: center; line-height: 60px; cursor: pointer; opacity: 0.5; z-index: 100;
   }
-  .toolbox{
+  #toolbox{
     width: 200px; height: 700px;  position: absolute;  right: 20px;  top: 0;
     border: #EEE 2px solid;  border-left: 0;
     .search{
