@@ -136,4 +136,16 @@ class ApplicationController < ActionController::Base
     des.update(str) + des.final  
   end  
 
+  def sub_directories path
+    require 'find'
+    Dir.chdir path
+    Dir["*"].reject{|o| not File.directory?(o)}
+  end
+
+  def sub_files path
+    require 'find'
+    Dir.chdir path
+    Dir.glob("*.*")
+  end
+
 end

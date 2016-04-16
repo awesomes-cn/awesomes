@@ -210,7 +210,7 @@
 
 // 在线编码
 .code-outer{
-  width: 100%; padding: 20px; padding-top: 0; position: relative; padding-left: 220px; overflow: hidden;
+  width: 100%; padding: 20px; padding-top: 0; position: relative; padding-left: 220px; overflow: hidden; padding-right: 220px;
   .left-bar{
     width: 200px; height: 700px; position: absolute; left: 20px; top: 0; border: #EEE 2px solid; border-right: 0;
     .repo{
@@ -227,12 +227,43 @@
       a:link, a:visited{color: #777; }
       a:hover, a:active{color: #333; }
     }
+    .inner-out{padding: 20px;}
+    
   }
   .inner-bar{position: relative; width: 100%; height: 100%;}
-  .inner-out{padding: 20px;}
+  
   .fold{
     display: inline-block; width: 20px; height: 60px; top: 40%; background-color: #DDD; position: absolute; right: 0;
-    text-align: center; line-height: 60px; cursor: pointer; opacity: 0.5
+    text-align: center; line-height: 60px; cursor: pointer; opacity: 0.5; z-index: 100;
+  }
+  .toolbox{
+    width: 200px; height: 700px;  position: absolute;  right: 20px;  top: 0;
+    border: #EEE 2px solid;  border-left: 0;
+    .search{
+      border-bottom: #EEE 1px solid; padding-right: 20px;
+     
+      .txt{
+        width: 100%; outline: none;    padding: 7px 10px;  border: 0;
+      }
+    }
+
+    
+    
+    ul{
+      margin: 0; padding: 0;
+      li{
+        list-style: none; display: block; padding: 0px 10px; 
+        &.level-1{
+          padding: 5px 10px;border-bottom: #F5F5F5 1px solid; cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .side-bar{
+    .fold-btn{
+      position: absolute; font-size: 12px; top: 12px; right: 5px;  color: #DDD;cursor: pointer;
+    }
   }
 }
 

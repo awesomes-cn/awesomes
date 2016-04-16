@@ -1,11 +1,12 @@
 =content_for :banner
   link[rel="stylesheet" type="text/css" href="/codemirror/lib/codemirror.css"]
-  
+
   div.code-outer#code-wraper
-    div.left-bar[v-bind:style="{width: left.w}"]
+
+    // -左侧信息栏
+    div.side-bar.left-bar[v-bind:style="{width: left.w}"]
       div.inner-bar
-        span.fold[v-on:click="switchLeft($event)"]
-          i.fa.fa-angle-left
+        i.fa.fa-bars.fold-btn[v-on:click="switchSideBar($event, 'left')"]
         div.inner-out
           -if @repo
             div.repo  
@@ -20,11 +21,12 @@
                     | #{item.title}
           
           -else
-            -if @is_author
+            -if @is_author and !@is_new
               button.btn.btn-default.open-login-modal[data-modal="relation"] 尚未关联前端库
             -else
               button.btn.btn-default.open-login[disabled] 尚未关联前端库
-
+      
+    // 编辑器
     div.code-editor
       div.toolbar
         -if @item.mem
@@ -48,7 +50,7 @@
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
           i.fa>[class="{{isauto ? 'fa-check-square' : 'fa-square-o'}}" ]
-          | 自动运行
+          | 实时预览
         
         a.right[href="javascript:void(0)" v-on:click="preview()"]
           i.fa.fa-play>
@@ -83,7 +85,28 @@
       div.p4[v-bind:style="{height: p4.h}"]
         iframe.code-preview#preview
         div.window-cover
-  
+    
+    // 右侧工具栏
+    div.side-bar.toolbox[v-bind:style="{width: right.w}"]
+      i.fa.fa-bars.fold-btn[v-on:click="switchSideBar($event, 'right')"]
+      div.inner-out
+        div.search
+          input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]
+        ul
+          li.level-1[v-for="item in libs" v-on:click='getLibVersions(item)']
+            | {{item.name}}
+            ul
+              li.level-2[v-for="v in item.versions" v-on:click='getLibFiles(item, v)'] 
+                i.fa.fa-angle-right>
+                | {{v.name}}
+
+                ul
+                  li.level-3[v-for="file in v.files" v-on:click="insertAsset(item, v, file)"]
+                    i.fa.fa-caret-right>
+                    | {{file}}
+
+
+
     // fork
     div#fork-wraper.modal-wraper[data-modal="fork"]
       =form_tag '/code/fork',method: "get",id: 'inform'
@@ -126,7 +149,7 @@
             div.form-group  
               input[type="hidden" value="#{@item.id}" name="id"]
               button.btn.btn-default[type="submit"] 确认关联
-            div.alert.alert-danger.hide 关联失败，确认存在该库且格式正确
+            div.alert.alert-danger[style="display: none"] 关联失败，确认存在该库且格式正确
       i.fa.fa-close.close-modal      
 
   css:

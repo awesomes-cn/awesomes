@@ -25,9 +25,12 @@ function initEditor(id){
       ox: 0,
       oy: 0,
       left: {w: 200, ow: 200, state: 'fold'},
+      right: {w: 200, ow: 200, state: 'fold'},
       isauto: localStorage.autoruncode || false,
       login: Rails.login,
-      issaved: true
+      issaved: true,
+      libs: [],
+      libkey: ''
 
     }
   })
@@ -88,48 +91,54 @@ function initEditor(id){
   }
   
 
-  // 切换左侧栏 折叠 / 展开
-  editor.switchLeft = function(event){
-    if(editor.left.state == 'ing') return 
+  // 切换侧栏 折叠 / 展开  
+  editor.switchSideBar = function(event, direction){
+    var field = direction == 'left' ? editor.left : editor.right
+    if(field.state == 'ing') return 
+
+    var outer = $(event.target).closest('.side-bar')
+    var relatep = direction == 'left' ? editor.p1 : editor.p3
+
     
     var param = {
       // 折叠
       fold: {
-        distance: editor.left.w - 20,
-        icon: 'fa-angle-right',
+        distance: field.w - 20, 
         state: 'open'
 
       },
       // 展开
       open: {
-        distance: 20 - editor.left.w,
-        icon: 'fa-angle-left',
+        distance: 20 - field.w, 
         state: 'fold'
 
       },
-    }[editor.left.state] 
+    }[field.state] 
 
 
     var distance = param.distance
-    if (editor.left.state == 'open') {
-      editor.p3.w = parseInt(editor.p3.w) + distance + 'px' 
+    if (field.state == 'open') {
+      relatep.w = parseInt(relatep.w) + distance + 'px' 
     }else{
-      $(id).find('.inner-out').fadeOut()
+      outer.find('.inner-out').fadeOut()
     }
-    editor.left.state = 'ing'
+    field.state = 'ing'
     
-    $(id).find('.left-bar').animate({width: '-=' + distance})
-    $(id).animate({paddingLeft: '-=' + distance}, function(){ 
-      $(event.target).find('i').attr('class', 'fa ' + param.icon)
-      editor.left.state = param.state
-      if (editor.left.state == 'open') {
-        editor.p3.w = parseInt(editor.p3.w) + distance + 'px'
+    outer.animate({width: '-=' + distance})
+    var ani = direction == 'left' ? {paddingLeft: '-=' + distance} : {paddingRight: '-=' + distance}
+    $(id).animate(ani, function(){ 
+      field.state = param.state
+      if (field.state == 'open') {
+        relatep.w = parseInt(relatep.w) + distance + 'px'
       }else{
-        $(id).find('.inner-out').fadeIn()
+        outer.find('.inner-out').fadeIn()
       }
     })
    
   }
+  
+  
+
 
   // 切换自动运行
   editor.switchAuto = function(){
@@ -172,6 +181,39 @@ function initEditor(id){
       };
     })
   }
+
+
+  // 获取CDN库
+  editor.getLibs = function(){
+    $.get('/code/libs', {libkey: editor.libkey}, function(data){
+      editor.libs = data.items;
+    })
+  }
+
+  editor.getLibVersions = function(lib){
+    if (lib.versions.length > 0) {return};
+    $.get('/code/libversions', {lib: lib.name}, function(data){
+      lib.versions = data.items
+    })
+  }
+
+  editor.getLibFiles = function(lib, version){
+    $.get('/code/libfiles', {lib: lib.name, v: version.name}, function(data){
+      version.files = data.items
+    })
+  }
+
+  editor.insertAsset = function(lib, version, file){
+    var link =  lib.name + '/' + version.name + '/' + file;
+    var srclink = '<script src="/sandbox/' + link + '"></script>';
+    if (/.+\.css$/.test(link)) {
+      srclink = '<link rel="stylesheet" media="all" href="/sandbox/' + link + '" />'
+    };
+    
+    htmlCodeMirror.setValue(htmlCodeMirror.getValue().replace(/(\s+)(<\/head>)/,'$1  ' + srclink + '$1$2'));
+  }
+
+  editor.getLibs();
 
 
   return editor

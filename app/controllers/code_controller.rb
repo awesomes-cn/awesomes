@@ -61,12 +61,35 @@ class CodeController < ApplicationController
   end
 
   def relate
-    render json: {status: false, ok: ''} and return if @item.mem_id != current_mem.id
+    render json: {status: false} and return if @item.mem_id != current_mem.id
     _repo = params[:repo].split('/')
     @repo = Repo.find_by({:owner=> _repo[0], :alia=> _repo[1]})
     if @repo
       @item.update_attributes({:repo_id=> @repo.id})
     end
     render json: {status: !@repo.nil?}
+  end
+
+  def libs
+    _packages = sub_directories "#{Rails.root.to_s}/public/sandbox/"
+    _items = _packages.select{|item|
+      item.start_with?(params[:libkey]) 
+    }.map{|item|
+      {name: item, versions: []}
+    }
+    render json: {items: _items[0..50]}  
+  end
+
+  def libversions
+    _packages = sub_directories  "#{Rails.root.to_s}/public/sandbox/#{params[:lib]}/"
+    _items = _packages.map { |item|
+      {name: item, files: []}
+    }
+    render json: {items: _items}  
+  end
+
+  def libfiles
+    _packages = sub_files  "#{Rails.root.to_s}/public/sandbox/#{params[:lib]}/#{params[:v]}/"
+    render json: {items: _packages}  
   end
 end
