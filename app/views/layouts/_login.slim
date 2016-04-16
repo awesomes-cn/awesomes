@@ -31,8 +31,8 @@ div.login-wraper.modal-wraper
   
   javascript:
     $(function(){
-      window.app = new Vue({
-        el: "header.navbar",
+      app = new Vue({
+        el: ".login-wraper",
         data:{
           login: Rails.login,
           action: {

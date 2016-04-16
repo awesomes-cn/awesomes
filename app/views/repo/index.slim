@@ -87,6 +87,12 @@
     $ ()->
       repovue = new Vue
         el: ".view-wraper"
+        methods:
+          switch: (la)->
+            repovue.lang = la 
+
+      bannerVue = new Vue
+        el: '.repo-banner'
         data:
           ismark: false
           markcount: source_item.mark
@@ -95,15 +101,14 @@
             typ: 'REPO'
             idcd: source_item.id
         methods:
-          switch: (la)->
-            repovue.lang = la 
           init: ()->
             if Rails.islogin
-              $.post "/oper/whether",repovue.para,(data)->
-                repovue.ismark =  data
+              $.post "/oper/whether",bannerVue.para,(data)->
+                bannerVue.ismark =  data   
+
           mark: ()->
-            $.post "/oper/update",repovue.para,(data)->
-              repovue.ismark =  data.state
-              repovue.markcount = data.count
-      
-      repovue.init()
+            $.post "/oper/update",bannerVue.para,(data)->
+              bannerVue.ismark =  data.state
+              bannerVue.markcount = data.count   
+
+       bannerVue.init()           
