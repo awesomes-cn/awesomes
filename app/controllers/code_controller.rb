@@ -1,16 +1,23 @@
 class CodeController < ApplicationController
-  before_filter :code_lost 
+  before_filter :code_lost, :except=> ['libs', 'libversions', 'libfiles'] 
 
   def code_lost
     @is_new = false
     @item = Code.find_by_id(params[:id])
     if !@item
-      @item = Code.new
-      @item.mem = current_mem
-      @item.title = "未命名"
       @repo = Repo.find_by_id(params[:rid]) 
-      @is_author = !current_mem.nil?
-      @is_new = true
+      if @repo
+        @item = @repo.default_code
+      end
+
+      if !@item
+        @item = Code.new
+        @item.mem = current_mem
+        @item.title = "未命名"
+
+        @is_author = !current_mem.nil?
+        @is_new = true
+      end
     else
       @repo = @item.repo
       @is_author = (current_mem and @item.mem_id == current_mem.id)

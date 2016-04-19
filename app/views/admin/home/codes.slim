@@ -1,0 +1,38 @@
+-content_for :menu
+  =render 'pub_bar'
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th[width="100"] #
+        th 代码名
+        th 作者
+        th 关联库
+        th 创建时间
+        th 状态
+        th 操作  
+    tbody 
+      tr[v-for="item in items" class="recsts{{item.recsts}}" ]
+        td {{item.id}}
+        td: a[href='/code/{{item.id}}' target='_blank'] {{item.title}} 
+        td: a[href='/mem/{{item.mem_id}}' target='_blank'] {{item.mem.nc}} 
+        td: a[href='{{item.repo.link_url}}' target='_blank'] {{item.repo.name}}
+        td {{item.created_at}}
+        td: a[href='#' v-on:click="switchState(item)" class="{{item.status}}"] {{item.status == 'ACTIVED' ? '公开' : '私有'}}
+        td
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+  div#pagenation
+  input#menubar[type="hidden" value="codes"] 
+
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'code'
+      app.switchState = (item)=> 
+        $.post '/admin/code/' +  item.id + '/switch', (data)=> 
+          item.status = data.result

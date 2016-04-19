@@ -50,7 +50,11 @@ class Admin::HomeController < AdminController
     adminlists Adposition,[:name,:key]
   end
 
-   def links
+  def links
     adminlists Link,[:name,:url,:order]
+  end
+
+  def codes
+    adminlists Code,[:title,:status,:mem_id,:repo_id], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
   end
 end

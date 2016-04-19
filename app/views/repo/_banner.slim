@@ -1,36 +1,39 @@
 div.repo-banner
-  =render "crumbs"
-  div.repo-title
-    h1 =@item.name.capitalize 
-    p =@item.description
-  div.menu.hidden-xs
-    a[href="#{@item.homepage}"  target="_blank"]
-      i.fa.fa-home>
-      | 官 网 
-    a.download[href="https://api.github.com/repos/#{@item.full_name}/zipball"  target="_blank" title="下载 ZIP"]
-      i.fa.fa-cloud-download
-    a.gitbtn[href="#{@item.html_url}" target="_blank"]
-      i.fa.fa-github>
-      | Github 
+  div.inner
+    =render "crumbs"
+    div.repo-title
+      h1 =@item.name.capitalize 
+      p =@item.description
+    div.menu.hidden-xs
+      a[href="#{@item.homepage}"  target="_blank"]
+        i.fa.fa-home>
+        | 官 网 
+      a.download[href="https://api.github.com/repos/#{@item.full_name}/zipball"  target="_blank" title="下载 ZIP"]
+        i.fa.fa-cloud-download
+      a.gitbtn[href="#{@item.html_url}" target="_blank"]
+        i.fa.fa-github>
+        | Github  
+   
+    div.params.hidden-xs
+      div[title="星标数量" style="border-left: 0"]
+        i.fa.fa-star>
+        span =@item.stargazers_count
+      div[title="最后更新时间"]
+        i.fa.fa-clock-o>
+        span =@item.friendly_time
+      div[title="Fork数量"]
+        i.fa.fa-code-fork>
+        span =@item.forks_count
+      /div[title="关注数量"]
+      /  i.fa.fa-eye>
+      /  span =@item.subscribers_count
+      div[title="issue 响应速度"]
+        i.fa.fa-exclamation-circle>
+        span =@item.issue_friendly
+      
+    a.run-code.hidden-xs[href="/code?rid=#{@item.id}"]
+      i.fa.fa-terminal
 
-
- 
-  div.params.hidden-xs
-    div[title="星标数量" style="border-left: 0"]
-      i.fa.fa-star>
-      span =@item.stargazers_count
-    div[title="最后更新时间"]
-      i.fa.fa-clock-o>
-      span =@item.friendly_time
-    div[title="Fork数量"]
-      i.fa.fa-code-fork>
-      span =@item.forks_count
-    /div[title="关注数量"]
-    /  i.fa.fa-eye>
-    /  span =@item.subscribers_count
-    div[title="issue 响应速度"]
-      i.fa.fa-exclamation-circle>
-      span =@item.issue_friendly
 
   div#repot_rend
 

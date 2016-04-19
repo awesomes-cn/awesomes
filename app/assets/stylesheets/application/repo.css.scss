@@ -230,8 +230,11 @@
 
 .repo-banner{
   border-bottom: #EEE 1px solid; padding: 30px 0;  padding-top: 0px; position: relative;
+  .inner{
+     max-width: 1000px;  margin: 0 auto; position: relative;
+  }
   .repo-title{
-    text-align: center;  max-width: 1000px;  margin: 0 auto;
+     text-align: center;
     a{text-decoration: none; color: #333;}
   }
   .menu{
@@ -281,5 +284,12 @@
   #repot_rend{
     position: absolute; bottom: 0; z-index: -1;  height: 200px;
   }
-  
+
+
+  .run-code{
+    display: inline-block;  background-color: #848484;; position: absolute; right: 0; 
+    color: #FFF; border-radius: 100%; width: 45px; height: 45px;  text-align: center; line-height: 35px;
+    border: #DDD 5px solid;  bottom: 50px; 
+  }
+
 }

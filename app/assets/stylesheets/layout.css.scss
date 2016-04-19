@@ -174,7 +174,10 @@ border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
   }
 }
 
-.CodeMirror{font-family: 'lucida grande', 'lucida sans unicode', lucida, helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif!important}
+.CodeMirror{
+  font-family: 'Source Code Pro', Consolas, 'Lucida Console', Courier, monospace!important;
+  font-size: 15px;
+}
 //- markdown 编辑器
 .markdown-wraper{
   overflow: hidden;  height: 100%; position: relative;

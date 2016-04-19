@@ -74,4 +74,8 @@ class Repo < ActiveRecord::Base
       :typcd_zh=>  Menutyp.menu_b(typcd, rootyp).sdesc
     })
   end
+
+  def default_code
+    codes.where({:status=> 'ACTIVED'}).first
+  end
 end
