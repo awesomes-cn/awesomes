@@ -69,19 +69,22 @@
         /   | 分享
 
       div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
-        textarea#code-html =@item.html
+        span[v-pre]
+          textarea#code-html =@item.html
         span.online-label HTML
 
       div.splitx[v-on:mousedown="moveX($event, p1, p2)" v-bind:style="{height: p1.h}"]
 
       div.p2.unselect[v-bind:style="{width: p2.w, height: p1.h}"]
-        textarea#code-js =@item.js
+        span[v-pre]
+          textarea#code-js =@item.js
         span.online-label JavaScript
 
       div.splitx[v-on:mousedown="moveX($event, p2, p3)" v-bind:style="{height: p1.h}"]
 
       div.p3[v-bind:style="{width: p3.w, height: p1.h}"]
-        textarea#code-css =@item.css
+        span[v-pre]
+          textarea#code-css =@item.css
         span.online-label CSS
 
       div.clear

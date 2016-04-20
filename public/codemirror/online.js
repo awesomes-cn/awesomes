@@ -289,9 +289,13 @@ function run_code(){
   var previewFrame = $('#preview')[0];
   var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
 
-  var _js = "<script type='text/javascript'>" + sjs + "<\/script>";
+  var _js = "<script type='text/javascript'>\n\
+  " + sjs + "\n\
+  <\/script>";
   var _css = "<style>" + scss + "</style>";
-  var _html = shtml.replace(/(\s+)(<\/head>)/,'$1  ' + _js + _css+'$1$2');
+  var _html = shtml.replace(/(\s+)(<\/head>)/,'$1  ' + _css + '$1$2');
+  _html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
+  console.log(_html)
   preview.open();
   preview.write(_html); 
   preview.close();
