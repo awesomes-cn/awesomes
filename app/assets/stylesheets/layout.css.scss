@@ -90,7 +90,7 @@ article.con{font-size: 15px }
 h3.high{margin-bottom: 30px;}
 pre{
   background: none;font-family: 'monaco', 'Consolas', "Liberation Mono", Courier, monospace, monospace;padding: 1em; padding: 2px 0 2px 15px;
-border: 0;border-left: 5px solid #bbb;margin: 0px 0 30px;  border-radius: 0;
+border: 0; margin: 0px 0 30px;  border-radius: 0;
 }
 
 
@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{font-weight: bold}
 label.error{color: #d9534f}
 
 //- prism
-:not(pre) > code[class*="language-"], pre[class*="language-"]{background-color: #FFF;}
+:not(pre) > code[class*="language-"], pre[class*="language-"]{background-color: #f8f8f8;}
 
 
 //- ad
@@ -374,3 +374,7 @@ label.error{color: #d9534f}
 }
 
 #fork-wraper{z-index: 900;}
+
+code[class*="language-"], pre[class*="language-"]{
+  text-shadow: none;
+}

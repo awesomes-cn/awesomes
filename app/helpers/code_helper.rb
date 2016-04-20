@@ -3,6 +3,10 @@ module CodeHelper
     is_login and current_mem.id == @item.mem.id
   end
 
+  def page_title
+    @repo ?  "#{@repo.name} #{@item.title}" : @item.title
+  end
+
   def packages
     require 'find'
     _folder = Rails.root.to_s + '/public/sandbox/'  
