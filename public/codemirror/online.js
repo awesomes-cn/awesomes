@@ -15,6 +15,7 @@ $(function(){
 
 
 function initEditor(id){
+  console.log(localStorage.autoruncode)
   var editor = new Vue({
     el: id,
     data: {
@@ -26,7 +27,7 @@ function initEditor(id){
       oy: 0,
       left: {w: 200, ow: 200, state: 'fold'},
       right: {w: 200, ow: 200, state: 'fold'},
-      isauto: localStorage.autoruncode || false,
+      isauto: localStorage.autoruncode || 'false',
       login: Rails.login,
       issaved: true,
       libs: [],
@@ -142,7 +143,7 @@ function initEditor(id){
 
   // 切换自动运行
   editor.switchAuto = function(){
-    editor.isauto = !editor.isauto;
+    editor.isauto = (editor.isauto == 'true' ? 'false' : 'true') ;
     localStorage.autoruncode = editor.isauto
   }
 
@@ -240,7 +241,7 @@ function initCodeMirror(){
 
 function editorChangeHander(){
   editorVue.issaved = false
-  if (editorVue.isauto) {
+  if (editorVue.isauto == 'true') {
     run_code()
   };
 }
@@ -276,7 +277,7 @@ function init_code(){
     jsCodeMirror.setValue($("#code-js").val());
     cssCodeMirror.setValue($("#code-css").val());
     editorVue.issaved = !isnew
-
+    run_code()
   }, 1)
 }
 

@@ -57,7 +57,7 @@
 
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
-          i.fa>[class="{{isauto ? 'fa-check-square' : 'fa-square-o'}}" ]
+          i.fa>[class="{{isauto == 'true' ? 'fa-check-square' : 'fa-square-o'}}" ]
           | 实时预览
         
         a.right[href="javascript:void(0)" v-on:click="preview()"]
