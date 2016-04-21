@@ -41,7 +41,7 @@
 
         strong {{title}}
         
-        i.fa.fa-bars.fold-btn.right<>[v-on:click="switchSideBar('#toolbox', 'right')"]
+        i.fa.fa-bars.fold-btn.right<>[v-on:click="switchBar()"]
 
         -if @is_author
           a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
@@ -50,10 +50,14 @@
           a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
             i.fa.fa-save
         
+        div.search
+          input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]
+
         -if !@is_new
           a.right.open-login-modal[href="javascript:void(0)" data-modal="fork"]
             i.fa.fa-code-fork>
             | Fork 
+        
 
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
@@ -97,23 +101,20 @@
         iframe.code-preview#preview
         div.window-cover
     
-    // 右侧工具栏
-    div.side-bar#toolbox[v-bind:style="{width: right.w}"]
-      div.inner-out
-        div.search
-          input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]
-        ul
-          li.level-1[v-for="item in libs" v-on:click='getLibVersions(item)']
-            | {{item.name}}
-            ul
-              li.level-2[v-for="v in item.versions" v-on:click='getLibFiles(item, v)'] 
-                i.fa.fa-angle-right>
-                | {{v.name}}
+      // 右侧工具栏
+      div.side-bar#toolbox[v-bind:style="{width: right.w}"]
+        div.inner-out
+          ul
+            li.level-1[v-for="item in libs"  v-on:click='showSub']
+              | {{item.name}}
+              ul
+                li.level-2[v-for="asset in item.assets.slice(0,5)" v-on:click='showSub'] 
+                  i.fa.fa-angle-right>
+                  | {{asset.version}}
 
-                ul
-                  li.level-3[v-for="file in v.files" v-on:click="insertAsset(item, v, file)"]
-                    i.fa.fa-caret-right>
-                    | {{file}}
+                  ul
+                    li.level-3[v-for="file in asset.files" v-on:click="insertAsset(item, asset.version, file)"]
+                      | {{file}}
 
 
 

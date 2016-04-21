@@ -1,6 +1,6 @@
 .code-editor{
   width: 100%;height: 700px; border: #EEE 2px solid; margin: 0 auto;  border-left: #EEE 1px solid; border-right: #EEE 1px solid;
-  
+  position: relative; overflow: hidden;
   
   .toolbar{
     height: 40px; border-bottom: #EEE 1px solid; padding:0 5px; line-height: 40px;

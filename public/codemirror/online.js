@@ -31,7 +31,8 @@ function initEditor(id){
       login: Rails.login,
       issaved: true,
       libs: [],
-      libkey: ''
+      libkey: '',
+      toolboxState: 'closed'
 
     }
   })
@@ -137,6 +138,28 @@ function initEditor(id){
     })
    
   }
+
+  editor.openBar = function(){
+   editor.toolboxState = 'ing'
+    $('#toolbox').animate({right: 1}, function(){
+      editor.toolboxState = 'open'
+    })
+  }
+  editor.closeBar = function(){
+    editor.toolboxState = 'ing'
+    $('#toolbox').animate({right: -200}, function(){
+      editor.toolboxState = 'closed'
+    })
+  }
+  editor.switchBar = function(action){
+    if (editor.toolboxState == 'closed') {
+      editor.openBar()
+    }else if(editor.toolboxState == 'open'){
+      editor.closeBar()
+    }
+  }
+
+
   
   
 
@@ -185,36 +208,35 @@ function initEditor(id){
 
 
   // 获取CDN库
+  var libTimer;
   editor.getLibs = function(){
-    $.get('/code/libs', {libkey: editor.libkey}, function(data){
-      editor.libs = data.items;
-    })
+    clearTimeout(libTimer)
+    libTimer = setTimeout(function(){
+      editor.openBar()
+      var url = 'https://api.cdnjs.com/libraries?search=' + editor.libkey + '&fields=assets'
+      $.get(url, {}, function(data){
+        editor.libs = data.results.slice(0, 10);
+      })
+    }, 500)
   }
 
-  editor.getLibVersions = function(lib){
-    if (lib.versions.length > 0) {return};
-    $.get('/code/libversions', {lib: lib.name}, function(data){
-      lib.versions = data.items
-    })
-  }
-
-  editor.getLibFiles = function(lib, version){
-    $.get('/code/libfiles', {lib: lib.name, v: version.name}, function(data){
-      version.files = data.items
-    })
+  editor.showSub = function(event){
+    $(event.target).find('ul:first').slideToggle()
+    event.stopPropagation()
   }
 
   editor.insertAsset = function(lib, version, file){
-    var link =  lib.name + '/' + version.name + '/' + file;
-    var srclink = '<script src="/sandbox/' + link + '"></script>';
-    if (/.+\.css$/.test(link)) {
-      srclink = '<link rel="stylesheet" media="all" href="/sandbox/' + link + '" />'
+    // cdnjs.cloudflare.com/ajax/libs/
+    var link =   '/cdnjs/' + lib.name + '/' + version + '/' + file;
+
+    var srclink = '<script src="' + link + '"></script>';
+    if (/.+\.css$/.test(file)) {
+      srclink = '<link rel="stylesheet" media="all" href="' + link + '" />'
     };
     
     htmlCodeMirror.setValue(htmlCodeMirror.getValue().replace(/(\s+)(<\/head>)/,'$1  ' + srclink + '$1$2'));
   }
 
-  editor.getLibs();
 
 
   return editor
