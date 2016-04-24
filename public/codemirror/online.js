@@ -148,7 +148,7 @@ function initEditor(id){
   }
   editor.closeBar = function(){
     editor.toolboxState = 'ing'
-    $('#toolbox').animate({right: -200}, function(){
+    $('#toolbox').animate({right: -300}, function(){
       editor.toolboxState = 'closed'
     })
   }
@@ -230,10 +230,11 @@ function initEditor(id){
   }
 
   editor.showDetails = function(event, item){
-    editor.showSub(event)
+    editor.showSub(event) 
     if (item.hasloaded) {return}
     var url = 'http://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '&fields=assets'
     $.get(url, {}, function(data){
+      $(event.target).find('.load').remove()
       item.assets = data[0].assets.slice(0,5)
     })
     item.hasloaded = true
@@ -246,7 +247,7 @@ function initEditor(id){
 
   editor.insertAsset = function(lib, version, file){
     // cdnjs.cloudflare.com/ajax/libs/
-    var link =   '/cdnjs/' + lib.name + '/' + version + '/' + file;
+    var link =   '//cdn.jsdelivr.net/' + lib.name + '/' + version + '/' + file;
 
     var srclink = '<script src="' + link + '"></script>';
     if (/.+\.css$/.test(file)) {
@@ -337,6 +338,8 @@ function run_code(){
   var _css = "<style>" + scss + "</style>";
   var _html = shtml.replace(/(\s+)(<\/head>)/,'$1  ' + _css + '$1$2');
   _html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
+  //_html = _html.replace(/src="(\s+)?\/jsdelivr\//g,'$1  ' + _js + '$1$2');
+
   console.log(_html)
   preview.open();
   preview.write(_html); 
