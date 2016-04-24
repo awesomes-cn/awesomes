@@ -107,15 +107,17 @@
           ul
             li.level-1[v-for="item in libs"  v-on:click='showDetails($event, item)']
               | {{item.name}}
-
+              
               ul
-                li.load  加载中.... 
-                li.level-2[v-for="asset in item.assets" v-on:click='showSub'] 
-                  i.fa.fa-angle-right>
-                  | {{asset.version}}
+                li.load  加载中....
+                li.level-2
+                  select[v-on:change="switchVersion($event, item)"]
+                    option[v-for="asset in item.assets" v-on:click="switchVersion(asset, item)" value="{{asset.version}}"] {{asset.version}}
 
+                li.level-2
+                  /i.fa.fa-angle-right>
                   ul
-                    li.level-3[v-for="file in asset.files" v-on:click="insertAsset(item, asset.version, file)"]
+                    li.level-3[v-for="file in item.files" v-on:click="insertAsset(item, file)"]
                       | {{file}}
         div.loading[v-show="libLoadState == 'ing'"] 
           div.sk-rotating-plane

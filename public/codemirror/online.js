@@ -222,6 +222,8 @@ function initEditor(id){
           return item.name.length
         }).slice(0, 10).map(function(item){
           item.assets = []
+          item.files = []
+          item.version = ''
           return item
         })
         editor.libLoadState = 'end'
@@ -235,10 +237,22 @@ function initEditor(id){
     var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + item.name + '&fields=assets'
     $.get(url, {}, function(data){
       $(event.target).find('.load').remove()
-      item.assets = data[0].assets.reverse().slice(0,5)
+      $(event.target).find('.level-2').show()
+      item.assets = _.sortBy(data[0].assets, function(asset){
+        return asset.version
+      }).reverse()
+      item.files = item.assets[0].files
+      item.version = item.assets[0].version
       item.hasloaded = true
     })
     
+  }
+
+  editor.switchVersion = function(event, item){
+    item.version = $(event.target).val()
+    item.files = _.find(item.assets, function(asset){
+      return asset.version == item.version
+    }).files
   }
 
   editor.showSub = function(event){
@@ -246,7 +260,8 @@ function initEditor(id){
     event.stopPropagation()
   }
 
-  editor.insertAsset = function(lib, version, file){
+  editor.insertAsset = function(lib, file){
+    var version = lib.version
     // cdnjs.cloudflare.com/ajax/libs/
     var link =   '//cdn.jsdelivr.net/' + lib.name + '/' + version + '/' + file;
 
