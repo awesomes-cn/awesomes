@@ -232,10 +232,10 @@ function initEditor(id){
   editor.showDetails = function(event, item){
     editor.showSub(event) 
     if (item.hasloaded) {return}
-    var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '&fields=assets'
+    var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + item.name + '&fields=assets'
     $.get(url, {}, function(data){
       $(event.target).find('.load').remove()
-      item.assets = data[0].assets.slice(0,5)
+      item.assets = data[0].assets.reverse().slice(0,5)
       item.hasloaded = true
     })
     
