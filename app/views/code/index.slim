@@ -103,18 +103,25 @@
     
       // 右侧工具栏
       div.side-bar#toolbox[v-bind:style="{width: right.w}"]
-        div.inner-out
+        div.inner-out[v-show="libLoadState == 'end'"]
           ul
-            li.level-1[v-for="item in libs"  v-on:click='showSub']
+            li.level-1[v-for="item in libs"  v-on:click='showDetails($event, item)']
               | {{item.name}}
               ul
-                li.level-2[v-for="asset in item.assets.slice(0,5)" v-on:click='showSub'] 
+                li.level-2[v-for="asset in item.assets" v-on:click='showSub'] 
                   i.fa.fa-angle-right>
                   | {{asset.version}}
 
                   ul
-                    li.level-3[v-for="file in asset.files" v-on:click="insertAsset(item, asset.version, file)"]
+                    li.level-3[v-for="file in asset.files" v-on:click="insertAsset(item, asset, file)"]
                       | {{file}}
+        div.loading[v-show="libLoadState == 'ing'"] 
+          div.sk-rotating-plane
+          span 如果速度太慢，请访问国内的CDN 
+          ul
+            li: a[href="http://cdn.code.baidu.com/" target="_blank"]  百度静态资源公共库
+
+
 
 
 

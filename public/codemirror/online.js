@@ -32,7 +32,8 @@ function initEditor(id){
       issaved: true,
       libs: [],
       libkey: '',
-      toolboxState: 'closed'
+      toolboxState: 'closed',
+      libLoadState: 'ready'
 
     }
   })
@@ -185,7 +186,6 @@ function initEditor(id){
       })
     }
   }
-
   
   // 保存
   editor.save = function(){
@@ -205,7 +205,8 @@ function initEditor(id){
       };
     })
   }
-
+  
+  //
 
   // 获取CDN库
   var libTimer;
@@ -213,11 +214,29 @@ function initEditor(id){
     clearTimeout(libTimer)
     libTimer = setTimeout(function(){
       editor.openBar()
-      var url = 'https://api.cdnjs.com/libraries?search=' + editor.libkey + '&fields=assets'
+      editor.libLoadState = 'ing'
+      var url = 'http://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '*&fields=name'
+      //var url = 'https://api.cdnjs.com/libraries?search=' + editor.libkey + '&fields=assets'
       $.get(url, {}, function(data){
-        editor.libs = data.results.slice(0, 10);
+        editor.libs = _.sortBy(data, function(item){
+          return item.name.length
+        }).slice(0, 10).map(function(item){
+          item.assets = []
+          return item
+        })
+        editor.libLoadState = 'end'
       })
     }, 500)
+  }
+
+  editor.showDetails = function(event, item){
+    editor.showSub(event)
+    if (item.hasloaded) {return}
+    var url = 'http://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '&fields=assets'
+    $.get(url, {}, function(data){
+      item.assets = data[0].assets.slice(0,5)
+    })
+    item.hasloaded = true
   }
 
   editor.showSub = function(event){
