@@ -215,7 +215,7 @@ function initEditor(id){
     libTimer = setTimeout(function(){
       editor.openBar()
       editor.libLoadState = 'ing'
-      var url = 'http://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '*&fields=name'
+      var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '*&fields=name'
       //var url = 'https://api.cdnjs.com/libraries?search=' + editor.libkey + '&fields=assets'
       $.get(url, {}, function(data){
         editor.libs = _.sortBy(data, function(item){
@@ -232,12 +232,13 @@ function initEditor(id){
   editor.showDetails = function(event, item){
     editor.showSub(event) 
     if (item.hasloaded) {return}
-    var url = 'http://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '&fields=assets'
+    var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '&fields=assets'
     $.get(url, {}, function(data){
       $(event.target).find('.load').remove()
       item.assets = data[0].assets.slice(0,5)
+      item.hasloaded = true
     })
-    item.hasloaded = true
+    
   }
 
   editor.showSub = function(event){
