@@ -1,7 +1,10 @@
 body{line-height: 25px; color: #333;font-family: 'Hiragino Sans GB', Helvetica, Arial, 'STHeiti', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px;}
+html,body{height: 100%}
 .left{float: left; }
 .right{float: right}
 .clear{clear: both}
+
+
 a{ 
   text-decoration: none;
   -webkit-transition:all,.5s,ease,0s; 

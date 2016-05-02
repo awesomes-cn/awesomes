@@ -53,3 +53,30 @@
   .btn{margin: 0 10px;}
 }
 
+
+.preiew-wraper{
+  iframe{
+    border: none; width: 100%; height: 100%
+  }
+  .toolbox{
+    position: fixed; right: 20px; width: 40px; top: 20px;background-color: #FFF; 
+    a{display: block; text-align: center;}
+  }
+  .top-bar{
+    height: 50px; background-color: #000; width: 100%; 
+    a{
+      display: inline-block; color: #AAA; 
+      text-decoration: none; line-height: 50px; margin-left: 10px;
+      font-family: '微软雅黑';
+
+      &.right{
+        margin-right: 10px;
+      }
+
+    }
+  }
+  .fa-bars{
+    display: inline-block; position: absolute; cursor: pointer;   font-size: 20px;
+    color: #828282;    left: 10px;    top: 15px;
+  }
+}

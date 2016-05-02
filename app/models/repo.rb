@@ -68,7 +68,6 @@ class Repo < ActiveRecord::Base
   end
 
   def up_typ_zh
-    p id
     update_attributes({
       :rootyp_zh=>  Menutyp.menu_a(rootyp).sdesc,
       :typcd_zh=>  Menutyp.menu_b(typcd, rootyp).sdesc
@@ -77,5 +76,9 @@ class Repo < ActiveRecord::Base
 
   def default_code
     codes.where({:status=> 'ACTIVED'}).first
+  end
+
+  def demo_code
+    Code.find_by_id(demo) || default_code
   end
 end

@@ -288,8 +288,27 @@
 
   .run-code{
     display: inline-block;  background-color: #848484;; position: absolute; right: 0; 
-    color: #FFF; border-radius: 100%; width: 45px; height: 45px;  text-align: center; line-height: 35px;
-    border: #DDD 5px solid;  bottom: 50px; 
+    color: #FFF; border-radius: 100%; width: 80px; height: 80px;  text-align: center; line-height: 35px;
+    box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.9);  bottom: 50px; overflow: hidden; font-size: 12px; box-sizing: content-box;
+
+    a{
+      color: #FFF; display: block; text-decoration: none;height: 40px; line-height: 40px;
+      &:nth-child(1){
+         background-color: #8a6d3b; line-height: 45px;
+      }
+      &:nth-child(2){
+         background-color: #ff9500;  
+      }
+    }
+
+    &.no-code{
+      width: 40px; height: 40px;
+      a{
+        &:nth-child(1){
+         background-color: #999; line-height: 40px;
+        }
+      }
+    }
   }
 
 }

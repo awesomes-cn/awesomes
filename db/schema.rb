@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408192036) do
-
-  create_table "aaa", primary_key: "name", id: :string, limit: 23, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-  end
+ActiveRecord::Schema.define(version: 20160430183837) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -41,8 +38,9 @@ ActiveRecord::Schema.define(version: 20160408192036) do
     t.text     "css",        limit: 65535
     t.text     "js",         limit: 65535
     t.text     "html",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "status",     limit: 45,    default: "NORMAL"
   end
 
   add_index "codes", ["mem_id"], name: "index_codes_on_mem_id", using: :btree
@@ -242,6 +240,8 @@ ActiveRecord::Schema.define(version: 20160408192036) do
     t.integer  "issue_res",                            default: 0
     t.string   "typcd_zh"
     t.string   "rootyp_zh"
+    t.integer  "demo"
+    t.integer  "startup"
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
