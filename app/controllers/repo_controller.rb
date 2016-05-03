@@ -1,7 +1,7 @@
 class RepoController < ApplicationController
-  before_filter :repo_lost 
-  before_filter :admin_login,:only=> ["edit","update","readme_en",'syncreadme','avoid','accept']
-  before_filter :mem_login,:only=>['readme']
+  before_action :repo_lost
+  before_action :admin_login,:only=> ["edit","update","readme_en",'syncreadme','avoid','accept']
+  before_action :mem_login,:only=>['readme']
   
   def repo_lost
     @item = @repo = Repo.find_by({:owner=> params[:owner],:alia=> params[:alia]})
@@ -84,5 +84,9 @@ class RepoController < ApplicationController
     _readme = _response.body
     @item.update_attributes({:about=> _readme,:outdated=> '0'})
     redirect_to @item.link_url
+  end
+
+  def new
+    @submit = Submit.new
   end
 end
