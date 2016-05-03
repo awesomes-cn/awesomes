@@ -1,24 +1,22 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :set_locale
 
   def set_locale
     _local = params[:l] || request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
-    
+
     I18n.locale = (@is_en = _local == 'en') ? 'en' : 'zh-CN'
   end
-  
-  
+
+
 
   def current_mem
-    Mem.find_by_id(session[:mem])  
+    Mem.find_by_id(session[:mem])
   end
 
   def admin_login
     #true
-    redirect_to "/" and return if session[:mem] != 1
+    redirect_to root_path and return if session[:mem] != 1
   end
 
   def mem_login
@@ -27,26 +25,26 @@ class ApplicationController < ActionController::Base
   end
 
   def is_me?
-    _id = params[:id].to_i 
+    _id = params[:id].to_i
     if _id > 0
       @mem = Mem.find_by_id _id
-      redirect_to '/tip',:notice=> t('mem_none') and return if !@mem 
+      redirect_to '/tip',:notice=> t('mem_none') and return if !@mem
     else
       redirect_to '/tip',:notice=> t('no_login') and return  if session[:mem].to_i < 1
       @mem = current_mem
     end
     #redirect_to '/tip',:notice=> t('mem_novalid') and return if @mem.recsts == '1'
     @isme = (@mem == current_mem)
-  end  
+  end
 
-  def is_admin? 
+  def is_admin?
     redirect_to "/" and return  if session[:mem] != 1
   end
 
   def max_page_size
     100
   end
-    
+
   def default_page_size
     15
   end
@@ -69,7 +67,7 @@ class ApplicationController < ActionController::Base
   def data_list_asc query
     query.order('id asc').limit(page_size).offset(page * page_size)
   end
-  
+
   def upload_pic(file,filename,folder,width,height)
     _full_path = "#{Rails.root}/public/upload/#{folder}/#{filename}"
     image = MiniMagick::Image.read(file)
@@ -88,7 +86,7 @@ class ApplicationController < ActionController::Base
       image.crop "#{width}x#{height}+#{_x}+#{_y}"
     end
     image.write  _full_path
-    FileUtils.chmod 0755, _full_path 
+    FileUtils.chmod 0755, _full_path
     aliyun_upload File.open(_full_path),"#{folder}/#{filename}"
   end
 
@@ -105,13 +103,13 @@ class ApplicationController < ActionController::Base
 
   def upload_remote(remote_src,filename,folder)
     _full_path = "#{Rails.root}/public/upload/#{folder}/#{filename}"
-    require 'open-uri' 
+    require 'open-uri'
     open(remote_src) {|f|
       File.open(_full_path,"wb") do |file|
         file.puts f.read
       end
     }
-    
+
     aliyun_upload File.open(_full_path),"#{folder}/#{filename}"
   end
 
@@ -119,22 +117,22 @@ class ApplicationController < ActionController::Base
     ActionController::Base.new.expire_fragment(key)
   end
 
-  def encode(str)  
-    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])  
-    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])  
-    des.encrypt  
-    cipher = des.update(str)  
-    cipher << des.final  
+  def encode(str)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])
+    des.encrypt
+    cipher = des.update(str)
+    cipher << des.final
     return Base64.encode64(cipher) #Base64编码，才能保存到数据库  
-  end 
+  end
 
-  def decode(str)  
-    str = Base64.decode64(str)  
-    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])  
-    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])  
-    des.decrypt  
-    des.update(str) + des.final  
-  end  
+  def decode(str)
+    str = Base64.decode64(str)
+    des = OpenSSL::Cipher::Cipher.new(ENV['ENCODE_ALG'])
+    des.pkcs5_keyivgen(ENV['ENCODE_KEY'],  ENV['ENCODE_DES_KEY'])
+    des.decrypt
+    des.update(str) + des.final
+  end
 
   def sub_directories path
     require 'find'
