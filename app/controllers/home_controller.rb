@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :admin_login,:only=> ["trend"]
+  before_action :admin_login,:only=> ["trend"]
 
   def index
     @links = Link.order("`order` desc")  
