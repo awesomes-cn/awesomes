@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.text     "css",        limit: 65535
     t.text     "js",         limit: 65535
     t.text     "html",       limit: 65535
+    t.string   "status",                   default: "NORMAL"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-    t.string   "status",     limit: 45,    default: "NORMAL"
   end
 
   add_index "codes", ["mem_id"], name: "index_codes_on_mem_id", using: :btree
@@ -153,18 +153,6 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.integer  "home_index",               default: 0
   end
 
-  create_table "notifies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "mem_id"
-    t.string   "typcd"
-    t.integer  "amount",     default: 0
-    t.string   "desc"
-    t.string   "fdesc"
-    t.string   "state",      default: "UNREAD"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "link"
-  end
-
   create_table "opers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "typ"
     t.integer  "idcd"
@@ -183,12 +171,6 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-  end
-
-  create_table "repo_notifies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "repo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "repo_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

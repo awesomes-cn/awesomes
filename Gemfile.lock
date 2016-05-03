@@ -1,5 +1,5 @@
 GEM
-  remote: https://ruby.taobao.org/
+  remote: https://gems.ruby-china.org/
   specs:
     actioncable (5.0.0.beta3)
       actionpack (= 5.0.0.beta3)
@@ -48,7 +48,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (8.2.2)
+    byebug (8.2.5)
     carrierwave (0.11.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -83,17 +83,17 @@ GEM
       compass (~> 1.0.0)
       sass-rails (< 5.1)
       sprockets (< 4.0)
-    concurrent-ruby (1.0.1)
+    concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
     diffy (3.0.7)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (1.0.15)
-      elasticsearch-api (= 1.0.15)
-      elasticsearch-transport (= 1.0.15)
-    elasticsearch-api (1.0.15)
+    elasticsearch (1.0.17)
+      elasticsearch-api (= 1.0.17)
+      elasticsearch-transport (= 1.0.17)
+    elasticsearch-api (1.0.17)
       multi_json
-    elasticsearch-transport (1.0.15)
+    elasticsearch-transport (1.0.17)
       faraday
       multi_json
     erubis (2.7.0)
@@ -106,16 +106,13 @@ GEM
       activesupport (>= 4.1.0)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    hashie (3.4.3)
+    hashie (3.4.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
-    jbuilder (2.4.1)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -129,7 +126,7 @@ GEM
       activesupport (>= 3.0.0)
     letter_avatar (0.1.11)
       posix-spawn (>= 0.3.0)
-    libv8 (3.3.10.4)
+    libv8 (3.16.14.15)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -139,7 +136,7 @@ GEM
     mini_magick (4.5.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    multi_json (1.11.2)
+    multi_json (1.11.3)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
@@ -183,13 +180,11 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    ref (2.0.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rmagick (2.15.4)
     sass (3.4.22)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -197,9 +192,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sdoc (0.4.1)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     searchkick (1.2.1)
       activemodel
       elasticsearch (>= 1)
@@ -208,7 +200,7 @@ GEM
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     spring (1.3.6)
-    sprockets (3.5.2)
+    sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.0.4)
@@ -216,17 +208,18 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.6.10)
-    therubyracer (0.9.10)
-      libv8 (~> 3.3.10)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
     time_diff (0.3.0)
       activesupport
       i18n
-    trust_html (0.1.4)
+    trust_html (0.1.3)
       better
-      therubyracer (~> 0.9.3beta1)
+      therubyracer
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -253,35 +246,33 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  carrierwave-aliyun
-  chinese_pinyin
+  carrierwave-aliyun (= 0.4.3)
+  chinese_pinyin (= 1.0.0)
   coffee-rails (~> 4.1.0)
   compass-rails
   diffy (~> 3.0.7)
   github-markdown (~> 0.6.8)
-  jbuilder (~> 2.0)
-  jquery-rails
-  jquery-turbolinks
-  kaminari
-  letter_avatar
-  mini_magick
+  jquery-rails (= 4.1.1)
+  jquery-turbolinks (= 2.1.0)
+  kaminari (= 0.16.3)
+  letter_avatar (= 0.1.11)
+  mini_magick (= 4.5.1)
   mysql2 (~> 0.3.16)
-  oneapm_rpm
+  oneapm_rpm (= 1.3.5)
   rails (= 5.0.0.beta3)
   rest-client (~> 1.8.0)
-  rmagick
   sass-rails (~> 5.0.4)
-  sdoc (~> 0.4.0)
-  searchkick
+  searchkick (= 1.2.1)
   slim (~> 2.0.3)
   spring (~> 1.3.6)
+  therubyracer
   time_diff (~> 0.3.0)
-  trust_html (~> 0.1.4)
-  turbolinks
+  trust_html (= 0.1.3)
+  turbolinks (= 2.5.3)
   uglifier (>= 1.3.0)
-  uuidtools
+  uuidtools (= 2.1.5)
   web-console (~> 2.0)
   whenever
 
 BUNDLED WITH
-   1.10.5
+   1.11.2
