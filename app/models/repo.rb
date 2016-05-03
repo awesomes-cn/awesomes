@@ -77,7 +77,7 @@ class Repo < ActiveRecord::Base
   end
 
   def demo_code
-    Code.find_by_id(1) || default_code
+    Code.find_by_id(demo) || default_code
   end
   
   private
