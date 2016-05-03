@@ -1,4 +1,7 @@
 class Menutyp < ActiveRecord::Base
+
+  scope :sub_menus, -> { where typcd: :B }
+
   @@CACHE_KEY="MENUTYP"
 
   def self.current(key,parent='')
@@ -39,7 +42,7 @@ class Menutyp < ActiveRecord::Base
   end
 
   def self.flat_show
-    Menutyp.where({:typcd=> 'B'}).all.each.map do |item|
+    sub_menus.find_each.map do |item|
       {
         :key=>"#{item.parent}-#{item.key}",
         :sdesc=>"#{item.parent ? item.superior.sdesc + ' - ' : ''}#{item.sdesc}"
