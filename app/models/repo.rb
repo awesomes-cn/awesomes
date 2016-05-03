@@ -7,9 +7,7 @@ class Repo < ActiveRecord::Base
   searchkick batch_size: 20000
 
 
-  after_create do |item|
-    ActionController::Base.new.expire_fragment  %r{repo_list_.+} 
-  end
+  after_create :after_create_callback
 
   after_destroy do |item|
     ActionController::Base.new.expire_fragment  %r{repo_list_.+} 
@@ -77,5 +75,10 @@ class Repo < ActiveRecord::Base
 
   def default_code
     codes.where({:status=> 'ACTIVED'}).first
+  end
+
+  private
+  def after_create_callback
+    ActionController::Base.new.expire_fragment %r{repo_list_.+}
   end
 end
