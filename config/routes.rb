@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :repos, only: [:create]
+
   root 'home#index'
 
   get "/auth/:provider/callback" => "mem#auth"
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
 
   #match "/:controller/:action" ,via: ['get','post']
 
-  get "/repo/new" => "repo#new"
+  resource :repo, controller: :repo, only: [:new]
   match "/repo/:owner/:alia(/:action)(/:oid)", controller: "repo", oid: /\d+/, via: ['get', 'post']
 
 
