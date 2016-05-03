@@ -34,10 +34,11 @@ div.repo-banner
       
     -if @item.default_code
       div.run-code.hidden-xs
-        a[href="/code/#{@item.default_code.id}" title="在线演示"]
+        a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
           i.fa.fa-desktop>
-        a[href="/code/#{@item.demo_code.id}/preview" title="在线编码"]
+        a[href="/code/#{@item.default_code.id}" title="在线编码"]
           i.fa.fa-pencil>
+
     -else
       div.run-code.no-code.hidden-xs
         a[title="在线演示"]
@@ -45,6 +46,11 @@ div.repo-banner
         a[href="/code?rid=#{@item.id}" title="在线编码"]
           i.fa.fa-pencil>
 
+    div.thirty-tool.hidden-xs
+      a[title="聊天室" href="https://gitter.im/#{@item.full_name}" target="_blank"]
+        i.fa.fa-comments-o>    
+      a[href="http://stackoverflow.com/questions/tagged/#{@item.name}" title="提问" target="_blank"]
+        i.fa.fa-stack-overflow>
 
   div#repot_rend
 
