@@ -4,10 +4,11 @@ class HomeController < ApplicationController
   def index
     @links = Link.order order: :desc
     @root_menus = Menutyp.root_menus
+    @repos_count = Repo.count
   end
 
   def repos
-    @typ = Menutyp.where({:key => params[:root], :typcd => 'B'}).first
+    @typ = Menutyp.sub_menus.find_by key: params[:root] if params[:root].present?
   end
 
   def docs
