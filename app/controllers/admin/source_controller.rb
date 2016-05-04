@@ -1,5 +1,5 @@
 class Admin::SourceController < AdminController
-  before_filter :source_lost
+  before_action :source_lost
   
   def source_lost
     @item = Topic.find_by_id(params[:id])

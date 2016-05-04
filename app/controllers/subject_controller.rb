@@ -1,6 +1,6 @@
 class SubjectController < ApplicationController
-  before_filter :admin_login,:only=> ["new","update"]
-  before_filter :subject_lost,:except=> ["new","update"]
+  before_action :admin_login,:only=> ["new","update"]
+  before_action :subject_lost,:except=> ["new","update"]
 
   def subject_lost
     @item = Subject.find_by_key params[:key]

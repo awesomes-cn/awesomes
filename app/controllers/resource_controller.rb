@@ -1,5 +1,5 @@
 class ResourceController < ApplicationController
-	before_filter :mem_login
+	before_action :mem_login
 
 	def save
 		_id = params[:id]

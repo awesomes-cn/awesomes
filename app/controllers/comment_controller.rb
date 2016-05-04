@@ -1,6 +1,6 @@
 class CommentController < ApplicationController
-	before_filter :mem_login
-  before_filter :comment_lost,:except=> ['save']
+	before_action :mem_login
+  before_action :comment_lost,:except=> ['save']
 
   def comment_lost
     @item = Comment.find(params[:id])
