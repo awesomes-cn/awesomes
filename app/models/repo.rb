@@ -66,7 +66,6 @@ class Repo < ActiveRecord::Base
   end
 
   def up_typ_zh
-    p id
     update_attributes({
       :rootyp_zh=>  Menutyp.menu_a(rootyp).sdesc,
       :typcd_zh=>  Menutyp.menu_b(typcd, rootyp).sdesc
@@ -77,6 +76,10 @@ class Repo < ActiveRecord::Base
     codes.where({:status=> 'ACTIVED'}).first
   end
 
+  def demo_code
+    Code.find_by_id(1) || default_code
+  end
+  
   private
   def after_create_callback
     ActionController::Base.new.expire_fragment %r{repo_list_.+}

@@ -2,6 +2,7 @@ div.repo-banner
   div.inner
     =render "crumbs"
     div.repo-title
+      //img[src='#{repo_cover_path @item.cover}']
       h1 =@item.name.capitalize 
       p =@item.description
     div.menu.hidden-xs
@@ -31,9 +32,25 @@ div.repo-banner
         i.fa.fa-exclamation-circle>
         span =@item.issue_friendly
       
-    / a.run-code.hidden-xs[href="/code?rid=#{@item.id}"]
-    /   i.fa.fa-terminal
+    -if @item.default_code
+      div.run-code.hidden-xs
+        a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
+          i.fa.fa-desktop>
+        a[href="/code/#{@item.default_code.id}" title="在线编码"]
+          i.fa.fa-pencil>
 
+    -else
+      div.run-code.no-code.hidden-xs
+        a[title="在线演示"]
+          i.fa.fa-desktop>    
+        a[href="/code?rid=#{@item.id}" title="在线编码"]
+          i.fa.fa-pencil>
+
+    div.thirty-tool.hidden-xs
+      a[title="聊天室" href="https://gitter.im/#{@item.full_name}" target="_blank"]
+        i.fa.fa-comments-o>    
+      a[href="http://stackoverflow.com/questions/tagged/#{@item.name}" title="提问" target="_blank"]
+        i.fa.fa-stack-overflow>
 
   div#repot_rend
 
@@ -42,6 +59,7 @@ div.repo-banner
       $(window).resize(function(){
         draw_line($("#repot_rend"),[#{@trends}],$(document).width(),200,"rgba(0,0,0,0.023)","rgba(0,0,0,0.028)")
       }).resize();
+
      
     })    
 

@@ -1,9 +1,8 @@
 default: &default
   adapter: mysql2
-  database: webs
   host: localhost
-  username: root
-  password:
+  username: <%= ENV['MYSQL_USERNAME'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
   pool: 5
   timeout: 5000
   encoding: utf8

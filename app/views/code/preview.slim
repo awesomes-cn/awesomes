@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    title #{page_title} - 代码预览
+    =stylesheet_link_tag    "application", media: "all"
+    =javascript_include_tag "application"
+    
+  body.preiew-wraper
+    div.top-bar
+      -if @repo
+        a[href="/code/#{@item.id}"]
+          | [#{@repo.name}]
+
+      a[href="/code/#{@item.id}"]
+        | #{@item.title}
+
+      a.right#close-bar[href="#"]
+        i.fa.fa-close  
+    /i.fa.fa-bars
+    iframe.code-preview#preview
+    //div.toolbox
+    //  a[href='/code/#{@item.id}']: i.fa.fa-pencil
+    //  a[href='/code/#{@item.id}']: i.fa.fa-qrcode
+
+
+    textarea.hide#code-html =@item.html
+    textarea.hide#code-js =@item.js
+    textarea.hide#code-css =@item.css
+
+    css:
+      body{ overflow: hidden;}
+
+    javascript:
+      
+      $(function(){
+        run_code()
+        $('#close-bar').click(function(){
+          $('.top-bar').animate({marginTop: -50})
+        })
+      })
+      //- 运行
+      function run_code(){
+        var shtml = $('#code-html').val()
+        var sjs = $('#code-js').val()
+        var scss = $('#code-css').val()
+
+        var previewFrame = $('#preview')[0];
+        var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+
+        var _js = "<script type='text/javascript'>\n\
+        " + sjs + "\n\
+        <\/script>";
+        var _css = "<style>" + scss + "</style>";
+        var _html = shtml.replace(/(\s+)(<\/head>)/,'$1  ' + _css + '$1$2');
+        _html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
+
+        preview.open();
+        preview.write(_html); 
+        preview.close();
+
+      }

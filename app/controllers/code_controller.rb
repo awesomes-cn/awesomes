@@ -99,4 +99,8 @@ class CodeController < ApplicationController
     _packages = sub_files  "#{Rails.root.to_s}/public/sandbox/#{params[:lib]}/#{params[:v]}/"
     render json: {items: _packages}  
   end
+
+  def preview
+    render :layout=> nil
+  end
 end

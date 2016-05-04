@@ -87,18 +87,17 @@ class ApplicationController < ActionController::Base
     end
     image.write  _full_path
     FileUtils.chmod 0755, _full_path
-    aliyun_upload File.open(_full_path),"#{folder}/#{filename}"
+    aliyun_upload _full_path,"#{folder}/#{filename}"
   end
 
   def aliyun_upload file,target
-    _connection = CarrierWave::Storage::Aliyun::Connection.new({
-      :aliyun_access_id=> ENV['OSS_ACCESS_ID'],
-      :aliyun_access_key=> ENV['OSS_ACCESS_KEY'],
-      :aliyun_bucket=> ENV['OSS_BUCKET'],
-      :aliyun_area=> ENV['OSS_AREA'],
-      :aliyun_upload_host=> ENV['OSS_UPLOAD_HOST']
-    })
-    _connection.put(target, file)
+    require 'aliyun/oss'
+    client = Aliyun::OSS::Client.new(
+      :endpoint => ENV['OSS_END_POINT'],
+      :access_key_id => ENV['OSS_ACCESS_ID'],
+      :access_key_secret => ENV['OSS_ACCESS_KEY'])
+    bucket = client.get_bucket(ENV['OSS_BUCKET'])
+    bucket.put_object(target, :file => file)
   end
 
   def upload_remote(remote_src,filename,folder)

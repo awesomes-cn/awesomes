@@ -1,0 +1,2 @@
+# Logfile created on 2016-05-04 01:25:46 -0700 by logger.rb/47272
+E, [2016-05-04T01:47:45.566616 #13378] ERROR -- : RequestId: 5729B731CA2A045F45FFE958, Code: AccessDenied, Message: The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint., HostId: oss-cn-beijing.aliyuncs.com, Bucket: repo, Endpoint: oss-cn-hangzhou.aliyuncs.com, HTTPCode: 403

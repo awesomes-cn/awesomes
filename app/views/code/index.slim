@@ -54,10 +54,16 @@
           input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]
 
         -if !@is_new
+
+          a.right[href="/code/#{@item.id}/preview" target="_blank"]
+            i.fa.fa-globe>
+            | 新窗口预览
+
           a.right.open-login-modal[href="javascript:void(0)" data-modal="fork"]
             i.fa.fa-code-fork>
             | Fork 
-        
+          
+          
 
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]

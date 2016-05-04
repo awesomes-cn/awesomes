@@ -4,7 +4,7 @@
       h2 =t('site.sub_title')
       p
         =raw t('site.sub_tip')
-        p: input.txt[type="text" name="html_url" placeholder= "https://github.com/jquery/jquery" required='true']
+        p: input.txt[type="text" name="html_url" placeholder= "https://github.com/jquery/jquery"]
 
       P
         span> =t('site.select_cato')
@@ -20,15 +20,17 @@
       p: button.btn.btn-danger[type="submit"] =t('form.sub')
 
     javascript:
-      $('#inform').validate({
-        rules:{
-          'html_url':{
-            required: true,
-            url:true
-          },
+      $(function(){
+        $('#inform').validate({
+          rules:{
+            'html_url':{
+              required: true,
+              url: true
+            },
 
-        },
-        messages:{
-          'html_url':'',
-        },
-      });
+          },
+          messages:{
+            'html_url':''
+          },
+        });
+      })
