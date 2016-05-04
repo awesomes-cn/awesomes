@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @links = Link.order order: :desc
+    @root_menus = Menutyp.root_menus
   end
 
   def repos
