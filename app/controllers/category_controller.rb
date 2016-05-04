@@ -1,5 +1,5 @@
 class CategoryController < ApplicationController
-  before_filter :category_lost
+  before_action :category_lost
 
   def category_lost 
      @item = Menutyp.where({:key=> params[:typ],:typcd=> 'B'}).first

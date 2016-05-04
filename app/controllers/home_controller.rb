@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   before_action :admin_login, :only => [:trend]
 
   def index

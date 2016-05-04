@@ -33,10 +33,15 @@ gem 'searchkick', '1.2.1'
 #gem 'omniauth-weibo-oauth2', '~> 0.3.0'
 
  
-group :development, :test do
+group :development do
   gem 'byebug'
   gem 'pry-rails'
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.3.6'
 end
 
+group  :test do
+  gem 'pry-rails'
+  gem 'minitest', '~> 5.8.4'
+  gem 'mocha', '~> 1.1.0'
+end

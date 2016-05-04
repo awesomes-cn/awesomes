@@ -1,5 +1,5 @@
 class OperController < ApplicationController
-  before_filter :mem_login
+  before_action :mem_login
 
   def para
     {:opertyp=> params[:opertyp],:typ=> params[:typ],:idcd=> params[:idcd],:mem_id=> current_mem.id}

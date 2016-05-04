@@ -1,7 +1,7 @@
 class SourceController < ApplicationController
-  before_filter :source_lost,:except=> ['new']
-  before_filter :mem_login,:only=> ['new','save']
-  before_filter :admin_or_author_filter,:only=> ['update']
+  before_action :source_lost,:except=> ['new']
+  before_action :mem_login,:only=> ['new','save']
+  before_action :admin_or_author_filter,:only=> ['update']
 
   def source_lost 
     @item = Topic.find_by_id(params[:id])
