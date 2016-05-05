@@ -6,10 +6,37 @@ module HomeHelper
     end.join(content_tag(:span)).html_safe
   end
 
+  def root_menus_with_icon
+    @root_menus.map do |menu|
+      link_to_content = build_menu_link_to_content menu
+      link_to link_to_content, "/repos/#{menu.key}", class: "#{repo_active params[:root], menu.key, 'active'}"
+    end.join(content_tag(:span)).html_safe
+  end
+
+  def sub_menus
+    @sub_menus.map do |menu|
+      link_to_content = build_menu_link_to_content menu
+      link_to link_to_content,
+              "/repos/#{menu.try :parent}/#{menu.try :key}",
+              class: "#{repo_active params[:root], menu.parent, 'on'} #{repo_active params[:typ], menu.key, 'active'}",
+              data: {root: menu.try(:parent)}
+
+    end.join.html_safe
+  end
+
+  def build_menu_link_to_content menu
+    i = content_tag :i, class: "fa #{menu.icon}" do
+    end
+    span = content_tag :span do
+      switl(menu.key, menu.sdesc)
+    end
+     "#{i} #{span}".html_safe
+  end
+
   def doc_list
     _order_by = 'id desc'
     if !(_search = params[:keyword]).blank?
-      _where_search = "name like ?","%#{_search}%"
+      _where_search = "name like ?", "%#{_search}%"
     end
     @items = data_list(Doc.where(_where_search).order(_order_by))
     @count = Doc.where(_where_search).count
@@ -22,11 +49,11 @@ module HomeHelper
     query.merge! typcd: params[:typ] if params[:typ].present?
 
     if params[:tag].present?
-      _tag_search = "tag like ?","%#{_tag}%"
+      _tag_search = "tag like ?", "%#{_tag}%"
     end
 
-    _map = {:hot=> "(stargazers_count + forks_count + subscribers_count)",:new=> "github_created_at",:trend=> "trend"}
-    _sort = "#{_map[@sort.to_sym]} desc" 
+    _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :new => "github_created_at", :trend => "trend"}
+    _sort = "#{_map[@sort.to_sym]} desc"
 
 
     @items = data_list(Repo.where(query).where(_tag_search).order(_sort)).includes(:repo_trends)
@@ -35,58 +62,37 @@ module HomeHelper
     @typ = Menutyp.find_by_key params[:typ]
   end
 
-  def search_list
-    _search = Repo.search(
-      params[:q].to_s, 
-      limit: page_size,
-      offset: page * page_size,
-      fields: ['full_name','typcd_zh', 'typcd','rootyp_zh','rootyp','description','description_cn','tag'],
-    )
-    @items = _search
-    @count = _search.total_count 
-    @root = Menutyp.find_by_key params[:root]
-    @typ = Menutyp.find_by_key params[:typ]
-  end
-
-  def repos_title
-    _typ = Menutyp.find_by_key params[:typ]
-    _root =  Menutyp.find_by_key params[:root]
-    return _typ.sdesc if _typ
-    return _root.sdesc if _root
-    "前端资源"
-  end
-
   def menus_b
-    if !(_typ = ( (@repo and @repo.rootyp) || params[:root])).blank?
-      return Menutyp.where({:typcd=>'B',:key=> _typ}).first
+    if !(_typ = ((@repo and @repo.rootyp) || params[:root])).blank?
+      return Menutyp.where({:typcd => 'B', :key => _typ}).first
     end
     return nil
   end
 
   def sources_list
-    @items = data_list(Topic.where({:typcd=> 'SOURCE',:state=> '0'}).order('id desc')).includes(:mem)
-     @count = Topic.where({:typcd=> 'SOURCE'}).count
+    @items = data_list(Topic.where({:typcd => 'SOURCE', :state => '0'}).order('id desc')).includes(:mem)
+    @count = Topic.where({:typcd => 'SOURCE'}).count
   end
 
-  def sitemap 
+  def sitemap
     Repo.order('id desc').all.map do |item|
       {
-        :loc => Rails.application.config.base_url + "#{item.link_url}",
-        :lastmod => item.updated_at,
-        :changefreq => 'daily',
-        :title =>item.name,
-        :tag => [item.name,Menutyp.current(item.typcd,item.rootyp).sdesc],
-        :pubTime => item.created_at,
-        :breadCrumb =>[
-          {:title=> Menutyp.current(item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}"},
-          {:title=> Menutyp.current(item.typcd,item.rootyp).sdesc,:url=>Rails.application.config.base_url + "/repos/#{item.rootyp}/#{item.typcd}"}
-        ],
-        :thumbnail=> "#{access_path 'repo'}#{item.cover}"
+          :loc => Rails.application.config.base_url + "#{item.link_url}",
+          :lastmod => item.updated_at,
+          :changefreq => 'daily',
+          :title => item.name,
+          :tag => [item.name, Menutyp.current(item.typcd, item.rootyp).sdesc],
+          :pubTime => item.created_at,
+          :breadCrumb => [
+              {:title => Menutyp.current(item.rootyp).sdesc, :url => Rails.application.config.base_url + "/repos/#{item.rootyp}"},
+              {:title => Menutyp.current(item.typcd, item.rootyp).sdesc, :url => Rails.application.config.base_url + "/repos/#{item.rootyp}/#{item.typcd}"}
+          ],
+          :thumbnail => "#{access_path 'repo'}#{item.cover}"
       }
     end
   end
 
-  def repo_active a,b,style
+  def repo_active a, b, style
     a.to_s.downcase == b.to_s.downcase ? style : ''
   end
 end

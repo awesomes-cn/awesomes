@@ -1,12 +1,11 @@
 =content_for :con
-  -repo_list
   div#repo-trends
     div.repo-list-wraper
       div.trend-head
         h2 前端趋势
         h4.category
-          i.fa>[class="#{@typ.icon}"]
-          | #{@root.sdesc} ● #{@typ.sdesc}
+          i.fa>[class="#{@typ.try :icon}"]
+          | #{@root.try :sdesc} ● #{@typ.try :sdesc}
         
         h4.period 第 #{ Time.now.strftime("%Y-%m-%d")} 期
 
@@ -27,7 +26,7 @@
       div.trend-head.bottom
         img.logo[src="/assets/logo-100.png"]
         h4 由 Awesomes-cn 整理发布
-  input.form-control[type="text" value="#前端趋势# 「#{@root.sdesc} > #{@typ.sdesc}」 最新趋势。 详情-> http://www.awesomes.cn/repos/#{@root.key}/#{@typ.key}?sort=trend" style="margin-top: 50px;"]      
+  input.form-control[type="text" value="#前端趋势# 「#{@root.try :sdesc} > #{@typ.try :sdesc}」 最新趋势。 详情-> http://www.awesomes.cn/repos/#{@root.try :key}/#{@typ.try :key}?sort=trend" style="margin-top: 50px;"]
 
   css:
     body{background: #EEE;}
