@@ -1,5 +1,6 @@
 class Menutyp < ActiveRecord::Base
 
+  scope :root_menus, -> { where typcd: :A }
   scope :sub_menus, -> { where typcd: :B }
 
   @@CACHE_KEY="MENUTYP"

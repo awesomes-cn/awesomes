@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
-
   before_action :admin_login, :only => [:trend]
 
   def index
     @links = Link.order order: :desc
+    @root_menus = Menutyp.root_menus
   end
 
   def repos

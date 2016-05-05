@@ -1,5 +1,5 @@
 class ReadmeController < ApplicationController
-  before_filter :readme_lost
+  before_action :readme_lost
 
   def readme_lost
     @item = Readme.find_by_id(params[:id]) 

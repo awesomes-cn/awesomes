@@ -21,9 +21,7 @@
       | 个优秀的前端库
 
     div.home-bottom
-      -Menutyp.menus('A').each do |root|
-        a[href="/repos/#{root.key}"] =switl root.key,root.sdesc
-        span
+      =root_menus
 
 
   

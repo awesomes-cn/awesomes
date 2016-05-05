@@ -56,25 +56,6 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.datetime "updated_at",                             null: false
   end
 
-  create_table "docs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.text     "con",        limit: 4294967295
-    t.text     "markdown",   limit: 4294967295
-    t.string   "cover",      limit: 55
-    t.integer  "mem_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  create_table "docsubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "mem_id"
-    t.text     "con",        limit: 65535
-    t.string   "status",     limit: 10,    default: "UNREAD"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-  end
-
   create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "logo"
@@ -131,13 +112,11 @@ ActiveRecord::Schema.define(version: 20160430183837) do
   create_table "mems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nc"
     t.string   "email"
-    t.string   "avatar",     limit: 100
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "pwd"
   end
-
-  add_index "mems", ["nc", "email"], name: "search", using: :btree
 
   create_table "menutyps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "key"
@@ -165,23 +144,22 @@ ActiveRecord::Schema.define(version: 20160430183837) do
   create_table "readmes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "mem_id"
     t.integer  "repo_id"
-    t.text     "about",      limit: 4294967295
-    t.text     "old",        limit: 4294967295
-    t.string   "sdesc",      limit: 200,        default: "初始化文档"
-    t.string   "status",     limit: 45,         default: "UNREAD"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.text     "about",      limit: 65535
+    t.text     "old",        limit: 65535
+    t.string   "sdesc"
+    t.string   "status",                   default: "UNREAD"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   create_table "repo_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "recsts",     limit: 2, default: "1"
+    t.string   "recsts",     default: "1"
     t.string   "title"
     t.string   "url"
-    t.string   "repo_alia"
-    t.integer  "mem_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
     t.integer  "repo_id"
+    t.integer  "mem_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "repo_trends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -198,35 +176,32 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.string   "full_name"
     t.string   "alia"
     t.string   "html_url"
-    t.string   "description",       limit: 1000
-    t.string   "description_cn",    limit: 1000
+    t.string   "description"
     t.string   "homepage"
     t.integer  "stargazers_count"
     t.integer  "forks_count"
     t.integer  "subscribers_count"
     t.datetime "pushed_at"
-    t.text     "about",             limit: 4294967295
-    t.text     "about_zh",          limit: 4294967295
+    t.text     "about",             limit: 65535
+    t.text     "about_zh",          limit: 65535
     t.string   "typcd"
     t.string   "rootyp"
-    t.string   "owner",             limit: 100
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "outdated",          limit: 1,          default: "0"
+    t.string   "owner"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "outdated",          limit: 1,     default: "0"
     t.string   "tag"
     t.string   "cover"
-    t.integer  "recommend",                            default: 0
-    t.integer  "trend",                                default: 0
+    t.integer  "recommend",                       default: 0
+    t.integer  "trend",                           default: 0
     t.datetime "github_created_at"
-    t.integer  "mark",                                 default: 0
-    t.integer  "issue_res",                            default: 0
+    t.integer  "mark",                            default: 0
+    t.integer  "issue_res",                       default: 0
     t.string   "typcd_zh"
     t.string   "rootyp_zh"
     t.integer  "demo"
     t.integer  "startup"
   end
-
-  add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree
 
   create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "typ"
@@ -253,9 +228,9 @@ ActiveRecord::Schema.define(version: 20160430183837) do
     t.string   "html_url"
     t.string   "rootyp"
     t.string   "typcd"
-    t.string   "status",     limit: 45, default: "UNREAD"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "status",     default: "UNREAD"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,4 +1,11 @@
 module HomeHelper
+
+  def root_menus
+    @root_menus.map do |root|
+      link_to switl(root.key, root.sdesc), "/repos/#{root.key}"
+    end.join(content_tag(:span)).html_safe
+  end
+
   def doc_list
     _order_by = 'id desc'
     if !(_search = params[:keyword]).blank?

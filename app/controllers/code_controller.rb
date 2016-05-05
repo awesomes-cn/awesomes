@@ -1,5 +1,5 @@
 class CodeController < ApplicationController
-  before_filter :code_lost, :except=> ['libs', 'libversions', 'libfiles'] 
+  before_action :code_lost, :except=> ['libs', 'libversions', 'libfiles']
 
   def code_lost
     @is_new = false

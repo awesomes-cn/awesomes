@@ -1,5 +1,5 @@
 class Admin::CodeController < AdminController
-  before_filter :lost
+  before_action :lost
 
   
   def lost
