@@ -1,3 +1,4 @@
+JS_VOID = 'javascript:void(0)'
 module ApplicationHelper
   def access_path filepath
     "#{Rails.application.config.source_access_path}#{filepath}"
