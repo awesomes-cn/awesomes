@@ -9,7 +9,6 @@
     
     =cache "repo_search_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do
       -search_list 
-      
       =render 'repo/list'
     
     

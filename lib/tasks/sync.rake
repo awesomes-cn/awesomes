@@ -56,3 +56,5 @@ namespace :baidu do
     Topic.push_seo
   end
 end
+
+
