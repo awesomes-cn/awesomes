@@ -52,6 +52,10 @@
         
         div.search
           input.txt[type='text' placeholder="搜索前端库" v-model="libkey" v-on:keyup="getLibs()"]
+        
+        a.right.open-modal[href="javascript:void(0)" data-modal="media"]
+            i.fa.fa-file-image-o>
+            | 插入媒体
 
         -if !@is_new
 
@@ -132,8 +136,49 @@
             li: a[href="http://cdn.code.baidu.com/" target="_blank"]  百度静态资源公共库
 
 
+    // 插入媒体
+    div.modal-wraper[data-modal="media"]
+      div.panel.panel-default
+        div.panel-body
+          p
+            | 资源访问的根路径为
+            strong: code< http://vendor.awesomes.cn/
+          
+          h4 图片
+          p
+            | 可选择 
+            strong: code<> 1 - 5.jpg
+            | 5张图片
+          p 尺寸为
+          ul
+            li
+              strong: code<> 2-s
+              | 小图 （200 * 113）
+            li
+              strong: code<> 2
+              | 中图 （600 * 338）
+            li
+              strong: code<> 2-l
+              | 大图 （1200 * 675）
+            li
+              strong: code<> 2-xl
+              | 超大图 （1920 * 1080）
+          p
+            | 例子：
+            a<[href="http://vendor.awesomes.cn/3-s.jpg" target="_blank"] http://vendor.awesomes.cn/3-s.jpg 
+
+          h4 Pdf
+          p
+            | 可选择 
+            strong: code<> 1.pdf
+
+          h4 mp4
+          p
+            | 可选择 
+            strong: code<> 1.mp4
 
 
+      i.fa.fa-close.close-modal  
 
     // fork
     div#fork-wraper.modal-wraper[data-modal="fork"]

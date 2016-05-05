@@ -25,6 +25,10 @@ $(function(){
   }) 
 
   // 打开弹框
+  $(".open-modal").click(function(){
+    $('.modal-wraper[data-modal=' + $(this).attr('data-modal') + ']').show().animate({top: 0})
+  })
+  
   $(".open-login-modal").click(function(){
     if(open_login()){
       $('.modal-wraper[data-modal=' + $(this).attr('data-modal') + ']').show().animate({top: 0})
