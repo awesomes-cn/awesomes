@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :repos, only: [:create]
+  get 'sessions/new'
 
+  get 'sessions/destroy'
+
+  resources :repos, only: [:create]
+  resources :sessions, only: [:create, :destroy]
   root 'home#index'
 
   get "/auth/:provider/callback" => "mem#auth"

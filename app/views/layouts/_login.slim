@@ -1,7 +1,7 @@
 css:
   [v-cloak] { display: none; }
 div.login-wraper.modal-wraper
-  =form_tag '/login.json',method: "get",id: 'loginForm'
+  =form_tag sessions_path(format: :json), id: 'loginForm'
     h3 =t('mem.login_tip')
     div.panel.panel-default.login-panel
       //div.panel-heading: h3.panel-title =t('mem.login_tip')
