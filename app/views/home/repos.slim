@@ -1,12 +1,10 @@
 =content_for :title 
-  | #{repos_title} - awesomes
+  | #{@page_title}
 
 =content_for :con
   div.container.main-container
     =render 'repo/list_banner'
-
     =cache "repo_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 2.day do
-      -repo_list 
       =render 'repo/list'
     
     
