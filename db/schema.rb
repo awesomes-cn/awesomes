@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508034341) do
+ActiveRecord::Schema.define(version: 20160508123250) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -29,6 +29,43 @@ ActiveRecord::Schema.define(version: 20160508034341) do
     t.integer  "visit",                    default: 0
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "captain_github_repo_docs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "readme_en",  limit: 4294967295
+    t.text     "readme_zh",  limit: 4294967295
+    t.integer  "repo_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "captain_github_repo_owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "login"
+    t.string   "avatar_url"
+    t.string   "home"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "captain_github_repos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "alia"
+    t.string   "html_url"
+    t.string   "homepage"
+    t.text     "description",       limit: 65535
+    t.integer  "owner_id"
+    t.integer  "stargazers_count"
+    t.integer  "forks_count"
+    t.integer  "subscribers_count"
+    t.integer  "watchers_count"
+    t.string   "language"
+    t.string   "favicon"
+    t.string   "repo_pushed_at"
+    t.string   "repo_created_at"
+    t.string   "repo_updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "captain_practices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

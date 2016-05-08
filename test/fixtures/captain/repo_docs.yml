@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  readme_cn: 
+  readme_cn: 
+  repo_id: 1
+
+two:
+  readme_cn: 
+  readme_cn: 
+  repo_id: 1
