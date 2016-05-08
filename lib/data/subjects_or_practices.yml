@@ -1,0 +1,262 @@
+categories:
+  - code: Applications
+    name: "应用"
+    typcd: A
+    desc: 'Javascript 应用框架和工具库'
+    icon: "fa-television"
+
+  - code: Frameworks
+    name: "框架"
+    parent: Applications
+    typcd: B
+    desc: '各种JS MVC、MVVM框架，让我们写出更干净整洁的代码'
+    icon: "fa-connectdevelop"
+
+  - code: Builds
+    name: "构建工具"
+    parent: Applications
+    typcd: B
+    desc: '实现项目自动化构建和管理，简化你的工作。'
+    icon: "fa-rocket"
+    home_index: 28
+
+  - code: Loaders
+    name: "模块加载"
+    parent: Applications
+    typcd: B
+    desc: '实现代码的模块化，加速优化代码的组织结构'
+    icon: "fa-circle-o-notch"
+
+  - code: PackageManager
+    name: "包管理器"
+    parent: Applications
+    typcd: B
+    desc: '前端JS包管理器'
+    icon: "fa-suitcase"
+
+  - code: Templating
+    name: "模板引擎"
+    parent: Applications
+    typcd: B
+    desc: '更好地在JS中组织HTML代码'
+    icon: "fa-copy"
+
+  - code: Testings
+    name: "测试框架"
+    parent: Applications
+    typcd: B
+    desc: '前端Javascript测试框架'
+    icon: "fa-coffee"
+
+  - code: Utilities
+    name: "实用工具"
+    parent: Applications
+    typcd: B
+    desc: '各种前端应用工具集'
+    icon: "fa-briefcase"
+
+  - code: Development-Aids
+    name: "开发助手"
+    parent: Applications
+    typcd: B
+    desc: '浏览器的帮助函数库以及JS扩展库'
+    icon: "fa-wrench"
+
+  - code: Processor
+    name: "（预）处理器"
+    parent: Applications
+    typcd: B
+    desc: 'Javascript/CSS （预）处理器，让我们更高效地写代码'
+    icon: "fa-hourglass-end"
+
+  - code: Games
+    name: "游戏引擎"
+    parent: Applications
+    typcd: B
+    desc: 'JS和HTML5的前端游戏引擎，帮助我们更好更快地打造游戏'
+    icon: "fa-gamepad"
+    home_index: 26
+
+  - code: Highlights
+    name: "代码高亮"
+    parent: Applications
+    typcd: B
+    desc: '代码高亮，着色'
+    icon: "fa-code"
+    home_index: 24
+
+  - code: Editor
+    name: "富文本编辑器"
+    parent: Applications
+    typcd: B
+    desc: '各种网页编辑器'
+    icon: "fa-columns"
+    home_index: 20
+
+  - code: Mobile
+    name: "移动端"
+    typcd: A
+    desc: '适配移动端的H5应用框架和工具组件'
+    icon: "fa-mobile"
+    home_index: 30
+
+  - code: Frameworks
+    name: "框架"
+    parent: Mobile
+    typcd: B
+    desc: '移动端框架和UI库，快速构建移动应用'
+    icon: "fa-connectdevelop"
+
+  - code: Utilities
+    name: "工具组件"
+    parent: Mobile
+    typcd: B
+    desc: '移动端工具函数库和适用于移动端的组件'
+    icon: "fa-briefcase"
+
+  - code: Media
+    name: "多媒体"
+    typcd: A
+    desc: '音频和视频处理的工具库和播放插件'
+    icon: "fa-film"
+    home_index: 18
+
+  - code: Audio
+    name: "音频"
+    parent: Media
+    typcd: B
+    desc: '音频处理和播放库'
+    icon: "fa-music"
+
+  - code: Video
+    name: "视频"
+    parent: Media
+    typcd: B
+    desc: '视频处理和播放库'
+    icon: "fa-video-camera"
+
+  - code: Dom
+    name: Dom
+    typcd: A
+    desc: 'Dom页面元素的辅助工具和框架'
+    icon: "fa-laptop"
+
+  - code: Frameworks
+    name: "框架"
+    parent: Dom
+    typcd: B
+    desc: '前端UI框架，让程序员也能搭建出优美的界面'
+    icon: "fa-connectdevelop"
+
+  - code: Utilities
+    name: "实用工具"
+    parent: Dom
+    typcd: B
+    desc: "各种DOM的实用工具库"
+    icon: "fa-briefcase"
+
+  - code: Fonts
+    name: "字体 / 图标"
+    parent: Dom
+    typcd: B
+    desc: "网页字体，字体处理工具，字体图标"
+    icon: "fa-flag"
+    home_index: 16
+
+
+  - code: Forms
+    name: "表单"
+    parent: Dom
+    typcd: B
+    desc: "表单处理、验证和美化库"
+    icon: "fa-check-square"
+
+
+
+  - code: Animation
+    name: "动画"
+    parent: Dom
+    typcd: B
+    desc: "各种JS动画库和CSS3动画库"
+    icon: "fa-cog fa-spin"
+    home_index: 14
+
+  - code: Alerts
+    name: "通知提示"
+    parent: Dom
+    typcd: B
+    desc: "各种通知提示弹出框"
+    icon: "fa-chevron-circle-up"
+
+  - code: Uploads
+    name: "文件上传"
+    parent: Dom
+    typcd: B
+    desc: "web上传控件"
+    icon: "fa-cloud-upload"
+
+  - code: Dates
+    name: "日期时间"
+    parent: Dom
+    typcd: B
+    desc: "日期和时间插件"
+    icon: "fa-calendar"
+
+  - code: Navs
+    name: "菜单导航"
+    parent: Dom
+    typcd: B
+    desc: "页面导航和菜单"
+    icon: "fa-navicon"
+
+  - code: Pages
+    name: "页面布局"
+    parent: Dom
+    typcd: B
+    desc: "页面布局方式，单页面流转"
+    icon: "fa-th"
+
+  - code: Images
+    name: "图像图像"
+    typcd: A
+    desc: '图形图形处理库和各种展示效果'
+    icon: 'fa-image'
+
+  - code: Graphics
+    name: "图形库"
+    parent: Images
+    typcd: B
+    desc: "2D/3D图形处理库"
+    icon: "fa-pie-chart"
+    home_index: 22
+
+  - code: Sliders
+    name: "轮播"
+    parent: Images
+    typcd: B
+    desc: "图片展示和轮播效果图"
+    icon: "fa-camera"
+
+  - code: Lightboxs
+    name: "灯箱"
+    parent: Images
+    typcd: B
+    desc: "图片灯箱插件，弹出预览，相册轮播"
+    icon: "fa-lightbulb-o"
+
+  - code: Charts
+    name: "图表"
+    parent: Images
+    typcd: B
+    desc: "web图表"
+    icon: "fa-bar-chart"
+    home_index: 12
+
+  - code: Processing
+    name: "图片处理"
+    parent: Images
+    typcd: B
+    desc: "图片的缩放、剪切等处理的函数库"
+    icon: "fa-crop"
+
+
