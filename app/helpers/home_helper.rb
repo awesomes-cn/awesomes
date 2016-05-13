@@ -42,26 +42,6 @@ module HomeHelper
     @count = Doc.where(_where_search).count
   end
 
-  def repo_list
-    @sort = params[:sort].blank? ? :hot : params[:sort]
-    query = {}
-    query.merge! rootyp: params[:root] if params[:root].present?
-    query.merge! typcd: params[:typ] if params[:typ].present?
-
-    if params[:tag].present?
-      _tag_search = "tag like ?", "%#{_tag}%"
-    end
-
-    _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :new => "github_created_at", :trend => "trend"}
-    _sort = "#{_map[@sort.to_sym]} desc"
-
-
-    @items = data_list(Repo.where(query).where(_tag_search).order(_sort)).includes(:repo_trends)
-    @count = Repo.where(query).where(_tag_search).count
-    @root = Menutyp.find_by_key params[:root]
-    @typ = Menutyp.find_by_key params[:typ]
-  end
-
   def menus_b
     if !(_typ = ((@repo and @repo.rootyp) || params[:root])).blank?
       return Menutyp.where({:typcd => 'B', :key => _typ}).first

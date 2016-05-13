@@ -103,4 +103,8 @@ class CodeController < ApplicationController
   def preview
     render :layout=> nil
   end
+
+  def sandbox
+    send_file 'http://vendor.awesomes.cn/code/1.jpg'
+  end
 end

@@ -60,8 +60,8 @@ class ApplicationController < ActionController::Base
     @page =  @page.to_i - 1
   end
 
-  def data_list query
-    query.order('id desc').limit(page_size).offset(page * page_size)
+  def data_list query, pagesize = page_size
+    query.order('id desc').limit(pagesize).offset(page * page_size)
   end
 
   def data_list_asc query

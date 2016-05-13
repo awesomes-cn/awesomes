@@ -1,0 +1,138 @@
+doctype html
+html
+  head
+    title 前端 TOP100
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    
+  body.rank-wraper
+    div.banner#rank-banner
+      div.inner
+        h1 前端 TOP 100
+        div.filter
+          a(href="?sort=hot" class="#{@sort == 'hot' ? 'active' : ''}")
+            i.fa.fa-fire>
+            | 热度
+          a(href="?sort=trend" class="#{@sort == 'trend' ? 'active' : ''}")
+            i.fa.fa-line-chart>
+            | 趋势
+      
+    div.container
+      =yield :con
+
+      div.bottom 
+        | 数据来自
+        a<>[href="http://www.github.com"] Github
+        | 和
+        a<>[href="http://www.awesomes.cn"] Awesomes-cn
+        | 每天更新
+
+    css:
+      canvas{
+         left:0; top: 0; z-index: -1px;
+      }
+
+    javascript:
+      particlesJS("rank-banner", {
+        "particles": {
+          "number": {
+            "value": 40,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#ffffff"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
+            },
+            "image": {
+              "src": "img/github.svg",
+              "width": 100,
+              "height": 100
+            }
+          },
+          "opacity": {
+            "value": 0.3,
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 20,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 30,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 4,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
+            }
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": false,
+              "mode": "grab"
+            },
+            "onclick": {
+              "enable": false,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 140,
+              "line_linked": {
+                "opacity": 1
+              }
+            },
+            
+          }
+        },
+        "retina_detect": true
+      });
+
+
+
+
+

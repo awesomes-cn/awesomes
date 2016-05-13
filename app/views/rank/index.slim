@@ -1,0 +1,19 @@
+=content_for :con
+  div.list-group.list-main
+    -@items.each_with_index do |item, index|
+      a.list-group-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
+        div.side.side-left
+          span.index =index + 1
+        
+        img.cover[src='#{repo_cover_path item.cover}']
+        
+        div.desc
+          h3 =item.name
+          p =item.description 
+
+        div.side.side-right
+          -_fresh = fresh item.pushed_at
+          span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+      
+      
+    
