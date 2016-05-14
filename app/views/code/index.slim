@@ -136,66 +136,15 @@
             li: a[href="http://cdn.code.baidu.com/" target="_blank"]  百度静态资源公共库
 
 
-    // 插入媒体
-    div.modal-wraper[data-modal="media"]
-      div.panel.panel-default
-        div.panel-body
-          p
-            | 资源访问的根路径为
-            strong: code< http://vendor.awesomes.cn/
-          
-          h4 图片
-          p
-            | 可选择 
-            strong: code<> 1 - 5.jpg
-            | 5张图片
-          p 尺寸为
-          ul
-            li
-              strong: code<> 2-s
-              | 小图 （200 * 113）
-            li
-              strong: code<> 2
-              | 中图 （600 * 338）
-            li
-              strong: code<> 2-l
-              | 大图 （1200 * 675）
-            li
-              strong: code<> 2-xl
-              | 超大图 （1920 * 1080）
-          p
-            | 例子：
-            a<[href="http://vendor.awesomes.cn/3-s.jpg" target="_blank"] http://vendor.awesomes.cn/3-s.jpg 
+    
 
-          h4 Pdf
-          p
-            | 可选择 
-            strong: code<> 1.pdf
-
-          h4 mp4
-          p
-            | 可选择 
-            strong: code<> 1.mp4
-
-
-      i.fa.fa-close.close-modal  
-
-    // fork
-    div#fork-wraper.modal-wraper[data-modal="fork"]
-      =form_tag '/code/fork',method: "get",id: 'inform'
-        div.panel.panel-default
-          div.panel-body
-            div.form-group
-              a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
-              a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
-
-            div.form-group
-              span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
-
-      i.fa.fa-close.close-modal      
+    
   
     // 修改信息
     div.modal-wraper[data-modal="info"]
+      div.modal-title
+        h3 修改标题
+
       =form_tag '/code/info',method: "get",id: 'infoform'
         div.panel.panel-default
           div.panel-body
@@ -206,24 +155,9 @@
             div.form-group
               input[type="hidden" value="#{@item.id}" name="id"]
               button.btn.btn-default[type="submit"] 确认
-      i.fa.fa-close.close-modal
+      i.fa.fa-angle-up.close-modal
     
-    // 关联库
-    div.modal-wraper[data-modal="relation"]
-      =form_tag '/code/relate',method: "get",id: 'repoform'
-        div.panel.panel-default
-          div.panel-body
-            div.form-group
-              label 请输入前端库名
-              p 取每个库的地址后面的两个单词
-              span 如：https://www.awesomes.cn/repo/
-              code jquery/jquery
-              input.form-control[type="text" name="repo" placeholder="jquery/jquery"]
-            div.form-group  
-              input[type="hidden" value="#{@item.id}" name="id"]
-              button.btn.btn-default[type="submit"] 确认关联
-            div.alert.alert-danger[style="display: none"] 关联失败，确认存在该库且格式正确
-      i.fa.fa-close.close-modal      
+    
 
   css:
     .container {
@@ -276,3 +210,90 @@
             else
               $('#repoform').find('.alert').show()
 
+
+=content_for :footer
+  // 插入媒体
+  div.modal-wraper[data-modal="media"]
+    div.modal-title
+      h3 插入媒体资源
+
+    div.panel.panel-default
+      div.panel-body
+        p
+          | 资源访问的根路径为
+          strong: code< http://vendor.awesomes.cn/
+        
+        h4 图片
+        p
+          | 可选择 
+          strong: code<> 1 - 5.jpg
+          | 5张图片
+        p 尺寸为
+        ul
+          li
+            strong: code<> 2-s
+            | 小图 （200 * 113）
+          li
+            strong: code<> 2
+            | 中图 （600 * 338）
+          li
+            strong: code<> 2-l
+            | 大图 （1200 * 675）
+          li
+            strong: code<> 2-xl
+            | 超大图 （1920 * 1080）
+        p
+          | 例子：
+          a<[href="http://vendor.awesomes.cn/3-s.jpg" target="_blank"] http://vendor.awesomes.cn/3-s.jpg 
+
+        h4 Pdf
+        p
+          | 可选择 
+          strong: code<> 1.pdf
+
+        h4 mp4
+        p
+          | 可选择 
+          strong: code<> 1.mp4
+
+
+    i.fa.fa-angle-up.close-modal  
+
+
+  // fork
+  div#fork-wraper.modal-wraper[data-modal="fork"]
+    div.modal-title
+      h3 Fork 该代码
+    =form_tag '/code/fork',method: "get",id: 'inform'
+      div.panel.panel-default
+        div.panel-body
+          div.form-group
+            a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
+            a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
+
+          div.form-group
+            span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
+
+    i.fa.fa-angle-up.close-modal          
+
+  
+  // 关联库
+  div.modal-wraper[data-modal="relation"]
+    div.modal-title
+      h3 关联库
+
+    =form_tag '/code/relate',method: "get",id: 'repoform'
+      div.panel.panel-default
+        div.panel-body
+          div.form-group
+            label 请输入前端库名
+            p 取每个库的地址后面的两个单词
+            span 如：https://www.awesomes.cn/repo/
+            code jquery/jquery
+            input.form-control[type="text" name="repo" placeholder="jquery/jquery"]
+          div.form-group  
+            input[type="hidden" value="#{@item.id}" name="id"]
+            button.btn.btn-default[type="submit"] 确认关联
+          div.alert.alert-danger[style="display: none"] 关联失败，确认存在该库且格式正确
+    
+    i.fa.fa-angle-up.close-modal    

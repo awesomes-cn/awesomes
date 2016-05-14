@@ -2,7 +2,9 @@ css:
   [v-cloak] { display: none; }
 div.login-wraper.modal-wraper
   =form_tag sessions_path(format: :json), id: 'loginForm'
-    h3 =t('mem.login_tip')
+    div.modal-title
+      h3 =t('mem.login_tip')
+      i.fa.fa-angle-up.close-modal
     div.panel.panel-default.login-panel
       //div.panel-heading: h3.panel-title =t('mem.login_tip')
       div.panel-body
@@ -27,7 +29,7 @@ div.login-wraper.modal-wraper
         
         div.alert.alert-danger[v-show="action.tip"] {{action.tip}}
   
-  i.fa.fa-close.close-modal
+  
   
   javascript:
     $(function(){
