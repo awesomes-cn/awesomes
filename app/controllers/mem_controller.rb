@@ -87,6 +87,11 @@ class MemController < ApplicationController
     @count = @mem.readmes.count
   end
 
+  def codes
+    @items = data_list_asc @mem.codes
+    @count = @mem.codes.count
+  end
+
   def comments
     @items = data_list @mem.comments
     @count = @mem.comments.count

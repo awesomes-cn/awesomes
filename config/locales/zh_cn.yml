@@ -69,6 +69,7 @@ zh-CN:
     pwd: '密码'
     forgot_pwd: '忘记密码'
     mark: '收藏'
+    code: '代码'
 
   activerecord:
     errors:

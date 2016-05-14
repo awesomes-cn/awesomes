@@ -1,0 +1,15 @@
+=content_for :con
+  ul.list-group.mem-list-wraper
+    -@items.each do |item|
+      li.list-group-item
+        a.repo[href="/code/#{item.id}"] =item.title
+        span.right =item.created_at.strftime("%Y-%m-%d")
+  div#page-mem
+  javascript:
+    $(function(){
+      $("#page-mem").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        link_to:"?page=__id__"
+      }) 
+    })

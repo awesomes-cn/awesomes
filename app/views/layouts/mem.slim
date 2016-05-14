@@ -11,10 +11,12 @@ html
         h4 =@mem.nc
       div.inner
         ul.menu
-          li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] =t('mem.topic')
+          // li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] =t('mem.topic')
           li[class="#{navon 'marks'}"]: a[href="/mem/#{@mem.id}/marks"] =t('mem.mark')
           li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] =t('mem.doc')
+          li[class="#{navon 'codes'}"]: a[href="/mem/#{@mem.id}/codes"] =t('mem.code')
           li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] =t('mem.comment')
+
           -if @isme
             li[class="#{navon 'info'}"]: a[href="/mem/info"] =t('mem.edit_info')
 
