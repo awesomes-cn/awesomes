@@ -1,12 +1,24 @@
-=content_for :banner
-
 =content_for :footer_extra    
   =render 'footer_index'
 
+=content_for :banner  
+  div.rows.new-repos
+    h4.title 最新发布
+    div.clear 
+    -@news.each do |item|
+      div.col-md-2.col-sm-4
+        div.inner
+          a[href="#{item.link_url}"]
+            img.cover[src='#{repo_cover_path item.cover}']
+          div.desc
+            strong =item.name
+            p =item.description 
+
+
 =content_for :con
   div.home-wraper
-    h3
-      | 「 #{t('home.slogan')} 」
+    / h3
+    /   | 「 #{t('home.slogan')} 」
     a.btn.btn-danger.btn-lg[href="/repos/Applications/frameworks"]
       | #{t('home.view')} -
       i.fa.fa-angle-right<
@@ -22,6 +34,10 @@
 
     div.home-bottom
       =root_menus
+  
+  css:
+    .navbar{margin-bottom: 0}
+    
 
 
   

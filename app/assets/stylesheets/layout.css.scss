@@ -319,7 +319,7 @@ user-select: none;
 
 // bootstrap patch
 .navbar{
-  background-color: #FFF;  border: 0; border-bottom: #EEE 1px solid;
+  background-color: rgb(254, 254, 254);  border: 0; border-bottom: #EEE 1px solid;
   a{
     &:link,&:visited{
       color:#777777;

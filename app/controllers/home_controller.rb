@@ -10,6 +10,7 @@ class HomeController < ApplicationController
     @links = Link.order order: :desc
     @root_menus = Menutyp.root_menus
     @repos_count = Repo.count
+    @news = Repo.order('id desc').limit('6')
   end
 
   def search
