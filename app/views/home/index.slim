@@ -5,14 +5,15 @@
   div.rows.new-repos
     h4.title 最新发布
     div.clear 
-    -@news.each do |item|
-      div.col-md-2.col-sm-4
-        div.inner
-          a[href="#{item.link_url}"]
-            img.cover[src='#{repo_cover_path item.cover}']
-          div.desc
-            strong =item.name
-            p =item.description 
+    =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 2.day do
+      -@news.each do |item|
+        div.col-md-2.col-sm-4
+          div.inner
+            a[href="#{item.link_url}"]
+              img.cover[src='#{repo_cover_path item.cover}']
+            div.desc
+              strong =item.name
+              p =item.description 
 
 
 =content_for :con
