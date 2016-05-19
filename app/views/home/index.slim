@@ -14,27 +14,52 @@
             div.desc
               strong =item.name
               p =item.description 
+  
+  div.rows.trends-wraper
 
-
-=content_for :con
-  div.home-wraper
-    / h3
-    /   | 「 #{t('home.slogan')} 」
-    a.btn.btn-danger.btn-lg[href="/repos/Applications/frameworks"]
+    a.btn.btn-danger.btn-lg.visit-btn[href="/repos/Applications/frameworks"]
       | #{t('home.view')} -
       i.fa.fa-angle-right<
 
-    form.search-form[action="/search" method="get"]
-      input.search-txt[type="text" placeholder="#{t('site.search_repo')}" name="q"]
-      button[type="submit"]: i.fa.fa-search 
+    div.col-md-5
+      h3 实时趋势
+    div.col-md-7
+      -@trends.each_with_index do |item, index|
+        a.list-group-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
+          div.side.side-left
+            span.index =index + 1
+          
+          img.cover[src='#{repo_cover_path item.cover}']
+          
+          div.desc
+            h3 =item.name
+            p =item.description 
 
-    p
-      | 已收录
-      b<> < #{@repos_count} >
-      | 个优秀的前端库
+          div.side.side-right
+            -_fresh = fresh item.pushed_at
+            span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+      a.list-group-item[href="/rank"] 更多趋势
+      div.clear
 
-    div.home-bottom
-      =root_menus
+=content_for :con
+  / div.home-wraper
+  /   / h3
+  /   /   | 「 #{t('home.slogan')} 」
+  /   a.btn.btn-danger.btn-lg[href="/repos/Applications/frameworks"]
+  /     | #{t('home.view')} -
+  /     i.fa.fa-angle-right<
+
+  /   form.search-form[action="/search" method="get"]
+  /     input.search-txt[type="text" placeholder="#{t('site.search_repo')}" name="q"]
+  /     button[type="submit"]: i.fa.fa-search 
+
+  /   p
+  /     | 已收录
+  /     b<> < #{@repos_count} >
+  /     | 个优秀的前端库
+
+  /   div.home-bottom
+  /     =root_menus
   
   css:
     .navbar{margin-bottom: 0}
