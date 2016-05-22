@@ -302,18 +302,18 @@
 }
 
 .trends-wraper{
-  padding: 50px;  position: relative;  padding-top: 80px;
+  padding: 50px;  position: relative;  padding-top: 80px; max-width: 1000px; margin: 0 auto;
 
   .visit-btn{
     position: absolute;  top: -20px;  left: 50%;  margin-left: -65px;
   }
 
-  .list-group-item{
-    padding: 10px 50px; padding-left: 140px;  position: relative; 
-    height: 100px; box-sizing: border-box;
-
+  .list-trend-item{
+    height: 100px; box-sizing: border-box; color: #444; text-decoration: none;
+    padding: 10px 50px;   padding-left: 85px;    position: relative;
+    border-left: 0;    border-right: 0;   display: block; 
     .cover{
-      width: 50px; border-radius: 5px; position: absolute; left: 50px; margin-top: 10px;
+      width: 30px; border-radius: 100%; position: absolute; left: 50px; margin-top: 35px;
     }
     .desc{
       text-overflow: ellipsis;   white-space: nowrap;  overflow: hidden; 
@@ -328,7 +328,18 @@
     .side{
       width: 50px; text-align:center; position: absolute;  top: 0; height: 100%;  line-height: 100px;
       &.side-left{
-        left: 0; font-size: 20px; 
+        left: 0px;  line-height: 30px;    font-size: 12px;    width: 30px;margin-top: 20px;
+        height: 30px;    background-color: #C6C6C6;    border-radius: 100%;
+        border: rgba(255, 255, 255, 0.58) 15px solid;    box-sizing: content-box;
+        &.nth-1{
+          background-color: #FF9090; color: rgb(204, 0, 0)
+        }
+        &.nth-2{
+          background-color: #11D475; color: #218655
+        }
+        &.nth-3{
+          background-color: #11A3D4; color: #017FA9
+        }
       }
       &.side-right{
         right: 0;

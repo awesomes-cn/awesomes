@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     @root_menus = Menutyp.root_menus
     @repos_count = Repo.count
     @news = Repo.order('id desc').limit(6)
-    @trends = Repo.order('trend desc').limit(5)
+    @trends = Repo.order('trend desc').limit(6)
   end
 
   def search

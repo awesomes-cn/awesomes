@@ -22,24 +22,29 @@
       i.fa.fa-angle-right<
 
     div.col-md-5
-      h3 实时趋势
+      div
+        h3 实时趋势
+        p 让你了解前端最新趋势，带你看看大家都在关注什么
+        p 数据来自Github，每日实时更新记录，分析得出整体趋势
+        p 一句话，你可以不跟随趋势，但你必须了解趋势
     div.col-md-7
       -@trends.each_with_index do |item, index|
-        a.list-group-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
-          div.side.side-left
+        a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
+          div.side.side-left[class="nth-#{index+1}"] 
             span.index =index + 1
           
-          img.cover[src='#{repo_cover_path item.cover}']
-          
           div.desc
-            h3 =item.name
+            h3
+              span =item.name
+              span.line.hide< =trends item
             p =item.description 
 
           div.side.side-right
-            -_fresh = fresh item.pushed_at
-            span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
-      a.list-group-item[href="/rank"] 更多趋势
-      div.clear
+            img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
+            / -_fresh = fresh item.pushed_at
+            / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+      a.list-trend-item[href="/rank?sort=trend"] 更多趋势
+    div.clear
 
 =content_for :con
   / div.home-wraper
@@ -63,6 +68,11 @@
   
   css:
     .navbar{margin-bottom: 0}
+
+  javascript:
+    $(function(){
+      $(".line").peity("line");
+    })  
     
 
 

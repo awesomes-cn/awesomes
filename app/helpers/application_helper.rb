@@ -3,9 +3,13 @@ module ApplicationHelper
   def access_path filepath
     "#{Rails.application.config.source_access_path}#{filepath}"
   end
+  
+  def repo_cover_base cover
+    "#{Rails.application.config.source_access_path}repo/#{cover}"
+  end
 
   def repo_cover_path cover
-    "#{Rails.application.config.source_access_path}repo/#{cover}#{ENV['REPO_PIC_STYLE']}"
+    "#{repo_cover_base(cover)}#{ENV['REPO_PIC_STYLE']}"
   end
 
   def subject_cover_path cover
