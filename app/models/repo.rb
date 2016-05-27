@@ -4,7 +4,7 @@ class Repo < ActiveRecord::Base
   has_many :repo_trends
   has_many :codes
 
-  searchkick batch_size: 20000
+  #searchkick batch_size: 20000
 
 
   after_create :after_create_callback
