@@ -9,20 +9,22 @@ javascript:
   (function timeToSleep(){
     var d = new Date();
     var m = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds();
-    var bh = 22
+    var bh = 23
     var eh = 6
     var b = bh * 3600;
     var e = eh * 3600;
     if(m < e || m > b){
       window.location.href = "/sleep"
     }
-    var cutdown =  b - m
+    
     setInterval(function(){
+      d = new Date();
+      m = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds();
+      var cutdown =  b - m
       if(cutdown == 0){
         window.location.href = "/sleep"
       }
-      $('#sleepTime').text(cacSleep(cutdown) + '后进入睡眠')
-      cutdown --
+      $('#sleepTime').text(cacSleep(cutdown) + '后进入睡眠') 
     }, 1000)
   })()
 
