@@ -28,12 +28,14 @@ header.navbar
 
       
       ul.nav.navbar-nav.navbar-right
+        li
+          a#sleepTime[href="/sleeprule" style="color: #C0C0C0;font-weight: normal; font-size: 12px"] 
         li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>
         
         -unless is_login
           li: a.open-login.open-login[href="#{JS_VOID}"] =t('site.signin')
         -else
-          li: a[href="/mem"] =current_mem.nc
+          li: a[href="/mem" style="padding: 10px;"]: img.tx[src="#{current_mem.avatar_url}"]
           li.nav-extra
             a[href=""]:  i.fa.fa-ellipsis-h
             ul.extra-menu
@@ -41,6 +43,5 @@ header.navbar
               li: a[href='/mem/info'] 个人资料
               =link_to t('mem.logout'), sessions_destroy_path
 
-  
         
   

@@ -1,0 +1,70 @@
+doctype html
+html[xmlns:wb="http://open.weibo.com/wb"]
+  head
+    title Awesomes - 前端资源库
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+  body
+    div.sleep-wraper
+      h1: i.fa.fa-bed
+      h2 为了您的健康，请及时睡觉
+      p 晚上10点至凌晨6点为网站睡眠时间
+      h1 拒绝熬夜
+      h2
+        | 网站将于
+        span#wakeUp<>
+        | 后苏醒
+
+    css:
+      body{background-color: #000; color: #7F7F7F}
+    
+    javascript:
+      var d = new Date();
+      var m = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds();
+      var bh = 22
+      var eh = 6
+      var b = bh * 3600;
+      var e = eh * 3600;
+      if(m >= e && m <= b){
+        window.location.href = "/"
+      }
+
+      var wakeup =  e - m 
+      if(m > b){
+        wakeup = 24 * 3600 - m + e 
+      }
+      setInterval(function(){
+        if(wakeup == 0){
+          window.location.href = "/"
+        }
+        $('#wakeUp').text(cacSleep(wakeup))
+        wakeup --
+      }, 1000)
+
+
+      
+      function cacSleep(seconds){
+        var result = ""
+        var h = Math.floor(seconds / 3600)
+        if(h > 0){
+          result += h  + '小时'
+          seconds -= 3600 * h
+        }
+        var m = Math.floor(seconds / 60)
+        if(m > 0){
+          result += m  + '分' 
+          seconds -= 60 * m
+        } 
+         if(seconds > 0){
+          result += seconds  + '秒' 
+        }
+        return result 
+      }
+
+      
+
+    

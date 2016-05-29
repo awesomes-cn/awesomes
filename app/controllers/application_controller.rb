@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   def current_mem
     Mem.find_by_id(session[:mem])
   end

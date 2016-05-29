@@ -5,6 +5,52 @@ meta[http-equiv="X-UA-Compatible" content="IE=edge"]
 meta[name="description" content="#{(_description = yield :description) =='' ? '免费开源的高质量前端库、框架和插件' : _description}"]
 meta[name="keywords" content="#{(_keywords = yield :keywords) =='' ? 'html5,h5,css3,jquery,web框架,js框架,jquery插件,免费开源,中文文档' : _keywords}"]
 javascript:
+  // 睡眠时间
+  (function timeToSleep(){
+    var d = new Date();
+    var m = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds();
+    var bh = 22
+    var eh = 6
+    var b = bh * 3600;
+    var e = eh * 3600;
+    if(m < e || m > b){
+      window.location.href = "/sleep"
+    }
+    var cutdown =  b - m
+    setInterval(function(){
+      if(cutdown == 0){
+        window.location.href = "/sleep"
+      }
+      $('#sleepTime').text(cacSleep(cutdown) + '后进入睡眠')
+      cutdown --
+    }, 1000)
+  })()
+
+  
+
+
+
+  function cacSleep(seconds){
+    var result = ""
+    var h = Math.floor(seconds / 3600)
+    if(h > 0){
+      result += h  + '小时'
+      seconds -= 3600 * h
+    }
+    var m = Math.floor(seconds / 60)
+    if(m > 0){
+      result += m  + '分' 
+      seconds -= 60 * m
+    } 
+     if(seconds > 0){
+      result += seconds  + '秒' 
+    }
+    return result 
+  }
+
+
+
+
   var Rails = {
     config: {
       source_access_path : "#{Rails.application.config.source_access_path}"

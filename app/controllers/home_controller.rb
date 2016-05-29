@@ -14,6 +14,13 @@ class HomeController < ApplicationController
     @trends = Repo.order('trend desc').limit(6)
   end
 
+  def sleep
+    render :layout=> nil
+  end
+  def sleeprule
+    render :layout=> nil
+  end
+
   def search
     search_results = Repo.search(
         params[:q],

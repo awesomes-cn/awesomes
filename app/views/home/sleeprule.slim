@@ -1,0 +1,47 @@
+doctype html
+html[xmlns:wb="http://open.weibo.com/wb"]
+  head
+    title Awesomes - 前端资源库
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+  body
+    div.sleep-wraper
+      div.inner
+        h2.text-center 网站睡眠
+        p 程序员是一个高危行业，长时间与电脑交互导致作息时间紊乱，各种不健康的信号都会随之而来，而睡眠恰恰是第一要素，多少程序员因为睡眠不足而猝死。我坚信不管何时，健康永远是第一位
+        p 于是我们做了一个痛快的决定，晚上10点至凌晨6点期间，网站进入休眠。为了真正督促你能做到按时睡觉，网站将不能以任何方式打开，希望开发者能够理解我们的用心，重视健康
+        p 最终希望你和我都能做到健康睡眠，快乐编程
+
+        pre[lang="javascript"]
+          code
+            span var now  = new Date()
+          br
+          code
+            span var current = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+          br
+          code
+            span var start = 6 * 3600  
+          br
+          code
+            span var end = 22 * 3600  
+          br 
+          br
+          code
+            span if(current > end || current < start){
+          br 
+          code
+            span   closeComputerAndGotoSleep()
+          br
+          code
+            span }
+        
+        p 你可以将上面的代码放入你网站的每个页面中
+    css:
+      body{background-color: #EEE; color: #7F7F7F}
+    
+
+    

@@ -351,3 +351,13 @@
 
   }
 }
+
+
+.sleep-wraper{
+  padding: 100px 10px; text-align: center;
+  .fa-bed{font-size: 50px;}
+  .inner{
+    background-color: #FFF; text-align: left; color: #333; font-size: 15px;
+    padding: 50px; max-width: 1000px; margin: 0 auto;
+  }
+}
