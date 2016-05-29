@@ -22,14 +22,8 @@ class HomeController < ApplicationController
   end
 
   def search
-    search_results = Repo.search(
-        params[:q],
-        limit: page_size,
-        offset: page * page_size,
-        fields: %w(full_name typcd_zh typcd rootyp_zh rootyp description description_cn tag)
-    )
-    @items = search_results
-    @count = search_results.total_count
+    @items = Repo.search(params[:q], {"hitsPerPage" => 15, "page" => page})
+    @count = @items.raw_answer['nbHits'] || 0
     @root = Menutyp.find_by_key params[:root]
     @typ = Menutyp.find_by_key params[:typ]
   end

@@ -25,6 +25,7 @@ gem 'letter_avatar', '0.1.11'
 gem 'kaminari', '0.16.3'
 gem 'searchkick', '1.2.1'
 gem 'aliyun-sdk', '~> 0.3.7'
+gem "algoliasearch-rails"
 
 #gem 'rmagick', '2.15.4'
 #gem 'jbuilder', '~> 2.0'

@@ -32,6 +32,11 @@ namespace :repo do
   task :issue,[:start] => :environment do |t,args|
     GithubJob.repo_issue
   end
+
+
+  task :index,[:start] => :environment do |t,args|
+    Repo.reindex
+  end
    
 end
 
