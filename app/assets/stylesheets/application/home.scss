@@ -286,12 +286,13 @@
 
 
 .new-repos{
-  background-color: #F9F9F9; overflow: hidden; padding: 50px; text-align:center;
+  background-color: #F8F8F8; overflow: hidden; padding: 50px; text-align:center;
   .inner{
-    background-color: #FFF; padding-bottom: 10px; margin: 20px 0;
+    background-color: #FFF; padding-bottom: 10px; margin: 20px 0; padding: 20px; box-shadow: 1px 1px 10px #f4f4f4;
     .desc{
       height: 110px; padding: 10px; overflow: hidden;
       strong{font-size: 15px;}
+      h4{font-size: 17px;}
       p{color: #999}
     }
   }
@@ -359,5 +360,31 @@
   .inner{
     background-color: #FFF; text-align: left; color: #333; font-size: 15px;
     padding: 50px; max-width: 1000px; margin: 0 auto;
+  }
+}
+
+
+.home-search{
+  max-width: 400px; margin: 0 auto; position: relative; margin-bottom: 20px;
+  input{
+    padding: 20px 50px;
+    padding-right: 55px;
+    outline: none;
+    border: none;
+    border-bottom: #d0d0d0 1px dashed;
+    width: 100%;
+    background: transparent;
+    text-align: center;
+    font-size: 15px;
+  }
+  button{
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 20px; 
+    font-size: 20px;
+    color: #DDD;
+    outline: none;
   }
 }

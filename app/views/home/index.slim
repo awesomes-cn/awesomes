@@ -3,16 +3,21 @@
 
 =content_for :banner  
   div.rows.new-repos
-    h4.title 最新发布
+    //h4.title 最新发布
+    div.home-search
+      form[action="/search" method="get"]
+        input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
+          button[type="submit"]: i.fa.fa-search  
+
     div.clear 
     =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 2.day do
       -@news.each do |item|
-        div.col-md-2.col-sm-4
+        div.col-md-3.col-sm-4
           div.inner
             a[href="#{item.link_url}"]
               img.cover[src='#{repo_cover_path item.cover}']
             div.desc
-              strong =item.name
+              h4 =item.name
               p =item.description 
   
   div.rows.trends-wraper
@@ -28,7 +33,7 @@
         p 数据来自Github，每日实时更新记录，分析得出整体趋势
         p 一句话，你可以不跟随趋势，但你必须了解趋势
     div.col-md-7
-      =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 2.day do
+      =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
         -@trends.each_with_index do |item, index|
           a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
             div.side.side-left[class="nth-#{index+1}"] 
