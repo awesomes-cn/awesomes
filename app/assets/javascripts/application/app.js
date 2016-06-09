@@ -42,6 +42,7 @@ $(function(){
 function open_login(){
   if (!Rails.islogin) {
     //window.location.href="/login"
+    $( "html,body").animate({ "scrollTop" : 0 }, 500);
     $('.login-wraper').show().animate({top: 0})
     return false
   }else{
