@@ -1,66 +1,86 @@
 div.repo-banner
-  div.inner
-    =render "crumbs"
-    div.repo-title
-      //img[src='#{repo_cover_path @item.cover}']
-      h1 =@item.name.capitalize 
-      p =@item.description
-    div.menu.hidden-xs
-      a[href="#{@item.homepage}"  target="_blank"]
-        i.fa.fa-home>
-        | 官 网 
-      a.download[href="https://api.github.com/repos/#{@item.full_name}/zipball"  target="_blank" title="下载 ZIP"]
-        i.fa.fa-cloud-download
-      a.gitbtn[href="#{@item.html_url}" target="_blank"]
-        i.fa.fa-github>
-        | Github  
-   
-    div.params.hidden-xs
-      div[title="星标数量" style="border-left: 0"]
-        i.fa.fa-star>
-        span =@item.stargazers_count
-      div[title="最后更新时间"]
-        i.fa.fa-clock-o>
-        span =@item.friendly_time
-      div[title="Fork数量"]
-        i.fa.fa-code-fork>
-        span =@item.forks_count
-      /div[title="关注数量"]
-      /  i.fa.fa-eye>
-      /  span =@item.subscribers_count
-      div[title="issue 响应速度"]
-        i.fa.fa-exclamation-circle>
-        span =@item.issue_friendly
+  div.inner.row
+    div.col-md-4.col-sm-4
+      =render "crumbs"
+    div.col-md-8.col-sm-8
+      div.thirty-tool.hidden-xs
+        a[title="聊天室" href="https://gitter.im/#{@item.full_name}" target="_blank"]
+          img[src="/svg/gitter.svg"  width="25" fill="#EEE"]
+
+        a[href="http://stackoverflow.com/questions/tagged/#{@item.name}" title="提问" target="_blank"]
+          i.fa.fa-stack-overflow>
+        
+        -if @item.default_code
+          a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
+            i.fa.fa-desktop> 
+
+          a[href="/code/#{@item.default_code.id}" title="在线编码"]
+            i.fa.fa-flask>
+        -else
+          a[href="/code?rid=#{@item.id}" title="在线编码"]
+            i.fa.fa-flask>
+    div.clear   
+    div.col-md-5.col-sm-5.hidden-xs
       
-    -if @item.default_code
-      div.run-code.hidden-xs
-        a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
-          i.fa.fa-desktop>
-        a[href="/code/#{@item.default_code.id}" title="在线编码"]
-          i.fa.fa-flask>
+      img.cover[src='#{repo_cover_path @item.cover}']
+      
+      
 
-    -else
-      div.run-code.no-code.hidden-xs
-        a[title="在线演示"]
-          i.fa.fa-desktop>    
-        a[href="/code?rid=#{@item.id}" title="在线编码"]
-          i.fa.fa-flask>
+    div.col-md-7.col-sm-7
+      div.collect[class="{{ismark ? 'on' : ''}}" ]
+        i.open-login.fa.fa-bookmark[title="收藏" v-on:click="mark()" ]
+        p[v-text="markcount"]
 
-    div.thirty-tool.hidden-xs
-      a[title="聊天室" href="https://gitter.im/#{@item.full_name}" target="_blank"]
-        img[src="/svg/gitter.svg"  width="25" fill="#EEE"]
+      div.repo-title
+        //img[src='#{repo_cover_path @item.cover}']
+        h1 =@item.name.capitalize 
+        p =@item.description
+      
+      
 
-      a[href="http://stackoverflow.com/questions/tagged/#{@item.name}" title="提问" target="_blank"]
-        i.fa.fa-stack-overflow>
-
-  div#repot_rend
-
-  javascript:
-    $(function(){
-      $(window).resize(function(){
-        draw_line($("#repot_rend"),[#{@trends}],$(document).width(),200,"rgba(0,0,0,0.023)","rgba(0,0,0,0.028)")
-      }).resize();
-
+      div.menu.hidden-xs
+        a[href="#{@item.homepage}"  target="_blank"]
+          i.fa.fa-home>
+          | 官 网 
+        a.download[href="https://api.github.com/repos/#{@item.full_name}/zipball"  target="_blank" title="下载 ZIP"]
+          i.fa.fa-cloud-download
+        a.gitbtn[href="#{@item.html_url}" target="_blank"]
+          i.fa.fa-github>
+          | Github  
      
-    })    
+      div.params.hidden-xs
+        div[title="星标数量" style="border-left: 0"]
+          i.fa.fa-star>
+          span =@item.stargazers_count
+        div[title="最后更新时间"]
+          i.fa.fa-clock-o>
+          span =@item.friendly_time
+        div[title="Fork数量"]
+          i.fa.fa-code-fork>
+          span =@item.forks_count
+        /div[title="关注数量"]
+        /  i.fa.fa-eye>
+        /  span =@item.subscribers_count
+        div[title="issue 响应速度"]
+          i.fa.fa-exclamation-circle>
+          span =@item.issue_friendly
+        
+      -if @item.default_code
+        / div.run-code.hidden-xs
+        /   a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
+        /     i.fa.fa-desktop>
+        /   a[href="/code/#{@item.default_code.id}" title="在线编码"]
+        /     i.fa.fa-flask>
+
+      -else
+        / div.run-code.no-code.hidden-xs
+        /   a[title="在线演示"]
+        /     i.fa.fa-desktop>    
+        /   a[href="/code?rid=#{@item.id}" title="在线编码"]
+        /     i.fa.fa-flask>
+
+      
+
+  css:
+    .navbar{margin: 0}
 
