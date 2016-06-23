@@ -49,7 +49,7 @@
           tr
             td[width="50px"] 封面
             td 
-              input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片 300*207" data-folder="repo" data-width="300" data-height="207"]
+              input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片 300*207" data-folder="repo"]
               img#cover-privew[src="#{access_path "repo/#{@item.cover}"}"]
               =f.hidden_field(:cover,class:'form-control')
               
