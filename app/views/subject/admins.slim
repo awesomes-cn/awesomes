@@ -1,0 +1,26 @@
+=content_for :con
+  div.admins-wraper
+    div.row
+      h3 控制面板
+      -@items.each do |item|
+        div.col-md-6
+          div.item
+            a[href="#{item.link_url}"]
+              img.thumbile[src="#{repo_cover_base item.cover}"]
+              h3 =item.name.capitalize
+      
+    div.clear
+    div#page-repo.pagenation.pagination-lg
+  javascript:
+    $(function(){
+      $("#page-repo").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        link_to:"?page=__id__"
+      }) 
+
+      $(".line").peity("line");
+    })
+  css:
+    body {background-color: #F8F8F8}
+    .main-container{max-width: 100%}

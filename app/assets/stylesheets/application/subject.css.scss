@@ -32,3 +32,26 @@
 .subject-banner{
   text-align: center;
 }
+
+
+.admins-wraper{
+  .item{
+    background-color: #FFF;
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    border-radius: 4px;
+    a{
+      color: #444; 
+      text-decoration: none;
+    }
+    .thumbile{
+      width: 100%
+    }
+
+
+  }
+  h3{
+      text-align: center;
+    }
+}
