@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_page_size
-    15
+    14
   end
 
   def page_size

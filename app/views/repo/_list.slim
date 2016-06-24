@@ -20,6 +20,8 @@
       | 条关于
       span.mc<> =params[:q]
       | 的搜索结果
+      span<  by
+      img<[src="/algolia.jpg" width="70"]
   -else
     div.sort-banner[class="on-#{@sort}"]
       a.hot[href="?sort=hot" title="最多关注"] =t('repo.hot')

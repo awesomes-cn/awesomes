@@ -2,12 +2,13 @@
   div.admins-wraper
     div.row
       h3 控制面板
-      -@items.each do |item|
-        div.col-md-6
-          div.item
-            a[href="#{item.link_url}"]
-              img.thumbile[src="#{repo_cover_base item.cover}"]
-              h3 =item.name.capitalize
+      =cache "admins_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+        -@items.each do |item|
+          div.col-md-6
+            div.item
+              a[href="#{item.link_url}"]
+                img.thumbile[src="#{repo_cover_base item.cover}"]
+                h3 =item.name.capitalize
       
     div.clear
     div#page-repo.pagenation.pagination-lg
