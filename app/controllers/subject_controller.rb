@@ -24,4 +24,10 @@ class SubjectController < ApplicationController
     @items = data_list(Repo.where(_where).order('(stargazers_count + forks_count + subscribers_count) desc'))
     @count = Repo.where(_where).count
   end
+
+  def videos
+    _where = {:typcd=> 'Video'}
+    @items = data_list(Repo.where(_where).order('(stargazers_count + forks_count + subscribers_count) desc'))
+    @count = Repo.where(_where).count
+  end
 end

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   get "/subject/admins" => "subject#admins"
+  get "/subject/videos" => "subject#videos"
 
 
   match "/subject/:key(/:action)", controller: "subject", via: ['get', 'post']
