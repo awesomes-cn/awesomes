@@ -43,6 +43,10 @@
             td =f.text_field(:tag,class:'form-control')
 
           tr
+            td[width="50px"] 隐藏标识
+            td =f.text_field(:hidetags,class:'form-control')  
+
+          tr
             td[width="50px"] 推荐
             td =f.number_field(:recommend,class:'form-control')
 

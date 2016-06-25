@@ -9,15 +9,15 @@
   div.videos-wraper
     div.row
       -@items.each do |item|
-        div.col-md-6
+        div.col-md-6.col-sm-6
           div.item
             a[href="#{item.link_url}"]
               img.thumbile[src="#{repo_cover_base item.cover}"]
               h3 =item.name.capitalize
 
             div.tags
-              -4.times
-                label.label.label-default 字幕
+              -item.tag.split(',').each do |tag|
+                label.label.label-default =tag
       
     div.clear
     div#page-repo.pagenation.pagination-lg
