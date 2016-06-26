@@ -40,7 +40,7 @@
           p
             span =item.description
         ul
-          -item.tag.to_s.split(',').each do |tag|
+          -item.tag.to_s.split(',')[0..2].each do |tag|
             li: a[href="?tag=#{tag}" title="#{tag}"] =tag 
         
         -_fresh = fresh item.pushed_at
