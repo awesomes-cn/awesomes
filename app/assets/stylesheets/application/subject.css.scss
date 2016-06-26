@@ -77,19 +77,29 @@
       text-align: center;
     }
   .tags{
+    height: 100px;
+    overflow: hidden;
     label{
       padding: 10px 20px;
       color: #524a4a;
       margin: 10px;
       display: inline-block;
       background-color: #cdcbcb;
+
     }
   }  
 }
 
 @media(max-width: 768px) {
-  .videos-wraper .item{
-    margin: 20px 0px;
+  .videos-wraper{
+    .item{
+      margin: 20px 0px;
+    }
+    .tags{
+      height: auto;
+      overflow: visible;
+    }
+
   }
 }
 
