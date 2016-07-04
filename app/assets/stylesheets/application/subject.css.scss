@@ -37,7 +37,7 @@
 .admins-wraper{
   .item{
     background-color: #FFF;
-    margin: 20px 0;
+    margin-top: 40px;
     padding: 20px;
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
     border-radius: 4px;
@@ -110,4 +110,15 @@
   h1{
     font-size: 100px;
   }
+}
+
+.admins-banner{
+  background-image: url('/assets/bg-blue-blueprint.jpg');
+  color: #FFF;
+  text-align: center;
+  padding: 60px 0;
+  h1{
+    font-size: 100px;
+  }
+  p{font-size: 14px;}
 }

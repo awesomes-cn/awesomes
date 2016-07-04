@@ -7,11 +7,17 @@
 =content_for :description
   | 开源免费的网站后台模板
 
+=content_for :banner
+  div.admins-banner  
+    h1
+      i.fa.fa-tachometer
+    
+    h3 控制面板
+    p 是时候让后台界面高大上了
 
 =content_for :con
   div.admins-wraper
     div.row
-      h3 控制面板
       =cache "admins_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
         -@items.each do |item|
           div.col-md-6
@@ -35,3 +41,4 @@
   css:
     body {background-color: #F8F8F8}
     .main-container{max-width: 100%}
+    .navbar{margin-bottom: 0; border-bottom: 0}
