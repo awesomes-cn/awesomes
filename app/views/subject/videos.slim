@@ -11,9 +11,15 @@
 
 =content_for :banner
   div.videos-banner 
-    video#background_video[loop muted]
-    div#video_cover
-    div#overlay  
+    div.Vidage
+    div.Vidage__image
+
+    video#VidageVideo.Vidage__video[preload="metadata" loop autoplay muted]
+      source[src="http://awesomes.oss-cn-beijing.aliyuncs.com/bg.mp4" type="video/mp4"]
+
+    div.Vidage__backdrop
+
+
     section.main_content
       h1
         i.fa.fa-video-camera
@@ -53,29 +59,8 @@
       | 更多有关视频处理的库请查阅
       a<(href="/repos/Media/Video") 视频版块
   javascript:
-    (function(){
-      var bv = new Bideo();
-      bv.init({
-        // Video element
-        videoEl: document.querySelector('#background_video'),
-
-        // Container element
-        container: document.querySelector('body'),
-
-        // Resize
-        resize: true,
-        src: [
-          {
-            src: 'http://awesomes.oss-cn-beijing.aliyuncs.com/bg.mp4',
-            type: 'video/mp4'
-          }
-        ],
-        onLoad: function () {
-          $('#video_cover').hide();
-        }
-      });
-
-    })()
+    new Vidage('#VidageVideo')
+    
   css:
     body {background-color: #F8F8F8}
     .main-container{max-width: 100%}
