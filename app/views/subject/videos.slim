@@ -2,24 +2,28 @@
   | 视频播放器 - awesomes
 
 =content_for :keywords
-  | 视频,播放器,html5视频,网页视频
+  | 视频,播放器,背景视频,html5视频,网页视频
 
 =content_for :description
-  | 开源免费视频播放器
+  | 开源免费视频播放器和背景视频
 
 
 
 =content_for :banner
-  div.videos-banner    
-    h1
-      i.fa.fa-video-camera
+  div.videos-banner 
+    video#background_video[loop muted]
+    div#video_cover
+    div#overlay  
+    section.main_content
+      h1
+        i.fa.fa-video-camera
     
-    h3 视频播放器
+        h3 Web视频播放器
 
 =content_for :con
   div.videos-wraper
     div.row
-      -@items.each do |item|
+      -@videos.each do |item|
         div.col-md-6.col-sm-6
           div.item
             a[href="#{item.link_url}"]
@@ -31,17 +35,47 @@
                 label.label.label-default =tag
       
     div.clear
-    div#page-repo.pagenation.pagination-lg
-  javascript:
-    $(function(){
-      $("#page-repo").pagination(#{@count},{
-        items_per_page : #{default_page_size},
-        current_page : #{page},
-        link_to:"?page=__id__"
-      }) 
 
-      $(".line").peity("line");
-    })
+  div.bg-videos-wraper  
+    div.title
+      h3 背景视频
+      p 可将炫酷的视频应用于网页背景
+    div.row
+      -@bgvideos.each do |item|
+        div.col-md-3.col-sm-4
+          div.item
+            a[href="#{item.link_url}"]
+              img.thumbile[src="#{repo_cover_base item.cover}@1e_1c_0o_0l_300h_300w_90q.src"]
+              h3 =item.name.capitalize
+    
+
+    div.more
+      | 更多有关视频处理的库请查阅
+      a<(href="/repos/Media/Video") 视频版块
+  javascript:
+    (function(){
+      var bv = new Bideo();
+      bv.init({
+        // Video element
+        videoEl: document.querySelector('#background_video'),
+
+        // Container element
+        container: document.querySelector('body'),
+
+        // Resize
+        resize: true,
+        src: [
+          {
+            src: 'http://awesomes.oss-cn-beijing.aliyuncs.com/bg.mp4',
+            type: 'video/mp4'
+          }
+        ],
+        onLoad: function () {
+          $('#video_cover').hide;
+        }
+      });
+
+    })()
   css:
     body {background-color: #F8F8F8}
     .main-container{max-width: 100%}

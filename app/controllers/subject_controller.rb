@@ -26,9 +26,7 @@ class SubjectController < ApplicationController
   end
 
   def videos
-    #_where = {:typcd=> 'Video'}
-    query = Repo.where('hidetags like ?', '%player%')
-    @items = data_list(query.order('(stargazers_count + forks_count + subscribers_count) desc'))
-    @count = query.count
+    @videos = Repo.where('hidetags like ?', '%player%').order('(stargazers_count + forks_count + subscribers_count) desc')
+    @bgvideos = Repo.where('hidetags like ?', '%bgvideo%').order('(stargazers_count + forks_count + subscribers_count) desc')
   end
 end
