@@ -15,6 +15,7 @@ zh-CN:
     trend: '趋势'
     sub_repo: '提交一个库'
   site: 
+    videos: '视频播放器'
     signin: '登录'
     search_repo: '查找库'
     animation: '动画'

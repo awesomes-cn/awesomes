@@ -14,10 +14,12 @@
 
   .list-main{
      margin-top: -200px; background-color: #FFF;
+
+
     
     .list-group-item{
-      padding: 10px 50px; padding-left: 140px;  position: relative;    border-left: 0; border-right: 0; 
-      height: 100px; box-sizing: border-box;
+      padding: 10px 50px; padding-left: 140px;   border: #DDD 1px dashed; position: relative;    border-left: 0; border-right: 0; 
+      height: 100px; box-sizing: border-box; 
       .cover{
         width: 80px; border-radius: 5px; position: absolute; left: 50px; margin-top: 10px;
       }
@@ -42,6 +44,25 @@
         }
         .fresh{
           position: relative; right: auto; top: auto;
+        }
+      }
+
+      &.first{
+        height: 200px;
+        border: 0;
+        padding: 0;
+        text-align: center;
+        padding: 0 10px;
+        overflow: hidden;
+        background-color: rgba(8, 105, 132, 0.52);
+        color: #60bed8;
+        padding-top: 5px;
+
+        .cover{
+          position: relative;
+          border-radius: 100%;
+          width: 90px;
+          left: 0;
         }
       }
     }

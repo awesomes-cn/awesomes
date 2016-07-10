@@ -34,6 +34,7 @@ en:
     trend: 'Trending'
     sub_repo: 'Submit a Library'
   site: 
+    videos: 'Video Player'
     signin: 'Sign in'
     search_repo: 'Search repo'
     animation: 'Animations'
