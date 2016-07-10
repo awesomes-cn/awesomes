@@ -272,16 +272,28 @@
   }
   
   .collect{
-    width: 50px;color: #CCC; display: inline-block; text-align: center;position: absolute; right: 0; top: 0px; 
+    width: 30px;color: #CCC; display: inline-block; text-align: center;position: absolute; right: 0; top: 0px; 
     i{
       font-size: 30px;cursor: pointer;
     }
-    &.on{
-      color:#EF4245
+    .icon-heart{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      &.on{fill: #EF4245}
+      &.expand{
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+        left: -45px;
+        top: -45px;
+        fill: #BBB!important;
+      }
     }
 
    }
-  
 
   #repot_rend{
     position: absolute; bottom: 0; z-index: -1;  height: 200px;

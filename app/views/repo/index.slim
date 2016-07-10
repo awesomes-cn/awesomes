@@ -109,6 +109,32 @@
           mark: ()->
             $.post "/oper/update",bannerVue.para,(data)->
               bannerVue.ismark =  data.state
-              bannerVue.markcount = data.count   
+              bannerVue.markcount = data.count
+              copy = $('#like-btn').clone().css({"z-index": 20})
+              if bannerVue.ismark
+                $('#like-btn').css({"fill": "#EF4245"})
+                copy.appendTo($('#like-btn').parent()).animate({
+                  width: 120,
+                  height: 120,
+                  opacity: 0
+                  left: -45,
+                  top: -45
+                },300, ()-> copy.remove())
+              else
+                copy.addClass('expand')
+                
+                copy.appendTo($('#like-btn').parent()).animate(
+                  {
+                    width: 30,
+                    height: 30,
+                    opacity: 1,
+                    left: 0,
+                    top: 0
+                  },300
+                  ()-> 
+                    $('#like-btn').css({"fill": "#BBB"})
+                    copy.remove()
+                )
+                  
 
        bannerVue.init()           

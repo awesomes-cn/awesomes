@@ -140,15 +140,18 @@
   }
 }
 
+
+
 .bg-videos-wraper{
   margin-top: 20px;
   text-align: center;
   .item{
-    background-color: #FFF;
+    background-color: #f9f9f9;
     margin: 20px 10%;
     padding: 20px;
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
     border-radius: 4px;
+    border-top: #f5f5f5 1px solid;
     a{
       color: #444; 
       text-decoration: none;

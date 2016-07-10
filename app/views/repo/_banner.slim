@@ -27,9 +27,13 @@ div.repo-banner
       
 
     div.col-md-7.col-sm-7
-      div.collect[class="{{ismark ? 'on' : ''}}" ]
-        i.open-login.fa.fa-bookmark[title="收藏" v-on:click="mark()" ]
-        p[v-text="markcount"]
+      div.collect
+        //i.open-login.fa.fa-heart[title="收藏" v-on:click="mark()" ]
+
+        svg.open-login.icon-heart#like-btn[title="收藏" v-on:click="mark()" class="{{ismark ? 'on' : ''}}"]
+          use[xlink:href="/fonts/icon.svg#heart"]
+
+        p[v-text="markcount" style="margin-top: 30px;"]
 
       div.repo-title
         //img[src='#{repo_cover_path @item.cover}']

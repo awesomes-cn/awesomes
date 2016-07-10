@@ -404,6 +404,15 @@ code[class*="language-"], pre[class*="language-"]{
 
 
 
+// 自定义字体
+.icon-heart{
+  width: 30px;
+  height: 30px; 
+  fill: #BBB;
+  cursor: pointer;
+}
+
+
 
 // 加载动画
 .sk-rotating-plane {
