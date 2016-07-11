@@ -1,0 +1,48 @@
+=content_for :title 
+  | 富文本编辑器
+
+=content_for :keywords
+  | 富文本编辑器,editor,编辑器
+
+=content_for :description
+  | 开源免费的富文本编辑器
+
+=content_for :banner
+  div.editors-banner  
+    h1
+      i.fa.fa-pencil
+    
+    h3 富文本编辑器
+    
+
+=content_for :con
+  div.editors-wraper(style="max-width: 800px; margin: 0 auto")
+    div.row
+      //=cache "admins_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+      -@items.each do |item|
+        div.col-md-12
+          div.item
+            a[href="#{item.link_url}"]
+              img.thumbile[src="#{repo_cover_base item.cover}"]
+              h3 =item.name.capitalize
+              p =item.description
+      
+    div.clear
+    div#page-repo.pagenation.pagination-lg
+  javascript:
+    $(function(){
+      $("#page-repo").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        link_to:"?page=__id__"
+      }) 
+
+      $(".line").peity("line");
+    })
+  css:
+    body {
+      background-color: #F8F8F8; 
+      background-image: url('/assets/bg.gif')
+    }
+    .main-container{max-width: 100%}
+    .navbar{margin-bottom: 0; border-bottom: 0}

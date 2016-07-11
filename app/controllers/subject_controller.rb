@@ -29,4 +29,11 @@ class SubjectController < ApplicationController
     @videos = Repo.where('hidetags like ?', '%player%').order('(stargazers_count + forks_count + subscribers_count) desc')
     @bgvideos = Repo.where('hidetags like ?', '%bgvideo%').order('(stargazers_count + forks_count + subscribers_count) desc')
   end
+
+  def editors
+    _where = {:typcd=> 'Editor'}
+    @items = data_list(Repo.where(_where).order('trend desc'))
+    @count = Repo.where(_where).count
+  end
+
 end

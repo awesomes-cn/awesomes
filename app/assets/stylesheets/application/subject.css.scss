@@ -186,3 +186,37 @@
     }
   }
 }
+
+
+
+.editors-wraper{
+  .item{
+    //background-color: #FFF;
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    //box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    border-radius: 4px;
+
+    a{
+      color: #444; 
+      text-decoration: none;
+    }
+    .thumbile{
+      width: 100%;
+    }
+
+
+  }
+  h3{
+      text-align: center;
+    }
+}
+
+.editors-banner{
+  text-align: center;
+  padding: 50px 0;
+  i{
+    font-size: 50px
+  }
+}
