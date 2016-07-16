@@ -43,6 +43,23 @@
       .data,h3{color: #DA552F};
       h3{cursor: pointer; display: inline-block}
     }
+
+    #using-wraper{
+      text-align: center;
+      a{text-decoration: none;}
+      .cover{
+        width: 100%;
+        border-radius: 4px;
+      }
+      .item{
+        margin-top: 20px;
+      }
+      .title{
+        height: 30px;
+        display: block;
+        overflow: hidden;
+      }
+    }
   } 
 
   .home-extra{

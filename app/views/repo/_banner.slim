@@ -69,19 +69,11 @@ div.repo-banner
           i.fa.fa-exclamation-circle>
           span =@item.issue_friendly
         
-      -if @item.default_code
-        / div.run-code.hidden-xs
-        /   a[href="/code/#{@item.demo_code.id}/preview" title="在线演示"]
-        /     i.fa.fa-desktop>
-        /   a[href="/code/#{@item.default_code.id}" title="在线编码"]
-        /     i.fa.fa-flask>
+        div.using[class="active-{{isusing}}"]
+          span[v-cloak] {{usingcount}}
+          span< 人在使用
+          i.fa.fa-hand-lizard-o.open-login<[title="我在用" v-on:click="using()"]
 
-      -else
-        / div.run-code.no-code.hidden-xs
-        /   a[title="在线演示"]
-        /     i.fa.fa-desktop>    
-        /   a[href="/code?rid=#{@item.id}" title="在线编码"]
-        /     i.fa.fa-flask>
 
       
 

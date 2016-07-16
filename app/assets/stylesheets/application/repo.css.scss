@@ -255,8 +255,25 @@
   }
 
   .params{
-     color: rgba(81,162,81,0.91);font-weight: bold; 
+    color: rgba(81,162,81,0.91);font-weight: bold; 
     div{display: inline-block; margin: 20px 40px; margin-left: 0;}
+    
+    .using{
+      color: #DDD;
+      float: right;
+      margin: 20px 0;
+      i.fa{
+        font-size: 30px;
+        color: #EEE;
+        cursor: pointer;
+      }
+      &.active-true{
+        i.fa{
+          color: #EF4245
+        }
+        
+      }
+    }
   }
 
   .repo-crumb{

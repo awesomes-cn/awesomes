@@ -77,9 +77,10 @@
         | ，注意打上相应的Tag）
   
   javascript:
-    var source_item={
+    var source_item= {
       id: "#{@item.id}",
-      mark: "#{@item.mark}"
+      mark: "#{@item.mark}",
+      using: "#{@item.using}"
     }
     
 
@@ -95,16 +96,25 @@
         el: '.repo-banner'
         data:
           ismark: false
+          isusing: false
           markcount: source_item.mark
+          usingcount: source_item.using
           para: 
             opertyp: 'MARK'
             typ: 'REPO'
             idcd: source_item.id
+          usepara:
+            opertyp: 'USING'
+            typ: 'REPO'
+            idcd: source_item.id
+
         methods:
           init: ()->
             if Rails.islogin
-              $.post "/oper/whether",bannerVue.para,(data)->
-                bannerVue.ismark =  data   
+              $.post "/oper/whether", bannerVue.para, (data)->
+                bannerVue.ismark =  data 
+              $.post "/oper/whether", bannerVue.usepara, (data)->
+                bannerVue.isusing =  data     
 
           mark: ()->
             $.post "/oper/update",bannerVue.para,(data)->
@@ -135,6 +145,10 @@
                     $('#like-btn').css({"fill": "#BBB"})
                     copy.remove()
                 )
-                  
+          
+          using: ()-> 
+            $.post "/oper/update", bannerVue.usepara, (data)->
+              bannerVue.isusing =  data.state
+              bannerVue.usingcount = data.count       
 
        bannerVue.init()           

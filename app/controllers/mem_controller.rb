@@ -3,12 +3,14 @@ class MemController < ApplicationController
   before_action :is_me?,:except=>['login','auth','ckemail','cknc']
   
   def index
-    if @mem.mem_rank.blank? and !@mem.mem_info.github.blank?
+    #if @mem.mem_rank.blank? and !@mem.mem_info.github.blank?
 
-      @mem.mem_rank = MemRank.create
-      @mem.save
-      Github.sync_mem_rank @mem
-    end
+      #@mem.mem_rank = MemRank.create
+      #@mem.save
+      #Github.sync_mem_rank @mem
+    #end
+    _rids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).pluck('idcd')
+    @repos = Repo.where({id: _rids})
   end
 
   def auth

@@ -25,27 +25,35 @@
     /  h4 第 #{@mem.index} 位会员
     /  p 于 #{@mem.created_at} 加入
 
-    div#rank-wraper
-      p.data
-        | Github 前端排名
-        -if !@mem.mem_rank.blank?  
-          | （
-          strong {{rank[level][0]}}
-          | ）点击切换
+    / div#rank-wraper
+    /   p.data
+    /     | Github 前端排名
+    /     -if !@mem.mem_rank.blank?  
+    /       | （
+    /       strong {{rank[level][0]}}
+    /       | ）点击切换
 
-      -if @mem.mem_rank.blank?
-        -if @isme
-          p
-            | 请先
-            a[href="/mem/info"] 设置你的Github用户名
-        -else
-          p 该用户尚未设置Github用户名
-      -else    
-        h3[title="点击切换" v-on:click="switch()"]
-          i.fa.fa-trophy>
-          | {{rank[level][1]}}
+    /   -if @mem.mem_rank.blank?
+    /     -if @isme
+    /       p
+    /         | 请先
+    /         a[href="/mem/info"] 设置你的Github用户名
+    /     -else
+    /       p 该用户尚未设置Github用户名
+    /   -else    
+    /     h3[title="点击切换" v-on:click="switch()"]
+    /       i.fa.fa-trophy>
+    /       | {{rank[level][1]}}
       
-
+    
+    div#using-wraper
+      h5 我在用
+      div.row
+        -@repos.each do |item|
+          div.col-md-3.col-sm-3.col-xs-4.item
+            a[href="#{item.link_url}"]
+              img.cover[src='#{repo_cover_path item.cover}']
+              span.title =item.name
 
 
   div.home-extra
