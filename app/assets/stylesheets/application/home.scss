@@ -406,3 +406,54 @@ a.visit-btn{
     outline: none;
   }
 }
+
+/** we use **/
+.wesue-banner{
+  background-color: #F8F8F8;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.weuse-item{
+  text-align: center;
+  margin-top: 50px;
+  .tx{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%
+  }
+  .links {
+    font-size: 20px;
+    a{
+      color: #adadad;
+      margin: 0 8px;
+    }
+    .fa-twitter{
+      color: #1AB2E8;
+    }
+    .fa-weibo{
+      color: #E6162D;
+    }
+    .fa-home {
+      color: #dccb9f
+    }
+    .fa-github{
+      color: #000;
+    }
+  }
+}
+
+.weuse-repos{
+  text-align: center;
+  border-bottom: #DDD 1px dashed;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  a{
+    color: #0b0b3a;;
+    text-decoration: none;
+  }
+  .cover{
+    width: 60px;
+    border-radius: 4px;
+  }
+}

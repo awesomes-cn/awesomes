@@ -34,6 +34,12 @@ class HomeController < ApplicationController
     @typ = Menutyp.sub_menus.find_by key: params[:root] if params[:root].present?
   end
 
+  def weuse
+    @mems = Mem.limit(10)
+    _rids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).pluck('idcd')
+    @repos = Repo.where({id: _rids})
+  end
+
   private
   def set_repos_list
     @sort = params[:sort].blank? ? :hot : params[:sort]

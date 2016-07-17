@@ -1,0 +1,43 @@
+=content_for :title 
+  | 我们在用
+
+
+=content_for :banner
+  div.wesue-banner
+    h3 我们在用
+    p 参考大牛们在使用的框架，给自己的选择提供一个很好的参考
+
+
+
+=content_for :con
+  div.container.main-container
+    -@mems.each do |mem|
+      div.weuse-item
+        a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
+        h5
+          | #{mem.nc} @ 
+          span<> 前端早读课
+        div.links
+          a[href="#"]: i.fa.fa-home
+          a[href="#"]: i.fa.fa-github
+          a[href="#"]: i.fa.fa-weibo
+          a[href="#"]: i.fa.fa-twitter
+
+          
+
+
+      div.row.weuse-repos
+        -@repos.each do |item|
+          div.col-md-2.col-sm-3.col-xs-4.item
+            a[href="#{item.link_url}"]
+              img.cover[src='#{repo_cover_path item.cover}']
+              p.title =item.name
+
+  
+  css:
+    .navbar{
+      margin: 0;
+    }  
+    
+    
+
