@@ -70,9 +70,15 @@ div.repo-banner
           span =@item.issue_friendly
         
         div.using[class="active-{{isusing}}"]
-          span[v-cloak] {{usingcount}}
-          span< 人在使用
-          i.fa.fa-hand-lizard-o.open-login<[title="我在用" v-on:click="using()"]
+          span.all[v-cloak] {{usingcount}} 人在用
+          span.me[v-on:click="using()"] 我在用
+          //a[href="#" v-cloak] {{usingcount}}
+          //span< 人在用
+          //i.fa.fa-flag-o.open-login<>[title="我在用" v-on:click="using()"]
+          
+          
+
+          
 
 
       
