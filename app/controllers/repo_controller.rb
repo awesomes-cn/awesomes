@@ -89,4 +89,14 @@ class RepoController < ApplicationController
   def new
     @submit = Submit.new
   end
+
+  def using
+    _mids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:idcd=> @item.id}).limit(50).pluck('mem_id')
+    @mems = Mem.where({id: _mids})
+  end
+
+  def favors
+    _mids = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:idcd=> @item.id}).limit(50).pluck('mem_id')
+    @mems = Mem.where({id: _mids})
+  end
 end

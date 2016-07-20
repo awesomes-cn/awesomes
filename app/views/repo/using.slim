@@ -1,0 +1,19 @@
+=content_for :banner
+  =render "banner"
+
+=content_for :title 
+  | 他们在用 #{@item.name.capitalize}
+
+
+=content_for :con
+  div.using-wraper
+    h4 他们在用
+    
+    div.row
+      -@mems.each do |mem|
+        div.col-md-2.col-sm-3.col-xs-4
+          div.use-item
+            a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
+            h5
+              | #{mem.nc}
+      

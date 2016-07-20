@@ -22,7 +22,7 @@ div.repo-banner
     div.clear   
     div.col-md-5.col-sm-5.hidden-xs
       
-      img.cover[src='#{repo_cover_path @item.cover}']
+      a[href="#{@item.link_url}"]: img.cover[src='#{repo_cover_path @item.cover}']
       
       
 
@@ -33,7 +33,10 @@ div.repo-banner
         svg.open-login.icon-heart#like-btn[title="收藏" v-on:click="mark()" class="{{ismark ? 'on' : ''}}"]
           use[xlink:href="/fonts/icon.svg#heart"]
 
-        p[v-text="markcount" style="margin-top: 30px;"]
+        p[style="margin-top: 30px;" v-cloak]
+          a[href="#{@item.link_url}/favors" v-if="markcount > 0" v-text="markcount"]
+          span[v-text="markcount" v-else]
+
 
       div.repo-title
         //img[src='#{repo_cover_path @item.cover}']
@@ -70,14 +73,87 @@ div.repo-banner
           span =@item.issue_friendly
         
         div.using[class="active-{{isusing}}"]
-          span.all[v-cloak] {{usingcount}} 人在用
+          a[href="#{@item.link_url}/using" v-if="usingcount > 0" v-cloak] {{usingcount}}
+          label[v-else v-cloak] {{usingcount}}
+          span.all 人在用
           span.me[v-on:click="using()"] 我在用
-          //a[href="#" v-cloak] {{usingcount}}
-          //span< 人在用
-          //i.fa.fa-flag-o.open-login<>[title="我在用" v-on:click="using()"]
           
-          
+  javascript:
+    var source_item= {
+      id: "#{@item.id}",
+      mark: "#{@item.mark}",
+      using: "#{@item.using}"
+    }
+    
 
+  coffee:
+    $ ()->
+      repovue = new Vue
+        el: ".view-wraper"
+        methods:
+          switch: (la)->
+            repovue.lang = la 
+
+      bannerVue = new Vue
+        el: '.repo-banner'
+        data:
+          ismark: false
+          isusing: false
+          markcount: source_item.mark
+          usingcount: source_item.using
+          para: 
+            opertyp: 'MARK'
+            typ: 'REPO'
+            idcd: source_item.id
+          usepara:
+            opertyp: 'USING'
+            typ: 'REPO'
+            idcd: source_item.id
+
+        methods:
+          init: ()->
+            if Rails.islogin
+              $.post "/oper/whether", bannerVue.para, (data)->
+                bannerVue.ismark =  data 
+              $.post "/oper/whether", bannerVue.usepara, (data)->
+                bannerVue.isusing =  data     
+
+          mark: ()->
+            $.post "/oper/update",bannerVue.para,(data)->
+              bannerVue.ismark =  data.state
+              bannerVue.markcount = data.count
+              copy = $('#like-btn').clone().css({"z-index": 20})
+              if bannerVue.ismark
+                $('#like-btn').css({"fill": "#EF4245"})
+                copy.appendTo($('#like-btn').parent()).animate({
+                  width: 120,
+                  height: 120,
+                  opacity: 0
+                  left: -45,
+                  top: -45
+                },300, ()-> copy.remove())
+              else
+                copy.addClass('expand')
+                
+                copy.appendTo($('#like-btn').parent()).animate(
+                  {
+                    width: 30,
+                    height: 30,
+                    opacity: 1,
+                    left: 0,
+                    top: 0
+                  },300
+                  ()-> 
+                    $('#like-btn').css({"fill": "#BBB"})
+                    copy.remove()
+                )
+          
+          using: ()-> 
+            $.post "/oper/update", bannerVue.usepara, (data)->
+              bannerVue.isusing =  data.state
+              bannerVue.usingcount = data.count       
+
+       bannerVue.init()           
           
 
 

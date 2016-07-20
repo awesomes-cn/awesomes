@@ -2,7 +2,7 @@ class Mem < ActiveRecord::Base
   include LetterAvatar::AvatarHelper
   has_many :readmes
   has_many :mauths
-  has_one :mem_infos
+  has_one :mem_info
   has_many :comments
   has_many :mem_repos
   has_many :topics
