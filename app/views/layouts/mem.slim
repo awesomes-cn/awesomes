@@ -10,15 +10,25 @@ html
         a[href="/mem/#{@mem.id}"]: img.tx[src="#{@mem.avatar_url}"]
         h4 =@mem.nc
       div.inner
-        ul.menu
-          // li[class="#{navon 'topics'}"]: a[href="/mem/#{@mem.id}/topics"] =t('mem.topic')
-          li[class="#{navon 'marks'}"]: a[href="/mem/#{@mem.id}/marks"] =t('mem.mark')
-          li[class="#{navon 'docs'}"]: a[href="/mem/#{@mem.id}/docs"] =t('mem.doc')
-          li[class="#{navon 'codes'}"]: a[href="/mem/#{@mem.id}/codes"] =t('mem.code')
-          li[class="#{navon 'comments'}"]: a[href="/mem/#{@mem.id}/comments"] =t('mem.comment')
-
-          -if @isme
-            li[class="#{navon 'info'}"]: a[href="/mem/info"] =t('mem.edit_info')
+        div.row.menu
+          div.col-md-3.col-sm-3.col-xs-6
+            a[href="/mem/#{@mem.id}/marks" class="#{navon 'marks'}"]
+              p 2
+              span =t('mem.mark')
+          div.col-md-3.col-sm-3.col-xs-6
+            a[class="#{navon 'docs'}" href="/mem/#{@mem.id}/docs"]
+              p 4
+              span =t('mem.doc')
+          div.col-md-3.col-sm-3.col-xs-6
+            a[class="#{navon 'codes'}" href="/mem/#{@mem.id}/codes"]
+              p 23
+              span =t('mem.code')
+          
+          div.col-md-3.col-sm-3.col-xs-6
+            a[class="#{navon 'comments'}" href="/mem/#{@mem.id}/comments"]
+              p 43
+              span =t('mem.comment')
+              
 
         div.con
           =yield :con

@@ -18,13 +18,24 @@
   max-width: 800px;
   .banner{text-align: center;}
   .tx{width: 70px; height: 70px;  border-radius: 100%; margin-bottom: 10px;}
-  .inner{ border-top:#DDD 1px solid }
+  //.inner{ border-top:#DDD 1px solid }
   .menu{
-    text-align: center; display: block; border-bottom: #DDD 1px solid; padding: 5px; 
+    text-align: center; display: block; border: #DDD 1px solid; border-left: 0; border-right: 0; padding: 5px; 
+    margin: 20px 0; padding: 5px 50px;
     li{list-style: none; display: inline-block; margin: 10px;}
-    a{color: #333}
-    li.active{
-      a{color: Red}
+    a{
+      text-decoration: none;
+      color: #333;
+      span {
+        color: #555;
+        font-weight: bold;
+      }
+    }
+    .active{
+      *{color: Red}
+    }
+    p{
+      margin: 0
     }
   }
   .con{
