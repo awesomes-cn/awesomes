@@ -126,4 +126,9 @@ class MemController < ApplicationController
     redirect_to "/mem/#{_mem.id}"
   end
 
+  def uptx
+    @mem.update({avatar: params[:avatar]})
+    render json: true
+  end
+
 end

@@ -1,57 +1,71 @@
 =content_for :con 
-  =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
-    div.form-group
-      =item.label :nc,t('mem.nc')
-      =item.text_field :nc,{class: 'form-control'}
+  div.row.info-wraper
+    div.col-md-3.col-sm-3
+      =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
+        img.uptx[src="#{@mem.avatar_url}"]
+        input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传头像" data-folder="mem" data-width="200" data-height="200"]
 
-    =form_for(current_mem.mem_info, url: '',html:{method: 'post'}) do |info|  
-      div.form-group
-        =info.label :gender,t('mem.gender')
-        =info.text_field :gender,{class: 'form-control'}
+    div.col-md-9.col-sm-9
+      =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
+        div.form-group
+          =item.label :nc,t('mem.nc')
+          =item.text_field :nc,{class: 'form-control'}
 
-      div.form-group
-        =info.label :location,t('mem.city')
-        =info.text_field :location,{class: 'form-control'}  
+        =form_for(current_mem.mem_info, url: '',html:{method: 'post'}) do |info|  
+          div.form-group
+            =info.label :gender,t('mem.gender')
+            =info.text_field :gender,{class: 'form-control'}
 
-      div.form-group
-        =info.label :blog,t('mem.home')
-        =info.text_field :blog,{class: 'form-control'} 
+          div.form-group
+            =info.label :location,t('mem.city')
+            =info.text_field :location,{class: 'form-control'}  
 
-      div.alert.alert-warning[role="alert"]
-        | 建议正确填写社交资料，方便我们在各个平台上做相关的推荐
+          div.form-group
+            =info.label :blog,t('mem.home')
+            =info.text_field :blog,{class: 'form-control'} 
 
-      div.form-group
-        =info.label :github,"Github" 
-        div.input-group
-          span.input-group-addon  https://github.com/
-          =info.text_field :github,{class: 'form-control'}
-        
+          div.alert.alert-warning[role="alert"]
+            | 建议正确填写社交资料，方便我们在各个平台上做相关的推荐
 
-      div.form-group
-        =info.label :twitter,"Twitter"
-        div.input-group
-          span.input-group-addon  http://twitter.com/
-          =info.text_field :twitter,{class: 'form-control'} 
+          div.form-group
+            =info.label :github,"Github" 
+            div.input-group
+              span.input-group-addon  https://github.com/
+              =info.text_field :github,{class: 'form-control'}
+            
 
-      
-      div.form-group
-        =info.label :weibo_url,t('mem.weibo_url')
-        div.input-group
-          span.input-group-addon  http://weibo.com/
-          =info.text_field :weibo_url,{class: 'form-control'} 
-      
-      div.form-group
-        =info.label :weibo_nc,t('mem.weibo_nc')
-        =info.text_field :weibo_nc,{class: 'form-control'} 
+          div.form-group
+            =info.label :twitter,"Twitter"
+            div.input-group
+              span.input-group-addon  http://twitter.com/
+              =info.text_field :twitter,{class: 'form-control'} 
 
-
-      button.btn.btn-danger =t('form.sub') 
-
-      -if flash[:notice]
-        div.alert.alert-danger =flash[:notice]
+          
+          div.form-group
+            =info.label :weibo_url,t('mem.weibo_url')
+            div.input-group
+              span.input-group-addon  http://weibo.com/
+              =info.text_field :weibo_url,{class: 'form-control'} 
+          
+          div.form-group
+            =info.label :weibo_nc,t('mem.weibo_nc')
+            =info.text_field :weibo_nc,{class: 'form-control'} 
 
 
-  
+          button.btn.btn-danger =t('form.sub') 
+
+          -if flash[:notice]
+            div.alert.alert-danger =flash[:notice]
+
+
+  javascript:
+    //上传头像
+    uplaod_form($('#upload_file'),function(data){
+      $.post('/mem/uptx', {avatar: data.src}, function(){
+        $(".uptx").attr("src", data.file_path);
+      })
+    })
+
   coffee:
     $('#inform').validate
       rules:
