@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716174603) do
+ActiveRecord::Schema.define(version: 20160729161730) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 20160716174603) do
     t.string   "twitter"
     t.string   "weibo_nc"
     t.string   "weibo_url"
+    t.string   "company"
+    t.string   "job"
   end
 
   create_table "mem_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

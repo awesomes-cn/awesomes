@@ -72,6 +72,8 @@ zh-CN:
     forgot_pwd: '忘记密码'
     mark: '收藏'
     code: '代码'
+    company: '公司'
+    job: '职位'
 
   activerecord:
     errors:

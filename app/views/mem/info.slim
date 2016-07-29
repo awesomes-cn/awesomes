@@ -13,6 +13,14 @@
 
         =form_for(current_mem.mem_info, url: '',html:{method: 'post'}) do |info|  
           div.form-group
+            =info.label :company,t('mem.company')
+            =info.text_field :company,{class: 'form-control'}
+
+          div.form-group
+            =info.label :job,t('mem.job')
+            =info.text_field :job,{class: 'form-control'}
+
+          div.form-group
             =info.label :gender,t('mem.gender')
             =info.text_field :gender,{class: 'form-control'}
 

@@ -91,6 +91,8 @@ en:
     forgot_pwd: 'forgot password'
     mark: 'Marks'
     code: 'Code'
+    company: 'Company'
+    job: 'Job'
 
   activerecord:
     errors:

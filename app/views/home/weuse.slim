@@ -1,11 +1,13 @@
 =content_for :title 
-  | 我们在用
+  | 他们在用
 
+=content_for :description
+  | 如何选择前端框架，借鉴大神的选择，我们都在用的前端框架
 
 =content_for :banner
   div.wesue-banner
-    h3 我们在用
-    p 参考大牛们在使用的框架，给自己的选择提供一个很好的参考
+    h3 他们在用
+    p 参考他们在使用的框架，给自己的选择提供一个很好的参考
 
 
 
@@ -16,7 +18,7 @@
         a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
         h5
           | #{mem.nc} @ 
-          span<> 前端早读课
+          span<> #{mem.mem_info.company}
         div.links
           a[href="#{mem.mem_info.blog}"]: i.fa.fa-home
           a[href="#{mem.mem_info.github}"]: i.fa.fa-github

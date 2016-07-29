@@ -76,7 +76,7 @@ div.repo-banner
           a[href="#{@item.link_url}/using" v-if="usingcount > 0" v-cloak] {{usingcount}}
           label[v-else v-cloak] {{usingcount}}
           span.all 人在用
-          span.me[v-on:click="using()"] 我在用
+          span.me.open-login[v-on:click="using()"] 我在用
           
   javascript:
     var source_item= {
