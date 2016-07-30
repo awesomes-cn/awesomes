@@ -33,5 +33,4 @@ class Mem < ActiveRecord::Base
     Pinyin.t(nc)
   end
 
-
 end

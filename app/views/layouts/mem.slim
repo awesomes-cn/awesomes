@@ -10,7 +10,7 @@ html
         a[href="/mem/#{@mem.id}"]: img.tx[src="#{@mem.avatar_url}"]
         h4 =@mem.nc
         div
-          span.label.label-default 高级会员
+          span.label[class="role-#{@mem.role}"] =role_alia @mem
       div.inner
         div.row.menu
           div.col-md-3.col-sm-3.col-xs-6
