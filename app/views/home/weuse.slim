@@ -17,19 +17,28 @@
       div.weuse-item
         a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
         h5
-          | #{mem.nc} @ 
-          span<> #{mem.mem_info.company}
+          | #{mem.nc}
+          -if !mem.mem_info.company.blank?
+            span<> @ 
+            span<> #{mem.mem_info.company}
         div.links
-          a[href="#{mem.mem_info.blog}"]: i.fa.fa-home
-          a[href="#{mem.mem_info.github}"]: i.fa.fa-github
-          a[href="#{mem.mem_info.weibo_url}"]: i.fa.fa-weibo
-          a[href="#{mem.mem_info.twitter}"]: i.fa.fa-twitter
+          -if !mem.mem_info.blog.blank?
+            a[href="#{mem.mem_info.blog}"  target="_blank"]: i.fa.fa-home
+          
+          -if !mem.mem_info.github.blank?  
+            a[href="https://github.com/#{mem.mem_info.github}" target="_blank"]: i.fa.fa-github
+
+          -if !mem.mem_info.weibo_url.blank?
+            a[href="http://weibo.com/#{mem.mem_info.weibo_url}"  target="_blank"]: i.fa.fa-weibo
+
+          -if !mem.mem_info.twitter.blank?
+            a[href="https://twitter.com/#{mem.mem_info.twitter}"  target="_blank"]: i.fa.fa-twitter
 
           
 
 
       div.row.weuse-repos
-        -@repos.each do |item|
+        -mem.usedrepos.each do |item|
           div.col-md-2.col-sm-3.col-xs-4.item
             a[href="#{item.link_url}"]
               img.cover[src='#{repo_cover_path item.cover}']

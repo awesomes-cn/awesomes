@@ -8,6 +8,10 @@ class Mem < ActiveRecord::Base
   has_many :topics
   has_one :mem_rank
   has_many :codes
+  has_many :uses,  -> { where opertyp: 'USING', typ: 'REPO'},
+                  class_name: "Oper",
+                  foreign_key: 'mem_id'
+  has_many :usedrepos, through: :uses, source: 'use_repo'            
 
   validates :nc,:email,:pwd,presence: true
   validates :nc,:email, uniqueness: true

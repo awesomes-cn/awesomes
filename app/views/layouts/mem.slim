@@ -9,24 +9,26 @@ html
       div.banner
         a[href="/mem/#{@mem.id}"]: img.tx[src="#{@mem.avatar_url}"]
         h4 =@mem.nc
+        div
+          span.label.label-default 高级会员
       div.inner
         div.row.menu
           div.col-md-3.col-sm-3.col-xs-6
             a[href="/mem/#{@mem.id}/marks" class="#{navon 'marks'}"]
-              p 2
+              /p 2
               span =t('mem.mark')
           div.col-md-3.col-sm-3.col-xs-6
             a[class="#{navon 'docs'}" href="/mem/#{@mem.id}/docs"]
-              p 4
+              /p 4
               span =t('mem.doc')
           div.col-md-3.col-sm-3.col-xs-6
             a[class="#{navon 'codes'}" href="/mem/#{@mem.id}/codes"]
-              p 23
+              /p 23
               span =t('mem.code')
           
           div.col-md-3.col-sm-3.col-xs-6
             a[class="#{navon 'comments'}" href="/mem/#{@mem.id}/comments"]
-              p 43
+              /p 43
               span =t('mem.comment')
               
 

@@ -1,4 +1,8 @@
 class Oper < ActiveRecord::Base
+  belongs_to :use_repo,
+             class_name: "Repo",
+             foreign_key: 'idcd'
+
   def target
     typ.capitalize.constantize.send :find,idcd
   end

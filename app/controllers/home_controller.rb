@@ -35,9 +35,9 @@ class HomeController < ApplicationController
   end
 
   def weuse
-    @mems = Mem.limit(10).includes(:mem_info)
-    _rids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).pluck('idcd')
-    @repos = Repo.where({id: _rids})
+    @mems = Mem.where('role = ?', 'vip').includes(:mem_info)
+    #_rids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).pluck('idcd')
+    #@repos = Repo.where({id: _rids})
   end
 
   private
