@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   root 'home#index'
 
-  get "/auth/:provider/callback" => "mem#auth"
+  get "/auth/:provider/callback" => "home#auth"
 
   post "/submit/save" => "submit#save"
   get "site/test" => "site#test"

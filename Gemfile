@@ -29,8 +29,8 @@ gem "algoliasearch-rails"
 
 #gem 'rmagick', '2.15.4'
 #gem 'jbuilder', '~> 2.0'
-#gem 'omniauth', '~> 1.2.2'
-#gem 'omniauth-github', '~> 1.1.2'
+gem 'omniauth', '~> 1.3', '>= 1.3.1'
+gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
 #gem 'omniauth-weibo-oauth2', '~> 0.3.0'
 
  

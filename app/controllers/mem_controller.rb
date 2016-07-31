@@ -16,62 +16,8 @@ class MemController < ApplicationController
 
   def info
     
-  end
-
-  def auth
-    _data = request.env["omniauth.auth"] 
-    #render json: _data and return
-
-    _provider = params[:provider]
-    _para = {
-      :provider => _provider,
-      :uid => _data['uid']
-    }
-    _mauth = Mauth.where(_para).first
-
-    #头像
-    _avatar_url = ''
-    _raw_info = _data['extra']['raw_info']
-    if _provider == 'github'
-      _avatar_url = _raw_info['avatar_url'] 
-    end
-    if _provider == 'weibo'
-      _avatar_url = _data['extra']['raw_info']['avatar_hd']
-    end
-    
-    #注册 /  绑定账号
-    if _mauth.nil?
-      _mem = current_mem
-      if !_mem
-        _mem = Mem.create({
-          :nc => _data['info']['nickname'], 
-          :avatar => _avatar_url,
-          :email => _raw_info[:email]
-        })
-        _mem.mem_info.update_attributes({
-          :gender => _data['extra']['gender'],
-          :location=> _raw_info['location'],
-          :html_url=> _raw_info['html_url'],
-          :blog=> _raw_info['blog'],
-          :followers=> _raw_info['followers'],
-          :following=> _raw_info['following'],
-          :github=> _raw_info['login']
-        })
-
-        if _provider == 'github'
-          Github.mem_sync_repo _mem
-        end
-      end 
-      _mem.mauths.create(_para)
-    else 
-      _mem = _mauth.mem
-      if _mem.avatar == 'default.png'
-        _mem.update_attributes({:avatar=> _avatar_url})
-      end
-    end
-    session[:mem] = _mem.id
-    redirect_to session[:login_callback]
-  end
+  end 
+  
 
   def login
     session[:login_callback] = request.referer

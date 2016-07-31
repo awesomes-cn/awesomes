@@ -13,8 +13,8 @@ class Mem < ActiveRecord::Base
                   foreign_key: 'mem_id'
   has_many :usedrepos, through: :uses, source: 'use_repo'            
 
-  validates :nc,:email,presence: true
-  validates :nc,:email, uniqueness: true
+  validates :nc,presence: true
+  validates :nc,uniqueness: true
 
 
   def mem_info
@@ -22,7 +22,7 @@ class Mem < ActiveRecord::Base
   end
 
   def avatar_url
-    avatar.blank? ? "http://svpa.awesomes.cn/avatar/#{nc}?size=100&font=kingthings" : "#{Rails.application.config.source_access_path}mem/#{avatar}"
+    avatar.blank? ? "http://svpa.awesomes.cn/avatar/#{nc}?size=100&font=kingthings" : (avatar[0..3] == 'http'  ? avatar  : "#{Rails.application.config.source_access_path}mem/#{avatar}")
   end
 
   def index

@@ -36,8 +36,62 @@ class HomeController < ApplicationController
 
   def weuse
     @mems = Mem.where('role = ?', 'vip').includes(:mem_info)
-    #_rids = Oper.where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).pluck('idcd')
-    #@repos = Repo.where({id: _rids})
+  end
+
+  def auth
+    _data = request.env["omniauth.auth"] 
+    #render json: _data and return
+
+    _provider = params[:provider]
+    _para = {
+      :provider => _provider,
+      :uid => _data['uid']
+    }
+
+
+    _mauth = Mauth.where(_para).first
+    #头像
+    _avatar_url = ''
+    _raw_info = _data['extra']['raw_info']
+    if _provider == 'github'
+      _avatar_url = _raw_info['avatar_url'] 
+    end
+    if _provider == 'weibo'
+      _avatar_url = _data['extra']['raw_info']['avatar_hd']
+    end
+    
+    #注册 /  绑定账号
+    if _mauth.nil?
+      _mem = current_mem
+      if !_mem
+        _mem = Mem.create({ 
+          :nc=> get_auth_nc(_data['info']['nickname']),
+          :avatar => _avatar_url,
+          #:email => _raw_info[:email]
+        })
+        _mem.mem_info.update_attributes({
+          :gender => _data['extra']['gender'],
+          :location=> _raw_info['location'],
+          :html_url=> _raw_info['html_url'],
+          :blog=> _raw_info['blog'],
+          :followers=> _raw_info['followers'],
+          :following=> _raw_info['following'],
+          :github=> _raw_info['login']
+        })
+
+        if _provider == 'github'
+          Github.mem_sync_repo _mem
+        end
+      end 
+      _mem.mauths.create(_para)
+    else 
+      _mem = _mauth.mem
+      if _mem.avatar == 'default.png'
+        _mem.update_attributes({:avatar=> _avatar_url})
+      end
+    end
+    session[:mem] = _mem.id
+    redirect_to '/'
   end
 
   private
@@ -59,6 +113,11 @@ class HomeController < ApplicationController
     @root_menus = Menutyp.root_menus
     @sub_menus = Menutyp.sub_menus
     @page_title = "#{assign_page_title} - awesomes"
+  end
+
+  def get_auth_nc nc
+    _mem = Mem.find_by_nc nc
+    _mem ? nc + "-#{Time.new.to_i}" : nc
   end
 
 end
