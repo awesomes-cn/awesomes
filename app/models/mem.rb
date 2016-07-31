@@ -13,7 +13,7 @@ class Mem < ActiveRecord::Base
                   foreign_key: 'mem_id'
   has_many :usedrepos, through: :uses, source: 'use_repo'            
 
-  validates :nc,:email,:pwd,presence: true
+  validates :nc,:email,presence: true
   validates :nc,:email, uniqueness: true
 
 

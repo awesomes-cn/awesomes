@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
       redirect_to '/tip',:notice=> t('no_login') and return  if session[:mem].to_i < 1
       @mem = current_mem
     end
+
     #redirect_to '/tip',:notice=> t('mem_novalid') and return if @mem.recsts == '1'
     @isme = (@mem == current_mem)
   end

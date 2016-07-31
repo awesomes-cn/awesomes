@@ -13,6 +13,10 @@ class MemController < ApplicationController
     @repos = Repo.where({id: _rids})
   end
 
+  def info
+    
+  end
+
   def auth
     _data = request.env["omniauth.auth"] 
     #render json: _data and return
@@ -115,7 +119,7 @@ class MemController < ApplicationController
   end
   
   def update
-    @mem.update(params.require(:mem).permit('nc'))
+    @mem.update(params.require(:mem).permit('nc','role'))
     redirect_to request.referer,:notice=> @mem.errors.messages.values.flatten.join("，") and return if @mem.invalid? 
     @mem.mem_info.update(params.require(:mem_info).permit(MemInfo.attribute_names))
     redirect_to request.referer

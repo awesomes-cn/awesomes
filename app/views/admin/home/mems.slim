@@ -9,6 +9,7 @@
         th 邮箱
         th 注册时间 
         th 操作
+
     tbody 
       tr[v-for="item in items" class="{{item.status}}"]
         td {{item.id}}
@@ -16,7 +17,7 @@
         td {{item.email}}
         td {{item.created_at}}  
         td[ng-class="item.synced ?  'synced' : '' "]
-          a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
+          a[href='/mem/{{item.id}}/info'  title='']: i.fa.fa-pencil
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
           /a<>[href="#" data-id="{{item.id}}" ng-click="sync(item)"]: i.fa.fa-exchange
     tfoot

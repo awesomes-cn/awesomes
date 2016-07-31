@@ -9,6 +9,7 @@ zh-CN:
   justnow: '刚刚'
   ago: '前'
   topic_review: "该主题目前处于审核状态，请等待审核通过！"
+  no_login: '你还没有登录，请登录后操作'
   repo:
     new: '最新'
     hot: '热门'

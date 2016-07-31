@@ -6,12 +6,17 @@
         input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传头像" data-folder="mem" data-width="200" data-height="200"]
 
     div.col-md-9.col-sm-9
-      =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
+      =form_for(@mem, url: "/mem/#{@mem.id}/update",html:{id: 'inform',method: 'post'}) do |item|
         div.form-group
           =item.label :nc,t('mem.nc')
           =item.text_field :nc,{class: 'form-control'}
+        
+        -if is_admin
+          div.form-group
+            =item.label :role, '角色'
+            =item.text_field :role,{class: 'form-control'}
 
-        =form_for(current_mem.mem_info, url: '',html:{method: 'post'}) do |info|  
+        =form_for(@mem.mem_info, url: '',html:{method: 'post'}) do |info|  
           div.form-group
             =info.label :company,t('mem.company')
             =info.text_field :company,{class: 'form-control'}
