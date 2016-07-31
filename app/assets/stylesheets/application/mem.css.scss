@@ -26,10 +26,12 @@
     a{
       text-decoration: none;
       color: #333;
+      padding: 0 6%;
       span {
         color: #555;
         font-weight: bold;
       }
+
     }
     .active{
       *{color: Red}
@@ -173,4 +175,36 @@
 }
 .role-vip{
   background-color: #ff9500
+}
+
+.thirty-bind{
+  padding: 20px 0;
+  h5{
+    border: #DDD 1px solid;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px;
+    text-align: center;
+  }
+  .item{
+    position: relative;
+    padding: 0 30px;
+    padding-left: 25px;
+  }
+  .inner{
+    overflow: hidden;
+  }
+  i.fa{
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    top:0
+  }
+  a{
+    right: 0;
+    position: absolute;
+    display: inline-block;
+    top:0
+  }
 }

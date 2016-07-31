@@ -56,5 +56,8 @@ function draw_line($ele,data,wraper_w,wraper_h,color,stroke){
   $ele.html("<svg height='"+ wraper_h +"px' width='"+wraper_w+"px'><path d='" + path + " Z' fill='"+color+ "' stroke='"+stroke+"'></path></svg>")
 }
 
-
+//- 打開登陸
+function third_login(url){
+  window.open(url, 'newwindow', 'width=500,height=500');
+}
 

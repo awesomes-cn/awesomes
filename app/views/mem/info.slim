@@ -5,6 +5,19 @@
         img.uptx[src="#{@mem.avatar_url}"]
         input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传头像" data-folder="mem" data-width="200" data-height="200"]
 
+      div.thirty-bind
+        h5 账号关联
+        div.item
+          i.fa.fa-github>
+          div.inner
+            -if current_mem.auth_github
+              span =current_mem.mem_info.github
+            -else
+              span[style="color: #AAA"] 未绑定
+          
+          a[href="javascript: third_login('/auth/github')"] #{current_mem.auth_github ? '更换' : '绑定'}
+
+
     div.col-md-9.col-sm-9
       =form_for(@mem, url: "/mem/#{@mem.id}/update",html:{id: 'inform',method: 'post'}) do |item|
         div.form-group
@@ -44,7 +57,7 @@
             =info.label :github,"Github" 
             div.input-group
               span.input-group-addon  https://github.com/
-              =info.text_field :github,{class: 'form-control'}
+              =info.text_field :github,{class: 'form-control', disabled: true}
             
 
           div.form-group
@@ -69,6 +82,9 @@
 
           -if flash[:notice]
             div.alert.alert-danger =flash[:notice]
+      
+      
+
 
 
   javascript:

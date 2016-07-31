@@ -33,4 +33,8 @@ class Mem < ActiveRecord::Base
     Pinyin.t(nc)
   end
 
+  def auth_github
+    mauths.where({:provider=> 'github'}).first
+  end
+
 end

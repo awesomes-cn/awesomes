@@ -82,6 +82,10 @@ class HomeController < ApplicationController
         if _provider == 'github'
           Github.mem_sync_repo _mem
         end
+      else
+        _mem.mem_info.update_attributes({
+          :github=> _raw_info['login']  
+        })
       end 
       _mem.mauths.create(_para)
     else 
@@ -91,7 +95,11 @@ class HomeController < ApplicationController
       end
     end
     session[:mem] = _mem.id
-    redirect_to '/'
+    render :layout=>nil
+  end
+
+  def auth_callback
+    render :layout=> nil
   end
 
   private

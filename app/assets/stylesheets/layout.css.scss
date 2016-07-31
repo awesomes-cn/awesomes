@@ -380,14 +380,14 @@ label.error{color: #d9534f}
 .modal-wraper{
   background-color: #FFF; width: 100%;  border: #DDD 1px solid; border-top: 0;  position: absolute; top: 0;display: none; top: -100%; left: 0; z-index: 1000; padding-top: 55px; width: 500px; left: 50%; margin-left: -250px;
   .close-modal{
-    position: absolute; cursor: pointer; font-size: 100px; color:#EEE;
-    top: 35px;    right: 10px; 
+    position: absolute; cursor: pointer; font-size: 50px; color:#EEE;
+    right: 10px; font-weight: bolder; top: 55px;
   }
   .panel{
      border-color: #FFFFFF; padding: 30px; padding-top: 0;
   }
   .modal-title{
-    border-bottom: #EFEFEF 1px solid; padding-bottom: 30px;
+    border-bottom: #EFEFEF 1px solid; padding-bottom: 15px;
 
     h3{
       text-align: center; font-size: 20px; 
@@ -400,6 +400,38 @@ label.error{color: #d9534f}
 
 code[class*="language-"], pre[class*="language-"]{
   text-shadow: none;
+}
+
+
+/**
+登陸**/
+.login-wraper{
+  max-width: 340px;
+  margin-left: -170px;
+
+  .third-login{
+    text-align: center;
+    & > div{
+      padding: 15px 0;
+    }
+    & > a{
+      font-size: 50px;
+      color: #333
+    }
+  }
+
+  .login-panel{
+    max-width: 400px;
+    margin: 50px auto; 
+    margin-bottom: 0;
+    .panel-heading{
+      background-color: #FFF;
+      padding: 15px;
+    }
+   
+  }
+
+
 }
 
 

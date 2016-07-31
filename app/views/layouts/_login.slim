@@ -9,29 +9,32 @@ div.login-wraper.modal-wraper
       //div.panel-heading: h3.panel-title =t('mem.login_tip')
       div.panel-body
         div.form-group
-          label =t('mem.email')
-          input.form-control[type="text" name="email" v-on:focusout="check_act()" v-model="email"]
+          //label =t('mem.email')
+          input.form-control[type="text" name="email" v-on:focusout="check_act()" v-model="email" placeholder="#{t('mem.email')}"]
         
         div.form-group
-          label
-            | #{t('mem.pwd')}
-            a[href="/find_pwd"] （#{t('mem.forgot_pwd')}）
-          input.form-control[type="password" name="pwd"]
+          / label
+          /   a[href="/find_pwd"] （#{t('mem.forgot_pwd')}）
+          input.form-control[type="password" name="pwd"  placeholder="#{t('mem.pwd')}"]
 
         div.form-group[v-show="action.typ == 'signup'"]
-          label =t('mem.nc')
-          input.form-control[type="text" name="nc"]
+          //label =t('mem.nc')
+          input.form-control[type="text" name="nc" placeholder="#{t('mem.nc')}"]
 
           
         div.form-group
-          button.btn.btn-default =t('mem.login')
+          button.btn.btn-primary[style="width: 100%"] =t('mem.login')
         
         
         div.alert.alert-danger[v-show="action.tip"] {{action.tip}}
-
-        a.github[href="/auth/github"]
-          i.fa.fa-github
-          span Github登陆
+        
+        
+        div.third-login
+          div 第三方账号登录
+        
+          a.github[href="javascript: third_login('/auth/github')"]
+            i.fa.fa-github
+          //span Github登陆
   
   
   
