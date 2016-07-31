@@ -3,7 +3,7 @@
     =cache "repo_rank_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
       
 
-      a.list-group-item.first
+      a.list-group-item.first[href="https://www.awesomes.cn/repo/#{@items[0].owner}/#{@items[0].alia}"]
         img.cover[src='#{repo_cover_base @items[0].cover}@1e_1c_0o_0l_300h_300w_90q.src']
         h3 =@items[0].name
         p =@items[0].description

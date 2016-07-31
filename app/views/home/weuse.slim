@@ -14,35 +14,34 @@
 =content_for :con
   div.container.main-container
     -@mems.each do |mem|
-      div.weuse-item
-        a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
-        h5
-          | #{mem.nc}
-          -if !mem.mem_info.company.blank?
-            span<> @ 
-            span<> #{mem.mem_info.company}
-        div.links
-          -if !mem.mem_info.blog.blank?
-            a[href="#{mem.mem_info.blog}"  target="_blank"]: i.fa.fa-home
-          
-          -if !mem.mem_info.github.blank?  
-            a[href="https://github.com/#{mem.mem_info.github}" target="_blank"]: i.fa.fa-github
+      -if mem.usedrepos.count > 0
+        div.weuse-item
+          a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
+          h5
+            | #{mem.nc}
+            -if !mem.mem_info.company.blank?
+              span<> @ 
+              span<> #{mem.mem_info.company}
+          div.links
+            -if !mem.mem_info.blog.blank?
+              a[href="#{mem.mem_info.blog}"  target="_blank"]: i.fa.fa-home
+            
+            -if !mem.mem_info.github.blank?  
+              a[href="https://github.com/#{mem.mem_info.github}" target="_blank"]: i.fa.fa-github
 
-          -if !mem.mem_info.weibo_url.blank?
-            a[href="http://weibo.com/#{mem.mem_info.weibo_url}"  target="_blank"]: i.fa.fa-weibo
+            -if !mem.mem_info.weibo_url.blank?
+              a[href="http://weibo.com/#{mem.mem_info.weibo_url}"  target="_blank"]: i.fa.fa-weibo
 
-          -if !mem.mem_info.twitter.blank?
-            a[href="https://twitter.com/#{mem.mem_info.twitter}"  target="_blank"]: i.fa.fa-twitter
+            -if !mem.mem_info.twitter.blank?
+              a[href="https://twitter.com/#{mem.mem_info.twitter}"  target="_blank"]: i.fa.fa-twitter
 
-          
-
-
-      div.row.weuse-repos
-        -mem.usedrepos.each do |item|
-          div.col-md-2.col-sm-3.col-xs-4.item
-            a[href="#{item.link_url}"]
-              img.cover[src='#{repo_cover_path item.cover}']
-              p.title =item.name
+        
+        div.row.weuse-repos 
+          -mem.usedrepos.each do |item|
+            div.col-md-2.col-sm-3.col-xs-4.item
+              a[href="#{item.link_url}"]
+                img.cover[src='#{repo_cover_path item.cover}']
+                p.title =item.name
 
   
   css:

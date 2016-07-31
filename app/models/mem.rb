@@ -8,7 +8,7 @@ class Mem < ActiveRecord::Base
   has_many :topics
   has_one :mem_rank
   has_many :codes
-  has_many :uses,  -> { where opertyp: 'USING', typ: 'REPO'},
+  has_many :uses, -> {where(opertyp: 'USING', typ: 'REPO').order('opers.order asc')},
                   class_name: "Oper",
                   foreign_key: 'mem_id'
   has_many :usedrepos, through: :uses, source: 'use_repo'            
