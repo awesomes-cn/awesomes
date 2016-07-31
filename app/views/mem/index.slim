@@ -48,19 +48,54 @@
     
     div#using-wraper
       h5 我在用
-      div.row
-        -@repos.each do |item|
-          div.col-md-3.col-sm-3.col-xs-4.item
+      -if @isme
+        p[style="color: #bfbfbf"] （可拖动排序，将最常用的放到前面）
+      div.row#usings
+        -@opers.each do |oper|
+          -item = oper.use_repo
+          div.col-md-3.col-sm-3.col-xs-4.item(data-order="#{oper.order}" data-id="#{oper.id}")
             a[href="#{item.link_url}"]
               img.cover[src='#{repo_cover_path item.cover}']
               span.title =item.name
+            -if @isme  
+              i.fa.fa-times-circle.close[data-id="#{item.id}"]
+      
+      javascript:
+        var el = document.getElementById('usings');
+        var sortable = Sortable.create(el, {
+          animation: 150,
+          onEnd: function (evt) {
+            var prev = $(evt.item).prev().attr('data-order') 
+            var next = $(evt.item).next().attr('data-order')
+            var prev_order = prev ? parseInt(prev) : 0
+            var next_order = next ? parseInt(next) : 0
+            var now_order =  parseInt((prev_order + next_order) / 2)
+            if(next_order == 0){
+              now_order =  prev_order + 10000
+            }
+            $.post('/oper/uporder', {id: $(evt.item).attr('data-id'), order: now_order}, function(){
+              $(evt.item).attr('data-order', now_order)
+            })
+          }
+        });
 
+        $(function(){
+          $("#usings .fa-times-circle.close").click(function(){
+            var item = $(this);
+            $.post("/oper/update",{opertyp: 'USING',typ: 'REPO',idcd: item.attr('data-id')},function(data){
+              if(data.state == false){
+                item.closest(".item").fadeOut();
+              }
+
+            })
+          })
+        })
 
   div.home-extra
-    p.rank-note
-      | 排名数据由
-      a.normal<>[href="http://github-awards.com/" target="_blank"] github-awards
-      | 提供
+    //p.rank-note
+      / | 排名数据由
+      / a.normal<>[href="http://github-awards.com/" target="_blank"] github-awards
+      / | 提供
   
   -if !@mem.mem_rank.blank?
     javascript:
@@ -68,6 +103,7 @@
         country: ['本国',"#{@mem.mem_rank.country || '暂无排名'}"],
         worldwide: ['世界',"#{@mem.mem_rank.worldwide || '暂无排名'}"]
       }
+
     
     coffee:
       $ ()->

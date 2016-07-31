@@ -62,14 +62,28 @@
         width: 100%;
         border-radius: 4px;
       }
+      .close {
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        font-size: 18px;
+        display: none;
+      }
       .item{
         margin-top: 20px;
+        &:hover{
+          .close{
+            display: inline-block;
+          }
+        }
       }
       .title{
         height: 30px;
         display: block;
         overflow: hidden;
       }
+
+
     }
   } 
 

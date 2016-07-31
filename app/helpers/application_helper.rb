@@ -24,6 +24,10 @@ module ApplicationHelper
     session[:mem] == 1
   end
 
+  def is_me
+    current_mem == @mem
+  end
+
   def switl en,zh
     @is_en? en : zh
   end

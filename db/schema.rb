@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730143549) do
+ActiveRecord::Schema.define(version: 20160731093747) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -161,8 +161,9 @@ ActiveRecord::Schema.define(version: 20160730143549) do
     t.integer  "idcd"
     t.integer  "mem_id"
     t.string   "opertyp"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "order",      default: 0
   end
 
   create_table "readmes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
