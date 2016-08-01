@@ -9,7 +9,7 @@ class MemController < ApplicationController
       #@mem.save
       #Github.sync_mem_rank @mem
     #end
-    @opers = Oper.order('`order` asc').where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> current_mem.id}).includes('use_repo')
+    @opers = Oper.order('`order` asc').where({:opertyp=> 'USING',:typ=> 'REPO',:mem_id=> @mem.id}).includes('use_repo')
     #@repos = Repo.where({id: _rids})
 
   end
