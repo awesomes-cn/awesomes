@@ -21,6 +21,9 @@ class OperController < ApplicationController
       end
       _tmp = Oper.create(_para)
     end
+
+    current_mem.update_oper params[:opertyp], params[:typ] 
+
     render json: {
       state: Oper.where(_para).count > 0,
       count: _tmp.update_target,

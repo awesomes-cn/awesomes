@@ -10,7 +10,7 @@
         div.item
           i.fa.fa-github>
           div.inner
-            -if current_mem.auth_github
+            -if @mem.auth_github
               span =current_mem.mem_info.github
             -else
               span[style="color: #AAA"] 未绑定

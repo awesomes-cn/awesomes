@@ -37,4 +37,11 @@ class Mem < ActiveRecord::Base
     mauths.where({:provider=> 'github'}).first
   end
 
+  def update_oper opertyp, typ
+    _count = Oper.where({:opertyp=> opertyp,:typ=> typ, :mem_id=> id}).count
+    if opertyp == 'USING'
+      update_attributes({:using=> _count})
+    end
+  end
+
 end

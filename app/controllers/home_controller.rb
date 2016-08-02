@@ -35,7 +35,8 @@ class HomeController < ApplicationController
   end
 
   def weuse
-    @mems = Mem.where('role = ?', 'vip').includes(:mem_info)
+    @mems = Mem.where('role = ? or reputation >= 50 and `using` > 0', 'vip').order("reputation desc").includes(:mem_info)
+
   end
 
   def auth
@@ -87,6 +88,7 @@ class HomeController < ApplicationController
           :github=> _raw_info['login']  
         })
       end 
+      _mem.update_attributes({:reputation=> _raw_info['followers']})
       _mem.mauths.create(_para)
     else 
       _mem = _mauth.mem

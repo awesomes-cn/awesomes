@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731093747) do
+ActiveRecord::Schema.define(version: 20160802152317) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(version: 20160731093747) do
     t.datetime "updated_at",                              null: false
     t.string   "pwd"
     t.string   "role",                   default: "user"
+    t.integer  "reputation",             default: 0
+    t.integer  "using",                  default: 0
   end
 
   add_index "mems", ["nc", "email"], name: "search", using: :btree
