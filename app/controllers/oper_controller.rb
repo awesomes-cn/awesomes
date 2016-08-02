@@ -15,7 +15,7 @@ class OperController < ApplicationController
       _oper.destroy
     else
       if params[:opertyp] == 'USING'
-        max_order = Oper.where({:opertyp=> params[:opertyp], :typ=> params[:typ], :mem_id=> current_mem.id}).maximum('order')
+        max_order = Oper.where({:opertyp=> params[:opertyp], :typ=> params[:typ], :mem_id=> current_mem.id}).maximum('order')  || 0
         
         _para[:order] = max_order + 10000
       end
