@@ -87,8 +87,7 @@ class HomeController < ApplicationController
         _mem.mem_info.update_attributes({
           :github=> _raw_info['login']  
         })
-      end 
-      _mem.update_attributes({:reputation=> _raw_info['followers']})
+      end  
       _mem.mauths.create(_para)
     else 
       _mem = _mauth.mem
@@ -96,6 +95,7 @@ class HomeController < ApplicationController
         _mem.update_attributes({:avatar=> _avatar_url})
       end
     end
+    _mem.update_attributes({:reputation=> _raw_info['followers']})
     session[:mem] = _mem.id
     render :layout=>nil
   end
