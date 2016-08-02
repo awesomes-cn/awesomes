@@ -259,7 +259,7 @@
     div{display: inline-block; margin: 20px 40px; margin-left: 0;}
     
     .using{
-      color: #DDD;
+      color: #bbb;
       float: right;
       margin: 20px 0;
       span{
@@ -267,14 +267,14 @@
         padding-right: 10px;
       }
       .me{
-        border: #DDD 1px solid;
+        border: #bbb 1px solid;
         cursor: pointer;
         padding: 4px 10px;
       }
-      a{color: #DDD}
+      a{color: #bbb}
       i.fa{
         font-size: 14px;
-        color: #CCC;
+        color: #bbb;
         cursor: pointer;
       }
       &.active-true{
@@ -359,10 +359,10 @@
   .thirty-tool{
     margin-top: 20px; text-align: right;
     a{
-      display: inline-block;  margin-left: 30px; color: #B3B3B3;
-      line-height: 40px; text-align: center; border-radius: 100%; color: #EEE;
+      display: inline-block;  margin-left: 30px; color: #cda3a2;
+      line-height: 40px; text-align: center; border-radius: 100%; 
       &:hover{
-        color: #333;
+        color: #cda3a2;
       }
     }
   }
