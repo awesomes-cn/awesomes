@@ -2,57 +2,76 @@
   =render 'footer_index'
 
 =content_for :banner  
-  div.rows.new-repos
-    //h4.title 最新发布
-    div.home-search
-      form[action="/search" method="get"]
-        input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
-          button[type="submit"]: i.fa.fa-search 
+  div.new-repos
+    div.home-banner
+      //h4.title 最新发布
+      div.home-search
+        form[action="/search" method="get"]
+          input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
+            button[type="submit"]: i.fa.fa-search 
+      
+      a.visit-btn[href="/repos/Applications/frameworks"]
+            | 浏览全部 
     
-    a.visit-btn[href="/repos/Applications/frameworks"]
-          | 浏览全部 
-    
-    div.clear 
-    =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
-      -@news.each do |item|
-        div.col-md-3.col-sm-4
-          div.inner
-            a[href="#{item.link_url}"]
-              img.cover[src='#{repo_cover_path item.cover}']
-            div.desc
-              h4 =item.name
-              p =item.description 
+    div.clear
+
+    div.home-news-wraper
+      div.row
+        div.col-md-6
+          div.home-use
+            p.text-center 看看他们都在用什么前端库
+            div.row
+              -@usemems.each do |mem|
+                div.col-md-6
+                  div.mem-inner
+                    a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
+                    a[href="/mem/#{mem.id}"]: strong =mem.nc
+                    p
+                      | 在用「
+                      a<>[href="#"] bootstrap
+                      | 」等#{mem.using}个库
+                 
+            p.text-center: a.go[href="/weuse"]  马上去看   
+
+
+          div.trends-wraper
+            h3.trend-name 前端趋势
+            =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+              -@trends.each_with_index do |item, index|
+                a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
+                  div.side.side-left[class="nth-#{index+1}"] 
+                    span.index =index + 1
+                  
+                  div.desc
+                    h3
+                      span =item.name
+                      span.line.hide< =trends item
+                    p =item.description 
+
+                  div.side.side-right
+                    img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
+                    / -_fresh = fresh item.pushed_at
+                    / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+            div.more
+              a.more[href="/rank?sort=trend"] 完整趋势
+            div.clear
+
+        div.col-md-6
+          //=cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+          -@news.each do |item|
+            div.inner
+              a[href="#{item.link_url}"]
+                img.cover[src='#{repo_cover_path item.cover}']
+              div.desc
+                h4 =item.name
+                p =item.description 
+              
+              //-_fresh = fresh item.pushed_at
+              //span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
 
              
   
-  div.trends-wraper
-
-    / div.col-md-5
-    /   div
-    /     h3 实时趋势
-    /     p 让你了解前端最新趋势，带你看看大家都在关注什么
-    /     p 数据来自Github，每日实时更新记录，分析得出整体趋势
-    /     p 一句话，你可以不跟随趋势，但你必须了解趋势
-    h3.trend-name 前端趋势
-    =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
-      -@trends.each_with_index do |item, index|
-        a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
-          div.side.side-left[class="nth-#{index+1}"] 
-            span.index =index + 1
-          
-          div.desc
-            h3
-              span =item.name
-              span.line.hide< =trends item
-            p =item.description 
-
-          div.side.side-right
-            img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
-            / -_fresh = fresh item.pushed_at
-            / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
-    div.more
-      a.more[href="/rank?sort=trend"] 完整趋势
-    div.clear
+  
 
 =content_for :con
   / div.home-wraper

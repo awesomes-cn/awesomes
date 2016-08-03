@@ -11,7 +11,8 @@ class HomeController < ApplicationController
     @root_menus = Menutyp.root_menus
     @repos_count = Repo.count
     @news = Repo.order('id desc').limit(12)
-    @trends = Repo.order('trend desc').limit(6)
+    @trends = Repo.order('trend desc').limit(5)
+    @usemems = Mem.limit(4)
   end
 
   def sleep
