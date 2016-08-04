@@ -296,13 +296,16 @@
   width: 80%;
   margin: 50px auto;
   .inner{
-    background-color: #FFF; padding-bottom: 10px; margin-bottom: 20px; padding: 20px; box-shadow: 1px 1px 10px #f4f4f4;
+    background-color: #FFF; padding-bottom: 10px; margin-bottom: 1px; padding: 20px; box-shadow: 1px 1px 10px #f4f4f4;
     padding-left: 120px; position: relative;
     .desc{
       overflow: hidden;
       strong{font-size: 15px;}
       h4{font-size: 17px;}
       p{color: #616161}
+    }
+    a{
+      color: #333
     }
   }
   .title{padding: 10px 30px;  }
@@ -319,13 +322,14 @@
     background-color: #FFF;
     
     margin-bottom: 20px;
-    border: #f3f3f3 1px solid;
+    //border: #f3f3f3 1px solid;
     .tx{
       width: 50px;
       height: 50px;
       display: inline-block;
-      position: absolute;
-      left: 5px;
+      //position: absolute;
+      border-radius: 100%
+
     }
     .go{
       display: inline-block;
@@ -335,9 +339,9 @@
       text-decoration: none;
     }
     .mem-inner{
-      padding: 10px;
       position: relative;
-      padding-left: 60px;
+      text-align: center;
+      padding: 20px 0;
       a{
         color: #333;
         text-decoration: none;
@@ -362,7 +366,7 @@ a.visit-btn{
 
 .trends-wraper{
   padding: 50px;  position: relative; max-width: 700px;
-   margin: 0 auto; background-color: #FFF; border: #f3f3f3 1px solid; 
+   margin: 0 auto; background-color: #FFF; 
 
   .trend-name {
     text-align: center;
@@ -460,6 +464,19 @@ a.visit-btn{
   background-color: #F8F8F8;
   padding: 50px 0;
   text-align: center;
+
+  p{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .share-btn{
+    display: inline-block;
+    border: #a94442 1px solid;
+    padding: 5px 20px;
+    color: #d9534f;
+    text-decoration: none;
+  }
 }
 
 .weuse-item{

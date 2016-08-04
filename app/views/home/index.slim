@@ -22,14 +22,14 @@
             p.text-center 看看他们都在用什么前端库
             div.row
               -@usemems.each do |mem|
-                div.col-md-6
+                div.col-md-3.col-sm-4.col-xs-6
                   div.mem-inner
                     a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
-                    a[href="/mem/#{mem.id}"]: strong =mem.nc
-                    p
-                      | 在用「
-                      a<>[href="#"] bootstrap
-                      | 」等#{mem.using}个库
+                    a[href="/mem/#{mem.id}"]: p =mem.nc
+                    / p
+                    /   | 在用「
+                    /   a<>[href="#"] bootstrap
+                    /   | 」等#{mem.using}个库
                  
             p.text-center: a.go[href="/weuse"]  马上去看   
 
@@ -63,13 +63,8 @@
               a[href="#{item.link_url}"]
                 img.cover[src='#{repo_cover_path item.cover}']
               div.desc
-                h4 =item.name
+                a[href="#{item.link_url}"]: h4 =item.name
                 p =item.description 
-              
-              //-_fresh = fresh item.pushed_at
-              //span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
-
-             
   
   
 
@@ -95,6 +90,7 @@
   
   css:
     .navbar{margin-bottom: 0}
+    .footer{margin-top: 0}
 
   javascript:
     $(function(){
