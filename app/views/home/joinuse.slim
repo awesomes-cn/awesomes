@@ -35,6 +35,7 @@
         },
         methods: {
           iuse: function(item){
+            if(!open_login()){return false}
             $.post('/oper/update', {
               opertyp: 'USING',
               typ: 'REPO',

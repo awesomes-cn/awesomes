@@ -31,7 +31,7 @@ header.navbar
         li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>
         
         -unless is_login
-          li: a.open-login.open-login[href="#{JS_VOID}"] =t('site.signin')
+          li: a.open-login[href="#{JS_VOID}"] =t('site.signin')
         -else
           li: a[href="/mem" style="padding: 13px 10px; height: 50px;"]: img.tx[src="#{current_mem.avatar_url}"]
           li.nav-extra
