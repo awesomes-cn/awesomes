@@ -12,7 +12,7 @@ class HomeController < ApplicationController
     @repos_count = Repo.count
     @news = Repo.order('id desc').limit(12)
     @trends = Repo.order('trend desc').limit(5)
-    @usemems = Mem.limit(4)
+    @usemems = Mem.order('reputation desc').limit(4)
   end
 
   def sleep
