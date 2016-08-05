@@ -61,3 +61,9 @@ function third_login(url){
   window.open(url, 'newwindow', 'width=500,height=500');
 }
 
+
+function lazyLoadPic(){
+  $("img.lazy").lazyload({
+    placeholder: '/assets/placeholder.png'
+  });
+}

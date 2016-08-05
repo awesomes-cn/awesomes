@@ -4,10 +4,14 @@ class Repo < ActiveRecord::Base
   has_many :repo_trends
   has_many :codes
 
+  attr_accessor :isusing
+
   include AlgoliaSearch
   algoliasearch auto_index: false, auto_remove: false, raise_on_failure: Rails.env.development?, force_utf8_encoding: true do
     attribute :name, :description,  :typcd, :typcd_zh, :rootyp, :rootyp_zh
   end
+
+
 
   #searchkick batch_size: 20000
 

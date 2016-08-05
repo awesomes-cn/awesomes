@@ -36,8 +36,22 @@ class HomeController < ApplicationController
   end
 
   def weuse
-    @mems = Mem.where('role = ? or reputation >= 50 and `using` > 0', 'vip').order("reputation desc").includes(:mem_info)
+    @mems = Mem.where('role = ? or reputation >= 20 and `using` > 0', 'vip').order("reputation desc").includes(:mem_info)
+  end
 
+  def joinuse 
+    respond_to do |format|
+      format.html {
+      }
+
+      format.json {
+        _repos = data_list(Repo.select('id, name, cover, owner, alia').where.not({rootyp: "NodeJS"}).order("(stargazers_count + forks_count + subscribers_count) desc"), 120)
+        render json: {
+          items: _repos,
+          usings: current_mem ? current_mem.usedrepos.pluck('id') : []
+        }.to_json(:methods => ['link_url'])
+      }
+    end
   end
 
   def auth

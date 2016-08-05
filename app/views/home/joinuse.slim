@@ -5,3 +5,63 @@
   =render 'use_banner'
   
 =content_for :con
+  div
+    h5.use-title 也许你正在使用下面的前端库
+    div.row.join-use-wraper
+      div.col-md-3.col-sm-4.col-xs-6(v-for="item in repos")
+        div.inner
+          a[href="{{item.link_url}}"]
+            img.lazy.cover[data-original='#{repo_cover_base}{{item.cover}}#{ENV['REPO_PIC_STYLE']}' ]
+            h5.title {{item.name}}
+
+          span.using[class="{{item.isusing}}" v-on:click="iuse(item)"] 我在用
+      
+      div.clear
+      div.search
+        p 我在用的库没展示在这里？马上找到它  
+        div.home-search
+          form[action="/search" method="get" target="_blank"]
+            input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
+              button[type="submit"]: i.fa.fa-search   
+
+
+  javascript:
+    var joinVue;
+    function initVue(repos){
+      joinVue = new Vue({
+        el: 'body',
+        data: {
+          repos: repos
+        },
+        methods: {
+          iuse: function(item){
+            $.post('/oper/update', {
+              opertyp: 'USING',
+              typ: 'REPO',
+              idcd: item.id
+            }, function(data){
+              item.isusing = data.state > 0
+            })
+          }
+        },
+        ready: function(){
+          lazyLoadPic()
+        }
+      })
+    }
+    
+
+    $.post('/joinuse.json', {}, function(data){
+      var repos = data.items.map(function(item){ 
+        item.isusing = data.usings.indexOf(item.id) > -1
+        return item
+      })
+
+      initVue(repos)
+      
+    })
+
+
+    
+
+  

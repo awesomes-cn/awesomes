@@ -13,7 +13,7 @@
           div.side.side-left
             span.index =index + 2
           
-          img.cover[src='#{repo_cover_path item.cover}']
+          img.cover.lazy[data-original='#{repo_cover_path item.cover}']
           
           div.desc
             h3 =item.name

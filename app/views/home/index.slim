@@ -49,7 +49,7 @@
                     p =item.description 
 
                   div.side.side-right
-                    img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
+                    img.cover.lazy[data-original='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
                     / -_fresh = fresh item.pushed_at
                     / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
             div.more

@@ -34,6 +34,11 @@ $(function(){
       $('.modal-wraper[data-modal=' + $(this).attr('data-modal') + ']').show().animate({top: 0})
     }
   })
+
+  /**
+   * 图片延迟加载
+   */
+  lazyLoadPic()
   
 })
 
