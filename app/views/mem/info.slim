@@ -11,7 +11,7 @@
           i.fa.fa-github>
           div.inner
             -if @mem.auth_github
-              span =current_mem.mem_info.github
+              span =@mem.mem_info.github
             -else
               span[style="color: #AAA"] 未绑定
           
@@ -28,6 +28,10 @@
           div.form-group
             =item.label :role, '角色'
             =item.text_field :role,{class: 'form-control'}
+
+          div.form-group
+            =item.label :reputation, '荣誉值'
+            =item.text_field :reputation,{class: 'form-control'}  
 
         =form_for(@mem.mem_info, url: '',html:{method: 'post'}) do |info|  
           div.form-group

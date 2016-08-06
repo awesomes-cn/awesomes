@@ -136,6 +136,11 @@ en:
     share_start: 'Maybe you are using the following front end Library'
     iuse: "I use"
     order: 'You can Drag the most commonly used in the front'
+    alert: 'The members show in this part will default be which github followers >= 50 and using >= 5. But if you are working in a famous company or other reasons, please '
+    tellus: 'tell us'
+    find: "The repos I use can't be find here ? just search it"
+    reason: 'Please enter apply reason'
+    apply: 'Apply'
 
   top100:
     name: 'TOP100'

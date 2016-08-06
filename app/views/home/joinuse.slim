@@ -5,8 +5,12 @@
   =render 'use_banner'
   
 =content_for :con
-  div
+  div.use-select
+    div.alert.alert-warning[role="alert"] 
+      | #{t('weuse.alert')}
+      a.open-login[href="#" data-toggle="modal" data-target="#myModal"] =t('weuse.tellus')
     h5.use-title =t('weuse.share_start')
+
     div.row.join-use-wraper
       div.col-md-3.col-sm-4.col-xs-6(v-for="item in repos")
         div.inner
@@ -18,12 +22,29 @@
       
       div.clear
       div.search
-        p 我在用的库没展示在这里？马上找到它  
+        p =t('weuse.find') 
         div.home-search
           form[action="/search" method="get" target="_blank"]
             input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
-              button[type="submit"]: i.fa.fa-search   
+              button[type="submit"]: i.fa.fa-search 
 
+      // -告知我们
+      div.modal.fade#myModal
+        div.modal-dialog
+          div.modal-content
+            div.modal-header
+              button[type="button" class="close" data-dismiss="modal" aria-label="Close"]
+                span[aria-hidden="true"] &times;
+              h4.modal-title =t('weuse.apply')
+
+            div.modal-body
+              textarea.form-control[placeholder="#{t('weuse.reason')}" rows="5" v-model="applyReason" v-show="apply.step == 1"]
+              p.text-center[v-show="apply.step == 2"] 申请提交成功，我们会尽快为您审核!
+
+            div.modal-footer[v-show="apply.step == 1"]
+              button[type="button" class="btn btn-default" data-dismiss="modal"] =t('weuse.cancel')
+              button[type="button" class="btn btn-primary" v-on:click="applySubmit()"] =t('weuse.submit')
+ 
 
   javascript:
     var joinVue;
@@ -31,7 +52,10 @@
       joinVue = new Vue({
         el: 'body',
         data: {
-          repos: repos
+          repos: repos,
+          apply: {
+            step: 1
+          }
         },
         methods: {
           iuse: function(item){
@@ -42,6 +66,14 @@
               idcd: item.id
             }, function(data){
               item.isusing = data.state > 0
+            })
+          },
+
+          applySubmit: function(){
+            var model = this
+            if(_.isEmpty(this.applyReason)) return 
+            $.post('/msg/weuseapply', {reason: this.applyReason}, function(){
+              model.apply.step = 2
             })
           }
         },

@@ -57,4 +57,8 @@ class Admin::HomeController < AdminController
   def codes
     adminlists Code,[:title,:status,:mem_id,:repo_id], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
   end
+
+  def weuseapplys
+    adminlists Msg.where({:typ=> 'weuseapply'}),[:con,:from]
+  end
 end

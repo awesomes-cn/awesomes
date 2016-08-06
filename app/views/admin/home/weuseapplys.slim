@@ -1,0 +1,32 @@
+-content_for :menu
+  =render 'site_bar'
+
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th #
+        th 会员
+        th 申请原因
+        th 提交日期
+        th 操作
+    tbody 
+      tr[v-for="item in items" class="{{item.status}}"]
+        td {{item.id}}
+        td: a[href="/mem/{{item.from}}/info" target="_blank"] {{item.from}} 
+        td {{item.con}}
+        td {{item.created_at}} 
+        td[ng-class="item.synced ?  'synced' : '' "]
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+  div#pagenation
+  input#menubar[type="hidden" value="weuseapply"]
+  
+  coffee:
+    $ ()->
+      admin.list_data
+        model: 'weuseapply'
