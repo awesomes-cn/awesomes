@@ -6,7 +6,7 @@
         input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传头像" data-folder="mem" data-width="200" data-height="200"]
 
       div.thirty-bind
-        h5 账号关联
+        h5 =t('mem.association')
         div.item
           i.fa.fa-github>
           div.inner
@@ -15,7 +15,7 @@
             -else
               span[style="color: #AAA"] 未绑定
           
-          a[href="javascript: third_login('/auth/github')"] #{@mem.auth_github ? '更换' : '绑定'}
+          a[href="javascript: third_login('/auth/github')"] #{@mem.auth_github ? "#{t('mem.replace')}" : "#{t('mem.bind')}"}
 
 
     div.col-md-9.col-sm-9

@@ -1,11 +1,11 @@
 div.wesue-banner
-  h3 我们在用
+  h3 =t('weuse.name')
   p
-    | 参考我们在使用的框架，给自己的选择提供一个很好的参考（
-    a[href="/weuserule" style="color: #777"] 关于
+    | #{t('weuse.slogan')}（
+    a[href="/weuserule" style="color: #777"] =t('site.about')
     | ）
 
-  a.share-btn[href="/joinuse"] 我要分享
+  a.share-btn[href="/joinuse"] =t('source.share')
 
 css:
   .navbar{

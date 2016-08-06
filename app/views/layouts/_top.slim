@@ -13,12 +13,12 @@ header.navbar
 
     div#bs-navbar-collapse.collapse.navbar-collapse 
       ul.nav.navbar-nav.navbar-left.menus
-        li: a[href="/weuse"] 我们在用
+        li: a[href="/weuse"] =t('weuse.name')
         li: a[href="/subject/videos"] =t('site.videos')
         li: a[href="/subject/admins"] =t('site.admin')
         li: a[href="/subjects"] =t('site.subject')
         //- li: a[href="/sources"] =t('source.name')
-        li: a[href="/rank"] 前端 TOP100
+        li: a[href="/rank"] =t('top100.name')
         
 
 
@@ -37,8 +37,8 @@ header.navbar
           li.nav-extra
             a[href=""]:  i.fa.fa-ellipsis-h
             ul.extra-menu
-              li: a[href='/mem/marks'] 我的收藏
-              li: a[href='/mem/info'] 个人资料
+              li: a[href='/mem/marks'] =t('site.mymark')
+              li: a[href='/mem/info'] =t('site.myinfo')
               =link_to t('mem.logout'), sessions_destroy_path
 
         

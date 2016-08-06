@@ -5,8 +5,8 @@ module MemHelper
 
   def role_alia mem
     {
-      :user=> '普通会员',
-      :vip=> '高级会员'
+      :user=> t('role.member'),
+      :vip=> t('role.senior')
     }[mem.role.to_sym]
   end
 end

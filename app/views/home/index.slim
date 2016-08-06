@@ -11,7 +11,7 @@
             button[type="submit"]: i.fa.fa-search 
       
       a.visit-btn[href="/repos/Applications/frameworks"]
-            | 浏览全部 
+            | #{t('home.seall')} 
     
     div.clear
 
@@ -19,7 +19,7 @@
       div.row
         div.col-md-6
           div.home-use
-            p.text-center 看看他们都在用什么前端库
+            p.text-center =t('weuse.home_guide')
             div.row
               -@usemems.each do |mem|
                 div.col-md-3.col-sm-4.col-xs-6
@@ -31,11 +31,11 @@
                     /   a<>[href="#"] bootstrap
                     /   | 」等#{mem.using}个库
                  
-            p.text-center: a.go[href="/weuse"]  马上去看   
+            p.text-center: a.go[href="/weuse"]  =t('weuse.go_see')   
 
 
           div.trends-wraper
-            h3.trend-name 前端趋势
+            h3.trend-name =t('trend.name')
             =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
               -@trends.each_with_index do |item, index|
                 a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
@@ -53,7 +53,7 @@
                     / -_fresh = fresh item.pushed_at
                     / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
             div.more
-              a.more[href="/rank?sort=trend"] 完整趋势
+              a.more[href="/rank?sort=trend"] =t('trend.all')
             div.clear
 
         div.col-md-6

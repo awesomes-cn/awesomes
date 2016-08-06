@@ -33,7 +33,19 @@ en:
     hot: 'Hot'
     trend: 'Trending'
     sub_repo: 'Submit a Library'
+    site: 'Website'
+    download: 'Download ZIP'
+    pepole_use: 'people use'
+    gitter: 'Gitter'
+    stackoverflow: 'Stack Overflow'
+    lab: 'Lab'
+    demo: 'Online Demo'
+    favor: 'Favor'
+
   site: 
+    mymark: 'Favorites'
+    myinfo: 'Account'
+    thirty_login: 'Third party account login'
     videos: 'Video Player'
     signin: 'Sign in'
     search_repo: 'Search repo'
@@ -68,7 +80,7 @@ en:
     share: 'I want share'
   home:
     slogan: 'Maybe the best JavaScript libraries, frameworks, and plugins.'
-    view: 'Ready? Go'
+    seall: 'Browse all'
   tip:
     pwd_error: 'Password is invalid'
     nc_empty: "Nickname can't be empty"
@@ -89,10 +101,18 @@ en:
     email: 'Email'
     pwd: 'Password'
     forgot_pwd: 'forgot password'
-    mark: 'Marks'
+    mark: 'Favorites'
     code: 'Code'
     company: 'Company'
     job: 'Job'
+    association: 'Account Association'
+    bind: 'Bind'
+    replace: 'Replace '
+
+
+  role:
+    member: 'Member'
+    senior: 'Senior member'
 
   activerecord:
     errors:
@@ -107,3 +127,20 @@ en:
               taken: "This email has been registered,please login directly"
             pwd:
               blank: "Password can't be empty"
+
+  weuse: 
+    name: 'We use'
+    home_guide: 'Look what front end library they are using'
+    go_see: 'Go see'
+    slogan: 'Reference to our use of front end framework, provide a good reference for our own choice'
+    share_start: 'Maybe you are using the following front end Library'
+    iuse: "I use"
+    order: 'You can Drag the most commonly used in the front'
+
+  top100:
+    name: 'TOP100'
+    index: 'Front End Top 100'
+
+  trend:
+    name: 'Front end trend'  
+    all: 'All trends'

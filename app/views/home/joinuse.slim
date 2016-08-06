@@ -6,7 +6,7 @@
   
 =content_for :con
   div
-    h5.use-title 也许你正在使用下面的前端库
+    h5.use-title =t('weuse.share_start')
     div.row.join-use-wraper
       div.col-md-3.col-sm-4.col-xs-6(v-for="item in repos")
         div.inner
@@ -14,7 +14,7 @@
             img.lazy.cover[data-original='#{repo_cover_base}{{item.cover}}#{ENV['REPO_PIC_STYLE']}' ]
             h5.title {{item.name}}
 
-          span.using[class="{{item.isusing}}" v-on:click="iuse(item)"] 我在用
+          span.using[class="{{item.isusing}}" v-on:click="iuse(item)"] =t('weuse.iuse')
       
       div.clear
       div.search

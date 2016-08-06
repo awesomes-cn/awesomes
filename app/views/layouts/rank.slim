@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title 前端 TOP100
+    title =t('top100.index')
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
     meta[http-equiv="X-UA-Compatible" content="IE=edge"]
@@ -12,14 +12,14 @@ html
   body.rank-wraper
     div.banner#rank-banner
       div.inner
-        h1 前端 TOP 100
+        h1 =t('top100.index')
         div.filter
           a(href="?sort=hot" class="#{@sort == 'hot' ? 'active' : ''}")
             i.fa.fa-fire>
-            | 热度
+            | #{t('repo.hot')}
           a(href="?sort=trend" class="#{@sort == 'trend' ? 'active' : ''}")
             i.fa.fa-line-chart>
-            | 趋势
+            | #{t('repo.trend')}
       
     div.container[style="max-width: 800px;"]
       =yield :con

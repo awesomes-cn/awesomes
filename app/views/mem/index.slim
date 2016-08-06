@@ -20,36 +20,12 @@
       div
         a[href="http://weibo.com/#{@mem.mem_info.weibo_url}" target="_blank"]: i.fa.fa-weibo   
     
-
-    /div.text-center
-    /  h4 第 #{@mem.index} 位会员
-    /  p 于 #{@mem.created_at} 加入
-
-    / div#rank-wraper
-    /   p.data
-    /     | Github 前端排名
-    /     -if !@mem.mem_rank.blank?  
-    /       | （
-    /       strong {{rank[level][0]}}
-    /       | ）点击切换
-
-    /   -if @mem.mem_rank.blank?
-    /     -if @isme
-    /       p
-    /         | 请先
-    /         a[href="/mem/info"] 设置你的Github用户名
-    /     -else
-    /       p 该用户尚未设置Github用户名
-    /   -else    
-    /     h3[title="点击切换" v-on:click="switch()"]
-    /       i.fa.fa-trophy>
-    /       | {{rank[level][1]}}
       
     
     div#using-wraper
-      h5 我在用
+      h5 =t('weuse.iuse')
       -if @isme
-        p[style="color: #bfbfbf"] （可拖动排序，将最常用的放到前面）
+        p[style="color: #bfbfbf"] （#{t('weuse.order')}）
       div.row#usings
         -@opers.each do |oper|
           -item = oper.use_repo
@@ -91,32 +67,7 @@
           })
         })
 
-  div.home-extra
-    //p.rank-note
-      / | 排名数据由
-      / a.normal<>[href="http://github-awards.com/" target="_blank"] github-awards
-      / | 提供
   
-  -if !@mem.mem_rank.blank?
-    javascript:
-      var rank_data = {
-        country: ['本国',"#{@mem.mem_rank.country || '暂无排名'}"],
-        worldwide: ['世界',"#{@mem.mem_rank.worldwide || '暂无排名'}"]
-      }
-
-    
-    coffee:
-      $ ()->
-        rank_app = new Vue
-          el: "#rank-wraper"
-          data:
-            rank: rank_data
-            level: 'worldwide'
-
-          methods:
-            switch: ()->
-              rank_app.level = (if rank_app.level == 'worldwide' then 'country' else 'worldwide')
-
       
 
       
