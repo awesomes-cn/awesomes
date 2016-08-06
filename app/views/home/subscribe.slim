@@ -1,0 +1,81 @@
+doctype html
+html
+  head
+    css:
+      body{line-height: 25px; color: #333;font-family: 'Hiragino Sans GB', Helvetica, Arial, 'STHeiti', 'WenQuanYi Micro Hei', sans-serif;font-size: 13px; background-color: #F8F8F8}
+
+      .container{
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .item-list{
+        background-color: #FFF;
+        padding: 4%;
+
+      }
+
+      .item-list a{
+        color: #333;
+        text-decoration: none;
+      }
+
+      .inner{
+        position: relative;
+        padding: 20px 0;
+        padding-left: 125px;
+        border-bottom: #EEE 1px dashed;
+      }
+
+      .cover{
+        width: 100px;
+        border-radius: 4px;
+        display: inline-block;
+        position: absolute;
+        left: 10px;
+        top: 30px;
+      }
+
+      .banner{
+        text-align: center;
+        padding: 20px 0;
+      }
+
+
+      h3,h2 {
+        font-weight: bold
+      }
+
+      .url{
+        color: #da552f
+      }
+      
+      .more{
+        text-align: center;
+        padding: 50px 0;
+      }
+
+      .more a{
+        display: inline-block;
+        background-color: #EEE;
+        padding: 10px 30px;
+      }
+
+  body
+    div.container
+      div.banner
+        h2.url Awesomes.cn
+        p 发现优质的开源前端资源库
+
+      div.item-list
+        -@news.each do |item|
+          div.inner
+            a[href="#{item.link_url}"]
+              img.cover[src='#{repo_cover_path item.cover}']
+            div.desc
+              a[href="#{item.link_url}"]: h3 =item.name
+              p =item.description 
+
+        div.more
+          a[href="https://www.awesomes.cn/repos/Applications/frameworks"] 查看更多

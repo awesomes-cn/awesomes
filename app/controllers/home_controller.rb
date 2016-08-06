@@ -15,6 +15,11 @@ class HomeController < ApplicationController
     @usemems = Mem.where('`using` > 0').order('reputation desc').limit(4)
   end
 
+  def subscribe
+    @news = Repo.order('id desc').limit(15)
+    render :layout=> nil
+  end
+
   def sleep
     render :layout=> nil
   end
