@@ -41,8 +41,7 @@ class HomeController < ApplicationController
   end
 
   def weuse
-    #_query = Mem.where('role = ? or reputation >= 20 and `using` >= 5', 'vip').order("reputation desc").includes(:mem_info)
-    _query = Mem.where('id < 10').order("reputation desc").includes(:mem_info)
+    _query = Mem.where('role = ? or reputation >= 20 and `using` >= 5', 'vip').order("reputation desc").includes(:mem_info)
     @count = _query.count
     @mems = data_list(_query, 5)
   end
