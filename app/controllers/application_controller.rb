@@ -61,11 +61,11 @@ class ApplicationController < ActionController::Base
   end
 
   def data_list query, pagesize = page_size
-    query.order('id desc').limit(pagesize).offset(page * page_size)
+    query.order('id desc').limit(pagesize).offset(page * pagesize)
   end
 
-  def data_list_asc query
-    query.order('id asc').limit(page_size).offset(page * page_size)
+  def data_list_asc query, pagesize = page_size
+    query.order('id asc').limit(pagesize).offset(page * pagesize)
   end
 
   def upload_pic(file,filename,folder,width,height)
