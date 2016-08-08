@@ -50,21 +50,19 @@
 
                   div.side.side-right
                     img.cover.lazy[data-original='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
-                    / -_fresh = fresh item.pushed_at
-                    / span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
             div.more
               a.more[href="/rank?sort=trend"] =t('trend.all')
             div.clear
 
         div.col-md-6
-          //=cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
-          -@news.each do |item|
-            div.inner
-              a[href="#{item.link_url}"]
-                img.cover[src='#{repo_cover_path item.cover}']
-              div.desc
-                a[href="#{item.link_url}"]: h4 =item.name
-                p =item.description 
+          =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+            -@news.each do |item|
+              div.inner
+                a[href="#{item.link_url}"]
+                  img.cover[src='#{repo_cover_path item.cover}']
+                div.desc
+                  a[href="#{item.link_url}"]: h4 =item.name
+                  p =item.description 
   
   
 

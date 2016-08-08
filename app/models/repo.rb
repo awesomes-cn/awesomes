@@ -88,9 +88,15 @@ class Repo < ActiveRecord::Base
   def demo_code
     Code.find_by_id(demo) || default_code
   end
+
+  def description
+    I18n.locale.to_s != 'en' and description_cn ? description_cn : super
+  end
   
   private
   def after_create_callback
     ActionController::Base.new.expire_fragment %r{repo_list_.+}
   end
+
+  
 end

@@ -37,6 +37,7 @@ namespace :repo do
   task :index,[:start] => :environment do |t,args|
     Repo.reindex
   end
+
    
 end
 
@@ -54,6 +55,11 @@ namespace :mem do
     MemJob.promotion
   end
 end
+
+
+
+
+
 
 
 namespace :baidu do 

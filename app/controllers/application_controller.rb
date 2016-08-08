@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     _local = params[:l] || request.env['HTTP_ACCEPT_LANGUAGE'].to_s.scan(/^[a-z]{2}/).first
-
     I18n.locale = (@is_en = _local == 'en') ? 'en' : 'zh-CN'
   end
 

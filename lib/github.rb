@@ -28,6 +28,7 @@ class Github
       :subscribers_count=> _result['subscribers_count'],
       :pushed_at=> _result['pushed_at'],
       :github_created_at=> _result['created_at'],
+      :description=> _result['description']
     }
     repo.update_attributes(_para)
     repo
