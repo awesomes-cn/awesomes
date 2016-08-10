@@ -4,7 +4,9 @@ html,body{height: 100%}
 .right{float: right}
 .clear{clear: both}
 
-
+img{
+  border: 0;
+}
 a{ 
   text-decoration: none;
   -webkit-transition:all,.5s,ease,0s; 

@@ -30,7 +30,7 @@
   div.repo-list-wraper
     -@items.each do |item|
       div
-        a[href="#{item.link_url}"]: img.cover.lazy[data-original='#{repo_cover_path item.cover}']
+        a[href="#{item.link_url}"]: img.lazy.cover[data-original='#{repo_cover_path item.cover}']
         div.caption
           a[href="#{item.link_url}"]
             h3 
@@ -39,9 +39,18 @@
 
           p
             span =item.description
-        ul
-          -item.tag.to_s.split(',')[0..2].each do |tag|
-            li: a[href="?tag=#{tag}" title="#{tag}"] =tag 
+        ul.extras
+          / -item.tag.to_s.split(',')[0..2].each do |tag|
+          /   li: a[href="?tag=#{tag}" title="#{tag}"] =tag 
+          li
+            a[href="#{item.link_url}/using" title="#{item.using}人在用"]
+              i.fa.fa-hand-lizard-o.fa-flip-horizontal>
+              | #{item.using}
+          li
+            a[href="#{item.link_url}/favors" title="#{item.mark}人收藏了"]
+              i.fa.fa-heart-o>
+              | #{item.mark} 
+
         
         -_fresh = fresh item.pushed_at
         span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
