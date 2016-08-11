@@ -35,37 +35,37 @@
               span.title =item.name
             -if @isme  
               i.fa.fa-times-circle.close[data-id="#{item.id}"]
-      
-      javascript:
-        var el = document.getElementById('usings');
-        var sortable = Sortable.create(el, {
-          animation: 150,
-          onEnd: function (evt) {
-            var prev = $(evt.item).prev().attr('data-order') 
-            var next = $(evt.item).next().attr('data-order')
-            var prev_order = prev ? parseInt(prev) : 0
-            var next_order = next ? parseInt(next) : 0
-            var now_order =  parseInt((prev_order + next_order) / 2)
-            if(next_order == 0){
-              now_order =  prev_order + 10000
-            }
-            $.post('/oper/uporder', {id: $(evt.item).attr('data-id'), order: now_order}, function(){
-              $(evt.item).attr('data-order', now_order)
-            })
-          }
-        });
-
-        $(function(){
-          $("#usings .fa-times-circle.close").click(function(){
-            var item = $(this);
-            $.post("/oper/update",{opertyp: 'USING',typ: 'REPO',idcd: item.attr('data-id')},function(data){
-              if(data.state == false){
-                item.closest(".item").fadeOut();
+      -if @isme
+        javascript:
+          var el = document.getElementById('usings');
+          var sortable = Sortable.create(el, {
+            animation: 150,
+            onEnd: function (evt) {
+              var prev = $(evt.item).prev().attr('data-order') 
+              var next = $(evt.item).next().attr('data-order')
+              var prev_order = prev ? parseInt(prev) : 0
+              var next_order = next ? parseInt(next) : 0
+              var now_order =  parseInt((prev_order + next_order) / 2)
+              if(next_order == 0){
+                now_order =  prev_order + 10000
               }
+              $.post('/oper/uporder', {id: $(evt.item).attr('data-id'), order: now_order}, function(){
+                $(evt.item).attr('data-order', now_order)
+              })
+            }
+          });
 
+          $(function(){
+            $("#usings .fa-times-circle.close").click(function(){
+              var item = $(this);
+              $.post("/oper/update",{opertyp: 'USING',typ: 'REPO',idcd: item.attr('data-id')},function(data){
+                if(data.state == false){
+                  item.closest(".item").fadeOut();
+                }
+
+              })
             })
           })
-        })
 
   
       
