@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806225719) do
+ActiveRecord::Schema.define(version: 20160811142859) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20160806225719) do
     t.integer  "startup"
     t.string   "hidetags"
     t.integer  "using",                                default: 0
+    t.integer  "experience",                           default: 0
   end
 
   add_index "repos", ["rootyp", "typcd", "html_url"], name: "search", using: :btree

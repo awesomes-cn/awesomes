@@ -72,6 +72,10 @@ class Repo < ActiveRecord::Base
   end
 
   def update_comment
+    _count = Comment.where({:typ=> 'REPOEXPERIENCE', :idcd=> id}).count
+    update_attributes({
+      :experience=> _count
+    })
   end
 
   def up_typ_zh

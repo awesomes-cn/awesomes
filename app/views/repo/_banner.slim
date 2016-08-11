@@ -75,7 +75,11 @@ div.repo-banner
           label[v-else v-cloak] {{usingcount}}
           span.all =t('repo.pepole_use')
           span.me.open-login[v-on:click="using()"] =t('weuse.iuse')
-          
+    
+    div.clear
+    
+      
+
   javascript:
     var source_item= {
       id: "#{@item.id}",

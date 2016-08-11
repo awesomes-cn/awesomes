@@ -14,8 +14,19 @@
 =content_for :con
   div.panel.panel-default.view-wraper
     /=render "banner" 
-    
+    div.experience
+      span.title 经验之谈
+      a[href=""] 
+        img.tx[src="https://avatars.githubusercontent.com/u/291258?v=3"]
+      | 我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学
+      a.visit[href="#{@item.link_url}/experiences"]
+        | 查看更多
+        strong<> =@item.experience
+        | 条经验 >>
+
     div.panel-body.detail#repo-wraper
+      
+
       div.lang.hidden-xs
         span[v-bind:class="lang == 'en' ? 'on' : ''" v-on:click="switch('en')"] EN
         span[v-bind:class="lang == 'zh-CN' ? 'on' : ''" v-on:click="switch('zh-CN')"] 中

@@ -43,6 +43,10 @@ class RepoController < ApplicationController
     end
   end
 
+  def experiences
+    @comment = {:typ=> 'REPOEXPERIENCE',:idcd=> @item.id}
+  end
+
   def update
     _typ = params[:typ].split("-")
     params[:repo][:rootyp] = _typ[0]

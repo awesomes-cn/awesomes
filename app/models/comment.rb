@@ -19,7 +19,11 @@ class Comment < ActiveRecord::Base
   end
 
   def target
-    typ.capitalize.constantize.send :find,idcd
+    {
+      :REPO=> Repo,
+      :REPOEXPERIENCE=> Repo,
+      :TOPIC=> Topic
+    }[typ.to_sym].send :find,idcd
   end
 
   def target_url
