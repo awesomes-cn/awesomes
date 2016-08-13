@@ -287,11 +287,11 @@ user-select: none;
   
   .comment-list{
     a.oper{
-      color:#999; float: right; margin-left: 5px; display: none;
+      color:#999; float: right; margin-left: 10px; display: none;
       &:hover{color: #000}
       &.reply-btn{display: inline-block;}
     }
-    li.show-oper{
+    li:hover{
       a.oper{display: inline-block;}
     }
   }

@@ -18,7 +18,7 @@ class CommentController < ApplicationController
     render json: {status: true,url: _item.target_url} 
 	end
 
-  def destroy 
+  def destroy
     @item.destroy
     render json: {status: true}
   end

@@ -88,11 +88,16 @@
   padding: 10px;
   background-color: rgba(49, 112, 143, 0.07);
   color: #3b5f7b;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-   padding-right: 200px;
+  
+  
+
+  .inner{
+    padding-right: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
 
   .title{
     font-size: 16px; 

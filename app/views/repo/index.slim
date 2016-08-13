@@ -15,14 +15,17 @@
   div.panel.panel-default.view-wraper
     /=render "banner" 
     div.experience
-      span.title 经验之谈
-      a[href=""] 
-        img.tx[src="https://avatars.githubusercontent.com/u/291258?v=3"]
-      | 我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学
-      a.visit[href="#{@item.link_url}/experiences"]
-        | 查看更多
-        strong<> =@item.experience
-        | 条经验 >>
+      //input.form-control[placeholder="这个库很好用？有坑？快来分享你宝贵的经验"]
+      =render "exper_editor"
+      div.inner
+        //span.title 经验之谈
+        a[href=""] 
+          img.tx[src="https://avatars.githubusercontent.com/u/291258?v=3"]
+        | 我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学我觉得这个框架最大的好处就是间接医学
+        a.visit[href="#{@item.link_url}/experiences"]
+          | 查看更多
+          strong<> =@item.experience
+          | 条经验 >>
 
     div.panel-body.detail#repo-wraper
       
