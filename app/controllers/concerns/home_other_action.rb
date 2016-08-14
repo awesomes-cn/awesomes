@@ -71,17 +71,18 @@ module HomeOtherAction
   end
 
   def rss
-    _items = Readme.order(id: :desc).limit(15).offset(0).includes(:repo)
+    _items = Repo.order(id: :desc).limit(10)
     @items = _items.map do |item|
-      _root = Menutyp.menu_a item.repo.rootyp
-      _typ = Menutyp.menu_b item.repo.typcd, item.repo.rootyp
+      _root = Menutyp.menu_a item.rootyp
+      _typ = Menutyp.menu_b item.typcd, item.rootyp
       {
-          :title => "[#{_root.sdesc}-#{_typ.sdesc}] #{item.repo.name}",
-          :author => item.repo.owner,
-          :link => "#{Rails.application.config.base_url}repo/#{item.repo.owner}/#{item.repo.alia}",
+          :title => "[#{_root.sdesc}-#{_typ.sdesc}] #{item.name}",
+          :author => item.owner,
+          :link => "#{Rails.application.config.base_url}repo/#{item.owner}/#{item.alia}",
           :date => item.created_at,
-          :desc => item.repo.description,
-          :category => "#{item.repo.rootyp}-#{item.repo.typcd}"
+          :desc => item.description,
+          :category => "#{item.rootyp}-#{item.typcd}",
+          :cover=> item.cover
       }
     end.uniq[0...10]
     respond_to do |format|

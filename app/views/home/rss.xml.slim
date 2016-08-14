@@ -18,3 +18,4 @@ rss[version="2.0" xmlns:blogChannel="http://backend.userland.com/blogChannelModu
         pubDate =raw "<![CDATA[#{item[:date]}]]>"
         description =raw "<![CDATA[#{item[:desc]}]]>"
         category =raw "<![CDATA[#{item[:category]}]]>" 
+        <media:content url="#{repo_cover_path item[:cover]}" medium="image">     
