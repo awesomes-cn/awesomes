@@ -17,5 +17,6 @@ rss[version="2.0" xmlns:media="http://search.yahoo.com/mrss/"]
         link =item[:link]
         pubDate =raw "<![CDATA[#{item[:date]}]]>"
         description =raw "<![CDATA[#{item[:desc]}]]>"
-        categories =raw "<![CDATA[#{item[:categories]}]]>" 
+        category =raw "<![CDATA[#{item[:category]}]]>" 
+        comments =raw "<![CDATA[#{item[:category]}]]>" 
         //media:content[url="#{repo_cover_path item[:cover]}" medium="image"]
