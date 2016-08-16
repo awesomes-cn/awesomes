@@ -76,13 +76,12 @@ module HomeOtherAction
       _root = Menutyp.menu_a item.rootyp
       _typ = Menutyp.menu_b item.typcd, item.rootyp
       {
-          :title => "[#{_root.sdesc}-#{_typ.sdesc}] #{item.name}",
+          :title => "#{item.name}",
           :author => item.owner,
           :link => "#{Rails.application.config.base_url}repo/#{item.owner}/#{item.alia}",
           :date => item.created_at,
           :desc => item.description,
-          :category => "#{item.rootyp}-#{item.typcd}",
-          :cover=> item.cover
+          :category => "#{item.rootyp_zh}-#{item.typcd_zh}"
       }
     end.uniq[0...10]
     respond_to do |format|

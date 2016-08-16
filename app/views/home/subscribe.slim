@@ -13,7 +13,8 @@ html
       .item-list{
         background-color: #FFF;
         padding: 4%;
-
+        border-radius: 5px;
+        text-align: center;
       }
 
       .item-list a{
@@ -24,7 +25,6 @@ html
       .inner{
         position: relative;
         padding: 20px 0;
-        padding-left: 125px;
         border-bottom: #EEE 1px dashed;
       }
 
@@ -61,6 +61,13 @@ html
         background-color: #EEE;
         padding: 10px 30px;
       }
+      .tag{
+        display: inline-block;
+        color: #555;
+        background-color: #DDD;
+        padding: 5px 10px;
+        font-size: 12px;
+      }
 
   body
     div.container
@@ -71,10 +78,16 @@ html
       div.item-list
         -@news.each do |item|
           div.inner
-            a[href="https://www.awesomes.cn#{item.link_url}" target="_blank"]
-              img.cover[src='#{repo_cover_path item.cover}']
             div.desc
-              a[href="https://www.awesomes.cn#{item.link_url}" target="_blank"]: h3 =item.name
+              a[href="https://www.awesomes.cn#{item.link_url}" target="_blank"]
+                h2 =item.name
+                p
+                  span.tag
+                    | [
+                    | #{item.rootyp_zh}
+                    | - 
+                    | #{item.typcd_zh}
+                    | ]
               p =item.description 
 
         div.more
