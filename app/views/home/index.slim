@@ -26,12 +26,16 @@
                   div.mem-inner
                     a[href="/mem/#{mem.id}"]: img.tx[src="#{mem.avatar_url}"]
                     a[href="/mem/#{mem.id}"]: p =mem.nc
-                    / p
-                    /   | 在用「
-                    /   a<>[href="#"] bootstrap
-                    /   | 」等#{mem.using}个库
                  
             p.text-center: a.go[href="/weuse"]  =t('weuse.go_see')   
+          
+          div.home-rss
+            p.text-center
+              i.fa.fa-rss>
+              | 邮件订阅
+            form[action="//awesomes.us13.list-manage.com/subscribe/post?u=bae3438ea1f226c7d6eb02700&amp;id=c5a3a32e96" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"]
+              input.form-control[type="email" name="EMAIL" class="email" placeholder="请输入您的邮箱"]
+            p.remark 我们会定期将最新的前端框架发送到你的邮箱
 
 
           div.trends-wraper
