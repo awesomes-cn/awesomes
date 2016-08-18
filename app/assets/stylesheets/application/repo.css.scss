@@ -169,7 +169,7 @@
 
 
   & > .detail{
-    padding: 30px; /* padding-right: 150px;  */position: relative; display: block;word-break: break-all; font-size: 14px;
+    padding: 30px; /* padding-right: 150px;  */position: relative; display: block;word-break: break-all; font-size: 15px;
     img{max-width: 100%}
     & > .bar{
       position: absolute; right: 0px; top: 20px;
@@ -248,7 +248,7 @@
 
 
 .repo-menus{
-  text-align: center; font-size: 14px;
+  text-align: center; font-size: 14px;    margin-top: 20px;
   & > a{
     display: inline-block;margin: 15px; color: #444;text-decoration: none;
     &.active{color: #d9534f;font-weight: bold;}

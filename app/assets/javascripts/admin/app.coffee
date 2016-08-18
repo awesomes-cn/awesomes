@@ -15,6 +15,7 @@ window.admin =
     list_url = '/admin/' + options.model + 's.json'
     destory_url = '/admin/'+ options.model + '/destroy'
     fetch_url = '/admin/'+ options.model + '/fetch'
+    empty_url = '/admin/'+ options.model + '/empty'
     
     Vue.filter 'show', (items,field,val)->
       _.filter items, (item)->
@@ -65,6 +66,11 @@ window.admin =
           $.post fetch_url,{id : item.id}, (data)-> 
             item.status = "READED"
             item.fetching = false 
+
+        emptylist: () ->
+          if confirm('确定删除列表？谨慎操作')
+            $.post empty_url,{}, (data)-> 
+              app.items = []
         
       
           

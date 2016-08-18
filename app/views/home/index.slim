@@ -3,8 +3,7 @@
 
 =content_for :banner  
   div.new-repos
-    div.home-banner
-      //h4.title 最新发布
+    div.home-banner 
       div.home-search
         form[action="/search" method="get"]
           input[type="text" placeholder="#{t('site.search_repo')}" name="q" value="#{params[:q]}"]
@@ -17,7 +16,19 @@
 
     div.home-news-wraper
       div.row
-        div.col-md-6
+        div.col-md-7
+          div.title
+            h4 最新发布
+          =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+            -@news.each do |item|
+              div.inner
+                a[href="#{item.link_url}"]
+                  img.cover[src='#{repo_cover_path item.cover}']
+                div.desc
+                  a[href="#{item.link_url}"]: h4 =item.name
+                  p =item.description 
+
+        div.col-md-5
           div.home-use
             p.text-center =t('weuse.home_guide')
             div.row
@@ -30,16 +41,23 @@
             p.text-center: a.go[href="/weuse"]  =t('weuse.go_see')   
           
           div.home-rss
-            p.text-center
+            h4.text-center
               i.fa.fa-rss>
               | 邮件订阅
-            form[action="//awesomes.us13.list-manage.com/subscribe/post?u=bae3438ea1f226c7d6eb02700&amp;id=c5a3a32e96" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank"]
-              input.form-control[type="email" name="EMAIL" class="email" placeholder="请输入您的邮箱"]
-            p.remark 我们会定期将最新的前端框架发送到你的邮箱
-
+            p.remark 我们会定期将最新的前端框架发送到你的邮箱  
+            div.form-inner
+              input.form-control[type="email" placeholder="请输入您的邮箱" v-model="subemail"]
+              button.btn.btn-primary[v-on:click="subscribe()"] 订阅
+            
+            div[class="alert alert-success" role="alert" v-show="substate == 'yes' " style="margin-top: 10px;"]
+              button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
+                span[aria-hidden="true"] &times;
+              | 订阅成功，如有问题，你可以随时取消订阅
 
           div.trends-wraper
-            h3.trend-name =t('trend.name')
+            h4.trend-name
+              i.fa.fa-line-chart>
+              span =t('trend.name')
             =cache "home_trend_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
               -@trends.each_with_index do |item, index|
                 a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
@@ -58,37 +76,11 @@
               a.more[href="/rank?sort=trend"] =t('trend.all')
             div.clear
 
-        div.col-md-6
-          =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
-            -@news.each do |item|
-              div.inner
-                a[href="#{item.link_url}"]
-                  img.cover[src='#{repo_cover_path item.cover}']
-                div.desc
-                  a[href="#{item.link_url}"]: h4 =item.name
-                  p =item.description 
+        
   
   
 
 =content_for :con
-  / div.home-wraper
-  /   / h3
-  /   /   | 「 #{t('home.slogan')} 」
-  /   a.btn.btn-danger.btn-lg[href="/repos/Applications/frameworks"]
-  /     | #{t('home.view')} -
-  /     i.fa.fa-angle-right<
-
-  /   form.search-form[action="/search" method="get"]
-  /     input.search-txt[type="text" placeholder="#{t('site.search_repo')}" name="q"]
-  /     button[type="submit"]: i.fa.fa-search 
-
-  /   p
-  /     | 已收录
-  /     b<> < #{@repos_count} >
-  /     | 个优秀的前端库
-
-  /   div.home-bottom
-  /     =root_menus
   
   css:
     .navbar{margin-bottom: 0}
@@ -97,7 +89,24 @@
   javascript:
     $(function(){
       $(".line").peity("line");
-    })  
+    })
+
+    var MVVM = new Vue({
+      el: 'body',
+      data: {
+        substate: 'no'
+      },
+      methods: {
+        subscribe: function(){
+          if(this.subemail.trim() == '') {return false}
+          $.post('/subscribe', {email: this.subemail}, function(){
+            MVVM.substate = 'yes'
+            MVVM.subemail = ''
+          })
+        }
+      }
+    })
+
     
 
 

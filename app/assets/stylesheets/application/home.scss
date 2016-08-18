@@ -336,7 +336,12 @@
       color: #333
     }
   }
-  .title{padding: 10px 30px;  }
+  .title{
+    padding: 10px 30px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: #da552f 1px solid;
+    color: #da552f
+  }
   .cover{
     display: block;
     width: 100px;
@@ -388,7 +393,17 @@
     margin-bottom: 20px;
     .remark{
       margin-top: 10px;
-      color: #CECECE
+      color: #CECECE;
+      text-align: center;
+    }
+    .form-inner{
+      padding-right: 70px;
+      position: relative;
+      button{
+        position: absolute;
+        right: 0;
+        top: 0
+      }
     }
   }
 }

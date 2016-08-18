@@ -61,6 +61,14 @@ class HomeController < ApplicationController
     end
   end
 
+  def subscribe
+    _email = params[:email]
+    render json: false and return if !_email or !_email.index '@'
+
+    Subscribe.find_or_create_by({:email=> params[:email]})
+    render json: true
+  end
+
   def auth
     _data = request.env["omniauth.auth"] 
     #render json: _data and return

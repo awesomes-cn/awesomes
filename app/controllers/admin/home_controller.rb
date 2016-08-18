@@ -61,4 +61,8 @@ class Admin::HomeController < AdminController
   def weuseapplys
     adminlists Msg.where({:typ=> 'weuseapply'}),[:con,:from]
   end
+  
+  def subscribes
+    adminlists Subscribe,[:email]
+  end
 end

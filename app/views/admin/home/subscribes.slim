@@ -1,0 +1,37 @@
+-content_for :menu
+  =render 'site_bar'
+
+=content_for :con
+  table.table#admin-app
+    thead
+      tr
+        th #
+        th 邮箱
+        th 提交日期
+        th 操作
+    tbody 
+      tr[v-for="item in items" class="{{item.status}}"]
+        td {{item.id}}
+        td {{item.email}}
+        td {{item.created_at}} 
+        td[ng-class="item.synced ?  'synced' : '' "]
+          a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+    tfoot
+      tr
+        td[colspan='8'] 
+          span 总记录：
+          span {{count}}
+
+  div#pagenation
+  input#menubar[type="hidden" value="subscribes"]
+
+  a.btn.btn-primary[href='/admin/subscribe/export' target="_blank"] 导出数据
+
+  div.btn.btn-danger[v-on:click="emptylist()"] 清空列表
+  
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'subscribe'
+
+            
