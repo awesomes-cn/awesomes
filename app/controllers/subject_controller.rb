@@ -5,6 +5,14 @@ class SubjectController < ApplicationController
   def subject_lost
     @item = Subject.find_by_key params[:key]
   end
+
+  def index
+    _query = Repo.where("tag like ?","%#{@item.title}%").order("trend desc")
+    @items = data_list(_query)
+    p @items
+    @count = _query.count
+  end
+
   def new
     @item = Subject.new
   end

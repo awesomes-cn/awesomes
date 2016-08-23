@@ -1,18 +1,21 @@
+.sub-banner{
+  img.cover{width: 100%;}
+}
 .card{
-  display: block; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); margin: 20px 0;
-  border-radius: 2px; position: relative;     border-top: #EEE 1px solid;
-  img.cover{width: 100%;border-radius: 2px;}
+  display: block;   position: relative; background-color: #FFF;
+  margin-bottom: 20px;
+  .cover{width: 100%;}
   .layer{
     background: rgba(0, 0, 0, 0.2); color: #FFF; bottom: 0; width: 100%; position: absolute; padding: 5px 10px ;
     h5{font-size: 20px; text-align: center;}
   }
   h4{
     font-size: 15px; padding: 1px 10px; white-space: nowrap; text-overflow: ellipsis;  overflow: hidden;
-    border-top: #EEE 1px solid; margin: 0;  padding-top: 10px;
+     margin: 0;  padding-top: 10px;
   }
   .sdesc{ padding: 10px;  height: 90px; overflow: hidden; color: rgba(0, 0, 0, 0.541176);}
   .extra{
-    border-top: 1px solid rgba(0,0,0,.1); padding: 5px 10px;  font-size: 10px;  white-space: nowrap; text-overflow: ellipsis;
+    border-top: 1px solid rgba(179, 179, 179, 0.1);; padding: 5px 10px;  font-size: 10px;  white-space: nowrap; text-overflow: ellipsis;
     position: relative;  overflow: hidden;padding-right: 40px;
     .fresh{position: absolute; right: 10px;  top: 10px;}
 
@@ -23,7 +26,7 @@
 }
 
 .overview{
-  text-align: center;    position: relative;
+  text-align: center;    position: relative;    margin: 30px 0;
   .navs{
     position: absolute; top: 0; left: 0;
   }
@@ -220,3 +223,5 @@
     font-size: 50px
   }
 }
+
+

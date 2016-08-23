@@ -14,6 +14,10 @@
     
     h3 控制面板
     p 是时候让后台界面高大上了
+  css:
+    .navbar{
+      box-shadow: none;
+    } 
 
 =content_for :con
   div.admins-wraper
@@ -28,6 +32,7 @@
       
     div.clear
     div#page-repo.pagenation.pagination-lg
+  
   javascript:
     $(function(){
       $("#page-repo").pagination(#{@count},{
