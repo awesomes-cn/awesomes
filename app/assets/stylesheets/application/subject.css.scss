@@ -1,5 +1,19 @@
 .sub-banner{
-  img.cover{width: 100%;}
+  //background-color: #EFEEEE;
+  img.cover{
+    width: 100%;
+    margin: 0 auto;
+    display: block
+  }
+}
+.home-card{
+  display: block; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); margin: 20px 0;
+  border-radius: 2px; position: relative;     border-top: #EEE 1px solid;
+  img.cover{width: 100%;border-radius: 2px;}
+  .layer{
+    background: rgba(0, 0, 0, 0.2); color: #FFF; bottom: 0; width: 100%; position: absolute; padding: 5px 10px ;
+    h5{font-size: 20px; text-align: center;}
+  }
 }
 .card{
   display: block;   position: relative; background-color: #FFF;
