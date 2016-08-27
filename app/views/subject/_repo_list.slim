@@ -1,27 +1,60 @@
-div.row.sub-repos
-  -@items.each do |key, val|
-    h3 #{val[0].rootyp_zh} > #{val[0].typcd_zh}
-    -val.each do |item|
-      div.col-md-3.col-sm-4
-        div.card.card-small
-          a[href="#{item.link_url}"]: img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_300h_300w_90q.src']
-          h4 =item.name
-          div.sdesc =item.description
-          div.extra
-            -_fresh = fresh item.pushed_at
-            span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
-    div.clear
-//div#page-repo.pagenation.pagination-lg
-/ javascript:
-/   $(function(){
-/     $("#page-repo").pagination(#{@count},{
-/       items_per_page : #{default_page_size},
-/       current_page : #{page},
-/       //link_to:"?page=__id__",
-/       callback: function(page){
-/         Turbolinks.visit("?page="+(page +1));
-/       }
-/     }) 
+div.sub-nav.hidden-xs.hidden-sm
+  div.split
+  -@items.each do |rootyp, typval|
+    div.first
+      span =rootyp
 
-/     $(".line").peity("line");
-/   })
+    -typval.each do |typcd, val|
+      div.second[data-link="#{rootyp}-#{typcd}"]
+        a[href="##{rootyp}-#{typcd}"] =typcd
+  
+div.row.sub-repos
+  -@items.each do |rootyp, typval|
+    -typval.each do |typcd, val|
+      -val.each do |item|
+        div.split[id="#{rootyp}-#{typcd}"]
+        div.card.card-small[data-link="#{rootyp}-#{typcd}"]
+          a[href="#{item.link_url}"]
+            img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_300h_300w_90q.src']
+            h4 =item.name
+          div.sdesc =item.description
+          
+          -_fresh = fresh item.pushed_at
+          span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+          
+          span.extra
+            i.fa.fa-star>
+            | #{item.stargazers_count} 
+
+        
+    div.clear
+      
+
+javascript:
+  $(function(){
+    var positions = $('.split').map(function(){
+      return {
+        id: $(this).attr('id'),
+        top: $(this).offset().top
+      }
+    })
+
+    $(document).scroll(function(){
+      var doctop = $(document).scrollTop()
+      if (doctop >= $('.sub-repos').offset().top) {
+        $('.sub-nav').addClass('fixed')
+      }else{
+        $('.sub-nav').removeClass('fixed')
+      }
+
+      var activeEl = _.filter(positions, function(item){ return doctop >= item.top}).pop() || positions[0]
+      console.log(activeEl.id)
+
+      $('.sub-nav .second').removeClass('active')
+      $('.sub-nav .second[data-link=' + activeEl.id  + ']').addClass('active')
+      
+      $('.card').removeClass('active')
+      $('.card[data-link=' + activeEl.id  + ']').addClass('active')
+    }).scroll()
+
+  })

@@ -9,10 +9,11 @@ class SubjectController < ApplicationController
   def index
     _query = Repo.where("tag like ?","%#{@item.title}%").order("trend desc")
     @items = {}
+    @repo = @item.repo
     data_list(_query).each do |item|
-      _key = "#{item.rootyp}-#{item.typcd}"
-      @items[_key] = @items[_key] || []
-      @items[_key].push(item)
+      @items[item.rootyp_zh] = @items[item.rootyp_zh] || {}
+      @items[item.rootyp_zh][item.typcd_zh] = @items[item.rootyp_zh][item.typcd_zh] || []
+      @items[item.rootyp_zh][item.typcd_zh].push  item
     end
     @count = _query.count
   end

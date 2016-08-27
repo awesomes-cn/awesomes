@@ -17,6 +17,10 @@
             td =f.text_field(:title,class:'form-control')
 
           tr
+            td[width="50px"] Repo
+            td =f.text_field(:repo_id,class:'form-control')  
+
+          tr
             td[width="50px"] 官网
             td =f.text_field(:website,class:'form-control')
 
@@ -49,14 +53,3 @@
             td
             td
               button.btn.btn-danger.right 更新
-
-  
-  coffee:
-    $('#inform').validate
-      rules:
-        "subject[title]":
-          required: true
-       
-      messages:
-        "subject[title]":
-          required: '标题不能为空'

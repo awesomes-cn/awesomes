@@ -1,9 +1,21 @@
 .sub-banner{
   //background-color: #EFEEEE;
-  img.cover{
-    width: 100%;
-    margin: 0 auto;
-    display: block
+  text-align: center;
+  padding: 50px 1%;
+
+  .sub-links{
+    a{
+      padding: 7px 20px;
+      border: #19C2FF 1px solid;
+      color: #19C2FF;
+      margin: 0 10px;
+      text-decoration: none;
+
+      &.gitbtn{
+        color: #EF4245;
+        border-color: #EF4245;
+      }
+    }
   }
 }
 .home-card{
@@ -16,33 +28,55 @@
   }
 }
 .card{
+  margin: 0 10px;
   display: block;   position: relative; background-color: #FFF;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 2px;
   border-top: #f5f5f5 1px solid;
-  text-align: center;
-
-  .cover{width: 100%; border-radius: 100%}
+  padding-left: 110px;
+  padding-right: 80px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &.active{
+    background-color: rgba(138, 109, 59, 0.04);
+  }
+  .cover{
+    height: 60px;
+    position: absolute;
+    left: 40px;
+    border-radius: 4px;
+  }
   .layer{
     background: rgba(0, 0, 0, 0.2); color: #FFF; bottom: 0; width: 100%; position: absolute; padding: 5px 10px ;
     h5{font-size: 20px; text-align: center;}
   }
   h4{
     font-size: 20px; padding: 1px 10px; white-space: nowrap; text-overflow: ellipsis;  overflow: hidden;
-     margin: 0;  padding-top: 10px;
+     margin: 0;  
   }
-  .sdesc{ padding: 10px;  height: 90px; overflow: hidden; color: rgba(0, 0, 0, 0.541176);}
+  .sdesc{ 
+    padding: 10px;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.541176);
+    height: 42px;
+  }
+  .fresh{ 
+    margin-right: 10px;
+    left: 12px;
+    top: 36px;
+  }
   .extra{
-    padding: 5px 10px; text-align: center;
-    .fresh{ 
-      position: relative;
-      top: auto;
-    }
-
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    top: 36px;
+    color: #c3c3c3;
   }
+
   &.card-small{
     & > img{border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
   }
@@ -250,6 +284,8 @@
 
 
 .sub-repos{
+  max-width: 800px;
+  margin: 0 auto;
   h3{
     border: #DDD 1px dashed;
     border-left: 0;
@@ -258,5 +294,41 @@
     margin: 20px 0;
     color: #8b8b8b;
     text-align: center;
+  }
+  a{
+    color: #333;
+    text-decoration: none;
+  }
+
+  
+}
+
+.split{
+    height: 20px;
+  }
+.sub-nav{
+  position: absolute;
+  font-weight: bold;
+  
+  & > div {
+    &.active {
+      a{
+        color: Red
+      }
+    }
+  }
+
+  .first{
+    color: #DDD
+  }
+
+  &.fixed{
+    position: fixed;
+    top: 0
+  }
+
+  a{
+    color: #2f2f2f;
+    text-decoration: none;
   }
 }
