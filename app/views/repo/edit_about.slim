@@ -1,0 +1,20 @@
+=content_for :con
+  div.panel.panel-default
+    div.panel-heading
+      h3
+        | 你当前正在编辑
+        a<[href="/repo/#{@item.owner}/#{@item.alia}"] =@item.name
+
+    div.panel-body
+      =form_for(@item,url: "/repo/#{@item.owner}/#{@item.alia}/update" ,method:'post',html:{id: 'inform'}) do |f|
+        table.table
+          tr
+            td[width="50px"] about
+            td =f.text_area(:about,class:'form-control',rows: 20) 
+
+          tr
+            td
+            td
+              button.btn.btn-danger.right 更新
+
+  
