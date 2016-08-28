@@ -5,7 +5,7 @@ default: &default
   password: <%= ENV['MYSQL_PASSWORD'] %>
   pool: 5
   timeout: 5000
-  encoding: utf8
+  encoding: utf8mb4
 
 development:
   <<: *default
