@@ -1,0 +1,45 @@
+=content_for :con
+  div#vs-main[style="width: 100%;height:#{@repos.count * 150}px;"]
+  
+  div.tips
+    
+
+  script[src="/echarts/echarts.min.js"]
+  javascript:
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('vs-main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+      title: {
+          text: ''
+      },
+      tooltip: {
+          trigger: 'axis',
+          axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+          }
+      },
+      legend: {
+         data: #{raw @reponms.to_json}
+      },
+      yAxis: {
+          data: [  '在用',  '活跃度',  '趋势', '热度']
+      },
+      xAxis: {
+        splitLine: {
+          show: false
+        },
+        axisLine: {
+          show: false
+        },
+        axisTick:{
+          show: false
+        }
+      },
+      series: #{raw @repos.to_json}
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);

@@ -134,6 +134,27 @@ class HomeController < ApplicationController
     render :layout=> nil
   end
 
+  def vs
+    #[''在用',  '活跃度',  '趋势', '热度']
+    @repos = Repo.where("id in (10, 11, 12)").map do |item|
+      {
+        name: item.alia,
+        type: 'bar',
+        barWidth: 5,
+        data: [
+          item.using,
+          10000 /  (item.issue_res / 3600 * 24),
+          item.trend,
+          (item.stargazers_count + item.forks_count + item.subscribers_count) / 1000,
+          
+        ]
+      }
+    end
+    @reponms = @repos.map do |item|
+      item[:name]
+    end 
+  end
+
   private
   def set_repos_list
     @sort = params[:sort].blank? ? :hot : params[:sort]
