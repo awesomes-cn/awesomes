@@ -30,7 +30,9 @@
   div.repo-list-wraper
     -@items.each do |item|
       div
-        a[href="#{item.link_url}"]: img.lazy.cover[data-original='#{repo_cover_path item.cover}']
+        a[href="#{item.link_url}"]
+          img.lazy.cover[data-original='#{repo_cover_path item.cover}' data-id="#{item.id}"]
+          div.clone-wraper[data-id="#{item.id}"]
         div.caption
           a[href="#{item.link_url}"]
             h3 
@@ -52,7 +54,7 @@
               | #{item.mark} 
 
           li.vs[v-on:click="addToVs(#{item.id})"]
-            a[href="#"]
+            a[href="javascript:void(0)"]
               i.fa.fa-plus 
               strong: i VS
     
@@ -86,7 +88,17 @@ javascript:
   new Vue({
     el: 'body',
     methods: {
-      addToVs: function(id){
+      addToVs: function(id){ 
+        var cover = $('.cover[data-id='+ id +']')
+        window.TTT = cover
+        var top = cover.offset().top - $(document).scrollTop()
+        var left = cover.offset().left
+        var cloneCover = cover.clone().css('position', 'fixed').css('top', top).css('left', left)
+        var endLeft = $('#vs-menu').offset().left + cover.width()
+        cloneCover.appendTo('.clone-wraper[data-id='+ id +']').animate({top: 0, width: 0, height: 0, left: endLeft}, 1000, function(){
+          cloneCover.remove()
+        })
+
         var oldArr = store.get('awesomes-vs') || []
         if(oldArr.indexOf(id) < 0){
           oldArr.push(id)

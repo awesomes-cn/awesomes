@@ -29,7 +29,7 @@ header.navbar
       
       ul.nav.navbar-nav.navbar-right
         li
-          a[href="/vs" title="提交库"] VS
+          a#vs-menu[href="/vs" title="提交库"] VS
           ul.extra-menu
             li 1
             li 2
@@ -48,6 +48,6 @@ header.navbar
               li: a[href='/mem/marks'] =t('site.mymark')
               li: a[href='/mem/info'] =t('site.myinfo')
               =link_to t('mem.logout'), sessions_destroy_path
-
+div.header-placeholder
         
   
