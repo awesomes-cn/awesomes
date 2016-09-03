@@ -136,23 +136,38 @@ class HomeController < ApplicationController
 
   def vs
     #[''在用',  '活跃度',  '趋势', '热度']
-    @repos = Repo.where("id in (10, 11, 12)").map do |item|
-      {
-        name: item.alia,
-        type: 'bar',
-        barWidth: 5,
-        data: [
-          item.using,
-          10000 /  (item.issue_res / 3600 * 24),
-          item.trend,
-          (item.stargazers_count + item.forks_count + item.subscribers_count) / 1000,
-          
-        ]
+   
+
+
+    respond_to do |format|
+      format.html{ 
+      }
+      format.json { 
+        _ids = params[:ids]
+        _repos = Repo.where("id in (#{_ids})").map do |item|
+          {
+            name: item.alia,
+            type: 'bar',
+            barWidth: 5,
+            data: [
+              item.using,
+              10000 /  (item.issue_res / 3600 * 24),
+              item.trend,
+              (item.stargazers_count + item.forks_count + item.subscribers_count) / 1000,
+              
+            ]
+          }
+        end
+        _reponms = _repos.map do |item|
+          item[:name]
+        end 
+
+        render json: {
+          repos: _repos,
+          reponms: _reponms
+        }
       }
     end
-    @reponms = @repos.map do |item|
-      item[:name]
-    end 
   end
 
   private

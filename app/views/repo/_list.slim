@@ -51,6 +51,12 @@
               i.fa.fa-heart-o>
               | #{item.mark} 
 
+          li.vs[v-on:click="addToVs(#{item.id})"]
+            a[href="#"]
+              i.fa.fa-plus 
+              strong: i VS
+    
+
         
         -_fresh = fresh item.pushed_at
         span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
@@ -75,4 +81,17 @@ javascript:
     }) 
 
     $(".line").peity("line");
+  })
+  
+  new Vue({
+    el: 'body',
+    methods: {
+      addToVs: function(id){
+        var oldArr = store.get('awesomes-vs') || []
+        if(oldArr.indexOf(id) < 0){
+          oldArr.push(id)
+        }
+        store.set('awesomes-vs', oldArr)
+      }
+    }
   })

@@ -129,7 +129,14 @@
 .repo-list-wraper{
   background-color: #FFF;
   & > div{
-     padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px; padding-right: 30px; min-height: 130px;
+    padding: 20px 0; overflow: hidden; border-radius: 0;position: relative;  padding-left: 170px; padding-right: 30px; min-height: 130px;
+    
+    &:hover{
+      li.vs{
+        display: inline-block;
+      }
+    }
+
     .caption{
       & > p{ 
         color: #999999;overflow: hidden; margin: 0;
@@ -176,6 +183,15 @@
         border-color: #ff1c00;
       }
     }
+
+    li.vs{
+      display: none;
+      a{
+        border: 0;
+      }
+    }
+
+
   }
 }
 
