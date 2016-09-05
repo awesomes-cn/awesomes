@@ -11,7 +11,7 @@
     var ids = (store.get('awesomes-vs') || []).join(',')
 
     $.post('/vs.json', {ids: ids}, function(data){
-      $('#vs-main').css('height', data.repos.length * 150)
+      $('#vs-main').css('height', data.repos.length * 100 + 4 * 80)
       drawChart(data.repos, data.reponms)
     })
     function drawChart(repos, reponms){
@@ -44,7 +44,8 @@
           },
           axisTick:{
             show: false
-          }
+          },
+          axisLabel: {show: false}
         },
         series: repos
       };

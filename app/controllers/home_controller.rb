@@ -144,11 +144,26 @@ class HomeController < ApplicationController
       }
       format.json { 
         _ids = params[:ids]
-        _repos = Repo.where("id in (#{_ids})").map do |item|
+        _colors = ["#ce6565", "#65ccce", "#6ace65", "#ceb065", "#6597ce", "#b165ce","#cace65", "#AAA", "#ce65aa", "#7965ce"]
+        _repos = Repo.where("id in (#{_ids})").map.with_index do |item, i|
           {
             name: item.alia,
             type: 'bar',
-            barWidth: 5,
+            barWidth: 7,
+            label: {
+              normal: {
+                show: true,
+                position: 'right',
+                formatter: '{a}'
+              }
+            },
+            itemStyle: {
+              normal: {
+                #color: _colors[i] || ''
+              },
+
+            },
+            barGap: 1.5,
             data: [
               item.using,
               10000 /  (item.issue_res / 3600 * 24),
