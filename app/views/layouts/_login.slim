@@ -39,23 +39,16 @@ div.login-wraper.modal-wraper
   
   
   javascript:
+    var vueExtend = {}
     $(function(){
-      app = new Vue({
-        el: ".login-wraper",
+      var mvvmDefault = {
+        el: "body",
         data:{
           login: Rails.login,
           action: {
             typ: 'signin',
             tip: null
           }
-          //login: {
-          //  status: #{is_login},
-          //  action: 'signin',
-          //  tip: null,
-          //  mem: {
-          //    nc: '#{is_login ? current_mem.nc : ''}'
-          //  }
-          //}
         },
         methods:{
           check_act: function(){
@@ -64,7 +57,19 @@ div.login-wraper.modal-wraper
             })
           }
         }
+      }
+
+      
+
+      
+      _.each(vueExtend, (v, k)=> {
+        if (_.has(mvvmDefault, k)) {
+          mvvmDefault[k] = _.extend(mvvmDefault[k], v)
+        }else{
+          mvvmDefault[k] = v
+        }
       })
+      App = new Vue(mvvmDefault)
     })
 
   coffee:
