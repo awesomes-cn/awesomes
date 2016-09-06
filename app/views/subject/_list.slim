@@ -1,5 +1,3 @@
--subject_list
-
 diw.row
   div.col-md-12
     a.home-card[href="/subject/#{@items[0].key}"]
@@ -11,16 +9,3 @@ diw.row
         img.cover[src="#{subject_cover_path item.cover}@1e_1c_0o_0l_250h_500w_98q.src"]
         div.layer: h5 =item.title
 
-
-div#page-repo.pagenation.pagination-lg
-javascript:
-  $(function(){
-    $("#page-repo").pagination(#{@count},{
-      items_per_page : #{default_page_size},
-      current_page : #{page},
-      link_to:"?page=__id__"
-    }) 
-
-    $(".line").peity("line");
-    
-  })

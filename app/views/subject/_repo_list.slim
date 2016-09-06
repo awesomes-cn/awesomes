@@ -1,5 +1,5 @@
 div.sub-nav.hidden-xs.hidden-sm
-  div.split
+  div.split[style="height: 50px;"]
   -@items.each do |rootyp, typval|
     div.first
       span =rootyp
@@ -11,8 +11,10 @@ div.sub-nav.hidden-xs.hidden-sm
 div.row.sub-repos
   -@items.each do |rootyp, typval|
     -typval.each do |typcd, val|
+      div.split[id="#{rootyp}-#{typcd}"]
+      h3 #{rootyp} ● #{typcd}
       -val.each do |item|
-        div.split[id="#{rootyp}-#{typcd}"]
+        
         div.card.card-small[data-link="#{rootyp}-#{typcd}"]
           a[href="#{item.link_url}"]
             img.cover[src='#{repo_cover_base item.cover}@1e_1c_0o_0l_300h_300w_90q.src']

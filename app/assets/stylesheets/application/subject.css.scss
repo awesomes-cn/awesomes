@@ -287,12 +287,13 @@
   max-width: 800px;
   margin: 0 auto;
   h3{
-    border: #DDD 1px dashed;
+    //border: #DDD 1px dashed;
     border-left: 0;
     border-right: 0;
     padding: 30px 0;
-    margin: 20px 0;
+    padding-bottom: 20px;
     color: #8b8b8b;
+    font-size: 20px;
     text-align: center;
   }
   a{
