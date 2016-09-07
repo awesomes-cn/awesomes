@@ -47,7 +47,7 @@
             p.remark 我们会定期将最新的前端框架发送到你的邮箱  
             div.form-inner
               input.form-control[type="email" placeholder="请输入您的邮箱" v-model="subemail"]
-              button.btn.btn-primary[v-on:click="subscribe()"] 订阅
+              button.btn.btn-primary[v-on:click="subscribe()"] 订阅 {{substate}}
             
             div[class="alert alert-success" role="alert" v-show="substate == 'yes' " style="margin-top: 10px;"]
               button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
@@ -91,8 +91,7 @@
       $(".line").peity("line");
     })
 
-    var MVVM = new Vue({
-      el: 'body',
+    var vueExtend = {
       data: {
         substate: 'no'
       },
@@ -100,13 +99,12 @@
         subscribe: function(){
           if(this.subemail.trim() == '') {return false}
           $.post('/subscribe', {email: this.subemail}, function(){
-            MVVM.substate = 'yes'
-            MVVM.subemail = ''
+            App.substate = 'yes'
+            App.subemail = ''
           })
         }
       }
-    })
-
+    }
     
 
 

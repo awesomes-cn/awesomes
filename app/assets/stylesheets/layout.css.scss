@@ -4,6 +4,9 @@ html,body{height: 100%}
 .right{float: right}
 .clear{clear: both}
 
+[v-cloak]{ display: none }
+
+
 img{
   border: 0;
 }

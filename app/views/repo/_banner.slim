@@ -29,7 +29,7 @@ div.repo-banner
     div.col-md-7.col-sm-7
       div.collect
 
-        svg.open-login.icon-heart#like-btn[title="#{t('repo.favor')}" v-on:click="mark()" class="{{ismark ? 'on' : ''}}"]
+        svg.open-login.icon-heart#like-btn[title="#{t('repo.favor')}" v-on:click="markRepo()" class="{{ismark ? 'on' : ''}}"]
           use[xlink:href="/fonts/icon.svg#heart"]
 
         p[style="margin-top: 30px;" v-cloak]
@@ -74,91 +74,98 @@ div.repo-banner
           a[href="#{@item.link_url}/using" v-if="usingcount > 0" v-cloak] {{usingcount}}
           label[v-else v-cloak] {{usingcount}}
           span.all =t('repo.pepole_use')
-          span.me.open-login[v-on:click="using()"] =t('weuse.iuse')
+          span.me.open-login[v-on:click="usingRepo()"] =t('weuse.iuse')
     
     div.clear
     
       
 
   javascript:
-    var source_item= {
+    var source_item = {
       id: "#{@item.id}",
       mark: "#{@item.mark}",
       using: "#{@item.using}"
     }
+
+    var vueExtend = {
+      data: {
+        ismark: false,
+        isusing: false,
+        markcount: source_item.mark,
+        usingcount: source_item.using,
+        para: {
+          opertyp: 'MARK',
+          typ: 'REPO',
+          idcd: source_item.id
+        },
+        usepara: {
+          opertyp: 'USING',
+          typ: 'REPO',
+          idcd: source_item.id
+        }
+          
+      },
+      methods: {
+        switch: function(la){
+          this.lang = la 
+        },
+        initRepo: function(){
+          if(Rails.islogin){
+            $.post("/oper/whether", this.para, function(data){
+              App.ismark =  data 
+            })
+            $.post("/oper/whether", this.usepara, function(data){
+              App.isusing =  data 
+            })
+          }
+        },
+        markRepo: function(){
+          $.post("/oper/update", this.para, function(data){
+            App.ismark =  data.state
+            App.markcount = data.count
+            var copy = $('#like-btn').clone().css({"z-index": 20})
+            if(App.ismark){
+              $('#like-btn').css({"fill": "#EF4245"})
+              copy.appendTo($('#like-btn').parent()).animate({
+                width: 120,
+                height: 120,
+                opacity: 0,
+                left: -45,
+                top: -45
+              },300, function(){ 
+                copy.remove()
+              })
+            }else{
+              copy.addClass('expand')
+              copy.appendTo($('#like-btn').parent()).animate(
+                {
+                  width: 30,
+                  height: 30,
+                  opacity: 1,
+                  left: 0,
+                  top: 0,
+                },300, 
+                function(){ 
+                  $('#like-btn').css({"fill": "#BBB"})
+                  copy.remove()
+                }  
+              )
+            }  
+          })
+        },
+        usingRepo: function(){
+          $.post("/oper/update", this.usepara, function(data){
+            App.isusing =  data.state
+            App.usingcount = data.count 
+          })    
+        }       
+      }
+    }
     
-
-  coffee:
-    $ ()->
-      repovue = new Vue
-        el: ".view-wraper"
-        methods:
-          switch: (la)->
-            repovue.lang = la 
-
-      bannerVue = new Vue
-        el: '.repo-banner'
-        data:
-          ismark: false
-          isusing: false
-          markcount: source_item.mark
-          usingcount: source_item.using
-          para: 
-            opertyp: 'MARK'
-            typ: 'REPO'
-            idcd: source_item.id
-          usepara:
-            opertyp: 'USING'
-            typ: 'REPO'
-            idcd: source_item.id
-
-        methods:
-          init: ()->
-            if Rails.islogin
-              $.post "/oper/whether", bannerVue.para, (data)->
-                bannerVue.ismark =  data 
-              $.post "/oper/whether", bannerVue.usepara, (data)->
-                bannerVue.isusing =  data     
-
-          mark: ()->
-            $.post "/oper/update",bannerVue.para,(data)->
-              bannerVue.ismark =  data.state
-              bannerVue.markcount = data.count
-              copy = $('#like-btn').clone().css({"z-index": 20})
-              if bannerVue.ismark
-                $('#like-btn').css({"fill": "#EF4245"})
-                copy.appendTo($('#like-btn').parent()).animate({
-                  width: 120,
-                  height: 120,
-                  opacity: 0
-                  left: -45,
-                  top: -45
-                },300, ()-> copy.remove())
-              else
-                copy.addClass('expand')
-                
-                copy.appendTo($('#like-btn').parent()).animate(
-                  {
-                    width: 30,
-                    height: 30,
-                    opacity: 1,
-                    left: 0,
-                    top: 0
-                  },300
-                  ()-> 
-                    $('#like-btn').css({"fill": "#BBB"})
-                    copy.remove()
-                )
-          
-          using: ()-> 
-            $.post "/oper/update", bannerVue.usepara, (data)->
-              bannerVue.isusing =  data.state
-              bannerVue.usingcount = data.count       
-
-       bannerVue.init()           
-          
-
-
+    function appInit(){
+      App.initRepo()
+    }
+    
       
 
   css:

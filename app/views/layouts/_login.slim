@@ -39,7 +39,6 @@ div.login-wraper.modal-wraper
   
   
   javascript:
-    var vueExtend = {}
     $(function(){
       var mvvmDefault = {
         el: "body",
@@ -59,17 +58,21 @@ div.login-wraper.modal-wraper
         }
       }
 
+      if(typeof vueExtend == 'object') {
+        _.each(vueExtend, (v, k)=> {
+          if (_.has(mvvmDefault, k)) {
+            mvvmDefault[k] = _.extend(mvvmDefault[k], v)
+          }else{
+            mvvmDefault[k] = v
+          }
+        })
+      }
       
 
-      
-      _.each(vueExtend, (v, k)=> {
-        if (_.has(mvvmDefault, k)) {
-          mvvmDefault[k] = _.extend(mvvmDefault[k], v)
-        }else{
-          mvvmDefault[k] = v
-        }
-      })
-      App = new Vue(mvvmDefault)
+      window.App = new Vue(mvvmDefault)
+      if(typeof appInit == 'function'){
+        appInit()
+      }
     })
 
   coffee:
