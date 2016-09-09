@@ -29,11 +29,13 @@ header.navbar
       
       ul.nav.navbar-nav.navbar-right
         li
-          a#vs-menu[href="/vs" title="提交库"] VS
-          ul.extra-menu
-            li 1
-            li 2
-            li 3
+          a#vs-menu[href="/vs" title="VS库"]: i VS
+          ul.extra-menu.vs-menus
+            li[v-for="item in vsitems"]
+              p {{item.name}}
+              i.fa.fa-close[title="删除" v-on:click="removeVs(item)"]
+            li
+              a.text-center[href="javascript:void(0)" v-on:click="emptyVS()"] 清空
 
 
         li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>

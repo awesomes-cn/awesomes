@@ -47,13 +47,25 @@ div.login-wraper.modal-wraper
           action: {
             typ: 'signin',
             tip: null
-          }
+          },
+          vsitems: store.get('awesomes-vs')
         },
         methods:{
           check_act: function(){
             $.post('/mem/ckemail', {email: app.email}, function(data){
               app.action.typ = (data ? 'signin' : 'signup')
             })
+          },
+          emptyVS: function(){
+            this.vsitems = []
+            store.remove('awesomes-vs')
+          },
+          removeVs: function(item){
+            this.vsitems.$remove(item)
+            var newStores = _.filter(store.get('awesomes-vs'), function(sem){
+              return sem.id != item.id
+            })
+            store.set('awesomes-vs', newStores)
           }
         }
       }

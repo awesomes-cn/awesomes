@@ -713,3 +713,13 @@ h5.use-title{
 #vs-main{
   margin-top: 100px;
 }
+
+.tips{
+  text-align: center;
+  p {
+    display: inline-block;
+    background-color: #EEE;
+    padding: 10px 50px;
+    border-radius: 1000px;
+  }
+}

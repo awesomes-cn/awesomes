@@ -53,7 +53,7 @@
               i.fa.fa-heart-o>
               | #{item.mark} 
 
-          li.vs[v-on:click="addToVs(#{item.id})"]
+          li.vs[v-on:click="addToVs(#{item.id}, '#{item.name}')"]
             a[href="javascript:void(0)"]
               i.fa.fa-plus 
               strong: i VS
@@ -85,25 +85,32 @@ javascript:
     $(".line").peity("line");
   })
   
-  new Vue({
-    el: 'body',
+  vueExtend =  {
     methods: {
-      addToVs: function(id){ 
+      addToVs: function(id, name){ 
         var cover = $('.cover[data-id='+ id +']')
-        window.TTT = cover
         var top = cover.offset().top - $(document).scrollTop()
         var left = cover.offset().left
-        var cloneCover = cover.clone().css('position', 'fixed').css('top', top).css('left', left)
+        var cloneCover = cover.clone().css('position', 'fixed').css('top', top).css('left', left).css('z-index', 99999)
+
         var endLeft = $('#vs-menu').offset().left + cover.width()
         cloneCover.appendTo('.clone-wraper[data-id='+ id +']').animate({top: 0, width: 0, height: 0, left: endLeft}, 1000, function(){
           cloneCover.remove()
         })
 
         var oldArr = store.get('awesomes-vs') || []
-        if(oldArr.indexOf(id) < 0){
-          oldArr.push(id)
+        var hastored = _.find(oldArr, function(item){
+          return item.id == id
+        })
+        if(!hastored){
+          var newItem = {
+            id: id,
+            name: name
+          }
+          oldArr.push(newItem)
+          App.vsitems.push(newItem)
         }
         store.set('awesomes-vs', oldArr)
       }
     }
-  })
+  }
