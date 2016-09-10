@@ -136,9 +136,6 @@ class HomeController < ApplicationController
 
   def vs
     #[''在用',  '活跃度',  '趋势', '热度']
-   
-
-
     respond_to do |format|
       format.html{ 
       }

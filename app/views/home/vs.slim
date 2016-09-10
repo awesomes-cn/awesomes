@@ -1,15 +1,24 @@
 =content_for :con
+  h1.vs-logo: i VS
+  p.text-center[style="color: #b1b1b1;"]前端库实力参数对比，帮助你找到自己想要的
   div#vs-main[style="width: 100%;"]
   
   div.tips
-    p[v-cloak] 你可以将该结果通过 http://192.168.141.128:3000/vs/{{vsIds}} 分享出去
+    p[v-cloak] 
+      | 你可以将该结果通过
+      strong<> https://www.awesomes.cn/vs/{{vsIds}} 
+      | 分享出去
   script[src="/echarts/echarts.min.js"]
   
 
   javascript:
-    var ids = _.map((store.get('awesomes-vs') || []), function(item){
-      return item.id
-    })
+    var ids = "#{params[:ids]}".split('-')
+    if(ids.length < 2){
+      ids = _.map((store.get('awesomes-vs') || []), function(item){
+        return item.id
+      })
+    }
+
 
     $.post('/vs.json', {ids: ids.join(',')}, function(data){
       $('#vs-main').css('height', data.repos.length * 100 + 4 * 80)

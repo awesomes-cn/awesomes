@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   post "/submit/save" => "submit#save"
   get "site/test" => "site#test"
+  get "vs(/:ids)" => "home#vs"
 
 
   match "/:controller(/:id)(/:action)(/:search)(.:format)", :controller => /admin\/[^\/]+/, id: /\d+/, via: ['get', 'post']
