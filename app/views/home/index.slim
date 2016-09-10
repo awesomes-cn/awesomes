@@ -47,7 +47,7 @@
             p.remark 我们会定期将最新的前端框架发送到你的邮箱  
             div.form-inner
               input.form-control[type="email" placeholder="请输入您的邮箱" v-model="subemail"]
-              button.btn.btn-primary[v-on:click="subscribe()"] 订阅 {{substate}}
+              button.btn.btn-primary[v-on:click="subscribe()"] 订阅 
             
             div[class="alert alert-success" role="alert" v-show="substate == 'yes' " style="margin-top: 10px;"]
               button[type="button" class="close" data-dismiss="alert" aria-label="Close"]

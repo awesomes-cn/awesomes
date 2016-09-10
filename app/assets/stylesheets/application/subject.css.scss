@@ -41,8 +41,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 10px;
   &.active{
-    background-color: rgba(138, 109, 59, 0.04);
+    //background-color: rgba(138, 109, 59, 0.04);
   }
   .cover{
     height: 60px;
