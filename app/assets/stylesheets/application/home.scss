@@ -446,6 +446,20 @@
       }
     }
   }
+
+  .home-subject{
+    .pic{
+      width: 100%;
+      padding: 1px;
+      margin-top: 15px;
+      box-shadow: 1px 1px 1px #dadada;
+    }
+    h4.name{
+      color: #777;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
 }
 
 @media(max-width: 768px) {

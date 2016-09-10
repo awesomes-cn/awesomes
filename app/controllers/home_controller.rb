@@ -13,6 +13,7 @@ class HomeController < ApplicationController
     @news = Repo.order('id desc').limit(12)
     @trends = Repo.order('trend desc').limit(5)
     @usemems = Mem.where('`using` > 0').order('reputation desc').limit(4)
+    @subjects = Subject.order('`order` desc').limit(4)
   end
 
   def subscribe

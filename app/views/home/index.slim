@@ -53,6 +53,21 @@
               button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
                 span[aria-hidden="true"] &times;
               | 订阅成功，如有问题，你可以随时取消订阅
+          
+          div.home-rss.home-subject
+            h4.text-center
+              i.fa.fa-television>
+              | 专题推荐
+            div.row
+              -@subjects.each do |item|
+                div.col-md-6.col-sm-6
+                  a[href="/subject/#{item.key}"] 
+                    img.pic[src='http://awesomes.img-cn-beijing.aliyuncs.com/subject/#{item.cover}@1e_300w_144h_1c_0i_1o_1x.png']
+                  h4.name =item.title
+            div.clear      
+
+
+
 
           div.trends-wraper
             h4.trend-name

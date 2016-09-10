@@ -13,7 +13,7 @@ html
 
   body
     /导航
-    nav.navbar.navbar-default[role="navigation"]
+    nav.navbar.navbar-default[role="navigation" style="position: relative"]
       /折叠按钮
       div.navbar-header
         button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-navbar-collapse"]
@@ -31,9 +31,10 @@ html
         /表单
         ul.nav.navbar-nav.navbar-right
           li: a.fa.fa-power-off[href="/admin/logout"]
+    
     = yield :banner
     /正文
-    div.container-fluid.admin-wrap
+    div.container-fluid.admin-wrap[style="margin-top: 20px;"]
       div.row
         div.col-xs-4.col-md-3.col-lg-2
           = yield :menu  
