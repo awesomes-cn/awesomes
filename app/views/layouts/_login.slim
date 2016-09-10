@@ -48,7 +48,7 @@ div.login-wraper.modal-wraper
             typ: 'signin',
             tip: null
           },
-          vsitems: store.get('awesomes-vs')
+          vsitems: store.get('awesomes-vs') || []
         },
         methods:{
           check_act: function(){

@@ -3,11 +3,13 @@
   p.text-center[style="color: #b1b1b1;"]前端库实力参数对比，帮助你找到自己想要的
   div#vs-main[style="width: 100%;"]
   
-  div.tips
+  div.tips[v-show="vsitems.length > 0"]
     p[v-cloak] 
       | 你可以将该结果通过
       strong<> https://www.awesomes.cn/vs/{{vsIds}} 
       | 分享出去
+  h4.text-center 请前往前端库列表页选择要比较的框架，然后加入到VS列表里面
+
   script[src="/echarts/echarts.min.js"]
   
 
