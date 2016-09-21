@@ -84,14 +84,18 @@
         clearInterval(loadTimer)
       }
     }, 100)
+  
 
-
-    $.post('/joinuse.json', {}, function(data){
-      App.repos = data.items.map(function(item){ 
-        item.isusing = data.usings.indexOf(item.id) > -1
-        return item
+    function appInit(){
+      $.post('/joinuse.json', {}, function(data){
+        App.repos = data.items.map(function(item){ 
+          item.isusing = data.usings.indexOf(item.id) > -1
+          return item
+        })
       })
-    })
+    }
+
+    
 
 
     
