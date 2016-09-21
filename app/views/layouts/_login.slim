@@ -52,8 +52,8 @@ div.login-wraper.modal-wraper
         },
         methods:{
           check_act: function(){
-            $.post('/mem/ckemail', {email: app.email}, function(data){
-              app.action.typ = (data ? 'signin' : 'signup')
+            $.post('/mem/ckemail', {email: App.email}, function(data){
+              App.action.typ = (data ? 'signin' : 'signup')
             })
           },
           emptyVS: function(){
@@ -123,7 +123,7 @@ div.login-wraper.modal-wraper
               close_login()
               window.location.reload()
             else
-              app.action.tip = data.notice
+              window.App.action.tip = data.notice
              
         
   
