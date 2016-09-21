@@ -71,7 +71,7 @@ div.login-wraper.modal-wraper
       }
 
       if(typeof vueExtend == 'object') {
-        _.each(vueExtend, (v, k)=> {
+        _.each(vueExtend, function(v, k) {
           if (_.has(mvvmDefault, k)) {
             mvvmDefault[k] = _.extend(mvvmDefault[k], v)
           }else{
