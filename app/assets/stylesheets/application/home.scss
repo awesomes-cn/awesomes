@@ -699,8 +699,9 @@ h5.use-title{
     padding: 0 10px;
 
     &.true{
-      color: #ff9500;
-      border-color: #ff9500
+      background-color: #ff9500;
+      border-color: #ff9500;
+      color: #FFF;
     }
   }
 

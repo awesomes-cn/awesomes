@@ -13,7 +13,7 @@
 
     div.row.join-use-wraper
       div.col-md-3.col-sm-4.col-xs-6(v-for="item in repos")
-        div.inner
+        div.inner.join-item
           a[href="{{item.link_url}}"]
             img.lazy.cover[data-original='#{repo_cover_base}{{item.cover}}#{ENV['REPO_PIC_STYLE']}' ]
             h5.title {{item.name}}
@@ -48,50 +48,49 @@
 
   javascript:
     var joinVue;
-    function initVue(repos){
-      joinVue = new Vue({
-        el: 'body',
-        data: {
-          repos: repos,
-          apply: {
-            step: 1
-          }
-        },
-        methods: {
-          iuse: function(item){
-            if(!open_login()){return false}
-            $.post('/oper/update', {
-              opertyp: 'USING',
-              typ: 'REPO',
-              idcd: item.id
-            }, function(data){
-              item.isusing = data.state > 0
-            })
-          },
-
-          applySubmit: function(){
-            var model = this
-            if(_.isEmpty(this.applyReason)) return 
-            $.post('/msg/weuseapply', {reason: this.applyReason}, function(){
-              model.apply.step = 2
-            })
-          }
-        },
-        ready: function(){
-          lazyLoadPic()
+    var vueExtend = {
+      data: {
+        repos: [],
+        apply: {
+          step: 1
         }
-      })
+      },
+      methods: {
+        iuse: function(item){
+          if(!open_login()){return false}
+          $.post('/oper/update', {
+            opertyp: 'USING',
+            typ: 'REPO',
+            idcd: item.id
+          }, function(data){
+            item.isusing = data.state > 0
+          })
+        },
+
+        applySubmit: function(){
+          var model = this
+          if(_.isEmpty(this.applyReason)) return 
+          $.post('/msg/weuseapply', {reason: this.applyReason}, function(){
+            model.apply.step = 2
+          })
+        }
+      }
     }
-    
+
+    var loadTimer = setInterval(function(){
+      lazyLoadPic();
+      console.log('over')
+      if($('.join-item').length >= 120) {
+        clearInterval(loadTimer)
+      }
+    }, 100)
+
 
     $.post('/joinuse.json', {}, function(data){
-      var repos = data.items.map(function(item){ 
+      App.repos = data.items.map(function(item){ 
         item.isusing = data.usings.indexOf(item.id) > -1
         return item
       })
-
-      initVue(repos)
-      
     })
 
 
