@@ -62,10 +62,11 @@
               -@subjects.each do |item|
                 div.col-md-6.col-sm-6
                   a[href="/subject/#{item.key}"] 
-                    img.pic[src='http://awesomes.img-cn-beijing.aliyuncs.com/subject/#{item.cover}@1e_300w_144h_1c_0i_1o_1x.png']
+                    img.pic[src='http://awesomes.img-cn-beijing.aliyuncs.com/subject/#{item.cover}@1e_300w_160h_1c_0i_1o_1x.png']
                   h4.name =item.title
-            div.clear      
-
+            div.more
+              a.more[href="/subjects"] 所有专题     
+            div.clear   
 
 
 
@@ -77,16 +78,17 @@
               -@trends.each_with_index do |item, index|
                 a.list-trend-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
                   div.side.side-left[class="nth-#{index+1}"] 
-                    span.index =index + 1
-                  
+                    i.index =index + 1
+
+                    img.thumbile.lazy[data-original='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
+
                   div.desc
                     h3
                       span =item.name
                       span.line.hide< =trends item
                     p =item.description 
 
-                  div.side.side-right
-                    img.cover.lazy[data-original='#{repo_cover_base item.cover}@1e_1c_0o_0l_100h_100w.png']
+                  
             div.more
               a.more[href="/rank?sort=trend"] =t('trend.all')
             div.clear
