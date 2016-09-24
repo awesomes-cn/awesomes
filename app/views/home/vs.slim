@@ -3,15 +3,15 @@
 
 =content_for :con
   h1.vs-logo: i VS
-  p.text-center[style="color: #b1b1b1;"]前端库实力参数对比，帮助你找到自己想要的
+  p.text-center[style="color: #b1b1b1;"] =t('vs.slogan')
   div#vs-main[style="width: 100%;"]
   
-  div.tips[v-if="vsitems.length > 0"]
-    p[v-cloak] 
-      | 你可以将该结果通过
+  div.tips[v-if="vsitems.length > 0" v-cloak]
+    p
+      | #{t('vs.share')}
       strong<> https://www.awesomes.cn/vs/{{vsIds}} 
-      | 分享出去
-  h4.text-center[v-else] 请前往前端库列表页选择要比较的框架，然后加入到VS列表里面
+      | #{t('vs.sharend')}
+  h4.text-center[v-else] =t('vs.noselect')
 
   script[src="/echarts/echarts.min.js"]
   
@@ -48,7 +48,7 @@
            data: reponms
         },
         yAxis: {
-            data: [  '在用',  '活跃度',  '趋势', '热度']
+            data: [  '#{t("vs.use")}',  '#{t("vs.vitality")}',  '#{t("vs.trend")}', '#{t("vs.hot")}']
         },
         xAxis: {
           splitLine: {

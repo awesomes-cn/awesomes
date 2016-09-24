@@ -35,7 +35,7 @@ header.navbar
               p {{item.name}}
               i.fa.fa-close[title="删除" v-on:click="removeVs(item)"]
             li
-              a.text-center[href="javascript:void(0)" v-on:click="emptyVS()"] 清空
+              a.text-center[href="javascript:void(0)" v-on:click="emptyVS()"] =t('vs.empty')
 
 
         li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>

@@ -94,7 +94,7 @@ class Repo < ActiveRecord::Base
   end
 
   def description
-    I18n.locale.to_s != 'en' and description_cn ? description_cn : super
+    (I18n.locale.to_s != 'en' and !description_cn.empty?) ? description_cn : super
   end
   
   private

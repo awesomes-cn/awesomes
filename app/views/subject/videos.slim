@@ -28,7 +28,7 @@
       h1
         i.fa.fa-video-camera
     
-        h3 Web视频播放器
+        h3 =t('video.player')
 
 =content_for :con
   =cache "videos_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do

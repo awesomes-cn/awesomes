@@ -449,6 +449,19 @@
     .more{
       text-align: center; padding: 20px;
     }
+
+    &.home-vs{
+      h5{
+        font-size: 20px;
+        i{
+          color: Red;
+          margin: 0 10px;
+          font-size: 14px;
+        }
+
+      }
+      
+    }
   }
 
   .home-subject{

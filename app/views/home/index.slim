@@ -18,7 +18,7 @@
       div.row
         div.col-md-7
           div.title
-            h4 最新发布
+            h4 =t('repo.newpub')
           =cache "home_list_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
             -@news.each do |item|
               div.inner
@@ -40,14 +40,27 @@
                  
             p.text-center: a.go[href="/weuse"]  =t('weuse.go_see')   
           
+          div.home-rss.home-vs
+            p.text-center =t('vs.which')
+            h5.text-center
+              | React
+              i or
+              | Angular
+              i or
+              | Vue.js
+            p.text-center
+              span =t('vs.view')
+              a.go<>[href="/vs/10-65-447"] =t('vs.result')
+              span =t('vs.suffix')
+
           div.home-rss
             h4.text-center
               i.fa.fa-rss>
-              | 邮件订阅
-            p.remark 我们会定期将最新的前端框架发送到你的邮箱  
+              | #{t('mail.subscription')}
+            p.remark =t('mail.tip')  
             div.form-inner
-              input.form-control[type="email" placeholder="请输入您的邮箱" v-model="subemail"]
-              button.btn.btn-primary[v-on:click="subscribe()"] 订阅 
+              input.form-control[type="email" placeholder="#{t('mail.enter_enail')}" v-model="subemail"]
+              button.btn.btn-primary[v-on:click="subscribe()"] =t('mail.sub') 
             
             div[class="alert alert-success" role="alert" v-show="substate == 'yes' " style="margin-top: 10px;"]
               button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
@@ -57,7 +70,7 @@
           div.home-rss.home-subject
             h4.text-center
               i.fa.fa-television>
-              | 专题推荐
+              | #{t('subject.recommend')}
             div.row
               -@subjects.each do |item|
                 div.col-md-6.col-sm-6
@@ -65,7 +78,7 @@
                     img.pic[src='http://awesomes.img-cn-beijing.aliyuncs.com/subject/#{item.cover}@1e_300w_160h_1c_0i_1o_1x.png']
                   h4.name =item.title
             div.more
-              a.more[href="/subjects"] 所有专题     
+              a.more[href="/subjects"] =t('subject.all')     
             div.clear   
 
 

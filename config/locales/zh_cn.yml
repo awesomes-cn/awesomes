@@ -23,6 +23,7 @@ zh-CN:
     lab: '实验室'
     demo: '在线演示'
     favor: '收藏'
+    newpub: '最新发布'
 
   site: 
     mymark: '我的收藏'
@@ -63,6 +64,14 @@ zh-CN:
   home:
     slogan: '也许是最好的开源前端库、框架和插件集合'
     seall: '浏览全部'
+  mail:
+    subscription: '邮件订阅' 
+    sub: '订阅'
+    enter_enail: '请输入您的邮箱'
+    tip: '我们会定期将最新的前端框架发送到你的邮箱'
+  subject:
+    all: '全部专题'
+    recommend: '专题推荐'  
   tip:
     pwd_error: '密码错误'
     nc_empty: '昵称不能为空'
@@ -133,3 +142,21 @@ zh-CN:
   trend:
     name: '前端趋势'
     all: '完整趋势'
+
+  vs:
+    which: '前端框架到底选哪个？'
+    result: '对比结果'
+    view: '来参考一下它们的'
+    suffix: '吧'
+    empty: '清空'
+    slogan: '前端库实力参数对比，帮助你找到自己想要的'
+    share: '你可以将该结果通过'
+    sharend: '分享出去'
+    noselect: '请前往前端库列表页选择要比较的框架，然后加入到VS列表里面'
+    use: '在用'
+    hot: '热度'
+    trend: '趋势'
+    vitality: '活跃度'
+
+  video:
+    player: 'Web视频播放器'

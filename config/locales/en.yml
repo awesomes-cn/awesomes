@@ -41,6 +41,7 @@ en:
     lab: 'Lab'
     demo: 'Online Demo'
     favor: 'Favor'
+    newpub: 'Latest Publish'
 
   site: 
     mymark: 'Favorites'
@@ -81,6 +82,14 @@ en:
   home:
     slogan: 'Maybe the best JavaScript libraries, frameworks, and plugins.'
     seall: 'Browse all'
+  mail:
+    subscription: 'Mail subscription'
+    sub: 'Subscribe'
+    enter_enail: 'Please enter your email'
+    tip: 'We will periodically send the latest front frameworks to you'
+  subject:
+    all: 'All subjects'
+    recommend: 'Subject Recommend'
   tip:
     pwd_error: 'Password is invalid'
     nc_empty: "Nickname can't be empty"
@@ -149,3 +158,21 @@ en:
   trend:
     name: 'Front end trend'  
     all: 'All trends'
+
+  vs:
+    which: 'Which front framework choose ?' 
+    result: 'vs result' 
+    view: "Let's see their"
+    suffix: ''
+    empty: 'empty'
+    slogan: 'Contrast of strength parameters of front end frameworks, Find your want'
+    share: 'You can share the result by'
+    sharend: ''
+    noselect: 'Please go to the repo list page and add to the vs list'
+    use: 'Useing'
+    hot: 'Hot'
+    trend: 'Trend'
+    vitality: 'Vitality'
+
+  video:
+    player: 'Web players'   
