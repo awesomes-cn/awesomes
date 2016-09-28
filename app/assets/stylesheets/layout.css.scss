@@ -315,23 +315,57 @@ user-select: none;
 
 .comment-wraper{
   ul{padding: 0;}
-  li{list-style: none;   position: relative; display: block; min-height: 80px; padding-left: 50px; border-bottom: #EEE 1px solid; padding-top: 10px;}
-  .tx{width: 40px; height: 40px; border-radius: 4px; display: inline-block; position: absolute; left:0; top: 17px;}
-  .comment-editor{padding: 10px;  border:#EEE 1px solid}
+  li{
+    list-style: none;
+    position: relative;
+    display: block;
+    min-height: 80px;
+    padding: 10px;
+    padding-left: 60px;
+    border-bottom: #EEE 1px solid;
+    
+  }
+  .tx{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: inline-block;
+    position: absolute;
+    left:10px;
+    top: 17px;
+  }
+  .comment-editor{
+    padding: 10px;
+    border:#EEE 1px solid;
+    margin-bottom: 30px;
+  }
   .CodeMirror{height: 100%;   padding: 10px;height: 200px;}
   .comment-footer{
-    border-top:#EEE 1px solid;  padding-top: 10px;
-    a{display: inline-block; float: right;}
+    border-top:#EEE 1px solid;
+    padding-top: 10px;
+    overflow: hidden;
+    a{
+      color: #a7a7a7;
+    }
   }
   
   .comment-list{
     a.oper{
       color:#999; float: right; margin-left: 10px; display: none;
       &:hover{color: #000}
-      &.reply-btn{display: inline-block;}
+      &.zan-btn{display: inline-block;}
     }
     li:hover{
       a.oper{display: inline-block;}
+    }
+
+    .co-mem {
+      font-weight: bold;
+      color: #333;
+    }
+    .co-time {
+      color: #999;
+      margin-left: 10px;
     }
   }
   
@@ -485,6 +519,20 @@ code[class*="language-"], pre[class*="language-"]{
   height: 30px; 
   fill: #BBB;
   cursor: pointer;
+}
+
+// 评论
+.comment-panel {
+  .co-title {
+    border-top: #DDD 1px dashed;
+    padding: 50px;
+    text-align: center;
+  }
+
+  .co-footer {
+    border-top: 1px solid #dddddd;
+    padding: 10px 15px;
+  }
 }
 
 

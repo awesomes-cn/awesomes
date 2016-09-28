@@ -39,11 +39,11 @@
       div[v-show="lang == 'en'"]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
           article[v-pre] = raw GitHub::Markdown.render @item.about
-          div.edit-footer
-            p
-              | Find this readme outdated? please just
-              a<>[href="#{@item.link_url}/notify"] click to tell me
-              | now! We will update the readme and chinese translation immediately.
+          / div.edit-footer
+          /   p
+          /     | Find this readme outdated? please just
+          /     a<>[href="#{@item.link_url}/notify"] click to tell me
+          /     | now! We will update the readme and chinese translation immediately.
 
       div[v-show="lang != 'en'" ]
         =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
@@ -77,18 +77,19 @@
               h5: a.open-login[href="/repo/#{@item.owner}/#{@item.alia}/readme" ] 马上添加中文说明
 
 
-  div.panel.panel-default    
-    div.panel-heading: h4.txt-center =t('form.discussion')  
-    div.panel-body
+  div.comment-panel
+    div.co-title
+      h4 =t('form.discussion')  
+    div
       =render "layouts/comment"
       
-    div.panel-footer
-      small 
-        | 如果你有什么问题或感想请这在这里留言讨论，我们会尽量为您解答。必要时可以在
-        a<>[href="#{@item.html_url}/issues" target="_blank"] Github issues
-        | 提交Bug（注意是项目本身的问题，使用过程中遇到的问题可以移步
-        a<>[href="http://stackoverflow.com/" target="_blank"] stackoverflow 
-        | ，注意打上相应的Tag）
+    / div.co-footer
+    /   small 
+    /     | 如果你有什么问题或感想请这在这里留言讨论，我们会尽量为您解答。必要时可以在
+    /     a<>[href="#{@item.html_url}/issues" target="_blank"] Github issues
+    /     | 提交Bug（注意是项目本身的问题，使用过程中遇到的问题可以移步
+    /     a<>[href="http://stackoverflow.com/" target="_blank"] stackoverflow 
+    /     | ，注意打上相应的Tag）
   
   
   

@@ -1,12 +1,21 @@
 div.comment-wraper
+  =render "layouts/comment_editor"
+
   -comment_list @comment[:typ],@comment[:idcd]
   -if @comments.count > 0
     ul.comment-list
       -@comments.each do |item|
         li[data-mem="#{item.mem_id}"]
           a>[href="/mem/#{item.mem.id}" target="_blank"]: img.tx[src="#{item.mem.avatar_url}"]
-          a>[href="/mem/#{item.mem.id}" target="_blank"] =item.mem.nc
-          span =item.friendly_time
+
+          a.co-mem[href="/mem/#{item.mem.id}" target="_blank"] =item.mem.nc
+          span.co-time =item.friendly_time
+
+          a.oper.zan-btn[href="javascript: void(0)" data-mem="#{item.mem.nc}" title="赞"]
+            i.fa.fa-heart-o
+            span< =item.favor
+
+
           a.oper.reply-btn[href="javascript: void(0)" data-mem="#{item.mem.nc}"]: i.fa.fa-reply
           / a.oper.show[href="javascript: void(0)" data-mem="#{item.mem.nc}" title="有用"]
           /   span 2
@@ -17,7 +26,7 @@ div.comment-wraper
             a.oper[href="javascript: void(0)" onclick="del_comment(this)" data-id="#{item.id}" ]: i.fa.fa-trash
           =raw item.raw_con
 
-  =render "layouts/comment_editor"
+  
 
   javascript:
     $(function(){
