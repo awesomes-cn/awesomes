@@ -48,7 +48,7 @@
 
   javascript:
     var joinVue;
-    var vueExtend = {
+    vueExtend.push({
       data: {
         repos: [],
         apply: {
@@ -75,7 +75,7 @@
           })
         }
       }
-    }
+    })
 
     var loadTimer = setInterval(function(){
       lazyLoadPic();
@@ -86,14 +86,14 @@
     }, 100)
   
 
-    function appInit(){
+    appInit.push(function(){
       $.post('/joinuse.json', {}, function(data){
         App.repos = data.items.map(function(item){ 
           item.isusing = data.usings.indexOf(item.id) > -1
           return item
         })
       })
-    }
+    })
 
     
 

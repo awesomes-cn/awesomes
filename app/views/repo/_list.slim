@@ -85,7 +85,7 @@ javascript:
     $(".line").peity("line");
   })
   
-  vueExtend =  {
+  vueExtend.push({
     methods: {
       addToVs: function(id, name){ 
         var cover = $('.cover[data-id='+ id +']')
@@ -113,4 +113,4 @@ javascript:
         store.set('awesomes-vs', oldArr)
       }
     }
-  }
+  })

@@ -80,9 +80,7 @@
   div.comment-panel
     div.co-title
       h4 =t('form.discussion')  
-    div
-      =render "layouts/comment"
-      
+    div =comment('REPO', @item.id)
     / div.co-footer
     /   small 
     /     | 如果你有什么问题或感想请这在这里留言讨论，我们会尽量为您解答。必要时可以在

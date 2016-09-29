@@ -69,22 +69,23 @@ div.login-wraper.modal-wraper
           }
         }
       }
+    
 
-      if(typeof vueExtend == 'object') {
-        _.each(vueExtend, function(v, k) {
+      _.each(vueExtend, function(item) {
+        _.each(item, function(v, k) {
           if (_.has(mvvmDefault, k)) {
             mvvmDefault[k] = _.extend(mvvmDefault[k], v)
           }else{
             mvvmDefault[k] = v
           }
         })
-      }
+      })
       
 
       window.App = new Vue(mvvmDefault)
-      if(typeof appInit == 'function'){
-        appInit()
-      }
+      _.each(appInit, function(func){
+        func()
+      })
     })
 
   coffee:

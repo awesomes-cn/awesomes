@@ -212,38 +212,38 @@ ActiveRecord::Schema.define(version: 20160928142553) do
     t.integer  "trend",      default: 0
   end
 
-  create_table "repos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",                                                            collation: "utf8_general_ci"
-    t.string   "full_name",                                                       collation: "utf8_general_ci"
-    t.string   "alia",                                                            collation: "utf8_general_ci"
-    t.string   "html_url",                                                        collation: "utf8_general_ci"
-    t.string   "description",       limit: 1000,                                  collation: "utf8_general_ci"
-    t.string   "description_cn",    limit: 1000,                                  collation: "utf8_general_ci"
-    t.string   "homepage",                                                        collation: "utf8_general_ci"
+  create_table "repos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "alia"
+    t.string   "html_url"
+    t.string   "description",       limit: 1000
+    t.string   "description_cn",    limit: 1000
+    t.string   "homepage"
     t.integer  "stargazers_count"
     t.integer  "forks_count"
     t.integer  "subscribers_count"
     t.datetime "pushed_at"
     t.text     "about",             limit: 4294967295
     t.text     "about_zh",          limit: 4294967295
-    t.string   "typcd",                                                           collation: "utf8_general_ci"
-    t.string   "rootyp",                                                          collation: "utf8_general_ci"
-    t.string   "owner",             limit: 100,                                   collation: "utf8_general_ci"
+    t.string   "typcd"
+    t.string   "rootyp"
+    t.string   "owner",             limit: 100
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
-    t.string   "outdated",          limit: 1,          default: "0",              collation: "utf8_general_ci"
-    t.string   "tag",                                                             collation: "utf8_general_ci"
-    t.string   "cover",                                                           collation: "utf8_general_ci"
+    t.string   "outdated",          limit: 1,          default: "0"
+    t.string   "tag"
+    t.string   "cover"
     t.integer  "recommend",                            default: 0
     t.integer  "trend",                                default: 0
     t.datetime "github_created_at"
     t.integer  "mark",                                 default: 0
     t.integer  "issue_res",                            default: 0
-    t.string   "typcd_zh",                                                        collation: "utf8_general_ci"
-    t.string   "rootyp_zh",                                                       collation: "utf8_general_ci"
+    t.string   "typcd_zh"
+    t.string   "rootyp_zh"
     t.integer  "demo"
     t.integer  "startup"
-    t.string   "hidetags",                                                        collation: "utf8_general_ci"
+    t.string   "hidetags"
     t.integer  "using",                                default: 0
     t.integer  "experience",                           default: 0
   end

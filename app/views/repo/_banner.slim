@@ -86,7 +86,7 @@ javascript:
     using: "#{@item.using}"
   }
 
-  var vueExtend = {
+  vueExtend.push({
     data: {
       ismark: false,
       isusing: false,
@@ -159,11 +159,11 @@ javascript:
         })    
       }       
     }
-  }
+  })
   
-  function appInit(){
+  appInit.push(function(){
     App.initRepo()
-  }
+  })
   
     
       
