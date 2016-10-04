@@ -8,16 +8,17 @@ div.comment-wraper
       a.co-mem[href="/mem/{{item.mem.id}}" target="_blank"] {{item.mem.nc}}
       span.co-time {{item.friendly_time}}
 
-      a.oper.zan-btn[href="javascript: void(0)" data-mem="{{item.mem.nc}}" title="赞"]
-        i.fa.fa-heart-o
-        span< {{item.favor}}
+      a.oper.zan-btn[href="javascript: void(0)" title="赞" v-on:click="favor_comment(item)" class="active-{{item.isfavor}}" ]
+        i.fa[class="{{item.isfavor ? 'fa-heart' : 'fa-heart-o'}}"]
+        span<[v-show="item.favor > 0"] {{item.favor}}
 
 
       a.oper.reply-btn[href="javascript: void(0)" data-mem="{{item.mem.nc}}"]: i.fa.fa-reply
         
-      //-if is_login and item.mem_id == current_mem.id
-      a.oper[href="/comment/{{item.id}}/edit" ]: i.fa.fa-pencil
-      a.oper[href="javascript: void(0)" v-on:click="del_comment(item.id, $event)"]: i.fa.fa-trash
+      -if is_login
+        span[v-show="item.mem_id == rails.mem.id"]
+          a.oper[href="javascript: void(0)" v-on:click="edit_comment(item, $index)"]: i.fa.fa-pencil
+          a.oper[href="javascript: void(0)" v-on:click="del_comment(item.id, $event)"]: i.fa.fa-trash
       div {{{item.raw_con}}}
 
   
@@ -26,11 +27,15 @@ div.comment-wraper
     var comparam = {typ: '#{@comment[:typ]}', idcd: '#{@comment[:idcd]}'}
     vueExtend.push({
       data: {
-        comments: []
+        comments: [],
+        commentEding: {id: 0, index: 0}
       },
       methods: {
         initComments(){
           $.get('/comment/list', comparam, function(data) {
+            data.items.forEach(function(item) {
+              item.isfavor = data.favors.indexOf(item.id) > -1
+            })
             App.comments = data.items
           })
         },
@@ -43,14 +48,55 @@ div.comment-wraper
           })
         },
 
-        add_comment() {
-          var param = _.extend(comparam, {
-            con: App.comcon
-          })
+        save_comment() {
+          if(_.isEmpty(markdown_editor.getValue())) {
+            Core.alert('danger', '评论内容不能为空')
+            return false
+          }
+
+          var param =  {
+            typ: '#{@comment[:typ]}',
+            idcd: '#{@comment[:idcd]}',
+            con: markdown_editor.getValue()
+          }
+
+          if(App.commentEding.id > 0) {
+            param['id'] = App.commentEding.id
+          }
+
           $.post('/comment/save', param, function(data) {
-            if(data.item) {
+
+            // 添加成功
+            if(App.commentEding.id == 0) {
               App.comments.push(data.item)
+              Core.alert('success', '评论成功')
+              markdown_editor.setValue('')
+            }else{
+              // 更新成功
+              Core.alert('success', '更新评论成功')
+              App.comments[App.commentEding.index].raw_con = data.item.raw_con
+              App.comments[App.commentEding.index].con = data.item.con
+              App.cancel_edit_comment()
             }
+          })
+        },
+
+        edit_comment(item, index){
+          $('html,body').animate({scrollTop:$('.comment-wraper').offset().top - 60});
+          markdown_editor.setValue(item.con); 
+          App.commentEding = {id: item.id, index: index}
+        },
+
+        cancel_edit_comment(){
+          App.commentEding = {id: 0, index: 0}
+          markdown_editor.setValue(''); 
+        },
+
+        favor_comment(item) {
+          if(!open_login()) { return false }
+          $.post('/oper/update', {opertyp: 'FAVOR', typ: 'COMMENT', idcd: item.id}, function(data) {
+            item.favor = data.count
+            item.isfavor = data.state
           })
         }
       }
@@ -64,7 +110,7 @@ div.comment-wraper
 
     $(function(){
       $('.comment-wraper').on('click','.reply-btn',function(){
-        $('html,body').animate({scrollTop:$('.comment-wraper li:last').offset().top});
+        $('html,body').animate({scrollTop:$('.comment-wraper').offset().top - 60});
         markdown_editor.setValue(markdown_editor.getValue()+"@"+$(this).attr("data-mem")+" "); 
       });
     })

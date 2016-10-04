@@ -8,7 +8,7 @@ class Oper < ActiveRecord::Base
   end
 
   def update_target
-    _count = Oper.where({:opertyp=> opertyp,:typ=> typ,:idcd=> idcd}).count
+    _count = Oper.where({:opertyp=> opertyp, :typ=> typ, :idcd=> idcd}).count
     _item = target
     _item[opertyp.downcase.to_sym] = _count
     _item.save

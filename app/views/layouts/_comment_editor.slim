@@ -6,12 +6,21 @@ div.comment-editor
     / input[type="hidden" name="idcd" value="#{@comment[:idcd]}"]
     / input[type="hidden" name="id" value="#{@comment[:id]}"]
     input.editor-val[type="hidden" v-model="comcon"]
-    button.btn.btn-primary.open-login.pull-right[v-on:click="add_comment()"] =t('form.add_comment') 
+    button.btn.btn-primary.open-login.pull-right[v-on:click="save_comment()"]  {{commentEding.id == 0 ? '提交评论' : '更新评论'}} 
+
+    button.btn.btn-danger.pull-right[v-on:click="cancel_edit_comment()" v-show="commentEding.id != 0" style="margin-right: 20px"] 取消
 
     a[href="/markdown" target="_blank"] =t('form.markdown')
 
+
 javascript:
-  markdown_editor.setValue("");  
+  markdown_editor.setValue(""); 
+
+  vueExtend.push({
+    methods: {
+
+    }
+  }) 
   
 
    

@@ -38,6 +38,15 @@ a{
   i{ color: #CACACA;}
 }
 
+.alert-pop {
+  position: fixed;
+  top: 0px;
+  width: 300px;
+  text-align: center;
+  left: 50%;
+  margin-left: -150px;
+}
+
 
 .main-container{
   max-width: 1000px; margin: 0 auto;    position: relative;
@@ -353,7 +362,13 @@ user-select: none;
     a.oper{
       color:#999; float: right; margin-left: 10px; display: none;
       &:hover{color: #000}
-      &.zan-btn{display: inline-block;}
+      &.zan-btn{
+        display: inline-block;
+        text-decoration: none;
+        &.active-true {
+          i{ color: #EF4245; }
+        }
+      }
     }
     li:hover{
       a.oper{display: inline-block;}
