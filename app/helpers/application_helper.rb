@@ -93,6 +93,10 @@ module ApplicationHelper
     }
   end
 
+  def unreads
+    Msg.where({:to=> current_mem.id, :status=> 'UNREAD'}).count
+  end
+
   
 
 end

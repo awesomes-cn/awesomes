@@ -1,0 +1,23 @@
+=content_for :con
+  ul.list-group.msg-list-wraper
+    -@items.each do |item|
+      li.list-group-item
+        span.status[class="#{item.status}"]
+        span =raw item.raw_con
+        span.right =item.friendly_time
+  div#page-mem
+  javascript:
+    var mids = '#{@unreadids}'
+    if(mids != '') {
+      $.post('/msg/markread', {ids: mids}, function(){
+        
+      })
+    }
+    
+    $(function(){
+      $("#page-mem").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        link_to:"?page=__id__"
+      }) 
+    })

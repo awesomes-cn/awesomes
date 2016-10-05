@@ -95,8 +95,13 @@ div.comment-wraper
         favor_comment(item) {
           if(!open_login()) { return false }
           $.post('/oper/update', {opertyp: 'FAVOR', typ: 'COMMENT', idcd: item.id}, function(data) {
-            item.favor = data.count
-            item.isfavor = data.state
+            if(data.status) {
+              item.favor = data.count
+              item.isfavor = data.state
+            }else{
+              Core.alert('danger', '不能赞自己的评论')
+            }
+            
           })
         }
       }

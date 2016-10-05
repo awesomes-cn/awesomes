@@ -47,6 +47,12 @@ a{
   margin-left: -150px;
 }
 
+.has-msg{
+  a {
+    color: red!important
+  }
+}
+
 
 .main-container{
   max-width: 1000px; margin: 0 auto;    position: relative;

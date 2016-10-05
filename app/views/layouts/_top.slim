@@ -28,6 +28,13 @@ header.navbar
 
       
       ul.nav.navbar-nav.navbar-right
+        
+        -if is_login 
+          li[class="#{unreads > 0 ? 'has-msg' : ''}"]
+            a[href="/mem/msgs"]
+              i.fa.fa-bell
+              -if unreads > 0
+                span< #{unreads}
         li
           a#vs-menu[href="/vs" title="VS库"]: i VS
           ul.extra-menu.vs-menus
@@ -39,6 +46,9 @@ header.navbar
 
 
         li: a[href="/repo/new" title="提交库"]: i.fa.fa-plus>
+
+
+
         
         -unless is_login
           li: a.open-login[href="#{JS_VOID}"] =t('site.signin')

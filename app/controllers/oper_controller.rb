@@ -11,6 +11,14 @@ class OperController < ApplicationController
 
   def update
     _para = para
+
+    if params[:typ] == 'COMMENT' and params[:opertyp] == 'FAVOR'
+      if current_mem.id == Comment.find_by_id(params[:idcd]).mem_id
+        render json: {status: false} and return
+      end
+    end
+
+
     if (_tmp = _oper = Oper.find_by(_para))
       _oper.destroy
     else
@@ -20,11 +28,18 @@ class OperController < ApplicationController
         _para[:order] = max_order + 10000
       end
       _tmp = Oper.create(_para)
+
+      if _tmp.typ == 'COMMENT' and _tmp.opertyp == 'FAVOR'
+        _comment = _tmp.target
+        Msg.add_comment_favor(current_mem, _comment.mem, _comment.target_name, _comment.target_url)
+      end
+
     end
 
     current_mem.update_oper params[:opertyp], params[:typ] 
 
     render json: {
+      status: true,
       state: Oper.where(_para).count > 0,
       count: _tmp.update_target,
       max_order: _para

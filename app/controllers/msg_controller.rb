@@ -9,4 +9,10 @@ class MsgController < ApplicationController
 
     render json: true
   end
+
+
+  def markread
+    Msg.where(['id in (?)', params[:ids]]).update_all(status: 'READED')
+    render json: {status: true}
+  end
 end

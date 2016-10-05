@@ -208,3 +208,25 @@
     top:0
   }
 }
+
+
+.msg-list-wraper{
+  p {
+    display: inline-block;
+    margin: 0;
+  }
+  .status{
+    width: 10px;
+    display: inline-block;
+    background-color: #EEE;
+    height: 10px;
+    border-radius: 100%;
+    float: left;
+    margin-top: 8px;
+    margin-right: 7px;
+
+    &.UNREAD {
+      background-color: #36d839
+    }
+  }
+}

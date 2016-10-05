@@ -14,6 +14,14 @@ class CommentController < ApplicationController
     else
       _item = Comment.create({:typ=> params[:typ],:idcd=> params[:idcd],:con=> params[:con],:mem_id=> current_mem.id})
       _item.target.update_comment
+      Msg.add_comment(current_mem, Mem.find(1), _item.target_name, _item.target_url)
+      params[:con].gsub(/@([^:：?\s@]+)/) do | nc | 
+        p "==#{nc.delete '@'}==="
+        _mem = Mem.find_by_nc nc.delete '@'
+        if _mem and _mem.id != current_mem.id
+          Msg.add_comment_at(current_mem, _mem, _item.target_name, _item.target_url)
+        end
+      end
     end
     render json: {status: true, item: _item}.to_json(:include => {:mem => {:only=>[:nc,:id], :methods=> ['avatar_url']}}, :methods=> ['raw_con', 'friendly_time'])  and return
 	end

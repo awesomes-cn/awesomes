@@ -82,4 +82,13 @@ class MemController < ApplicationController
     render json: true
   end
 
+  def msgs
+    @items = data_list Msg.where({:to=> current_mem.id})
+    @count = Msg.where({:to=> current_mem.id}).count
+    @unreadids = @items.select{|item|
+      item.status == 'UNREAD'
+    }.map{|item| item.id}.join(",")
+  end
+
+
 end
