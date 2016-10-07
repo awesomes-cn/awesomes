@@ -767,3 +767,43 @@ h5.use-title{
   color: #ff9500;
   font-weight: bolder;
 }
+
+.rs-wraper{
+  .rs-item {
+    margin-top: 100px;
+    border-top: #EEE 1px solid;
+    position: relative;
+    min-height: 100px;
+    padding-top: 50px;
+    padding-right: 50px;
+  }
+  .cover {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    margin-left: -50px;
+    padding: 10px;
+    border: #EEE 1px solid;
+    background-color: #FFF;
+  }
+  .time {
+    color: #adadad;
+  }
+
+  .download {
+    position: absolute;
+    right: 0;
+    top: 90px;
+    border: #428bca 1px solid;
+    padding: 0 10px;
+    color: #428bca;
+    text-decoration: none;
+  }
+
+  .split {
+    color: #ff9500;
+  }
+}

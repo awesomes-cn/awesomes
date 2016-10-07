@@ -41,4 +41,9 @@ every 4.day, :at => '6:00 am' do
   rake "repo:trend"
 end
 
+every 1.day, :at => '7:00 am' do
+  rake "repo:release"
+end
+
+
 # run whenever -w

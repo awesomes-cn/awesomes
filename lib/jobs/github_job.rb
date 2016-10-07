@@ -36,4 +36,12 @@ class GithubJob < ApplicationController
       sleep 2
     end
   end
+
+  def self.repo_release start = 1
+    Repo.where(['stargazers_count > ?', 1000]).each do |item| 
+      Github.get_repo_release(item)
+      p "====#{item.id}======="
+      sleep 2
+    end
+  end
 end

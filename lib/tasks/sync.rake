@@ -8,6 +8,10 @@ namespace :repo do
    GithubJob.repo_trend args[:start]
   end
 
+  task :release,[:start] => :environment do |t,args|
+   GithubJob.repo_release args[:start]
+  end
+
   task :trend_log,[:start] => :environment do |t,args|
     Repo.all.each do |repo|
       repo.repo_trends.each_with_index do |item,index|

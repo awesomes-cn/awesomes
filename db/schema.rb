@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928142553) do
+ActiveRecord::Schema.define(version: 20161007074033) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -191,6 +191,18 @@ ActiveRecord::Schema.define(version: 20160928142553) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
   end
+
+  create_table "releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "repo_id"
+    t.string   "tag_name"
+    t.datetime "published_at"
+    t.text     "body",         limit: 65535
+    t.boolean  "prerelease"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "releases", ["repo_id"], name: "index_releases_on_repo_id", using: :btree
 
   create_table "repo_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "recsts",     limit: 2, default: "1"

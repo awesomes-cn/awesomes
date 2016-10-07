@@ -83,4 +83,28 @@ class Github
   rescue
   end
 
+
+  def self.get_repo_release  repo
+    _api_url = "https://api.github.com/repos/#{repo.full_name}/releases?state=all&page=1&per_page=20&client_id=#{ENV['GITHUB_CLIENT_ID']}&client_secret=#{ENV['GITHUB_CLIENT_SECRET']}"
+    
+    require 'rest-client'
+    _response = RestClient.get _api_url
+    _result = JSON.parse(_response.body)[0]
+    if _result
+      _old = Release.find_or_create_by({
+        :repo_id=> repo.id
+      })
+
+      if _old.tag_name != _result['tag_name'] 
+        _old.update_attributes({
+          :tag_name=> _result['tag_name'],
+          :published_at=> _result['published_at'],
+          :body=> _result['body'],
+          :prerelease=> _result['prerelease']
+        })
+      end
+    end
+  rescue
+  end
+
 end

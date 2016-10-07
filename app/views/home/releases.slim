@@ -1,0 +1,20 @@
+=content_for :banner
+  h2.text-center 版本更新
+=content_for :con
+  div.rs-wraper
+    -@items.each do |item|
+      div.rs-item
+        img.cover[src="#{access_path 'repo'}/#{item.repo.cover}@1e_300w_300h_1c_0i_1o_1x.png"]
+
+        h3
+          | #{item.repo.name.capitalize}
+          i.fa.fa-flag.split<>
+          | #{item.tag_name}
+        span.time 发布于 #{item.friendly_time}
+        
+        a.download[href="#"] 下载ZIP
+
+
+        p =raw GitHub::Markdown.render item.body
+
+

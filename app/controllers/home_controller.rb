@@ -70,6 +70,10 @@ class HomeController < ApplicationController
     render json: true
   end
 
+  def releases
+    @items = Release.order('published_at desc').limit(15)
+  end
+
   def auth
     _data = request.env["omniauth.auth"] 
     #render json: _data and return
