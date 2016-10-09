@@ -1,5 +1,7 @@
 =content_for :banner
-  h2.text-center 版本更新
+  div.wesue-banner
+    h3 版本更新
+    p 一网打尽最近5天发布的关注量 > 1000 的前端库版本
 =content_for :con
   div.rs-wraper
     -@items.each do |item|
@@ -7,9 +9,9 @@
         a[href="#{item.repo.link_url}"]: img.cover[src="#{repo_cover_path item.repo.cover}"]
 
         h3
-          a[href="#{item.repo.link_url}" style="color: #333"] #{item.repo.name.capitalize}
+          a[href="#{item.repo.link_url}" style="color: #333" ] #{item.repo.name.capitalize}
           i.fa.fa-flag.split<>
-          | #{item.tag_name}
+          a[href="#{item.repo.html_url}/releases" style="color: #333" target="_blank"] #{item.tag_name}
         span.time 发布于 #{item.friendly_time}
         
         a.download[href="#{item.repo.html_url}/archive/#{item.tag_name}.zip" target="_blank"] 下载ZIP

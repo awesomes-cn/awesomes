@@ -71,7 +71,7 @@ class HomeController < ApplicationController
   end
 
   def releases
-    @items = Release.order('published_at desc').where(['published_at > ?', 7.days.ago])
+    @items = Release.order('published_at desc').where(['published_at > ?', 5.days.ago])
   end
 
   def auth

@@ -44,6 +44,7 @@ en:
     newpub: 'Latest Publish'
 
   site: 
+    releases: 'New Releases'
     mymark: 'Favorites'
     myinfo: 'Account'
     thirty_login: 'Third party account login'

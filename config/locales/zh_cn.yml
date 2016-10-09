@@ -26,6 +26,7 @@ zh-CN:
     newpub: '最新发布'
 
   site: 
+    releases: '版本更新'
     mymark: '我的收藏'
     myinfo: '个人资料'
     thirty_login: '第三方账号登录'
