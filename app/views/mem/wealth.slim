@@ -1,0 +1,32 @@
+=content_for :con
+  div.wealth-wraper
+    div.bann
+      p A币余额
+      h1 21.43
+
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th 用途
+          th 金额
+          th 余额
+          th 变动时间
+      tbody    
+        -@items.each do |item|  
+          tr
+            td =item.remark
+            td =item.amount
+            td =item.balance
+            td =item.created_at.strftime("%Y-%m-%d")
+
+    div#page-mem
+
+  javascript:
+    $(function(){
+      $("#page-mem").pagination(#{@count},{
+        items_per_page : #{default_page_size},
+        current_page : #{page},
+        link_to:"?page=__id__"
+      }) 
+    })
+

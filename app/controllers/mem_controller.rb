@@ -45,6 +45,11 @@ class MemController < ApplicationController
     @count = @mem.codes.count
   end
 
+  def wealth
+    @items = data_list_asc @mem.wealth_logs
+    @count = @mem.wealth_logs.count
+  end
+
   def comments
     @items = data_list @mem.comments
     @count = @mem.comments.count

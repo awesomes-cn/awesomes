@@ -1,0 +1,2 @@
+class WealthLog < ApplicationRecord
+end

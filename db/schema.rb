@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007074033) do
+ActiveRecord::Schema.define(version: 20161010042013) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20161007074033) do
     t.string   "role",                   default: "user"
     t.integer  "reputation",             default: 0
     t.integer  "using",                  default: 0
+    t.float    "wealth",     limit: 24,  default: 0.0
   end
 
   add_index "mems", ["nc", "email"], name: "search", using: :btree
@@ -229,8 +230,8 @@ ActiveRecord::Schema.define(version: 20161007074033) do
     t.string   "full_name",                                                       collation: "utf8_general_ci"
     t.string   "alia",                                                            collation: "utf8_general_ci"
     t.string   "html_url",                                                        collation: "utf8_general_ci"
-    t.string   "description",       limit: 1000,                                  collation: "utf8_general_ci"
-    t.string   "description_cn",    limit: 1000,                                  collation: "utf8_general_ci"
+    t.text     "description",       limit: 4294967295
+    t.text     "description_cn",    limit: 4294967295
     t.string   "homepage",                                                        collation: "utf8_general_ci"
     t.integer  "stargazers_count"
     t.integer  "forks_count"
@@ -317,5 +318,17 @@ ActiveRecord::Schema.define(version: 20161007074033) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end
+
+  create_table "wealth_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "mem_id"
+    t.float    "amount",     limit: 24
+    t.float    "balance",    limit: 24
+    t.string   "remark"
+    t.string   "flag"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "wealth_logs", ["mem_id"], name: "index_wealth_logs_on_mem_id", using: :btree
 
 end
