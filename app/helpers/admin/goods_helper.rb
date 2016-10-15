@@ -1,0 +1,2 @@
+module Admin::GoodsHelper
+end

@@ -65,4 +65,8 @@ class Admin::HomeController < AdminController
   def subscribes
     adminlists Subscribe,[:email]
   end
+
+  def goods
+    adminlists Good,[:name,:cover,:price,:order]
+  end
 end

@@ -1,0 +1,103 @@
+-content_for :menu
+  =render 'site_bar'
+=content_for :con
+  div#admin-app
+    table.table
+      thead
+        tr
+          th #
+          th 预览图 
+          th 商品名
+          th 价格
+          th 排序
+          th 操作
+      tbody 
+        tr[v-for="item in items"]
+          td {{item.id}}
+          td
+            img[src="{{item.cover}}"]
+          td {{item.name}} 
+         
+          td {{item.price}} 
+          td {{item.order}} 
+          td[ng-class="item.synced ?  'synced' : '' "]
+            a[href='#'  v-on:click="edit(item)"]: i.fa.fa-pencil
+            a<>[href="#" v-on:click="destroy(item)"]: i.fa.fa-trash
+      tfoot
+        tr
+          td[colspan='8'] 
+            span 总记录：
+            span {{count}}
+    div#pagenation
+    input#menubar[type="hidden" value="goods"]
+
+
+    =form_for(Link.new,url: "/admin/good/save",html:{id: 'inform',method: 'post'}) do |item|
+      table
+        tr
+          td[width="80px"] 商品名
+          td
+            input.form-control[type="text" name="good[name]"  v-model="edit_item.name"]
+        tr
+          td 价格
+          td 
+            input.form-control[type="text" name="good[price]" v-model="edit_item.price"]
+        tr
+          td 排序
+          td 
+            input.form-control[type="text" name="good[order]" v-model="edit_item.order"] 
+
+        tr
+          td 简介
+          td 
+            textarea.form-control[type="text" name="good[desc]" v-model="edit_item.desc"] 
+
+        tr
+          td 商品图片
+          td 
+            input#upload_file[type="file" name="filedata" data-post="/upload/pic" data-text="上传图片" data-folder="goods"]
+            img#cover-privew[src="#{access_path "goods"}/{{edit_item.cover}}"]
+            input[type="hidden" name="good[cover]" id="good_cover" v-model="edit_item.cover"] 
+            
+            javascript:
+              //上传
+              uplaod_form($('#upload_file'),function(data){
+                $("#cover-privew").attr("src",data.file_path);
+                $("#good_cover").val(data.src);
+              })  
+
+        tr
+          td
+          td 
+            input[type="hidden"  name="good[id]"  v-model="edit_item.id"]
+            button.btn.btn-primary[v-on:click="save()"] 更新
+
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'good'
+
+      app.$set 'edit', (item)-> 
+        app.items = _.without(app.items,item)
+        app.edit_item = item
+
+      $('#inform').validate 
+        rules:
+          'good[name]':
+            required: true
+
+          'good[price]':
+            required: true
+
+        messages:
+          'good[name]':''
+          'good[url]':''
+
+        submitHandler: (form)->
+          $(form).ajaxSubmit
+            success: (data)->
+              if(data.status)
+                app.items.push(data.item)
+                app.edit_item = {}    
+
+  

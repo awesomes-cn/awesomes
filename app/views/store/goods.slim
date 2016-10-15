@@ -1,0 +1,19 @@
+=content_for :banner
+  div.wesue-banner
+    h3 商品兑换
+    p 你可以使用A币兑换下面中的任何商品
+=content_for :con
+  div.row 
+    -Good.all.each do |item|
+      div.col-md-4
+        div.good-item
+          img.cover[src="#{Rails.application.config.source_access_path}goods/#{item.cover}"]
+
+          h4 =item.name
+
+          h4
+            i.fa.fa-jpy>
+            | #{item.price} A币
+
+          button.btn.btn-danger 马上兑换
+
