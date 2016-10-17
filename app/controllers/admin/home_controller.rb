@@ -4,7 +4,7 @@ class Admin::HomeController < AdminController
   end
 
   def readmes
-    adminlists Readme,[:repo_id,:mem_id,:status,:sdesc],:include => {:repo => {:only=>[:name,:id],:methods=>['alia','link_url']},:mem => {:only=>[:nc,:id]}}
+    adminlists Readme,[:repo_id,:mem_id,:status,:sdesc,:wealth],:include => {:repo => {:only=>[:name,:id],:methods=>['alia','link_url']},:mem => {:only=>[:nc,:id]}}
   end
 
   def repos
@@ -28,7 +28,7 @@ class Admin::HomeController < AdminController
   end
 
   def comments
-    adminlists Comment,[:typ,:idcd,:mem_id,:con],:include => {:mem => {:only=>[:nc,:id]}},:methods=> ['target_url']
+    adminlists Comment,[:typ,:idcd,:mem_id,:con,:wealth],:include => {:mem => {:only=>[:nc,:id]}},:methods=> ['target_url']
   end
 
   def categorys
@@ -55,7 +55,7 @@ class Admin::HomeController < AdminController
   end
 
   def codes
-    adminlists Code,[:title,:status,:mem_id,:repo_id], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
+    adminlists Code,[:title,:status,:mem_id,:repo_id,:wealth], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
   end
 
   def weuseapplys

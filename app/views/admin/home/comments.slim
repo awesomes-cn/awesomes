@@ -9,6 +9,7 @@
         th IDCD
         th 会员
         th 内容 
+        th 奖励
         th 操作
     tbody 
       tr[v-for="item in items" class="recsts{{item.recsts}}" ]
@@ -17,8 +18,10 @@
         td: a[href="{{item.target_url}}" target="_blank"] {{item.idcd}}
         td: a[href="/mem/{{item.mem_id}}" target="_blank"] {{item.mem.nc}}
         td {{item.con}}
+        td {{item.wealth}}
         td
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" v-on:click="openwealth(item)"]: i.fa.fa-rmb 
     tfoot
       tr
         td[colspan='8'] 
@@ -29,5 +32,7 @@
 
   coffee:
     $ ()->
-      admin.list_data
+      window.app = admin.list_data
         model: 'comment'
+      app.wealth.model = 'comment'   
+  =render 'awrad'   

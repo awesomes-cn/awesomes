@@ -9,6 +9,7 @@
         th 添加者
         th 描述
         th 添加时间 
+        th 奖励
         th 操作
     tbody 
       tr[v-for="item in items" class="{{item.status}}"]
@@ -17,9 +18,11 @@
         td: a[href="/mem/{{item.mem.id}}" target="_blank"] {{item.mem.nc}}
         td {{item.sdesc}}
         td {{item.created_at}}  
+        td {{item.wealth}}
         td
           a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" v-on:click="openwealth(item)"]: i.fa.fa-rmb
     tfoot
       tr
         td[colspan='8'] 
@@ -30,5 +33,7 @@
   
   coffee:
     $ ()->
-      admin.list_data
+      window.app = admin.list_data
         model: 'readme'
+      app.wealth.model = 'readme' 
+  =render 'awrad'          

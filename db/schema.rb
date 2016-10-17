@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015074905) do
+ActiveRecord::Schema.define(version: 20161017231428) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20161015074905) do
     t.string   "status",                   default: "NORMAL"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.float    "wealth",     limit: 24,    default: 0.0
   end
 
   add_index "codes", ["mem_id"], name: "index_codes_on_mem_id", using: :btree
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161015074905) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.integer  "favor",                    default: 0
+    t.float    "wealth",     limit: 24,    default: 0.0
   end
 
   create_table "docs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -76,13 +78,14 @@ ActiveRecord::Schema.define(version: 20161015074905) do
     t.datetime "updated_at",                                  null: false
   end
 
-  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "goods", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
     t.string   "cover"
     t.text     "desc",       limit: 65535
     t.float    "price",      limit: 24
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "order"
   end
 
   create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -200,6 +203,7 @@ ActiveRecord::Schema.define(version: 20161015074905) do
     t.string   "status",     limit: 45,         default: "UNREAD"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.float    "wealth",     limit: 24,         default: 0.0
   end
 
   create_table "releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

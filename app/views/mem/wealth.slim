@@ -4,7 +4,7 @@
       p
         | A币余额
         a<[href="/wealth" style="color: #000"]: i.fa.fa-question-circle
-      h1 21.43
+      h1 =@mem.wealth
 
     table.table.table-bordered.table-striped
       thead
@@ -16,7 +16,7 @@
       tbody    
         -@items.each do |item|  
           tr
-            td =item.remark
+            td =raw GitHub::Markdown.render item.remark
             td =item.amount
             td =item.balance
             td =item.created_at.strftime("%Y-%m-%d")
