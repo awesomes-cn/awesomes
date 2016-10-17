@@ -1,0 +1,28 @@
+div.modal.fade#wealthmodal[tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"]
+  div.modal-dialog.modal-sm
+    div.modal-content
+      div.modal-header
+        button[type="button" class="close" data-dismiss="modal"]
+          span[aria-hidden="true"] &times;
+          span.sr-only Close
+        h4.modal-title 打赏
+      div.modal-body
+        div.form-group
+          div.input-group
+            input.form-control[v-model="wealth.price"]
+            span.input-group-btn
+              button.btn.btn-primary[v-on:click="submitwealth()"] 确认
+            
+
+
+coffee:
+  $ ()->
+    app.openwealth = (item)=> 
+      app.wealth.id = item.id
+      $('#wealthmodal').modal('show')
+
+    app.submitwealth = ()=>
+      $.post('/admin/wealth/save', {id: app.wealth.id, model: app.wealth.model, price: app.wealth.price})
+      $('#wealthmodal').modal('hide')
+
+        

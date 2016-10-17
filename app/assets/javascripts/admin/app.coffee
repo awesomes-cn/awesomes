@@ -1,7 +1,7 @@
 window.admin =
   list_data: (opt)->
     defaults =
-      $el: '#admin-app'
+      $el: 'body'
       model: ''
       item_propers: null
       data_callback: null
@@ -28,7 +28,12 @@ window.admin =
         items: []
         count: '加载中..'
         search: {}
-        edit_item: {}
+        edit_item: {},
+        wealth: {
+          model: '',
+          id: '',
+          price: 0
+        }
       
       methods:
         list: (page,$pagnation)->

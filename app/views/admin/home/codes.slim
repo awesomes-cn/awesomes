@@ -1,7 +1,7 @@
 -content_for :menu
   =render 'pub_bar'
 =content_for :con
-  table.table#admin-app
+  table.table.table-striped#admin-app
     thead
       tr
         th[width="100"] #
@@ -21,6 +21,7 @@
         td: a[href='#' v-on:click="switchState(item)" class="{{item.status}}"] {{item.status == 'ACTIVED' ? '公开' : '私有'}}
         td
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" v-on:click="openwealth(item)"]: i.fa.fa-rmb
     tfoot
       tr
         td[colspan='8'] 
@@ -31,8 +32,11 @@
 
   coffee:
     $ ()->
-      app = admin.list_data
+      window.app = admin.list_data
         model: 'code'
       app.switchState = (item)=> 
         $.post '/admin/code/' +  item.id + '/switch', (data)=> 
           item.status = data.result
+      app.wealth.model = 'code'    
+
+  =render 'awrad'        
