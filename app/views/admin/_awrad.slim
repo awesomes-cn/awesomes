@@ -8,10 +8,11 @@ div.modal.fade#wealthmodal[tabindex="-1" role="dialog" aria-labelledby="mySmallM
         h4.modal-title 打赏
       div.modal-body
         div.form-group
-          div.input-group
-            input.form-control[v-model="wealth.price"]
-            span.input-group-btn
-              button.btn.btn-primary[v-on:click="submitwealth()"] 确认
+          input.form-control[v-model="wealth.price"]
+        div.form-group  
+          textarea.form-control[v-model="wealth.remark" placehokder="原因"]
+        div.form-group  
+          button.btn.btn-primary[v-on:click="submitwealth()"] 确认
             
 
 
@@ -22,7 +23,7 @@ coffee:
       $('#wealthmodal').modal('show')
 
     app.submitwealth = ()=>
-      $.post('/admin/wealth/save', {id: app.wealth.id, model: app.wealth.model, price: app.wealth.price})
+      $.post('/admin/wealth/save', {id: app.wealth.id, model: app.wealth.model, price: app.wealth.price, remark: app.wealth.remark})
       $('#wealthmodal').modal('hide')
 
         

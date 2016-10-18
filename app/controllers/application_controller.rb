@@ -40,6 +40,12 @@ class ApplicationController < ActionController::Base
     redirect_to "/" and return  if session[:mem] != 1
   end
 
+  def force_me
+    if session[:mem] != 1
+      @mem = current_mem
+    end
+  end
+
   def max_page_size
     100
   end

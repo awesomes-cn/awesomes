@@ -7,6 +7,7 @@
         th #
         th 昵称
         th 邮箱
+        th 财富
         th 注册时间 
         th 操作
 
@@ -15,10 +16,12 @@
         td {{item.id}}
         td: a(href='/mem/{{item.id}}' target='_blank') {{item.nc}} 
         td {{item.email}}
+        td {{item.wealth}}
         td {{item.created_at}}  
         td[ng-class="item.synced ?  'synced' : '' "]
           a[href='/mem/{{item.id}}/info'  title='']: i.fa.fa-pencil
           a<>[href="#" data-id="{{item.id}}" v-on:click="destroy(item)"]: i.fa.fa-trash
+          a<>[href="#" data-id="{{item.id}}" v-on:click="openwealth(item)"]: i.fa.fa-rmb
           /a<>[href="#" data-id="{{item.id}}" ng-click="sync(item)"]: i.fa.fa-exchange
     tfoot
       tr
@@ -30,5 +33,8 @@
   
   coffee:
     $ ()->
-      admin.list_data
+      window.app = admin.list_data
         model: 'mem'
+      app.wealth.model = 'mem'   
+
+  =render 'awrad'      

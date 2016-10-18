@@ -1,6 +1,7 @@
 require "github"
 class MemController < ApplicationController
   before_action :is_me?,:except=>['login','auth','ckemail','cknc']
+  before_action :force_me ,:only=> ['info', 'wealth']
   
   def index
     #if @mem.mem_rank.blank? and !@mem.mem_info.github.blank?

@@ -24,7 +24,7 @@ class Admin::HomeController < AdminController
   end
 
   def mems
-    adminlists Mem,[:nc,:email]
+    adminlists Mem,[:nc,:email,:wealth]
   end
 
   def comments

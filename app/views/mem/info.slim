@@ -1,7 +1,7 @@
 =content_for :con 
   div.row.info-wraper
     div.col-md-3.col-sm-3
-      =form_for(current_mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
+      =form_for(@mem, url: '/mem/update',html:{id: 'inform',method: 'post'}) do |item|
         img.uptx[src="#{@mem.avatar_url}"]
         input#upload_file[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传头像" data-folder="mem" data-width="200" data-height="200"]
 

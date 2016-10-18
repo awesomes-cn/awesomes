@@ -17,5 +17,11 @@ class Admin::WealthController < ApplicationController
       WealthLog.add _price, _readme.mem_id, _readme, "发布中文说明 [#{_readme.repo.name}](/repo/daneden/animate-css/diff/#{_readme.id})"
       render json: true
     end
+
+    if params[:model] == 'mem'
+      _mem = Mem.find params[:id]
+      WealthLog.add _price, _mem.id, _mem, params[:remark]
+      render json: true
+    end
   end
 end
