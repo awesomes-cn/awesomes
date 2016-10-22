@@ -67,6 +67,6 @@ class Admin::HomeController < AdminController
   end
 
   def goods
-    adminlists Good,[:name,:cover,:price,:order]
+    adminlists Good,[:name,:cover,:price,:order,:desc]
   end
 end

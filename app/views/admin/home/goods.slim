@@ -15,7 +15,7 @@
         tr[v-for="item in items"]
           td {{item.id}}
           td
-            img[src="{{item.cover}}"]
+            img[src="#{access_path "goods"}/{{item.cover}}" style="width: 20px; height: 20px;"]
           td {{item.name}} 
          
           td {{item.price}} 

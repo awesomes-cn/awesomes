@@ -4,16 +4,91 @@
     p 你可以使用A币兑换下面中的任何商品
 =content_for :con
   div.row 
-    -Good.all.each do |item|
-      div.col-md-4
-        div.good-item
-          img.cover[src="#{Rails.application.config.source_access_path}goods/#{item.cover}"]
+    div.col-md-4[v-for="item in goods" v-cloak]
+      div.good-item
+        img.cover[src="#{Rails.application.config.source_access_path}goods/{{item.cover}}"]
 
-          h4 =item.name
+        p: strong {{item.name}}
 
-          h4
-            i.fa.fa-jpy>
-            | #{item.price} A币
+        p[style="color: rgba(255, 140, 0, 0.95)"]
+          i.fa.fa-jpy>
+          | {{item.price}} A币
 
-          button.btn.btn-danger 马上兑换
+        button.btn.btn-info[v-on:click="openExchange(item)"] 马上兑换
+  
+  div.modal.fade#wealthmodal[tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"]
+    div.modal-dialog.modal-sm
+      div.modal-content
+        div.modal-header
+          button[type="button" class="close" data-dismiss="modal"]
+            span[aria-hidden="true"] &times;
+            span.sr-only Close
+          h4.modal-title 兑换商品
+        div.modal-body
+          table.wealth-table
+            tr
+              td[width="50"] 商品：
+              td[colspan="3"] {{currentGood.name}}
+            tr
+              td 单价：
+              td[colspan="3"] {{currentGood.price}}
+            tr
+              td 数量：
+              td[width="70"]
+                input.form-control[type="number" v-model="newOrder.amount"  style="width: 50px"]  
+              td[width="50"] 总价：
+              td {{totalPrice}}
+                
+            tr
+              td 备注：
+              td[colspan="3"]
+                textarea.form-control[v-model="currentGood.remark"]
+            tr
+              td
+              td[colspan="3"] 
+                button.btn.btn-primary[v-on:click="submitExchange()"] 确认兑换
 
+  javascript:
+    vueExtend.push({
+      data: {
+        goods: [],
+        currentGood: {},
+        newOrder: {
+          amount: 1
+        }
+      },
+      methods: {
+        getAllGoods: function() {
+          $.get('/store/goods.json', {}, function(data) {
+            App.goods = data.items
+          })
+        },
+
+        openExchange: function(item) {
+          App.currentGood = item
+          App.newOrder.amount = 1
+          $("#wealthmodal").modal('show')
+        },
+
+        submitExchange: function(){
+          $.post('/store/exchange', {
+            good_id: App.currentGood.id,
+            amount: App.newOrder.amount,
+            price: App.currentGood.price,
+            total_price: App.totalPrice,
+            remark: 
+          }, function(data) {
+            $("#wealthmodal").modal('hide')
+          })
+        }
+      },
+      computed: {
+        totalPrice: function() {
+          return this.currentGood.price * 100000 *this.examount / 100000
+        }
+      }
+    })  
+
+    appInit.push(function(){
+      App.getAllGoods()
+    })

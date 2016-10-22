@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017231428) do
+ActiveRecord::Schema.define(version: 20161022040141) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -78,14 +78,14 @@ ActiveRecord::Schema.define(version: 20161017231428) do
     t.datetime "updated_at",                                  null: false
   end
 
-  create_table "goods", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name"
     t.string   "cover"
     t.text     "desc",       limit: 65535
     t.float    "price",      limit: 24
+    t.integer  "order"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "order"
   end
 
   create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -193,6 +193,21 @@ ActiveRecord::Schema.define(version: 20161017231428) do
     t.datetime "updated_at",             null: false
     t.integer  "order",      default: 0
   end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "good_id"
+    t.integer  "mem_id"
+    t.integer  "amount"
+    t.float    "price",       limit: 24
+    t.float    "total_price", limit: 24
+    t.string   "remark"
+    t.string   "state"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "orders", ["good_id"], name: "index_orders_on_good_id", using: :btree
+  add_index "orders", ["mem_id"], name: "index_orders_on_mem_id", using: :btree
 
   create_table "readmes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "mem_id"
