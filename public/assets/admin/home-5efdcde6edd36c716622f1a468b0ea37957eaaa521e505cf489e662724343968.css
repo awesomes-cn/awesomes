@@ -1,0 +1,66 @@
+/* line 2, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+#menu_bar a.list-group-item.on {
+  color: Red;
+}
+
+/* line 5, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+.admin-wrap {
+  margin-bottom: 100px;
+}
+
+/* line 9, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+table {
+  width: 100%;
+}
+/* line 12, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+table tr td {
+  padding: 10px 0;
+}
+
+/* line 17, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+tr.UNREAD *, tr.recsts-1 * {
+  color: #BEBEBE;
+}
+/* line 19, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+tr.UNREAD td.synced a *, tr.recsts-1 td.synced a * {
+  color: red;
+}
+
+/* line 23, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+body {
+  background-color: #FFF !important;
+}
+
+/* line 26, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+td.synced a {
+  color: red;
+}
+
+/* line 30, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+.categorys-wrap > .panel-default {
+  margin-top: 10px;
+}
+/* line 32, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+.categorys-wrap .oper-wrap i {
+  display: inline-block;
+  cursor: pointer;
+  color: #BABABA;
+}
+/* line 35, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+.categorys-wrap .list-group-item .oper-wrap {
+  display: none;
+}
+/* line 39, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+.categorys-wrap .list-group-item:hover .oper-wrap {
+  display: inline-block;
+}
+
+/* line 45, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+a.NORMAL {
+  color: #DDD;
+}
+
+/* line 48, /home/hxh/share/awesomes/app/assets/stylesheets/admin/home.css.scss */
+a.ACTIVED {
+  color: #19AF11;
+}

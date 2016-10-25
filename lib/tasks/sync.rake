@@ -61,7 +61,17 @@ namespace :mem do
 end
 
 
-
+namespace :assets do 
+  require 'cdn'
+  jsFile = ''
+  cssFile = ''
+  task :cdn,[:start] => :environment do |t,args|
+    cssFile = "#{Rails.root}/public/assets/" + File.basename(ActionController::Base.helpers.asset_path 'application.css')
+    jsFile = "#{Rails.root}/public/assets/" + File.basename(ActionController::Base.helpers.asset_path 'application.js')
+    Cdn.upload cssFile
+    Cdn.upload jsFile
+  end
+end
 
 
 

@@ -26,13 +26,13 @@ gem 'kaminari', '0.16.3'
 gem 'searchkick', '1.2.1'
 gem 'aliyun-sdk', '~> 0.3.7'
 gem "algoliasearch-rails"
+gem 'qiniu','~> 6.6.0'
 
 #gem 'rmagick', '2.15.4'
 #gem 'jbuilder', '~> 2.0'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
 #gem 'omniauth-weibo-oauth2', '~> 0.3.0'
-
  
 group :development do
   gem 'byebug'

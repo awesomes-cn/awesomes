@@ -1,0 +1,177 @@
+/* line 1, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper {
+  font-size: 14px;
+  border: #EEE 1px solid;
+  padding: 0 50px;
+  margin: 0 auto;
+  max-width: 750px;
+}
+/* line 4, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper > article {
+  border: #EEE 1px solid;
+  border-left: 0;
+  border-right: 0;
+  padding: 50px 0;
+  border-bottom: 0;
+}
+/* line 6, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper > article img {
+  max-width: 100%;
+}
+/* line 9, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper .title {
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+}
+/* line 11, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper .title .tx {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: inline-block;
+  position: absolute;
+  background-color: #FFF;
+  padding: 10px;
+  left: 50%;
+  margin-left: -30px;
+  bottom: -30px;
+}
+/* line 13, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper .info {
+  padding: 20px 0;
+  color: #888;
+  text-align: center;
+  font-size: 13px;
+}
+/* line 15, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper .info .favor {
+  border: #EEE 1px solid;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #DDD;
+}
+/* line 17, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-wraper .info .favor.on {
+  color: #FF102E;
+  border-color: #FF102E;
+}
+
+@media (max-width: 768px) {
+  /* line 26, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+  .topic-wraper {
+    padding: 0 10px;
+    border: 0;
+    border-bottom: #EEE 1px solid;
+  }
+}
+/* line 31, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-author {
+  text-align: center;
+  margin: 50px 0;
+}
+/* line 33, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-author .tx {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin-top: -50px;
+  background-color: #FFF;
+  padding: 10px;
+}
+
+/* line 36, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-extra {
+  border: #EEE 1px solid;
+  border-top: 0;
+  margin: 0 auto;
+  max-width: 750px;
+  padding: 10px;
+  overflow: hidden;
+}
+/* line 38, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-extra .pub {
+  position: absolute;
+  left: 50%;
+  font-size: 15px;
+  color: #DDD;
+}
+/* line 39, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-extra .next {
+  font-size: 20px;
+}
+/* line 41, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.topic-extra.opers a {
+  color: #DDD;
+}
+
+/* line 46, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* line 48, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .favor {
+  width: 50px;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+}
+/* line 50, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .favor i {
+  font-size: 15px;
+}
+/* line 52, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .title {
+  font-size: 15px;
+}
+/* line 55, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .code {
+  color: #CCC;
+}
+/* line 56, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .extra {
+  float: right;
+  color: #B6B6B6;
+}
+/* line 58, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .extra > * {
+  margin-right: 10px;
+}
+/* line 61, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .extra .tx {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  margin-right: 0;
+}
+/* line 62, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .extra .fa {
+  margin-right: 5px;
+}
+/* line 65, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .list-group-item {
+  padding: 15px;
+  position: relative;
+}
+/* line 68, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list .list-group-item:hover .extra {
+  color: #555;
+}
+/* line 72, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-list a {
+  text-decoration: none;
+  color: #444;
+}
+
+/* line 77, /home/hxh/share/awesomes/app/assets/stylesheets/application/source.css.scss */
+.source-banner {
+  text-align: center;
+  padding-bottom: 20px;
+}

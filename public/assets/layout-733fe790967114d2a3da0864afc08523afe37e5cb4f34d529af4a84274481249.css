@@ -1,0 +1,961 @@
+@charset "UTF-8";
+/* line 1, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+body {
+  line-height: 25px;
+  color: #333;
+  font-family: 'Hiragino Sans GB', Helvetica, Arial, 'STHeiti', 'WenQuanYi Micro Hei', sans-serif;
+  font-size: 13px;
+}
+
+/* line 2, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 3, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left {
+  float: left;
+}
+
+/* line 4, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.right {
+  float: right;
+}
+
+/* line 5, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.clear {
+  clear: both;
+}
+
+/* line 7, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+[v-cloak] {
+  display: none;
+}
+
+/* line 10, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+img {
+  border: 0;
+}
+
+/* line 13, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+a {
+  text-decoration: none;
+  -webkit-transition: all,.5s,ease,0s;
+}
+
+/* line 19, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+a.normal {
+  text-decoration: none;
+}
+/* line 21, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+a.normal:visited, a.normal:link {
+  color: #333;
+}
+/* line 24, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+a.normal:hover, a.normal:active {
+  color: #da552f;
+}
+
+/* line 30, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.search-form .search {
+  border: none;
+  padding: 8px 20px;
+  outline: none;
+  border-radius: 100px;
+  margin: 20px 0;
+  width: 250px;
+  padding-right: 40px;
+}
+/* line 31, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.search-form .form-control {
+  box-shadow: none;
+  border: 1px solid #F5F5F5;
+}
+/* line 33, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.search-form .form-control::-webkit-input-placeholder {
+  color: #EEE;
+}
+/* line 37, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.search-form button {
+  border: 0;
+  background: none;
+  margin-left: -30px;
+  outline: none;
+}
+/* line 38, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.search-form i {
+  color: #CACACA;
+}
+
+/* line 41, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.alert-pop {
+  position: fixed;
+  top: 0px;
+  width: 300px;
+  text-align: center;
+  left: 50%;
+  margin-left: -150px;
+}
+
+/* line 51, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.has-msg a {
+  color: red !important;
+}
+
+/* line 57, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.main-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 63, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu {
+  border: #EEE 1px solid;
+  width: 120px;
+  display: block;
+  padding: 0;
+  right: 0;
+  position: absolute;
+  display: none;
+  background-color: #FFF;
+}
+/* line 66, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu li {
+  list-style: none;
+  display: block;
+  border-bottom: #EEE 1px solid;
+}
+/* line 67, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu a {
+  padding: 10px 20px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+/* line 69, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu.vs-menus p {
+  padding: 5px 10px;
+  display: inline-block;
+  margin: 0;
+}
+/* line 75, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu.vs-menus i.fa-close {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+  color: #ffbeab;
+  display: none;
+}
+/* line 83, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu.vs-menus li {
+  position: relative;
+  overflow: hidden;
+}
+/* line 87, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header .extra-menu.vs-menus li:hover i.fa-close {
+  display: inline-block;
+}
+/* line 95, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+header li:hover .extra-menu {
+  display: block;
+}
+
+/* line 101, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.logo-wraper img {
+  position: absolute;
+  top: 13px;
+  width: 25px;
+}
+/* line 102, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.logo-wraper span {
+  color: #da552f;
+  margin-left: 29px;
+  font-size: 17px;
+}
+
+/* line 105, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+article.con {
+  font-size: 15px;
+}
+
+/* line 107, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer {
+  border-top: 1px solid #e9eaef;
+  background: #ECECEC;
+  color: #999;
+  margin-top: 100px;
+  padding: 20px;
+  padding-top: 30px;
+  font-size: 12px;
+}
+/* line 109, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .menus {
+  padding: 0;
+  float: right;
+}
+/* line 111, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .menus li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 15px;
+}
+/* line 114, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer a {
+  color: #575757;
+}
+/* line 117, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .bottom-wraper {
+  border-top: #D3D3D3 1px solid;
+  margin: 40px 0;
+  padding: 40px 0;
+  padding-bottom: 0;
+  font-size: 12px;
+}
+/* line 120, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .bottom-wraper p {
+  text-align: center;
+}
+/* line 124, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .link-wraper a {
+  margin-right: 10px;
+}
+/* line 128, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.footer .third-contact i.fa {
+  font-size: 25px;
+  margin: 20px;
+}
+
+/* line 132, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.txt.error {
+  background-color: #ffc9c9;
+}
+
+/* line 136, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.txt-center {
+  text-align: center;
+}
+
+/* line 138, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+h3.high {
+  margin-bottom: 30px;
+}
+
+/* line 139, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+pre {
+  background: none;
+  font-family: 'monaco', 'Consolas', "Liberation Mono", Courier, monospace, monospace;
+  padding: 1em;
+  padding: 2px 0 2px 15px;
+  border: 0;
+  margin: 0px 0 30px;
+  border-radius: 0;
+}
+
+/* line 145, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.navbar {
+  border-radius: 0;
+  z-index: 2000;
+  font-weight: bold;
+  box-shadow: 1px 1px 2px #eeeeee;
+  margin-bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+/* line 154, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.header-placeholder {
+  height: 50px;
+}
+
+/* line 158, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus {
+  border-color: #bce8f1;
+}
+/* line 161, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus * {
+  border-left-color: #bce8f1;
+  border-right-color: #bce8f1;
+}
+/* line 163, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus .sub-menus {
+  display: none;
+}
+/* line 165, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus .sub-menus .list-group-item {
+  background-color: #F9F9F9;
+}
+/* line 167, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus .sub-menus .list-group-item:link, .left-menus .sub-menus .list-group-item:visited {
+  color: #B8B8B8;
+}
+/* line 170, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.left-menus .sub-menus .list-group-item:hover, .left-menus .sub-menus .list-group-item:active {
+  color: #333;
+}
+
+/* line 187, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#loginModal .modal-body {
+  text-align: center;
+}
+/* line 188, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#loginModal .fa-github, #loginModal .fa-weibo {
+  font-size: 60px;
+  display: inline-block;
+  margin: 20px;
+}
+/* line 189, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#loginModal a {
+  color: #333;
+}
+/* line 190, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#loginModal .modal-content {
+  box-shadow: 0 1px 2px rgba(166, 166, 166, 0.5);
+  border: 1px solid rgba(189, 189, 189, 0.2);
+}
+/* line 191, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#loginModal .modal-footer {
+  text-align: center;
+}
+
+/* line 195, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-backdrop.in {
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+/* line 196, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-backdrop {
+  background-color: #FFF;
+  z-index: 100;
+}
+
+/* line 197, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal {
+  z-index: 1000;
+}
+
+/* line 198, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.list-group-item {
+  border-color: #EEE;
+  border-radius: 0 !important;
+  position: relative;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+/* line 204, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.list-group-item.root {
+  display: block;
+}
+/* line 207, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.list-group-item.root:hover .sub-menus {
+  display: block;
+}
+
+/* line 211, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-dialog {
+  margin: 130px auto;
+}
+
+/* line 214, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.list-group-item:first-child, .list-group-item:last-child {
+  border-radius: 0;
+}
+
+/* line 216, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.btn {
+  border: 0;
+  border-radius: 0;
+}
+
+/* line 224, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.pagenation {
+  text-align: center;
+}
+
+/* line 227, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.pagination > li > a, .pagination > li > span {
+  padding: 10px 20px;
+}
+
+/* line 234, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor.simditor-markdown .markdown-editor {
+  width: 55%;
+  float: right;
+  border-left: #DDD 1px solid;
+}
+/* line 237, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor.simditor-markdown .simditor-body {
+  width: 45%;
+  float: left;
+  border-bottom: none;
+}
+/* line 240, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor .simditor-toolbar {
+  text-align: center;
+}
+/* line 243, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor .simditor-toolbar > ul > li {
+  display: inline-block;
+  float: none;
+}
+/* line 246, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor-wrapper {
+  width: 100%;
+}
+/* line 249, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-editor-wraper .simditor .markdown-editor textarea {
+  border-bottom: none;
+}
+
+/* line 254, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.CodeMirror {
+  font-family: "Source Code Pro", Consolas, "Lucida Console", Courier, monospace !important;
+  font-size: 15px;
+}
+
+/* line 259, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+/* line 262, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div {
+  z-index: 10;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  border: #DDD 1px solid;
+}
+/* line 264, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.preview-wraper {
+  width: 40%;
+  left: 0;
+  box-shadow: inset 0 1px 2px #e4e4e4;
+}
+/* line 266, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.preview-wraper > div {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 10px;
+}
+/* line 270, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.editor-wraper {
+  border-left: #DDD 1px solid;
+  width: 60%;
+  right: 0;
+  box-shadow: inset 0 1px 2px #e4e4e4;
+}
+/* line 272, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.editor-wraper textarea {
+  width: 100%;
+  border: 0;
+  outline: none;
+  height: 100%;
+}
+/* line 273, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.editor-wraper .inner {
+  padding: 10px;
+  position: relative;
+  height: 100%;
+}
+/* line 275, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper > div.spliter {
+  width: 5px;
+  background-color: #111;
+  left: 40%;
+  z-index: 11;
+  cursor: col-resize;
+}
+/* line 279, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.markdown-wraper .CodeMirror {
+  height: 100%;
+}
+
+/* line 283, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.unselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* line 293, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff {
+  overflow: auto;
+}
+
+/* line 294, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff ul {
+  background: #fff;
+  overflow: auto;
+  font-size: 13px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: table;
+  width: 100%;
+}
+
+/* line 295, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff del, .diff ins {
+  display: block;
+  text-decoration: none;
+}
+
+/* line 296, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li {
+  padding: 0;
+  display: table-row;
+  margin: 0;
+  height: 1em;
+}
+
+/* line 297, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li.ins {
+  background: #dfd;
+  color: #080;
+}
+
+/* line 298, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li.del {
+  background: #fee;
+  color: #b00;
+}
+
+/* line 299, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li:hover {
+  background: #ffc;
+}
+
+/* try 'whitespace:pre;' if you don't want lines to wrap */
+/* line 301, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff del, .diff ins, .diff span {
+  white-space: pre-wrap;
+  font-family: courier;
+  margin-right: 50px;
+}
+
+/* line 302, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff del strong {
+  font-weight: normal;
+  background: #fcc;
+}
+
+/* line 303, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff ins strong {
+  font-weight: normal;
+  background: #9f9;
+}
+
+/* line 304, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li.diff-comment {
+  display: none;
+}
+
+/* line 305, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.diff li.diff-block-info {
+  background: none repeat scroll 0 0 gray;
+}
+
+/* line 309, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.upwrap {
+  position: relative;
+}
+/* line 311, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.upwrap input {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  FILTER: ALPHA(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0;
+}
+/* line 312, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.upwrap .upbtn {
+  padding: 10px 20px;
+  display: inline-block;
+  background-color: #0eadff;
+  color: #FFF;
+  text-align: center;
+}
+
+/* line 318, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.doc-title .upwrap {
+  position: absolute;
+  top: 10px;
+}
+
+/* line 323, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.panel, .list-group-item {
+  border-radius: 0;
+  border-color: #E5E5E5;
+}
+
+/* line 326, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.panel-heading {
+  border-radius: 0;
+}
+
+/* line 329, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.simditor img {
+  max-width: 100%;
+}
+
+/* line 334, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper ul {
+  padding: 0;
+}
+/* line 335, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper li {
+  list-style: none;
+  position: relative;
+  display: block;
+  min-height: 80px;
+  padding: 10px;
+  padding-left: 60px;
+  border-bottom: #EEE 1px solid;
+}
+/* line 345, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .tx {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  display: inline-block;
+  position: absolute;
+  left: 10px;
+  top: 17px;
+}
+/* line 354, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-editor {
+  padding: 10px;
+  border: #EEE 1px solid;
+  margin-bottom: 30px;
+}
+/* line 359, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .CodeMirror {
+  height: 100%;
+  padding: 10px;
+  height: 200px;
+}
+/* line 360, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-footer {
+  border-top: #EEE 1px solid;
+  padding-top: 10px;
+  overflow: hidden;
+}
+/* line 364, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-footer a {
+  color: #a7a7a7;
+}
+/* line 370, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list a.oper {
+  color: #999;
+  float: right;
+  margin-left: 10px;
+  display: none;
+}
+/* line 372, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list a.oper:hover {
+  color: #000;
+}
+/* line 373, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list a.oper.zan-btn {
+  display: inline-block;
+  text-decoration: none;
+}
+/* line 377, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list a.oper.zan-btn.active-true i {
+  color: #EF4245;
+}
+/* line 382, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list li:hover a.oper {
+  display: inline-block;
+}
+/* line 385, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list .co-mem {
+  font-weight: bold;
+  color: #333;
+}
+/* line 389, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-wraper .comment-list .co-time {
+  color: #999;
+  margin-left: 10px;
+}
+
+/* line 400, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.tag-icon, .fa-jquery, .fa-bootstrap, .fa-angular, .fa-node {
+  background-image: url("tag-icon.png");
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 20px;
+  margin-top: 5px;
+}
+
+/* line 403, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.fa-jquery {
+  background-position: 0px -4px;
+}
+
+/* line 407, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.fa-bootstrap {
+  background-position: 0px -25px;
+}
+
+/* line 411, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.fa-angular {
+  background-position: 0px -46px;
+}
+
+/* line 415, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.fa-node {
+  background-position: 0px -68px;
+}
+
+/* line 421, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.navbar {
+  background-color: #fefefe;
+  border: 0;
+}
+/* line 424, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.navbar a:link, .navbar a:visited {
+  color: #777777;
+}
+/* line 427, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.navbar a:hover, .navbar a:active {
+  color: #111;
+}
+/* line 432, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.navbar .tx {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+}
+
+/* line 437, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+}
+
+/* line 441, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.form-control.error {
+  border-color: #d9534f;
+}
+
+/* line 442, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+label.error {
+  color: #d9534f;
+}
+
+/* line 445, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+  background-color: #f8f8f8;
+}
+
+/* line 450, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.ad-item .cover {
+  width: 100%;
+}
+
+/* line 453, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.ad-wraper-1 {
+  padding: 20px 30px;
+}
+
+/* line 458, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.form-control {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 461, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.alert {
+  padding: 10px 15px;
+}
+
+/* line 465, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.mc {
+  color: #da552f;
+}
+
+/* line 468, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#MEIQIA-BTN-HOLDER {
+  display: none !important;
+}
+
+/* line 469, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.kefu-btn {
+  background-color: #F7F7F7;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 100%;
+  position: fixed;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  bottom: 20px;
+  right: 20px;
+  color: #da552f;
+  line-height: 35px;
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.16);
+}
+/* line 473, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.kefu-btn:hover {
+  color: #F7F7F7;
+  background-color: #da552f;
+}
+
+/* line 480, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-wraper {
+  background-color: #FFF;
+  width: 100%;
+  border: #DDD 1px solid;
+  border-top: 0;
+  position: absolute;
+  top: 0;
+  display: none;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding-top: 55px;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+}
+/* line 482, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-wraper .close-modal {
+  position: absolute;
+  cursor: pointer;
+  font-size: 50px;
+  color: #EEE;
+  right: 10px;
+  font-weight: bolder;
+  top: 55px;
+}
+/* line 486, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-wraper .panel {
+  border-color: #FFFFFF;
+  padding: 30px;
+  padding-top: 0;
+}
+/* line 489, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-wraper .modal-title {
+  border-bottom: #EFEFEF 1px solid;
+  padding-bottom: 15px;
+}
+/* line 492, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.modal-wraper .modal-title h3 {
+  text-align: center;
+  font-size: 20px;
+}
+
+/* line 499, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+#fork-wraper {
+  z-index: 900;
+}
+
+/* line 501, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+code[class*="language-"], pre[class*="language-"] {
+  text-shadow: none;
+}
+
+/**
+登陸**/
+/* line 508, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper {
+  max-width: 340px;
+  margin-left: -170px;
+}
+/* line 512, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper .third-login {
+  text-align: center;
+}
+/* line 514, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper .third-login > div {
+  padding: 15px 0;
+}
+/* line 517, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper .third-login > a {
+  font-size: 50px;
+  color: #333;
+}
+/* line 523, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper .login-panel {
+  max-width: 400px;
+  margin: 50px auto;
+  margin-bottom: 0;
+}
+/* line 527, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.login-wraper .login-panel .panel-heading {
+  background-color: #FFF;
+  padding: 15px;
+}
+
+/* line 540, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.icon-heart {
+  width: 30px;
+  height: 30px;
+  fill: #BBB;
+  cursor: pointer;
+}
+
+/* line 549, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-panel .co-title {
+  border-top: #DDD 1px dashed;
+  padding: 50px;
+  text-align: center;
+}
+/* line 555, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.comment-panel .co-footer {
+  border-top: 1px solid #dddddd;
+  padding: 10px 15px;
+}
+
+/* line 564, /home/hxh/share/awesomes/app/assets/stylesheets/layout.css.scss */
+.sk-rotating-plane {
+  width: 40px;
+  height: 40px;
+  background-color: #14B9C7;
+  margin: 40px auto;
+  -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
+  animation: sk-rotatePlane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotatePlane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+@keyframes sk-rotatePlane {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
