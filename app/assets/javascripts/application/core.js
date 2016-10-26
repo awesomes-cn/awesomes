@@ -7,7 +7,7 @@ window.Core = {
     var box = $('<div class="alert alert-pop alert-' + typ + ' alert-tip alert-' + position + '" role="alert" >' + msg + '</div>')
     $('body').append(box)
     box.animate({top: top}, function() {
-      setTimeout(()=> {
+      setTimeout(function(){
         box.remove()
       }, delay)
     })
