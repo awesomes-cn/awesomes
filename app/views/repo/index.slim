@@ -12,6 +12,8 @@
   =render "banner"
 
 =content_for :con
+  / div.experience
+  /   input.text[placeholder="这个库很好用？有坑？快来分享你宝贵的经验"]
   div.panel.panel-default.view-wraper
     /=render "banner" 
     / div.experience
@@ -75,6 +77,10 @@
               h3 #{@item.name} 暂时没有中文说明
               h4 我们期待您参与进来翻译和完善
               h5: a.open-login[href="/repo/#{@item.owner}/#{@item.alia}/readme" ] 马上添加中文说明
+              p
+                small
+                  | 我们将根据文档质量奖励数额不等的
+                  a<>[href="/wealth" target="_blank" style="color: #ff4434;"] A币
 
 
   div.comment-panel
