@@ -6,8 +6,8 @@ html
     meta[name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"]
     meta[http-equiv="X-UA-Compatible" content="IE=edge"]
 
-    = stylesheet_link_tag "application", media: "all"
-    = javascript_include_tag "application"
+    link[rel="stylesheet" media="all" href="#{ENV["QINIU_BASE_URL"]}#{asset_path 'application.css'}"]
+    script[src="#{ENV["QINIU_BASE_URL"]}#{asset_path 'application.js'}"]
     
   body.rank-wraper
     div.banner#rank-banner
