@@ -363,9 +363,15 @@
 .home-news-wraper{
   width: 80%;
   margin: 50px auto;
+  .repo-item-wraper {
+    background-color: #FFF;  padding-bottom: 10px;  
+    position: relative; 
+    padding: 10px;
+  }
+
   .inner{
-    background-color: #FFF; padding-bottom: 10px; margin-bottom: 1px; padding: 20px; /* box-shadow: 1px 1px 10px #f4f4f4; */
-    padding-left: 120px; position: relative;
+    padding: 20px; /* box-shadow: 1px 1px 10px #f4f4f4; */
+    padding-left: 120px; 
     .desc{
       overflow: hidden;
       strong{font-size: 15px;}
@@ -375,6 +381,10 @@
     a{
       color: #333
     }
+  }
+  .desc-wraper {
+    padding: 10px;
+    background-color: #f8f9fa;
   }
   .title{
     padding: 10px 30px;
