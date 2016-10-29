@@ -33,6 +33,7 @@ gem 'qiniu','~> 6.6.0'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
 #gem 'omniauth-weibo-oauth2', '~> 0.3.0'
+gem 'rack-cors', :require => 'rack/cors'
  
 group :development do
   gem 'byebug'

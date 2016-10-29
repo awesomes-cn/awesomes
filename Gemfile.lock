@@ -170,6 +170,7 @@ GEM
       rest-client (~> 1.8.0)
       ruby-hmac (~> 0.4)
     rack (2.0.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta3)
@@ -290,6 +291,7 @@ DEPENDENCIES
   oneapm_rpm (= 1.3.5)
   pry-rails
   qiniu (~> 6.6.0)
+  rack-cors
   rails (= 5.0.0.beta3)
   rest-client (~> 1.8.0)
   sass-rails (~> 5.0.4)

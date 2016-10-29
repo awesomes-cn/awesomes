@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApiController < ActionController::Base
   def readme
     _item = Repo.find_by({:owner=> params[:owner],:name=> params[:name]})
     render json: {
@@ -24,5 +24,11 @@ class ApiController < ApplicationController
       readme: _readme
     }
 
+  end
+
+  def latest
+    render json: {
+      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at').order('id desc').limit(15)
+    }.to_json(:methods => ['cover_path'])
   end
 end

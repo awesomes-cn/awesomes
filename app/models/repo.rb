@@ -58,6 +58,10 @@ class Repo < ActiveRecord::Base
     super || 'default.jpg'
   end
 
+  def cover_path
+    "#{Rails.application.config.source_access_path}repo/#{cover}"
+  end
+
   def overall
     stargazers_count + forks_count + subscribers_count
   end

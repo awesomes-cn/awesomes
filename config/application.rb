@@ -43,16 +43,15 @@ module Webs
       :authentication       => 'plain',
       :enable_starttls_auto => true
     }
-
    
     config.source_access_path = ENV['SOURCE_ACCESS_PATH']
 
-
-    LetterAvatar.setup do |config|
-      config.cache_base_path = 'public/system/lets' # default is 'public/system'
-      config.colors_palette = :iwanthue             # default is :google
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '/api/*', :headers => :any, :methods => [:get, :post, :options]
+      end
     end
-
   end
 end
 
