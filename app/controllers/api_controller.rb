@@ -28,7 +28,33 @@ class ApiController < ActionController::Base
 
   def latest
     render json: {
-      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,rootyp_zh,typcd_zh,stargazers_count').order('id desc').limit(15)
+      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').order('id desc').limit(15)
     }.to_json(:methods => ['cover_path'])
+  end
+
+  def search
+    render json: {
+      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').search(params[:q], {"hitsPerPage" => 40, "page" => 0})
+    }.to_json(:methods => ['cover_path'])
+  end
+
+  def top
+    _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :trend => "trend"}
+    _sort = params[:sort] || 'hot'
+    render json: {
+      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
+    }.to_json(:methods => ['cover_path'])
+  end
+
+  def subjects
+    render json: {
+      :items=> Subject.order('`order` desc')
+    }
+  end
+
+  def subject
+    render json: {
+      :items=> Subject.order('`order` desc')
+    }
   end
 end
