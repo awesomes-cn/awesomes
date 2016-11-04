@@ -28,22 +28,22 @@ class ApiController < ActionController::Base
 
   def latest
     render json: {
-      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').order('id desc').limit(15)
-    }.to_json(:methods => ['cover_path'])
+      :items=> repo_query.order('id desc').limit(15)
+    }.to_json(:methods => ['cover_path', 'issue_friendly'])
   end
 
   def search
     render json: {
-      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').search(params[:q], {"hitsPerPage" => 40, "page" => 0})
-    }.to_json(:methods => ['cover_path'])
+      :items=> repo_query.search(params[:q], {"hitsPerPage" => 40, "page" => 0})
+    }.to_json(:methods => ['cover_path','issue_friendly'])
   end
 
   def top
     _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :trend => "trend"}
     _sort = params[:sort] || 'hot'
     render json: {
-      :items=> Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count').where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
-    }.to_json(:methods => ['cover_path'])
+      :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
+    }.to_json(:methods => ['cover_path', 'issue_friendly'])
   end
 
   def subjects
@@ -56,5 +56,10 @@ class ApiController < ActionController::Base
     render json: {
       :items=> Subject.order('`order` desc')
     }
+  end
+
+  private
+  def repo_query
+    Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count,trend,`using`,issue_res')
   end
 end
