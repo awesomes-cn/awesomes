@@ -8,7 +8,7 @@ class Repo < ActiveRecord::Base
 
   include AlgoliaSearch
   algoliasearch auto_index: false, auto_remove: false, raise_on_failure: Rails.env.development?, force_utf8_encoding: true do
-    attribute :name, :description,  :typcd, :typcd_zh, :rootyp, :rootyp_zh
+    attribute :name, :description, :description_cn, :typcd, :typcd_zh, :rootyp, :rootyp_zh
   end
 
 

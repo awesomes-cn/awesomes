@@ -29,18 +29,18 @@ class ApiController < ActionController::Base
   def latest
     render json: {
       :items=> repo_query.order('id desc').limit(15)
-    }.to_json(:methods => ['cover_path', 'issue_friendly'])
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url'])
   end
 
   def search
     render json: {
       :items=> repo_query.search(params[:q], {"hitsPerPage" => 40, "page" => 0})
-    }.to_json(:methods => ['cover_path','issue_friendly'])
+    }.to_json(:methods => ['cover_path','issue_friendly', 'link_url'])
   end
 
   def top
     _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :trend => "trend"}
-    _sort = params[:sort] || 'hot'
+    _sort = params[:sort] || 'trend'
     render json: {
       :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
     }.to_json(:methods => ['cover_path', 'issue_friendly'])
@@ -58,8 +58,22 @@ class ApiController < ActionController::Base
     }
   end
 
+  def categorys
+    render json: {
+      :items=> Menutyp.flat_show
+    }
+  end
+
+  def newrepo
+    _repo = Repo.find_by_html_url(params[:url])
+    Submit.create({:html_url=> params[:html_url],:typcd=> params[:typcd],:rootyp=> params[:rootyp]}) if !_repo
+    render json: {
+      status: true
+    }
+  end
+
   private
   def repo_query
-    Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count,trend,`using`,issue_res')
+    Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count,trend,`using`,issue_res,owner,alia')
   end
 end
