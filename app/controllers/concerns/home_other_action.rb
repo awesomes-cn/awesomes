@@ -81,7 +81,7 @@ module HomeOtherAction
           :link => "#{Rails.application.config.base_url}repo/#{item.owner}/#{item.alia}",
           :date => item.created_at,
           :desc => item.description,
-          :category => "#{item.rootyp_zh}-#{item.typcd_zh}"
+          :category => "#{item.typcd_zh}"
       }
     end.uniq[0...10]
     respond_to do |format|
