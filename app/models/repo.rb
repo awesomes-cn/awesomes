@@ -97,7 +97,7 @@ class Repo < ActiveRecord::Base
     Code.find_by_id(demo) || default_code
   end
 
-  def description
+  def description_i18
     (I18n.locale.to_s != 'en' and description_cn) ? description_cn : super
   end
   

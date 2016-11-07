@@ -29,13 +29,13 @@ class ApiController < ActionController::Base
   def latest
     render json: {
       :items=> repo_query.order('id desc').limit(15)
-    }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url'])
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url', 'description_i18'])
   end
 
   def search
     render json: {
       :items=> repo_query.search(params[:q], {"hitsPerPage" => 40, "page" => 0})
-    }.to_json(:methods => ['cover_path','issue_friendly', 'link_url'])
+    }.to_json(:methods => ['cover_path','issue_friendly', 'link_url', 'description_i18'])
   end
 
   def top
@@ -43,7 +43,7 @@ class ApiController < ActionController::Base
     _sort = params[:sort] || 'trend'
     render json: {
       :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
-    }.to_json(:methods => ['cover_path', 'issue_friendly'])
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'description_i18'])
   end
 
   def subjects

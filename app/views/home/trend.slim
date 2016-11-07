@@ -18,7 +18,7 @@
                 span =item.name
                 span.line< =item.repo_trends.pluck('trend')[0..8].join(',')
 
-            p =item.description
+            p =item.description_i18
           ul
             -item.tag.to_s.split(',').each do |tag|
               li: a[href="?tag=#{tag}" title="#{tag}"] =tag

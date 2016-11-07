@@ -80,7 +80,7 @@ module HomeOtherAction
           :author => item.owner,
           :link => "#{Rails.application.config.base_url}repo/#{item.owner}/#{item.alia}",
           :date => item.created_at,
-          :desc => item.description,
+          :desc => item.description_i18,
           :category => "#{item.typcd_zh}"
       }
     end.uniq[0...10]

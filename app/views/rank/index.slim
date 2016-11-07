@@ -6,7 +6,7 @@
       a.list-group-item.first[href="https://www.awesomes.cn/repo/#{@items[0].owner}/#{@items[0].alia}"]
         img.cover[src='#{repo_cover_base @items[0].cover}@1e_1c_0o_0l_300h_300w_90q.src']
         h3 =@items[0].name
-        p =@items[0].description
+        p =@items[0].description_i18
     
       -@items[1..99].each_with_index do |item, index|
         a.list-group-item[href="https://www.awesomes.cn/repo/#{item.owner}/#{item.alia}"]
@@ -17,7 +17,7 @@
           
           div.desc
             h3 =item.name
-            p =item.description 
+            p =item.description_i18 
 
           div.side.side-right
             -_fresh = fresh item.pushed_at
