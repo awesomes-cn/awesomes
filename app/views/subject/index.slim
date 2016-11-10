@@ -1,5 +1,5 @@
 =content_for :title 
-  | #{subtitle} - awesomes
+  | #{subtitle}专题 - Awesomes
 
 =content_for :keywords
   | #{subtitle},#{subtitle}专题,#{subtitle}资源,#{subtitle}组件
@@ -29,6 +29,6 @@
       
 
 =content_for :con
-  /=cache "subject_repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do
-  =render "repo_list"
+  =cache "subject_repo_list_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 1.day do
+    =render "repo_list"
   

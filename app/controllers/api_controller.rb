@@ -52,10 +52,11 @@ class ApiController < ActionController::Base
     }
   end
 
-  def subject
+  def subrepos
+    _item = Subject.find_by_key params[:key]
     render json: {
-      :items=> Subject.order('`order` desc')
-    }
+      :items=>  repo_query.where("tag like ?","%#{_item.title}%").order("trend desc")
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'description_i18'])
   end
 
   def categorys
@@ -74,6 +75,6 @@ class ApiController < ActionController::Base
 
   private
   def repo_query
-    Repo.select('id,name,description,cover,description_cn,pushed_at,typcd_zh,stargazers_count,trend,`using`,issue_res,owner,alia')
+    Repo.select('id,name,description,cover,description_cn,pushed_at,typcd,typcd_zh,rootyp,rootyp_zh,stargazers_count,trend,`using`,issue_res,owner,alia')
   end
 end
