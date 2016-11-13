@@ -43,7 +43,7 @@ class ApiController < ActionController::Base
     _sort = params[:sort] || 'trend'
     render json: {
       :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
-    }.to_json(:methods => ['cover_path', 'issue_friendly', 'description_i18'])
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url', 'description_i18'])
   end
 
   def subjects
@@ -56,7 +56,7 @@ class ApiController < ActionController::Base
     _item = Subject.find_by_key params[:key]
     render json: {
       :items=>  repo_query.where("tag like ?","%#{_item.title}%").order("trend desc")
-    }.to_json(:methods => ['cover_path', 'issue_friendly', 'description_i18'])
+    }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url', 'description_i18'])
   end
 
   def categorys
