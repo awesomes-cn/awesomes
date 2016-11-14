@@ -8,7 +8,9 @@ class Repo < ActiveRecord::Base
 
   include AlgoliaSearch
   algoliasearch auto_index: false, auto_remove: false, raise_on_failure: Rails.env.development?, force_utf8_encoding: true do
-    attribute :name, :description, :description_cn, :typcd, :typcd_zh, :rootyp, :rootyp_zh
+    attributes :name, :description, :description_cn, :typcd, :typcd_zh, :rootyp, :rootyp_zh, :stargazers_count, :tag, :hidetags, :typdesc
+    attributesToIndex ['name', 'description', 'description_cn', 'tag', 'hidetags',  'typcd', 'typcd_zh', 'rootyp', 'rootyp_zh', 'typdesc']
+    customRanking ['desc(stargazers_count)']
   end
 
 
@@ -100,11 +102,16 @@ class Repo < ActiveRecord::Base
   def description_i18
     (I18n.locale.to_s != 'en' and description_cn) ? description_cn : description
   end
+
+  def typdesc
+    "#{(Menutyp.find_by_key typcd).sdesc} #{(Menutyp.find_by_key rootyp).sdesc}"
+  end
   
   private
   def after_create_callback
     ActionController::Base.new.expire_fragment %r{repo_list_.+}
   end
+  
 
   
 end
