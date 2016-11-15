@@ -67,7 +67,7 @@ class ApiController < ActionController::Base
 
   def newrepo
     _repo = Repo.find_by_html_url(params[:url])
-    Submit.create({:html_url=> params[:html_url],:typcd=> params[:typcd],:rootyp=> params[:rootyp]}) if !_repo
+    Submit.create({:html_url=> params[:url],:typcd=> params[:typcd],:rootyp=> params[:rootyp]}) if !_repo
     render json: {
       status: true
     }
