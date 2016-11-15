@@ -61,13 +61,14 @@ class ApiController < ActionController::Base
 
   def categorys
     render json: {
-      :items=> Menutyp.flat_show
+      :items=> Menutyp.api_all
     }
   end
 
   def newrepo
     _repo = Repo.find_by_html_url(params[:url])
-    Submit.create({:html_url=> params[:url],:typcd=> params[:typcd],:rootyp=> params[:rootyp]}) if !_repo
+    _menutyp = Menutyp.find_by_id params[:typid]
+    Submit.create({:html_url=> params[:url],:typcd=> _menutyp.key,:rootyp=> _menutyp.parent}) if !_repo
     render json: {
       status: true
     }

@@ -51,6 +51,18 @@ class Menutyp < ActiveRecord::Base
     end
   end
 
+  def self.api_all
+    sub_menus.find_each.map do |item|
+      {
+        :id=> item.id,
+        :typcd=> item.key,
+        :rootyp=>  item.parent,
+        :typcd_zh=> item.sdesc,
+        :rootyp_zh => item.superior.sdesc
+      }
+    end
+  end
+
   def self.home root
     (_item = Menutyp.where({:key=> root,:typcd=> 'B'}).first).nil? ? '' : _item.home
   end
