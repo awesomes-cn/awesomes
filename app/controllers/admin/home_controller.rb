@@ -32,7 +32,7 @@ class Admin::HomeController < AdminController
   end
 
   def categorys
-    adminlists Menutyp.order("id asc"),[:key,:sdesc,:icon,:typcd,:parent,:icon]
+    adminlists Menutyp.order("id asc"),[:key,:sdesc,:icon,:typcd,:parent,:icon, :alia]
   end
 
   def sources

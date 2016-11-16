@@ -8,8 +8,8 @@ class Repo < ActiveRecord::Base
 
   include AlgoliaSearch
   algoliasearch auto_index: false, auto_remove: false, raise_on_failure: Rails.env.development?, force_utf8_encoding: true do
-    attributes :name, :description, :description_cn, :typcd, :typcd_zh, :rootyp, :rootyp_zh, :stargazers_count, :tag, :hidetags, :typdesc
-    attributesToIndex ['name', 'description', 'description_cn', 'tag', 'hidetags',  'typcd', 'typcd_zh', 'rootyp', 'rootyp_zh', 'typdesc']
+    attributes :name, :description, :description_cn, :typcd, :typcd_zh, :rootyp, :rootyp_zh, :stargazers_count, :tag, :hidetags, :typalia
+    attributesToIndex ['name, description, description_cn, tag, hidetags, typcd , typcd_zh, rootyp, rootyp_zh, typalia']
     customRanking ['desc(stargazers_count)']
   end
 
@@ -103,8 +103,8 @@ class Repo < ActiveRecord::Base
     (I18n.locale.to_s != 'en' and description_cn) ? description_cn : description
   end
 
-  def typdesc
-    "#{(Menutyp.find_by_key typcd).sdesc} #{(Menutyp.find_by_key rootyp).sdesc}"
+  def typalia
+    "#{(Menutyp.find_by_key typcd).alia} #{(Menutyp.find_by_key rootyp).alia}"
   end
   
   private

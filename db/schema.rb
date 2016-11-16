@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022040141) do
+ActiveRecord::Schema.define(version: 20161116145152) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20161022040141) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.integer  "home_index",               default: 0
+    t.string   "alia"
   end
 
   create_table "msgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -194,7 +195,7 @@ ActiveRecord::Schema.define(version: 20161022040141) do
     t.integer  "order",      default: 0
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "good_id"
     t.integer  "mem_id"
     t.integer  "amount"
