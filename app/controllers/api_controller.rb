@@ -49,7 +49,7 @@ class ApiController < ActionController::Base
   def subjects
     render json: {
       :items=> Subject.order('`order` desc')
-    }
+    }.to_json(:methods =>['cover_path'])
   end
 
   def subrepos

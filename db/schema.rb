@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20161116145152) do
     t.integer  "order",      default: 0
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "good_id"
     t.integer  "mem_id"
     t.integer  "amount"
