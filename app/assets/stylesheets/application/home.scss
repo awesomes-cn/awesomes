@@ -474,6 +474,21 @@
     }
   }
 
+  .home-extension {
+    text-align: center;
+    display: block;
+    color: #444;
+    text-decoration: none;
+    svg {
+      float: left;
+      animation: spin 2s infinite linear;
+    }
+
+    h3 {
+
+    }
+  }
+
   .home-subject{
     .pic{
       width: 100%;
@@ -839,4 +854,70 @@ h5.use-title{
     }
   }
   
+}
+
+.extension-banner {
+  background-color: #f4f5f5;
+  padding: 50px 0;
+  text-align: center;
+
+  .down-btn {
+    background-color: #d9534f;
+    display: inline-block;
+    padding: 5px 20px;
+    color: #FFF;
+    text-decoration: none;
+    margin: 40px 20px;
+
+    &.store {
+      background-color: #428bca
+    }
+  }
+}
+
+.ext-item {
+  padding: 80px ;
+  background-color: #F8F8F8;
+
+  .cover {
+    max-width: 300px;
+    box-shadow: 1px 1px 1px #DDD;
+    box-shadow: rgba(120, 120, 120, 0.42) 9px 9px 60px 0px;
+    border-radius: 4px
+  }
+
+  &:nth-child(even)  {
+    background-color: #f4f5f5;
+  }
+}
+
+.terminal-wraper {
+  text-align: center;
+
+  h3 {
+    margin-bottom: 30px;
+  }
+}
+
+.feature-title {
+  padding: 40px 0;
+  border-bottom: #DDD 1px dashed;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.feature-wraper {
+  text-align: center;
+  .fa {
+    font-size: 40px;
+    margin-bottom: 10px
+  }
+}
+
+/**
+  旋转动画
+**/
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

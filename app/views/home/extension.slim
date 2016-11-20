@@ -1,0 +1,96 @@
+=content_for :banner
+  div.extension-banner
+    h2 AWEB
+    h3 寻找前端插件，一步到位
+    a.down-btn.store[href="https://chrome.google.com/webstore/detail/aweb/idddhnefeeajhnndkpgganlncgeajiao" target="_blank"] 应用商店
+    a.down-btn[href="http://ofyh4t6qk.bkt.clouddn.com/Aweb.crx"] 直接下载
+
+  div.ext-item
+    div.row
+      div.col-md-6[style="text-align: right; padding-right: 10%"]
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex1.png"] 
+      div.col-md-6
+        h3 最新插件
+        p 初始打开Aweb即可看到最新的前端框架
+        p 文本框中为空时也会自动呈现
+        p
+          | 底部的参数依次为：
+          code 趋势
+          | 、
+          code 多少人在用
+          | 、
+          code Issue响应速度
+          | 、
+          code star数
+
+  div.ext-item
+    div.row
+      div.col-md-6[style="text-align: right; padding-right: 10%"]
+        h3 搜索插件
+        p 在文本框中输入要查询的关键字（中英文皆可）
+        p 回车即可列出相关的前端框架  
+      div.col-md-6
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex6.png"] 
+
+
+  div.ext-item.txt-center
+    h3 命令模式      
+    p
+      | 输入以
+      code<> #{':'}
+      | 开头的指令即可进入命令模式
+    img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex2.png"] 
+
+  div.ext-item.terminal-wraper
+    div.row
+      div.col-md-4
+        h3 前端TOP 100 
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex4.png"] 
+      div.col-md-4
+        h3 专题列表
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex3.png"] 
+      div.col-md-4
+        h3 专题详情
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex7.png"]  
+
+  div.ext-item
+    div.row
+      div.col-md-6[style="text-align: right; padding-right: 10%"]
+        h3 一键提交库
+        p
+          | 当打开一个GitHub仓库页面时，输入
+          code #{':+'}
+          | 命令调出提交面板
+
+        p
+          | 正确的地址格式为 
+          code https://github.com/jquery/jquery.....
+
+        p 然后选好分类点击提交按钮即可
+
+      div.col-md-6
+        img.cover[src="http://ofyh4t6qk.bkt.clouddn.com/ex5.png"]          
+  
+  div.ext-item.feature-wraper[style="background-color: #FFF"]
+    h3.feature-title 功能特性
+
+    div.row
+      div.col-md-4
+        i.fa.fa-database
+        h4 离线访问
+        p 由于Aweb会对常用的数据进行一定时间的缓存，所以可以在离线模式下也能正常的访问
+      
+      div.col-md-4
+        i.fa.fa-paper-plane-o
+        h4 持续操作
+        p 记录每次用户离开时的状态
+        p 再次打开时可持续操作
+      
+      div.col-md-4
+        i.fa.fa-language
+        h4 国际化
+        p 数据和操作都有中英两种语言可供选择
+        p 我们会根据不同地域的用户显示不同的语言
+
+          
+=content_for :con
