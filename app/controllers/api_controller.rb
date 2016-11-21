@@ -33,8 +33,14 @@ class ApiController < ActionController::Base
   end
 
   def search
+    _ids = Rails.cache.fetch("repo_search_" + params[:q], expires_in: 5.days) do
+      Repo.select('id').search(params[:q], {"hitsPerPage" => 50, "page" => 0}).map do |item|
+        item.id
+      end
+    end
+
     render json: {
-      :items=> repo_query.search(params[:q], {"hitsPerPage" => 40, "page" => 0})
+       :items=> repo_query.where(:id=>  _ids)
     }.to_json(:methods => ['cover_path','issue_friendly', 'link_url', 'description_i18'])
   end
 

@@ -3,7 +3,7 @@
 =content_for :con
   div.container.main-container
     =render 'repo/list_banner'
-    =cache "repo_search_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 2.day do
+    =cache "repo_search_#{url_all_para}_#{I18n.locale}",skip_digest: true,:expires_in => 5.day do
       =render 'repo/list' 
     
 
