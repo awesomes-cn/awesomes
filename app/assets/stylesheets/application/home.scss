@@ -878,8 +878,10 @@ h5.use-title{
 .ext-item {
   padding: 80px ;
   background-color: #F8F8F8;
+  word-break: break-all;
 
   .cover {
+    width: 100%;
     max-width: 300px;
     box-shadow: 1px 1px 1px #DDD;
     box-shadow: rgba(120, 120, 120, 0.42) 9px 9px 60px 0px;
