@@ -34,7 +34,7 @@ class ApiController < ActionController::Base
 
   def search
     _ids = Rails.cache.fetch("repo_search_" + params[:q], expires_in: 5.days) do
-      Repo.select('id').search(params[:q], {"hitsPerPage" => 50, "page" => 0}).map do |item|
+      Repo.select('id').search(params[:q], {"hitsPerPage" => 60, "page" => 0}).map do |item|
         item.id
       end
     end
@@ -48,7 +48,7 @@ class ApiController < ActionController::Base
     _map = {:hot => "(stargazers_count + forks_count + subscribers_count)", :trend => "trend"}
     _sort = params[:sort] || 'trend'
     render json: {
-      :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(50)
+      :items=> repo_query.where.not({rootyp: "NodeJS"}).order("#{_map[_sort.to_sym] } desc").limit(100)
     }.to_json(:methods => ['cover_path', 'issue_friendly', 'link_url', 'description_i18'])
   end
 
