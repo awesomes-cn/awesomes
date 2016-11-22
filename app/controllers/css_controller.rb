@@ -1,0 +1,2 @@
+class CssController < ApplicationController
+end

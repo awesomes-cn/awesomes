@@ -1,0 +1,138 @@
+=content_for :banner
+  link[rel="stylesheet" type="text/css" href="/codemirror/lib/codemirror.css"]
+
+  div.code-css-outer#code-wraper
+    // 编辑器
+    div.code-css-editor
+      div.toolbar
+
+        strong {{title}}
+        
+        
+        a.right.open-modal[href="javascript:void(0)" data-modal="media"]
+            i.fa.fa-file-image-o>
+            | 插入媒体
+
+          
+
+        
+        a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
+          i.fa>[class="{{isauto == 'true' ? 'fa-check-square' : 'fa-square-o'}}" ]
+          | 实时预览
+        
+        a.right[href="javascript:void(0)" v-on:click="preview()"]
+          i.fa.fa-play>
+          | 运行
+        
+
+        / a.right[href="javascript:void(0)"]
+        /   i.fa.fa-heart>
+        /   | 收藏
+        / / a.right[href="javascript:void(0)"]
+        /   i.fa.fa-share-alt> 
+        /   | 分享
+
+      div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
+        span[v-pre]
+          textarea#code-html
+        span.online-label HTML
+
+      div.splitx[v-on:mousedown="moveX($event, p1, p2)" v-bind:style="{height: p1.h}"]
+
+      div.p2.unselect[v-bind:style="{width: p2.w, height: p1.h}"]
+        span[v-pre]
+          textarea#code-js
+        span.online-label JavaScript
+
+      div.splitx[v-on:mousedown="moveX($event, p2, p3)" v-bind:style="{height: p1.h}"]
+
+      div.p3[v-bind:style="{width: p3.w, height: p1.h}"]
+        span[v-pre]
+          textarea#code-css 
+        span.online-label CSS
+
+      div.clear
+      div.splity[v-on:mousedown="moveY($event)"]
+      div.p4[v-bind:style="{height: p4.h}"]
+        iframe.code-preview#preview
+        div.window-cover
+  css:
+    .container {
+      width: 100%;
+    }
+    header {
+      display: none
+    }
+  
+  javascript:
+
+  script[src="/codemirror/addon/edit/closetag.js"]
+  script[src="/codemirror/addon/fold/xml-fold.js"]
+  script[src="/codemirror/mode/css/css.js"] 
+  script[src="/codemirror/code.js"] 
+
+=content_for :footer
+  // 插入媒体
+  div.modal-wraper[data-modal="media"]
+    div.modal-title
+      h3 插入媒体资源
+
+    div.panel.panel-default
+      div.panel-body
+        p
+          | 资源访问的根路径为
+          strong: code< http://vendor.awesomes.cn/
+        
+        h4 图片
+        p
+          | 可选择 
+          strong: code<> 1 - 5.jpg
+          | 5张图片
+        p 尺寸为
+        ul
+          li
+            strong: code<> 2-s
+            | 小图 （200 * 113）
+          li
+            strong: code<> 2
+            | 中图 （600 * 338）
+          li
+            strong: code<> 2-l
+            | 大图 （1200 * 675）
+          li
+            strong: code<> 2-xl
+            | 超大图 （1920 * 1080）
+        p
+          | 例子：
+          a<[href="http://vendor.awesomes.cn/3-s.jpg" target="_blank"] http://vendor.awesomes.cn/3-s.jpg 
+
+        h4 Pdf
+        p
+          | 可选择 
+          strong: code<> 1.pdf
+
+        h4 mp4
+        p
+          | 可选择 
+          strong: code<> 1.mp4
+
+
+    i.fa.fa-angle-up.close-modal  
+
+
+  // fork
+  div#fork-wraper.modal-wraper[data-modal="fork"]
+    div.modal-title
+      h3 Fork 该代码
+    =form_tag '/code/fork',method: "get",id: 'inform'
+      div.panel.panel-default
+        div.panel-body
+          div.form-group
+            a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
+            a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
+
+          div.form-group
+            span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
+
+    i.fa.fa-angle-up.close-modal          
+
