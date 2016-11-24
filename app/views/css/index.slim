@@ -5,16 +5,9 @@
     // 编辑器
     div.code-css-editor
       div.toolbar
-
-        strong {{title}}
-        
-        
         a.right.open-modal[href="javascript:void(0)" data-modal="media"]
             i.fa.fa-file-image-o>
             | 插入媒体
-
-          
-
         
         a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
           i.fa>[class="{{isauto == 'true' ? 'fa-check-square' : 'fa-square-o'}}" ]
@@ -31,45 +24,43 @@
         / / a.right[href="javascript:void(0)"]
         /   i.fa.fa-share-alt> 
         /   | 分享
-
+    
       div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
-        span[v-pre]
-          textarea#code-html
-        span.online-label HTML
+        iframe.code-preview#preview
+        div.window-cover
 
       div.splitx[v-on:mousedown="moveX($event, p1, p2)" v-bind:style="{height: p1.h}"]
 
-      div.p2.unselect[v-bind:style="{width: p2.w, height: p1.h}"]
-        span[v-pre]
-          textarea#code-js
-        span.online-label JavaScript
-
-      div.splitx[v-on:mousedown="moveX($event, p2, p3)" v-bind:style="{height: p1.h}"]
-
-      div.p3[v-bind:style="{width: p3.w, height: p1.h}"]
-        span[v-pre]
-          textarea#code-css 
-        span.online-label CSS
-
+      div.p2[v-bind:style="{width: p2.w, height: p2.h}"]
+        div.p3[v-bind:style="{height: p3.h}"]
+          span[v-pre]
+            textarea#code-html
+          span.online-label HTML
+        div.splity[v-on:mousedown="moveY($event)"]  
+        div.p4[v-bind:style="{height: p4.h}"]
+          span[v-pre]
+            textarea#code-css 
+          span.online-label CSS
       div.clear
-      div.splity[v-on:mousedown="moveY($event)"]
-      div.p4[v-bind:style="{height: p4.h}"]
-        iframe.code-preview#preview
-        div.window-cover
+      / div.splity[v-on:mousedown="moveY($event)"]
+      / div.p4[v-bind:style="{height: p4.h}"]
+      /   iframe.code-preview#preview
+      /   div.window-cover
   css:
     .container {
       width: 100%;
     }
-    header {
+    header,footer {
       display: none
     }
   
-  javascript:
+  
 
   script[src="/codemirror/addon/edit/closetag.js"]
   script[src="/codemirror/addon/fold/xml-fold.js"]
   script[src="/codemirror/mode/css/css.js"] 
-  script[src="/codemirror/code.js"] 
+  script[src="/codemirror/code.js"]
+
 
 =content_for :footer
   // 插入媒体

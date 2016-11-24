@@ -21,8 +21,8 @@ function initEditor(id){
     data: {
       p1: {w: 0, h: 100, ow: 0, oh: 0},
       p2: {w: 0, h: 100, ow: 0},
-      p3: {w: 0, h: 100, ow: 0},
-      p4: {h: 100, oh: 0},
+      p3: {h: 0, oh: 0},
+      p4: {h: 0, oh: 0},
       ox: 0,
       oy: 0,
       left: {w: 200, ow: 200, state: 'fold'},
@@ -40,22 +40,24 @@ function initEditor(id){
 
   
   // 初始化
-  var editareaw = $(id).find('.code-editor').width()
+  var editareaw = $(id).find('.code-css-editor').width()
 
-  var editareah = $(id).find('.code-editor').height()
+  var editareah = $(id).find('.code-css-editor').height()
   
-  var basew = parseInt(editareaw / 3)
-  var baseh = parseInt((editareah - 40) * 0.4)
+  var basew = parseInt(editareaw / 2)
+  var baseh = parseInt(editareah - 40)
   editor.p1.w = basew + 'px'
   editor.p1.h = baseh + 'px'
-  editor.p2.w = basew + 'px'
-  editor.p3.w = (editareaw - basew * 2 - 5 * 2) + 'px'
-  editor.p4.h = ((editareah - 40) - baseh - 5) + 'px'
+  editor.p2.w = (editareaw - basew  - 5 * 2) + 'px'
+  editor.p2.h = baseh + 'px'
+  editor.p3.h = baseh / 3 + 'px'
+  editor.p4.h = (baseh -  parseInt(editor.p3.h)) + 'px'
 
 
   
   // 横向移动
   editor.moveX = function(e, pleft, pright){
+    $('.window-cover').show()
     editor.ox = e.clientX
     pleft.ow = pleft.w
     pright.ow = pright.w
@@ -72,7 +74,7 @@ function initEditor(id){
   // 纵向移动
   editor.moveY = function(e){
     $('.window-cover').show()
-    var ptop = editor.p1
+    var ptop = editor.p3
     var pbottom = editor.p4
 
     editor.oy = e.clientY
@@ -137,7 +139,7 @@ function initEditor(id){
   editor.save = function(){
     $.post("/code/save", {
       css: cssCodeMirror.getValue(),
-      js: jsCodeMirror.getValue(),
+      //js: jsCodeMirror.getValue(),
       html: htmlCodeMirror.getValue(),
       id: itemid,
       rid: rid,
@@ -151,82 +153,13 @@ function initEditor(id){
       };
     })
   }
-  
-  //
-
-  // 获取CDN库
-  var libTimer;
-  editor.getLibs = function(){
-    clearTimeout(libTimer)
-    libTimer = setTimeout(function(){
-      editor.openBar()
-      editor.libLoadState = 'ing'
-      var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + editor.libkey + '*&fields=name'
-      //var url = 'https://api.cdnjs.com/libraries?search=' + editor.libkey + '&fields=assets'
-      $.get(url, {}, function(data){
-        editor.libs = _.sortBy(data, function(item){
-          return item.name.length
-        }).slice(0, 10).map(function(item){
-          item.assets = []
-          item.files = []
-          item.version = ''
-          return item
-        })
-        editor.libLoadState = 'end'
-      })
-    }, 500)
-  }
-
-  editor.showDetails = function(event, item){
-    editor.showSub(event) 
-    if (item.hasloaded) {return}
-    var url = 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=' + item.name + '&fields=assets'
-    $.get(url, {}, function(data){
-      $(event.target).find('.load').remove()
-      $(event.target).find('.level-2').show()
-      item.assets = _.sortBy(data[0].assets, function(asset){
-        return asset.version
-      }).reverse()
-      item.files = item.assets[0].files
-      item.version = item.assets[0].version
-      item.hasloaded = true
-    })
-    
-  }
-
-  editor.switchVersion = function(event, item){
-    item.version = $(event.target).val()
-    item.files = _.find(item.assets, function(asset){
-      return asset.version == item.version
-    }).files
-  }
-
-  editor.showSub = function(event){
-    $(event.target).find('ul:first').slideToggle()
-    event.stopPropagation()
-  }
-
-  editor.insertAsset = function(lib, file){
-    var version = lib.version
-    // cdnjs.cloudflare.com/ajax/libs/
-    var link =   '//cdn.jsdelivr.net/' + lib.name + '/' + version + '/' + file;
-
-    var srclink = '<script src="' + link + '"></script>';
-    if (/.+\.css$/.test(file)) {
-      srclink = '<link rel="stylesheet" media="all" href="' + link + '" />'
-    };
-    
-    htmlCodeMirror.setValue(htmlCodeMirror.getValue().replace(/(\s+)(<\/head>)/,'$1  ' + srclink + '$1$2'));
-  }
-
-
 
   return editor
 }
 
 function initCodeMirror(){
   htmlCodeMirror =  AddCodeMirror('#code-html', 'text/html') 
-  jsCodeMirror = AddCodeMirror('#code-js', 'javascript')
+  //jsCodeMirror = AddCodeMirror('#code-js', 'javascript')
   cssCodeMirror =  AddCodeMirror('#code-css', 'css')
 
   init_code()
@@ -238,9 +171,9 @@ function initCodeMirror(){
   cssCodeMirror.on("change", function(){
     editorChangeHander()
   })
-  jsCodeMirror.on("change", function(){
+  /*jsCodeMirror.on("change", function(){
     editorChangeHander()
-  })
+  })*/
 }
 
 function editorChangeHander(){
@@ -265,21 +198,21 @@ function AddCodeMirror(textareaId, mode){
 
 //- 初始化编辑器代码
 function init_code(){
-  var _html =  "<!DOCTYPE html>\n\
-<html>\n\
-<head>\n\
-  <meta charset='utf-8' \/> \n\
-<\/head>\n\
-<body>\n\
+  var _html =  "<div>\n\
   \n\
-<\/body>\n\
-<\/html>"; 
+  \n\
+<\/div>"; 
+
+  var _css = "body{\n\
+  margin: 0;  \n\
+  padding: 0;  \n\
+}"
   
 
   setTimeout(function(){
     htmlCodeMirror.setValue($('#code-html').val() || _html);
-    jsCodeMirror.setValue($("#code-js").val());
-    cssCodeMirror.setValue($("#code-css").val());
+    //jsCodeMirror.setValue($("#code-js").val());
+    cssCodeMirror.setValue($("#code-css").val() || _css);
     //editorVue.issaved = !isnew
     run_code()
   }, 1)
@@ -288,18 +221,29 @@ function init_code(){
 //- 运行
 function run_code(){
   var shtml = htmlCodeMirror.getValue()
-  var sjs = jsCodeMirror.getValue()
+  var _base =  "<!DOCTYPE html>\n\
+<html>\n\
+<head>\n\
+  <meta charset='utf-8' \/> \n\
+<\/head>\n\
+<body>\n\
+  \n\
+<\/body>\n\
+<\/html>";
+
+  shtml = _base.replace(/(\s+)(<\/body>)/,'$1  ' + shtml + '$1$2');
+
+  //var sjs = jsCodeMirror.getValue()
   var scss = cssCodeMirror.getValue()
 
   var previewFrame = $('#preview')[0];
   var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
 
-  var _js = "<script type='text/javascript'>\n\
-  " + sjs + "\n\
-  <\/script>";
   var _css = "<style>" + scss + "</style>";
   var _html = shtml.replace(/(\s+)(<\/head>)/,'$1  ' + _css + '$1$2');
-  _html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
+  
+
+  //_html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
   //_html = _html.replace(/src="(\s+)?\/jsdelivr\//g,'$1  ' + _js + '$1$2');
 
   console.log(_html)
