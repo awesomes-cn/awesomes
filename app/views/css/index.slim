@@ -5,6 +5,13 @@
     // 编辑器
     div.code-css-editor
       div.toolbar
+        -if @item.mem
+          a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
+        -else
+          a.open-login[href="#"] [未登录]
+
+        strong {{title}}
+
         a.right.open-modal[href="javascript:void(0)" data-modal="media"]
             i.fa.fa-file-image-o>
             | 插入媒体
@@ -16,6 +23,13 @@
         a.right[href="javascript:void(0)" v-on:click="preview()"]
           i.fa.fa-play>
           | 运行
+
+        -if @is_author
+          a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
+        
+        
+          a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
+            i.fa.fa-save  
         
 
         / a.right[href="javascript:void(0)"]
@@ -34,26 +48,60 @@
       div.p2[v-bind:style="{width: p2.w, height: p2.h}"]
         div.p3[v-bind:style="{height: p3.h}"]
           span[v-pre]
-            textarea#code-html
+            textarea#code-html =@item.html
           span.online-label HTML
         div.splity[v-on:mousedown="moveY($event)"]  
         div.p4[v-bind:style="{height: p4.h}"]
           span[v-pre]
-            textarea#code-css 
+            textarea#code-css =@item.css
           span.online-label CSS
       div.clear
-      / div.splity[v-on:mousedown="moveY($event)"]
-      / div.p4[v-bind:style="{height: p4.h}"]
-      /   iframe.code-preview#preview
-      /   div.window-cover
+
+      // 修改信息
+      div.modal-wraper[data-modal="info"]
+        div.modal-title
+          h3 修改标题
+
+        =form_tag '/code/info',method: "get",id: 'infoform'
+          div.panel.panel-default
+            div.panel-body
+              div.form-group
+                label 新的标题
+                input.form-control[type="text" name="title" v-model="title" value="#{@item.title}"]
+
+              div.form-group
+                input[type="hidden" value="#{@item.id}" name="id"]
+                button.btn.btn-default[type="submit"] 确认
+        i.fa.fa-angle-up.close-modal
+
   css:
     .container {
       width: 100%;
     }
-    header,footer {
+    footer {
       display: none
     }
   
+  javascript:
+    var isnew = #{@is_new}
+    var itemid = #{@item.id || 0}
+
+  coffee:
+    $('#infoform').validate
+      rules:
+        title:
+          required: true
+       
+      messages:
+        title:
+          required: '标题不能为空'
+      
+      submitHandler: (form)->
+        $(form).ajaxSubmit
+          success: (data)->
+            if(data.status)
+              closeModal()
+              
   
 
   script[src="/codemirror/addon/edit/closetag.js"]

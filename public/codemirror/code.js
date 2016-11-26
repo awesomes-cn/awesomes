@@ -137,19 +137,17 @@ function initEditor(id){
   
   // 保存
   editor.save = function(){
-    $.post("/code/save", {
+    $.post("/css/save", {
       css: cssCodeMirror.getValue(),
-      //js: jsCodeMirror.getValue(),
       html: htmlCodeMirror.getValue(),
       id: itemid,
-      rid: rid,
       title: editor.title
     }, function(data){
       if (data.status) {
         editorVue.issaved = true
-        //if (isnew) {
-         // window.location.href='/code/' + data.id 
-       // }
+        if (isnew) {
+          window.location.href='/css/' + data.id 
+        }
       };
     })
   }
