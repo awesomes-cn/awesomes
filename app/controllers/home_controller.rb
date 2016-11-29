@@ -187,6 +187,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def csscodes
+    render json: {
+      :items=> Code.where({:typcd=> 'css'}) #:status=> 'ACTIVED', 
+    }
+  end
+
   private
   def set_repos_list
     @sort = params[:sort].blank? ? :hot : params[:sort]

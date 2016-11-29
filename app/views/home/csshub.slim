@@ -2,4 +2,55 @@
   div.extension-banner
     h2 CSSHub
     h3 CSS 效果代码段
+
+
+=content_for :con
+  div.row
+    div.col-md-4[v-for="item in csscodes"]
+      div.css-hub[v-cloak]
+        div.code {{{item.html}}}
+        css:
+          {{item.css}}
+        
+        div.info
+          img.tx[src='http://192.168.1.120/openapi/files/uploads/images/cf5bbcb5d762681335dd744ff7bb4743.jpg']
+          span.like
+            i.fa.fa-heart>
+            | 10
+
+          span.like
+            i.fa.fa-eye>
+            | 1312  
+
+        div.opers
+          a[href="/css/{{item.id}}"]
+            i.fa.fa-pencil>
+            span 在线编辑  
+
+          a[href="#"]
+            i.fa.fa-search>
+            span 查看代码
+
+          
+
+        
+
+
     
+  javascript:
+    vueExtend.push({
+      data: {
+        csscodes: []
+      },
+      methods: {
+        initcss: function() {
+          $.get("/csscodes", {}, function(data){
+            App.csscodes =  data.items 
+          })
+        }
+      }
+    })
+
+    appInit.push(function(){
+      App.initcss()
+    })

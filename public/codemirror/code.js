@@ -198,7 +198,6 @@ function AddCodeMirror(textareaId, mode){
 function init_code(){
   var _html =  "<div>\n\
   \n\
-  \n\
 <\/div>"; 
 
   var _css = "body{\n\
@@ -210,7 +209,7 @@ function init_code(){
   setTimeout(function(){
     htmlCodeMirror.setValue($('#code-html').val() || _html);
     //jsCodeMirror.setValue($("#code-js").val());
-    cssCodeMirror.setValue($("#code-css").val() || _css);
+    //cssCodeMirror.setValue($("#code-css").val() || _css);
     //editorVue.issaved = !isnew
     run_code()
   }, 1)
