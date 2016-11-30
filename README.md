@@ -42,7 +42,7 @@ $ cd project_path && rails s
 
 ```
 
-6: visit the url [awesome.cn](http://localhost:3000)
+6: visit the url [awesomes.cn](http://localhost:3000)
 
 
 ## Contributors
