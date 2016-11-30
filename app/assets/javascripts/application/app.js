@@ -33,7 +33,8 @@ $(function(){
     if(open_login()){
       $('.modal-wraper[data-modal=' + $(this).attr('data-modal') + ']').show().animate({top: 0})
     }
-  })
+  }) 
+
 
   /**
    * 图片延迟加载
@@ -68,6 +69,11 @@ function closeModal(ele){
     $(this).hide()
   })
 }
+
+function openModal(ele){
+  $(ele).show().animate({top: 0})
+}
+
 
 
 function list_data($scope,$http,list_url,$scopeitems,$pagnation,callback){

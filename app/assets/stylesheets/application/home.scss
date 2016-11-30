@@ -857,9 +857,14 @@ h5.use-title{
   height: 300px;
 
   &:hover {
-    /* .opers {
-      display: block
-    } */
+    .info  {
+      .opers {
+        display: inline-block
+      } 
+      .like {
+        display: none;
+      }
+    }
   }
   .code {
     height: 200px;
@@ -893,24 +898,24 @@ h5.use-title{
       float: right;
       margin-left: 10px;
     }
+
+   
     
   }
 
   .opers {
-    margin-top: 20px;
     display: none;
+    float: right;
     a {
-      padding: 5px 10px;
+      padding: 3px 10px;
       background-color: #EEE;
       border: 0;
-      border-radius: 4px;
       background-color: rgba(25, 194, 255, 0.76);
       color: #FFF;
-      display: inline-block;
-      text-decoration: none;
-
+      text-decoration: none; 
+      float: right;
       &:nth-child(2) {
-        float: right;
+        
         background-color: rgba(239, 66, 69, 0.74);
       }
     }

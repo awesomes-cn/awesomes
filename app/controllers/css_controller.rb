@@ -1,5 +1,5 @@
 class CssController < ApplicationController
-  before_action :code_lost, :except=> ['libs', 'libversions', 'libfiles']
+  before_action :code_lost, :except=> ['code', 'libversions', 'libfiles']
 
   def code_lost
     @is_new = false
@@ -26,6 +26,10 @@ class CssController < ApplicationController
     })
 
     render json: {status: true, id: @item.id}
+  end
+
+  def code
+    render json: Code.find_by_id(params[:id])
   end
 
 end

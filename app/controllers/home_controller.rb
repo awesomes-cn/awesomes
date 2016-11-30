@@ -189,8 +189,8 @@ class HomeController < ApplicationController
 
   def csscodes
     render json: {
-      :items=> Code.where({:typcd=> 'css'}) #:status=> 'ACTIVED', 
-    }
+      :items=> Code.where({:typcd=> 'css'}).order('id desc') #:status=> 'ACTIVED', 
+    }.to_json(:include=> {:mem=> {:only=> ['nc'], :methods=> ['avatar_url']}})
   end
 
   private

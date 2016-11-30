@@ -13,7 +13,7 @@
           {{item.css}}
         
         div.info
-          img.tx[src='http://192.168.1.120/openapi/files/uploads/images/cf5bbcb5d762681335dd744ff7bb4743.jpg']
+          img.tx[src='{{item.mem.avatar_url}}']
           span.like
             i.fa.fa-heart>
             | 10
@@ -22,25 +22,50 @@
             i.fa.fa-eye>
             | 1312  
 
-        div.opers
-          a[href="/css/{{item.id}}"]
-            i.fa.fa-pencil>
-            span 在线编辑  
+          
+          div.opers
+            a[href="/css/{{item.id}}" title="在线编辑"]
+              i.fa.fa-pencil>
+              //span 在线编辑  
 
-          a[href="#"]
-            i.fa.fa-search>
-            span 查看代码
+            a[href="javascript:void(0)"  title="查看代码" v-on:click="previewCode(item)"]
+              i.fa.fa-search>
+              //span 查看代码
 
           
+  // 代码预览
+  div.modal-wraper#preview-wraper
+    //div.modal-title 插入媒体资源
 
-        
+    div.panel.panel-default
+      div.panel-body
+        pre[class="language-markup"]
+          code[class="language-markup"] {{showcode.html}}
 
+        pre[class="language-css"]
+          code[class="language-css"] {{showcode.css}}  
 
+    i.fa.fa-angle-up.close-modal   
+
+  scss:
+    #preview-wraper {
+      position: fixed;
+      width: 800px;
+      margin-left: -400px;
+      max-height: 100%;
+      overflow-y: scroll;
+
+      .modal-title {
+        position: fixed;
+        width: 100%
+      }
+    }
     
   javascript:
     vueExtend.push({
       data: {
-        csscodes: []
+        csscodes: [],
+        showcode: {}
       },
       methods: {
         initcss: function() {
@@ -50,6 +75,15 @@
             })
             App.csscodes =  data.items 
           })
+        },
+        previewCode: function(item) {
+          $.get('/css/code', {id: item.id}, function(data) {
+            App.showcode = data;
+            setTimeout(function() {
+              Prism.highlightAll();
+            }, 1000)
+          })
+          openModal('#preview-wraper')
         }
       }
     })
