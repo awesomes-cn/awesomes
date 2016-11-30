@@ -200,16 +200,13 @@ function init_code(){
   \n\
 <\/div>"; 
 
-  var _css = "body{\n\
-  margin: 0;  \n\
-  padding: 0;  \n\
-}"
+  var _css = ""
   
 
   setTimeout(function(){
     htmlCodeMirror.setValue($('#code-html').val() || _html);
     //jsCodeMirror.setValue($("#code-js").val());
-    //cssCodeMirror.setValue($("#code-css").val() || _css);
+    cssCodeMirror.setValue($("#code-css").val() || _css);
     //editorVue.issaved = !isnew
     run_code()
   }, 1)

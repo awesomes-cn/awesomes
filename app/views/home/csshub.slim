@@ -8,7 +8,7 @@
   div.row
     div.col-md-4[v-for="item in csscodes"]
       div.css-hub[v-cloak]
-        div.code {{{item.html}}}
+        div.code[class="code-part-{{item.id}}"] {{{item.html}}}
         css:
           {{item.css}}
         
@@ -45,11 +45,20 @@
       methods: {
         initcss: function() {
           $.get("/csscodes", {}, function(data){
+            data.items.forEach(function(item){
+              formatCss(item)
+            })
             App.csscodes =  data.items 
           })
         }
       }
     })
+
+    function formatCss(item) {
+      item.css = item.css.replace(/body([^{}]?)+{/, '.code-part-' + item.id + '{')
+      item.css = item.css.replace(/csshub/g, 'csshub-' + item.id)
+      item.html = item.html.replace(/(class\s*=["']\s*)csshub/g, '$1csshub-' + item.id)
+    }
 
     appInit.push(function(){
       App.initcss()
