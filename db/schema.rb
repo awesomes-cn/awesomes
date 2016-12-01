@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126070338) do
+ActiveRecord::Schema.define(version: 20161201074437) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20161126070338) do
     t.datetime "updated_at",                                  null: false
     t.float    "wealth",     limit: 24,    default: 0.0
     t.string   "typcd",                    default: "repo"
+    t.integer  "favor",                    default: 0
+    t.integer  "comment",                  default: 0
   end
 
   add_index "codes", ["mem_id"], name: "index_codes_on_mem_id", using: :btree

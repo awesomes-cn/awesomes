@@ -22,7 +22,8 @@ class Comment < ActiveRecord::Base
     {
       :REPO=> Repo,
       :REPOEXPERIENCE=> Repo,
-      :TOPIC=> Topic
+      :TOPIC=> Topic,
+      :CODE=> Code
     }[typ.to_sym].send :find,idcd
   end
 

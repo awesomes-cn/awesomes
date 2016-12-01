@@ -28,7 +28,7 @@
               i.fa.fa-pencil>
               //span 在线编辑  
 
-            a[href="javascript:void(0)"  title="查看代码" v-on:click="previewCode(item)"]
+            a[v-on:click="previewCode(item, $event)" href="javascript:void(0)"  title="查看代码" ]
               i.fa.fa-search>
               //span 查看代码
 
@@ -40,12 +40,12 @@
     div.panel.panel-default
       div.panel-body
         pre[class="language-markup"]
-          code[class="language-markup"] {{showcode.html}}
+          code[class="language-markup"] {{{showcode.html}}}
 
         pre[class="language-css"]
-          code[class="language-css"] {{showcode.css}}  
+          code[class="language-css"] {{{showcode.css}}}  
 
-    i.fa.fa-angle-up.close-modal   
+    //i.fa.fa-angle-up.close-modal   
 
   scss:
     #preview-wraper {
@@ -76,14 +76,15 @@
             App.csscodes =  data.items 
           })
         },
-        previewCode: function(item) {
+        previewCode: function(item, event) {
           $.get('/css/code', {id: item.id}, function(data) {
+            data.html = Prism.highlight(data.html,  Prism.languages.markup)
+            data.css = Prism.highlight(data.css,  Prism.languages.css)
             App.showcode = data;
-            setTimeout(function() {
-              Prism.highlightAll();
-            }, 1000)
           })
           openModal('#preview-wraper')
+          event.stopPropagation();
+
         }
       }
     })
@@ -96,4 +97,14 @@
 
     appInit.push(function(){
       App.initcss()
+    })
+
+    $(function() {
+      $(document).click(function() {
+        closeModal('#preview-wraper')
+      })
+
+      $('#preview-wraper').click(function(event) {
+        event.stopPropagation();
+      })
     })

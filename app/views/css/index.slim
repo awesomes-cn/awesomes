@@ -10,26 +10,32 @@
         -else
           a.open-login[href="#"] [未登录]
 
-        strong {{title}}
+        //strong {{title}}
 
-        a.right.open-modal[href="javascript:void(0)" data-modal="media"]
+        a.open-modal[href="javascript:void(0)" data-modal="media" title="插入媒体"]
             i.fa.fa-file-image-o>
-            | 插入媒体
+            //| 插入媒体
+
+         
         
-        a.right[href="javascript:void(0)" v-on:click="switchAuto()"]
-          i.fa>[class="{{isauto == 'true' ? 'fa-check-square' : 'fa-square-o'}}" ]
-          | 实时预览
-        
-        a.right[href="javascript:void(0)" v-on:click="preview()"]
-          i.fa.fa-play>
-          | 运行
+        a.open-modal[href="javascript:void(0)" data-modal="media" title="Fork" v-show="!isnew"]
+          i.fa.fa-code-fork
 
         -if @is_author
-          a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
+          / a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
         
         
           a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
-            i.fa.fa-save  
+            i.fa.fa-save
+
+        
+        a.open-login.favor[href="javascript:void(0)" title="收藏" v-show="!isnew" v-on:click="favorcss()"  class="active-{{isfavord}}"]
+          i.fa.fa-heart
+          div[v-show="codeitem.favor > 0"] {{codeitem.favor}}
+
+        a[href="javascript:void(0)" title="评论" v-show="!isnew" v-on:click="switchComment()" ]
+          i.fa.fa-comment-o 
+          div[v-show="codeitem.comment > 0" ] {{codeitem.comment}}    
         
 
         / a.right[href="javascript:void(0)"]
@@ -38,7 +44,8 @@
         / / a.right[href="javascript:void(0)"]
         /   i.fa.fa-share-alt> 
         /   | 分享
-    
+        
+
       div.p1[v-bind:style="{width: p1.w, height: p1.h}"]
         iframe.code-preview#preview
         div.window-cover
@@ -57,6 +64,8 @@
           span.online-label CSS
       div.clear
 
+
+
       // 修改信息
       div.modal-wraper[data-modal="info"]
         div.modal-title
@@ -73,7 +82,14 @@
                 input[type="hidden" value="#{@item.id}" name="id"]
                 button.btn.btn-default[type="submit"] 确认
         i.fa.fa-angle-up.close-modal
-
+   
+  //- 评论栏
+  div.comment-bar
+    div.comment-panel
+      div.co-title
+        h4 评论列表 
+      div =comment('CODE', @item.id)
+          
   css:
     .container {
       width: 100%;
@@ -81,9 +97,11 @@
     footer {
       display: none
     }
+    .navbar {
+      box-shadow: none;
+    }
   
   javascript:
-    var isnew = #{@is_new}
     var itemid = #{@item.id || 0}
 
   coffee:
@@ -108,7 +126,6 @@
   script[src="/codemirror/addon/fold/xml-fold.js"]
   script[src="/codemirror/mode/css/css.js"] 
   script[src="/codemirror/code.js"]
-
 
 =content_for :footer
   // 插入媒体

@@ -19,7 +19,6 @@ class CssController < ApplicationController
   def save
     render json: {status: false} and return if @item.mem_id != current_mem.id
     @item.update_attributes({
-      :js=> params[:js],
       :css=> params[:css],
       :html=> params[:html],
       :title=> params[:title]

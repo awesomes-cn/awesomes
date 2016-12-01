@@ -1,4 +1,10 @@
 var editorVue,htmlCodeMirror, jsCodeMirror, cssCodeMirror;
+var favorpara = {
+  opertyp: 'FAVOR',
+  typ: 'CODE',
+  idcd: itemid
+}
+
 
 $(function(){
   editorVue = initEditor('#code-wraper')
@@ -8,6 +14,7 @@ $(function(){
     $('.window-cover').hide()
   })
 
+  
   initCodeMirror()
 
 })
@@ -15,10 +22,13 @@ $(function(){
 
 
 function initEditor(id){
-  console.log(localStorage.autoruncode)
+  
   var editor = new Vue({
     el: id,
     data: {
+      codeitem: {
+        favor: 0
+      },
       p1: {w: 0, h: 100, ow: 0, oh: 0},
       p2: {w: 0, h: 100, ow: 0},
       p3: {h: 0, oh: 0},
@@ -30,10 +40,11 @@ function initEditor(id){
       isauto: localStorage.autoruncode || 'false',
       login: Rails.login,
       issaved: true,
-      libs: [],
+      isnew: true,
       libkey: '',
       toolboxState: 'closed',
-      libLoadState: 'ready'
+      libLoadState: 'ready',
+      isfavord: false
 
     }
   })
@@ -53,7 +64,51 @@ function initEditor(id){
   editor.p3.h = baseh / 3 + 'px'
   editor.p4.h = (baseh -  parseInt(editor.p3.h)) + 'px'
 
+ 
+  //初始化数据
+  
+  $.get('/css/code', {id: itemid}, function(data) {
+    editor.isnew = !data
+    editor.codeitem = data || editor.codeitem
 
+    if(data) {
+      $.post("/oper/whether", favorpara, function(data){
+        editor.isfavord =  data 
+      })
+    }
+
+  })
+
+
+  // 喜欢
+  editor.favorcss = function () {
+    favorpara.idcd = editor.codeitem.id
+    $.post("/oper/update", favorpara, function(data){
+      editor.isfavord =  data.state
+      editor.codeitem.favor = data.count 
+    })
+  }
+
+  // 打开评论栏
+  editor.switchComment  = function () {
+    if(editor.commentState ==  'open') {
+      editor.closeComment()
+    } else {
+      editor.openComment()  
+    }
+  }
+
+  editor.openComment  = function () {
+    $('.comment-bar').animate({left: 40}, function(){
+      editor.commentState = 'open'
+    })
+  }
+
+  editor.closeComment  = function () {
+    $('.comment-bar').animate({left: -560}, function(){
+      editor.commentState = 'closed'
+    })
+  }
   
   // 横向移动
   editor.moveX = function(e, pleft, pright){
@@ -94,23 +149,7 @@ function initEditor(id){
   editor.preview = function(){
     run_code()
   }
-  
-
-  editor.openBar = function(){
-   editor.toolboxState = 'ing'
-    $('#toolbox').animate({right: 1}, function(){
-      editor.toolboxState = 'open'
-    })
-  }
-  editor.closeBar = function(){
-    editor.toolboxState = 'ing'
-    $('#toolbox').animate({right: -300}, function(){
-      editor.toolboxState = 'closed'
-    })
-  }
-
-  
-  
+   
 
 
   // 切换自动运行
@@ -145,8 +184,11 @@ function initEditor(id){
     }, function(data){
       if (data.status) {
         editorVue.issaved = true
-        if (isnew) {
-          window.location.href='/css/' + data.id 
+        if (editor.isnew) {
+          Core.alert('success', '新增CSS代码成功')
+          window.history.pushState(null, null, '/css/' + data.id)
+          editor.isnew = false
+          editor.codeitem.id = data.id
         }
       };
     })
@@ -155,7 +197,7 @@ function initEditor(id){
   return editor
 }
 
-function initCodeMirror(){
+function initCodeMirror(){ 
   htmlCodeMirror =  AddCodeMirror('#code-html', 'text/html') 
   //jsCodeMirror = AddCodeMirror('#code-js', 'javascript')
   cssCodeMirror =  AddCodeMirror('#code-css', 'css')
@@ -169,16 +211,11 @@ function initCodeMirror(){
   cssCodeMirror.on("change", function(){
     editorChangeHander()
   })
-  /*jsCodeMirror.on("change", function(){
-    editorChangeHander()
-  })*/
 }
 
 function editorChangeHander(){
   editorVue.issaved = false
-  if (editorVue.isauto == 'true') {
-    run_code()
-  };
+  run_code()
 }
 
 
@@ -240,7 +277,7 @@ function run_code(){
   //_html = _html.replace(/(\s+)(<\/body>)/,'$1  ' + _js + '$1$2');
   //_html = _html.replace(/src="(\s+)?\/jsdelivr\//g,'$1  ' + _js + '$1$2');
 
-  console.log(_html)
+  
   preview.open();
   preview.write(_html); 
   preview.close();

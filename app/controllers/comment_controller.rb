@@ -28,6 +28,7 @@ class CommentController < ApplicationController
 
   def destroy
     @item.destroy
+    @item.target.update_comment
     render json: {status: true}
   end
 
