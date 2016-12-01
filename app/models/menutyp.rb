@@ -1,7 +1,7 @@
 class Menutyp < ActiveRecord::Base
 
-  scope :root_menus, -> { where typcd: :A }
-  scope :sub_menus, -> { where typcd: :B }
+  scope :root_menus, -> { where typcd: :A, group: :REPO}
+  scope :sub_menus, -> { where typcd: :B,  group: :REPO }
 
   @@CACHE_KEY="MENUTYP"
 
@@ -15,7 +15,7 @@ class Menutyp < ActiveRecord::Base
   end
 
   def self.menu_a key
-    Menutyp.find_by({:key=> key, :parent=> ''})
+    Menutyp.find_by({:key=> key, :parent=> '', :group=> 'REPO'})
   end
 
   def self.menu_b key,parent
@@ -23,7 +23,7 @@ class Menutyp < ActiveRecord::Base
   end
 
   def self.menus typcd
-    Menutyp.where({:typcd=> typcd}).all
+    Menutyp.where({:typcd=> typcd, :group=> 'REPO'}).all
   end
 
   def self.menusc par

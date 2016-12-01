@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201074437) do
+ActiveRecord::Schema.define(version: 20161201164630) do
 
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161201074437) do
     t.string   "typcd",                    default: "repo"
     t.integer  "favor",                    default: 0
     t.integer  "comment",                  default: 0
+    t.string   "group"
   end
 
   add_index "codes", ["mem_id"], name: "index_codes_on_mem_id", using: :btree
@@ -170,10 +171,11 @@ ActiveRecord::Schema.define(version: 20161201074437) do
     t.text     "home",       limit: 65535
     t.integer  "num",                      default: 0
     t.string   "icon"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "home_index",               default: 0
     t.string   "alia"
+    t.string   "group",                    default: "REPO"
   end
 
   create_table "msgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -198,7 +200,7 @@ ActiveRecord::Schema.define(version: 20161201074437) do
     t.integer  "order",      default: 0
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "good_id"
     t.integer  "mem_id"
     t.integer  "amount"

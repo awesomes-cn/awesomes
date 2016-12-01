@@ -32,7 +32,7 @@
             h4.modal-title#myModalLabel {{edit_item.key}} - {{edit_item.sdesc}}
 
           div.modal-body
-            -['key','typcd','sdesc','parent','icon', 'alia'].each do |field|
+            -['key','typcd','sdesc','parent','icon', 'alia', 'group'].each do |field|
               div.form-group
                 label =field
                 input.form-control[type="text"  v-model="edit_item.#{field}"]

@@ -187,9 +187,14 @@ class HomeController < ApplicationController
     end
   end
 
+  def csshub
+    @categorys = Menutyp.where({:group=> 'CSS'}) 
+  end
+
   def csscodes
+    _group = params[:group]
     render json: {
-      :items=> Code.where({:typcd=> 'css'}).order('id desc') #:status=> 'ACTIVED', 
+      :items=> (_group.blank?? Code : Code.where({:group=> _group})).where({:typcd=> 'css'}).order('id desc') #:status=> 'ACTIVED', 
     }.to_json(:include=> {:mem=> {:only=> ['nc'], :methods=> ['avatar_url']}})
   end
 

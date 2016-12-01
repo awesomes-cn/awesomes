@@ -17,7 +17,8 @@ class Admin::CategoryController < AdminController
       :parent=> params[:parent],
       :typcd=> params[:typcd],
       :icon=> params[:icon],
-      :alia=> params[:alia]
+      :alia=> params[:alia],
+      :group=> params[:group]
     }
 
     _item = Menutyp.find_by_id(params[:id])

@@ -8,7 +8,7 @@
         -if @item.mem
           a[href="/mem/#{@item.mem.id}" target="_blank"]: img.tx[src="#{@item.mem.avatar_url}"]
         -else
-          a.open-login[href="#"] [未登录]
+          a.open-login[href="#"] 登录
 
         //strong {{title}}
 
@@ -18,17 +18,19 @@
 
          
         
-        a.open-modal[href="javascript:void(0)" data-modal="media" title="Fork" v-show="!isnew"]
-          i.fa.fa-code-fork
+        
 
         -if @is_author
-          / a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
+          a.open-login-modal[href="javascript:void(0)" title="编辑" data-modal="info"]: i.fa.fa-pencil<
         
         
           a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
             i.fa.fa-save
 
-        
+        a.open-login[href="javascript:void(0)" data-modal="media" title="Fork" v-show="!isnew"]
+          i.fa.fa-code-fork
+
+          
         a.open-login.favor[href="javascript:void(0)" title="收藏" v-show="!isnew" v-on:click="favorcss()"  class="active-{{isfavord}}"]
           i.fa.fa-heart
           div[v-show="codeitem.favor > 0"] {{codeitem.favor}}
@@ -85,10 +87,13 @@
    
   //- 评论栏
   div.comment-bar
-    div.comment-panel
-      div.co-title
-        h4 评论列表 
-      div =comment('CODE', @item.id)
+    div.inner
+      i.fa.fa-close[v-on:click="closeComment()"] 
+      div.comment-panel
+        div.co-title
+          h4 评论列表 
+        div =comment('CODE', @item.id)
+
           
   css:
     .container {
@@ -100,9 +105,33 @@
     .navbar {
       box-shadow: none;
     }
+
+    .comment-panel .co-title {
+      padding: 15px;
+    }
+
+    .comment-wraper li {
+      border-bottom: #cfd8de 1px solid
+    }
+
+    .comment-wraper .tx {
+      border-radius: 100%
+    }
+
+    .comment-wraper .CodeMirror {
+        background: rgba(255, 255, 255, 0.67)
+    }
   
   javascript:
     var itemid = #{@item.id || 0}
+
+    vueExtend.push({
+      methods: {
+        closeComment: function() {
+          editorVue.closeComment()
+        }
+      }
+    })
 
   coffee:
     $('#infoform').validate

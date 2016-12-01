@@ -122,5 +122,19 @@
   background-color: #eceff1;
   z-index: 100;
   overflow-y: scroll;
+  padding-top: 50px;
+
+  .inner {
+    position: relative;
+  }
+
+  .fa-close   {
+    font-size: 30px;
+    position: absolute;
+    color: #DDD;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
 }
 

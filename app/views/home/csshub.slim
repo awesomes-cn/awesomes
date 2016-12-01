@@ -1,10 +1,17 @@
 =content_for :banner
-  div.extension-banner
-    h2 CSSHub
-    h3 CSS 效果代码段
+  div.extension-banner.csshub-banner
+    h2
+      span CSS
+      span Hub
 
 
 =content_for :con
+  div.css-category
+    ul
+      -@categorys.each do |cate|
+        li[class="active-#{cate.key == params[:group]}"]: a[href="/csshub?group=#{cate.key}"]
+          i.fa>[class="#{cate.icon}"]
+          span =cate.sdesc 
   div.row
     div.col-md-4[v-for="item in csscodes"]
       div.css-hub[v-cloak]
@@ -16,11 +23,11 @@
           img.tx[src='{{item.mem.avatar_url}}']
           span.like
             i.fa.fa-heart>
-            | 10
+            | {{item.favor}}
 
           span.like
-            i.fa.fa-eye>
-            | 1312  
+            i.fa.fa-comment-o>
+            | {{item.comment}}  
 
           
           div.opers
@@ -60,6 +67,8 @@
         width: 100%
       }
     }
+
+
     
   javascript:
     vueExtend.push({
@@ -69,7 +78,7 @@
       },
       methods: {
         initcss: function() {
-          $.get("/csscodes", {}, function(data){
+          $.get("/csscodes", {group: '#{params[:group]}'}, function(data){
             data.items.forEach(function(item){
               formatCss(item)
             })
