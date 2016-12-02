@@ -1,8 +1,10 @@
 =content_for :banner
   div.extension-banner.csshub-banner
-    h2
-      span CSS
-      span Hub
+    h3 CSSHub
+    
+    p 实用的纯 CSS UI效果代码段，带你体验 CSS 的魅力和强大
+
+    a.share-btn[href=""] 我要分享
 
 
 =content_for :con
@@ -21,7 +23,7 @@
         
         div.info
           img.tx[src='{{item.mem.avatar_url}}']
-          span.like
+          span.like[class="active-{{item.isfavord}}"]
             i.fa.fa-heart>
             | {{item.favor}}
 
@@ -37,7 +39,9 @@
 
             a[v-on:click="previewCode(item, $event)" href="javascript:void(0)"  title="查看代码" ]
               i.fa.fa-search>
-              //span 查看代码
+            
+            a.open-login[v-on:click="" href="javascript:void(0)"  title="收藏" ]
+              i.fa.fa-heart>
 
           
   // 代码预览
@@ -79,11 +83,23 @@
       methods: {
         initcss: function() {
           $.get("/csscodes", {group: '#{params[:group]}'}, function(data){
+            App.initfavors()
             data.items.forEach(function(item){
               formatCss(item)
             })
             App.csscodes =  data.items 
           })
+        },
+        initfavors: function () {
+          if(Rails.islogin) {
+            $.get('/mem/favorcss', function(data) {
+              App.csscodes.forEach(function(item) {
+                if(data.indexOf(item.id) > -1) {
+                  item.isfavord = true
+                }
+              })
+            })
+          }
         },
         previewCode: function(item, event) {
           $.get('/css/code', {id: item.id}, function(data) {
@@ -102,6 +118,7 @@
       item.css = item.css.replace(/body([^{}]?)+{/, '.code-part-' + item.id + '{')
       item.css = item.css.replace(/csshub/g, 'csshub-' + item.id)
       item.html = item.html.replace(/csshub-/g, 'csshub-' + item.id + '-')
+      item.isfavord = false
     }
 
     appInit.push(function(){

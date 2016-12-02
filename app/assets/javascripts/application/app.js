@@ -65,7 +65,7 @@ function close_login(){
 
 // 关闭弹框
 function closeModal(ele){
-  $('.modal-wraper').animate({top: '-100%'}, function(){
+  $(ele).animate({top: '-100%'}, function(){
     $(this).hide()
   })
 }
