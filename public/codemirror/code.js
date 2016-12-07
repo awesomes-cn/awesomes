@@ -5,6 +5,7 @@ var favorpara = {
   idcd: itemid
 }
 
+var editorInit = false;
 
 $(function(){
   editorVue = initEditor('#code-wraper')
@@ -158,17 +159,16 @@ function initEditor(id){
     localStorage.autoruncode = editor.isauto
   }
 
-  editor.fork = function(typ){
+editor.fork = function(typ){
     if(open_login()){
       $.post('/code/fork', {
         id: itemid,
         css: cssCodeMirror.getValue(),
-        js: jsCodeMirror.getValue(),
         html: htmlCodeMirror.getValue(),
         typ: typ
       }, function(data) {
         if (data.status) {
-          window.location.href="/code/" + data.id
+          window.location.href="/css/" + data.id
         }
       })
     }
@@ -214,7 +214,7 @@ function initCodeMirror(){
 }
 
 function editorChangeHander(){
-  editorVue.issaved = false
+  if(editorInit) { editorVue.issaved = false }
   run_code()
 }
 
@@ -246,6 +246,7 @@ function init_code(){
     cssCodeMirror.setValue($("#code-css").val() || _css);
     //editorVue.issaved = !isnew
     run_code()
+    editorInit = true
   }, 1)
 }
 

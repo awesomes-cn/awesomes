@@ -97,7 +97,7 @@ class MemController < ApplicationController
   end
 
   def favorcss
-    render json: Oper.where({:mem_id => current_mem.id, :opertyp=> 'FAVOR', :typ=> 'CODE'}).pluck('id')
+    render json: Oper.where({:mem_id => current_mem.id, :opertyp=> 'FAVOR', :typ=> 'CODE'}).pluck('idcd')
   end
 
 

@@ -9,7 +9,7 @@ default: &default
 
 development:
   <<: *default
-  database: dev_awesomes
+  database: webs
 
 test:
   <<: *default

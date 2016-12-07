@@ -20,7 +20,7 @@
               i.fa.fa-pencil[v-on:click="edit(sub)"]
               i.fa.fa-trash<>[v-on:click="destroy(sub)"]
     
-    button.btn.btn-default[v-on:click="edit({})"]
+    button.btn.btn-default[v-on:click="edit({typcd: 'A'})"]
       i.fa.fa-plus>
       span 添加分类  
     //- 弹出框
@@ -53,7 +53,7 @@
         $('#myModal').modal('show')
 
       app.$set 'save', ()->
-          $.post '/admin/category/save',app.edit_item,(data)->
+          $.post '/admin/category/save', app.edit_item, (data)->
             if app.edit_item.id != data.id
               app.items.push data
             app.edit_item = data

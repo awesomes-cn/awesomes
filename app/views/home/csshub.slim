@@ -4,7 +4,7 @@
     
     p 实用的纯 CSS UI效果代码段，带你体验 CSS 的魅力和强大
 
-    a.share-btn[href=""] 我要分享
+    a.share-btn[href="/css"] 我要分享
 
 
 =content_for :con
@@ -40,7 +40,7 @@
             a[v-on:click="previewCode(item, $event)" href="javascript:void(0)"  title="查看代码" ]
               i.fa.fa-search>
             
-            a.open-login[v-on:click="" href="javascript:void(0)"  title="收藏" ]
+            a.open-login[ href="javascript:void(0)"  title="收藏" class="active-{{item.isfavord}}" v-on:click="favorcss(item)"]
               i.fa.fa-heart>
 
           
@@ -90,6 +90,7 @@
             App.csscodes =  data.items 
           })
         },
+
         initfavors: function () {
           if(Rails.islogin) {
             $.get('/mem/favorcss', function(data) {
@@ -101,6 +102,7 @@
             })
           }
         },
+
         previewCode: function(item, event) {
           $.get('/css/code', {id: item.id}, function(data) {
             data.html = Prism.highlight(data.html,  Prism.languages.markup)
@@ -110,6 +112,17 @@
           openModal('#preview-wraper')
           event.stopPropagation();
 
+        },
+
+        favorcss: function (item) {
+          $.post("/oper/update",  {
+            opertyp: 'FAVOR',
+            typ: 'CODE',
+            idcd: item.id
+          }
+          , function(data){
+            item.isfavord =  data.state
+          })
         }
       }
     })

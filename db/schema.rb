@@ -190,6 +190,18 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.datetime "updated_at",                                  null: false
   end
 
+  create_table "notifies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "mem_id"
+    t.string   "typcd"
+    t.integer  "amount",     default: 0
+    t.string   "desc"
+    t.string   "fdesc"
+    t.string   "state",      default: "UNREAD"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "link"
+  end
+
   create_table "opers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "typ"
     t.integer  "idcd"
@@ -200,7 +212,7 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.integer  "order",      default: 0
   end
 
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "good_id"
     t.integer  "mem_id"
     t.integer  "amount"
@@ -238,6 +250,12 @@ ActiveRecord::Schema.define(version: 20161201164630) do
   end
 
   add_index "releases", ["repo_id"], name: "index_releases_on_repo_id", using: :btree
+
+  create_table "repo_notifies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "repo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "repo_resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "recsts",     limit: 2, default: "1"

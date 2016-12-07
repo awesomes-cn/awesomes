@@ -859,10 +859,18 @@ h5.use-title{
   &:hover {
     .info  {
       .opers {
-        display: inline-block
+        display: inline-block;
+
+        a.active-true {
+          color: rgba(239, 66, 69, 0.74)
+        }
       } 
       .like {
         display: none;
+
+        &.active-true {
+          
+        }
       }
     }
   }
@@ -921,7 +929,7 @@ h5.use-title{
         background-color: rgba(239, 66, 69, 0.74);
       };
       &:nth-child(3) {
-        background-color: rgba(63, 230, 132, 0.74);
+        background-color: rgba(169, 169, 169, 0.74);
       }
 
     }

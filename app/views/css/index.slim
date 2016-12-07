@@ -27,7 +27,7 @@
           a<[href="javascript:void(0)"  v-show="!issaved" title="保存" v-on:click="save(#{@item.id})"]
             i.fa.fa-save
 
-        a.open-login[href="javascript:void(0)" data-modal="media" title="Fork" v-show="!isnew"]
+        a.open-modal[href="javascript:void(0)" data-modal="fork" title="Fork" v-show="!isnew"]
           i.fa.fa-code-fork
 
           
@@ -71,20 +71,37 @@
       // 修改信息
       div.modal-wraper[data-modal="info"]
         div.modal-title
-          h3 修改标题
+          h3 代码信息
 
         =form_tag '/code/info',method: "get",id: 'infoform'
           div.panel.panel-default
             div.panel-body
               div.form-group
-                label 新的标题
-                input.form-control[type="text" name="title" v-model="title" value="#{@item.title}"]
+                label> 代码标签
+                -@categorys.each do |cate|
+                  span[value="#{cate.key}"] =cate.sdesc
 
               div.form-group
                 input[type="hidden" value="#{@item.id}" name="id"]
                 button.btn.btn-default[type="submit"] 确认
         i.fa.fa-angle-up.close-modal
-   
+ 
+      // fork
+      div#fork-wraper.modal-wraper[data-modal="fork"]
+        div.modal-title
+          h3 Fork 该代码
+        =form_tag '/code/fork', method: "get", id: 'inform'
+          div.panel.panel-default
+            div.panel-body
+              div.form-group
+                a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
+                a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
+
+              div.form-group
+                span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
+
+        i.fa.fa-angle-up.close-modal   
+  
   //- 评论栏
   div.comment-bar
     div.inner
@@ -205,19 +222,5 @@
     i.fa.fa-angle-up.close-modal  
 
 
-  // fork
-  div#fork-wraper.modal-wraper[data-modal="fork"]
-    div.modal-title
-      h3 Fork 该代码
-    =form_tag '/code/fork',method: "get",id: 'inform'
-      div.panel.panel-default
-        div.panel-body
-          div.form-group
-            a.btn.btn-default[v-on:click="fork('old')"] Fork原代码
-            a.btn.btn-default[v-on:click="fork('new')"] Fork编辑后的代码
-
-          div.form-group
-            span 注：你可以选择 Fork 原作者的代码或你在其之上修改的代码（即现在的编辑器中的代码）这样做的目的是将你在原代码上面做的修改快速复制到自己的新代码中
-
-    i.fa.fa-angle-up.close-modal          
+        
 

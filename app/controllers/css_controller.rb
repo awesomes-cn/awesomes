@@ -16,6 +16,10 @@ class CssController < ApplicationController
     
   end
 
+  def index
+    @categorys = Menutyp.where({:group=> 'CSS'}) 
+  end
+
   def save
     render json: {status: false} and return if @item.mem_id != current_mem.id
     @item.update_attributes({
