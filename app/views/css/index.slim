@@ -69,21 +69,20 @@
 
 
       // 修改信息
-      div.modal-wraper[data-modal="info"]
+      div.modal-wraper.csss-info-wraper[data-modal="info"]
         div.modal-title
           h3 代码信息
 
-        =form_tag '/code/info',method: "get",id: 'infoform'
-          div.panel.panel-default
-            div.panel-body
-              div.form-group
-                label> 代码标签
-                -@categorys.each do |cate|
-                  span[value="#{cate.key}"] =cate.sdesc
+        
+        div.panel.panel-default
+          div.panel-body
+            div.form-group
+              label> 代码标签
+              span.cate-label[value="{{cate.key}}" v-on:click="cate.checked = !cate.checked" v-for="cate in categorys" class="{{cate.checked ? 'active' : ''}}"] {{cate.sdesc}}
 
-              div.form-group
-                input[type="hidden" value="#{@item.id}" name="id"]
-                button.btn.btn-default[type="submit"] 确认
+            div.form-group
+              input[type="hidden" value="#{@item.id}" name="id"]
+              button.btn.btn-primary[ v-on:click="updateInfo()"] 确认
         i.fa.fa-angle-up.close-modal
  
       // fork

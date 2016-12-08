@@ -16,8 +16,8 @@ class CssController < ApplicationController
     
   end
 
-  def index
-    @categorys = Menutyp.where({:group=> 'CSS'}) 
+  def categorys
+    render json: Menutyp.where({:group=> 'CSS'}) 
   end
 
   def save
@@ -33,6 +33,14 @@ class CssController < ApplicationController
 
   def code
     render json: Code.find_by_id(params[:id])
+  end
+
+  def updategroup
+    _item = Code.find_by_id(params[:id])
+    render json: false and return if _item.mem_id != current_mem.id 
+    _item.group = params[:group]
+    _item.save
+    render json: true
   end
 
 end

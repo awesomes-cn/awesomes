@@ -45,7 +45,8 @@ function initEditor(id){
       libkey: '',
       toolboxState: 'closed',
       libLoadState: 'ready',
-      isfavord: false
+      isfavord: false,
+      categorys: []
 
     }
   })
@@ -78,7 +79,19 @@ function initEditor(id){
       })
     }
 
+    $.get('/css/categorys', {}, function(data) {
+        var group = editor.codeitem.group || ''
+        data.forEach(function (item) {
+          item.checked = group.indexOf(item.key) > -1
+        })
+        editor.categorys = data
+      })
+
   })
+
+  
+
+  
 
 
   // 喜欢
@@ -159,7 +172,7 @@ function initEditor(id){
     localStorage.autoruncode = editor.isauto
   }
 
-editor.fork = function(typ){
+  editor.fork = function(typ){
     if(open_login()){
       $.post('/code/fork', {
         id: itemid,
@@ -194,8 +207,35 @@ editor.fork = function(typ){
     })
   }
 
+  // 修改信息
+  editor.updateInfo = function () {
+    var groups = _.filter(editor.categorys, function(item) {
+      return item.checked
+    })
+
+    var ens = groups.map(function(item) {
+      return item.key
+    }).join(',')
+
+    var zhs = groups.map(function(item) {
+      return item.sdesc
+    }).join(',')
+
+    console.log(ens, zhs)
+
+    $.post('/css/updategroup', {
+      id: editor.codeitem.id,
+      group: ens + '-' + zhs
+    }, function() {
+      Core.alert('success', '更新代码信息成功')
+    })
+}
+
+
   return editor
 }
+
+
 
 function initCodeMirror(){ 
   htmlCodeMirror =  AddCodeMirror('#code-html', 'text/html') 

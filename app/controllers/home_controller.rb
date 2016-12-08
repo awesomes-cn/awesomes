@@ -193,8 +193,12 @@ class HomeController < ApplicationController
 
   def csscodes
     _group = params[:group]
+    _query = Code.where({:typcd=> 'css'}).order('id desc')
+    if _group
+      _query = _query.where(['`group` like ?', "%#{_group}%"])
+    end
     render json: {
-      :items=> (_group.blank?? Code : Code.where({:group=> _group})).where({:typcd=> 'css'}).order('id desc') #:status=> 'ACTIVED', 
+      :items=> _query #:status=> 'ACTIVED', 
     }.to_json(:include=> {:mem=> {:only=> ['nc'], :methods=> ['avatar_url']}})
   end
 

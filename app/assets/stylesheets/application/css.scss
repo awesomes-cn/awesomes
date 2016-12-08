@@ -35,9 +35,24 @@
       }
     }
   }
+
+  
   
 }
 
+
+.csss-info-wraper {
+  .cate-label {
+    border: #DDD 1px solid;
+    padding: 4px 9px;
+    margin: 0 10px;
+    cursor: pointer;
+
+    &.active {
+      background-color: #DDD;
+    }
+  }
+}
 
 
 
