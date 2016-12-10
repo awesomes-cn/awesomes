@@ -194,7 +194,7 @@ class HomeController < ApplicationController
   def csscodes
     _group = params[:group]
     _query = Code.where({:typcd=> 'css'}).order('id desc')
-    if _group
+    if !_group.blank?
       _query = _query.where(['`group` like ?', "%#{_group}%"])
     end
     render json: {

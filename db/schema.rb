@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161201164630) do
 
+  create_table "aaa", primary_key: "name", id: :string, limit: 23, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  end
+
   create_table "adpositions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "key"
@@ -38,9 +41,9 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.text     "css",        limit: 65535
     t.text     "js",         limit: 65535
     t.text     "html",       limit: 65535
-    t.string   "status",                   default: "NORMAL"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.string   "status",     limit: 45,    default: "NORMAL"
     t.float    "wealth",     limit: 24,    default: 0.0
     t.string   "typcd",                    default: "repo"
     t.integer  "favor",                    default: 0
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.datetime "updated_at",                                  null: false
   end
 
-  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "cover"
     t.text     "desc",       limit: 65535
@@ -239,7 +242,7 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.float    "wealth",     limit: 24,         default: 0.0
   end
 
-  create_table "releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "repo_id"
     t.string   "tag_name"
     t.datetime "published_at"
@@ -277,38 +280,38 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.integer  "trend",      default: 0
   end
 
-  create_table "repos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "name",                                                            collation: "utf8_general_ci"
-    t.string   "full_name",                                                       collation: "utf8_general_ci"
-    t.string   "alia",                                                            collation: "utf8_general_ci"
-    t.string   "html_url",                                                        collation: "utf8_general_ci"
-    t.text     "description",       limit: 4294967295
-    t.text     "description_cn",    limit: 4294967295
-    t.string   "homepage",                                                        collation: "utf8_general_ci"
+  create_table "repos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "full_name"
+    t.string   "alia"
+    t.string   "html_url"
+    t.string   "description",       limit: 1000
+    t.string   "description_cn",    limit: 1000
+    t.string   "homepage"
     t.integer  "stargazers_count"
     t.integer  "forks_count"
     t.integer  "subscribers_count"
     t.datetime "pushed_at"
     t.text     "about",             limit: 4294967295
     t.text     "about_zh",          limit: 4294967295
-    t.string   "typcd",                                                           collation: "utf8_general_ci"
-    t.string   "rootyp",                                                          collation: "utf8_general_ci"
-    t.string   "owner",             limit: 100,                                   collation: "utf8_general_ci"
+    t.string   "typcd"
+    t.string   "rootyp"
+    t.string   "owner",             limit: 100
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
-    t.string   "outdated",          limit: 1,          default: "0",              collation: "utf8_general_ci"
-    t.string   "tag",                                                             collation: "utf8_general_ci"
-    t.string   "cover",                                                           collation: "utf8_general_ci"
+    t.string   "outdated",          limit: 1,          default: "0"
+    t.string   "tag"
+    t.string   "cover"
     t.integer  "recommend",                            default: 0
     t.integer  "trend",                                default: 0
     t.datetime "github_created_at"
     t.integer  "mark",                                 default: 0
     t.integer  "issue_res",                            default: 0
-    t.string   "typcd_zh",                                                        collation: "utf8_general_ci"
-    t.string   "rootyp_zh",                                                       collation: "utf8_general_ci"
+    t.string   "typcd_zh"
+    t.string   "rootyp_zh"
     t.integer  "demo"
     t.integer  "startup"
-    t.string   "hidetags",                                                        collation: "utf8_general_ci"
+    t.string   "hidetags"
     t.integer  "using",                                default: 0
     t.integer  "experience",                           default: 0
   end
@@ -371,7 +374,7 @@ ActiveRecord::Schema.define(version: 20161201164630) do
     t.datetime "updated_at",                             null: false
   end
 
-  create_table "wealth_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  create_table "wealth_logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "mem_id"
     t.float    "amount",     limit: 24
     t.float    "balance",    limit: 24
