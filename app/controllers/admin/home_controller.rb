@@ -55,7 +55,7 @@ class Admin::HomeController < AdminController
   end
 
   def codes
-    adminlists Code,[:title,:status,:mem_id,:repo_id,:wealth], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
+    adminlists Code,[:title,:status,:mem_id,:repo_id,:wealth,:typcd], :include => {:mem => {:only=>[:nc,:id]}, :repo => {:only=>[:owner,:alia, :id, :name], :methods=> ['link_url']}}
   end
 
   def weuseapplys

@@ -7,6 +7,7 @@
         th[width="100"] #
         th 代码名
         th 作者
+        th 类型
         th 关联库
         th 创建时间
         th 状态
@@ -17,6 +18,7 @@
         td {{item.id}}
         td: a[href='/code/{{item.id}}' target='_blank'] {{item.title}} 
         td: a[href='/mem/{{item.mem_id}}' target='_blank'] {{item.mem.nc}} 
+        td {{item.typcd}}
         td: a[href='{{item.repo.link_url}}' target='_blank'] {{item.repo.name}}
         td {{item.created_at}}
         td: a[href='#' v-on:click="switchState(item)" class="{{item.status}}"] {{item.status == 'ACTIVED' ? '公开' : '私有'}}

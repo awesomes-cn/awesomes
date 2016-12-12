@@ -193,7 +193,7 @@ class HomeController < ApplicationController
 
   def csscodes
     _group = params[:group]
-    _query = Code.where({:typcd=> 'css'}).order('id desc')
+    _query = Code.where({:typcd=> 'css', :status=> 'ACTIVED'}).order('id desc')
     if !_group.blank?
       _query = _query.where(['`group` like ?', "%#{_group}%"])
     end
