@@ -1,19 +1,19 @@
 =content_for :banner
   div.extension-banner.csshub-banner
-    h3 CSSHub
+    h3 CSSHUB
     
-    p 实用的纯 CSS UI效果代码段，带你体验 CSS 的魅力和强大
+    p 精选实用的纯 CSS UI效果代码段，带你体验 CSS 的魅力和强大
 
     a.share-btn[href="/css"] 我要分享
 
-
-=content_for :con
   div.css-category
     ul
       -@categorys.each do |cate|
         li[class="active-#{cate.key == params[:group]}"]: a[href="/csshub?group=#{cate.key}"]
           i.fa>[class="#{cate.icon}"]
           span =cate.sdesc 
+=content_for :con
+  
   div.row
     div.col-md-4[v-for="item in csscodes"]
       div.css-hub[v-cloak]
@@ -70,6 +70,10 @@
         position: fixed;
         width: 100%
       }
+    }
+
+    body {
+      background-color: #F8F8F8
     }
 
 

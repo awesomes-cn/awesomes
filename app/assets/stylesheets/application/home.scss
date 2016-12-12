@@ -855,6 +855,8 @@ h5.use-title{
   padding: 20px;
   margin-top: 30px;
   height: 300px;
+  background-color: #FFF;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); 
 
   &:hover {
     .info  {
@@ -957,6 +959,8 @@ h5.use-title{
 .css-category {
   text-align: center;
   margin-top: 20px;
+  background-color: #f1f1f1;
+
 
   ul {
     margin: 0;
@@ -976,6 +980,7 @@ h5.use-title{
   a {
     color: #000;
     font-size: 15px;
-    padding: 10px;
+    padding: 20px 10px;
+    display: inline-block
   }
 }
