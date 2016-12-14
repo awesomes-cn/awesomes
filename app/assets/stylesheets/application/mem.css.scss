@@ -139,6 +139,22 @@
   .sync{color: #888; float: right;}
 }
 
+
+.mark-nav{
+  text-align: center;
+  margin-bottom: 20px;
+  a{
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #EEE;
+    text-decoration: none;
+    color: #333;
+    &.active {
+      background-color: #428bca;
+      color: #FFF
+    }
+  }
+}
 .mark-list{
   .thumbnail{
     padding: 0;

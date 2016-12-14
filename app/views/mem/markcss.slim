@@ -1,31 +1,12 @@
-=content_for :title 
-  | csshub - Awesomes
-
-=content_for :keywords
-  | css,css3,css3特效,css在线代码,css教程,css组件
-
-=content_for :description
-  | 纯css在线效果UI组件
-
-
-=content_for :banner
-  div.extension-banner.csshub-banner
-    h3 CSSHUB
-    
-    p 精选实用的纯 CSS UI效果代码段，带你体验 CSS 的魅力和强大
-
-    a.share-btn[href="/css"] 我要分享
-
-  div.css-category
-    ul
-      -@categorys.each do |cate|
-        li[class="active-#{cate.key == params[:group]}"]: a[href="/csshub?group=#{cate.key}"]
-          i.fa>[class="#{cate.icon}"]
-          span =cate.sdesc 
 =content_for :con
+  div.mark-nav
+    a[href="/mem/#{@mem.id}/marks"] 框架
+    a.active[href="javascript:void(0)"] 代码
   
-  div.row
-    div.col-md-4[v-for="item in csscodes"]
+  h3.no-items[v-show="csscodes.length < 1"] 未收藏代码
+  div.row.mark-list
+    
+    div.col-md-4[v-for="item in csscodes" v-show="csscodes.length > 0"]
       div.css-hub[v-cloak]
         div.code[class="code-part-{{item.id}}"] {{{item.html}}}
         css:
@@ -82,10 +63,6 @@
       }
     }
 
-    body {
-      background-color: #F8F8F8
-    }
-
 
     
   javascript:
@@ -96,7 +73,7 @@
       },
       methods: {
         initcss: function() {
-          $.get("/csscodes", {group: '#{params[:group]}'}, function(data){
+          $.get("/mem/#{@mem.id}/markcss.json", {}, function(data){
             App.initfavors()
             data.items.forEach(function(item){
               formatCss(item)

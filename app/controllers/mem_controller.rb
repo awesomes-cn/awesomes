@@ -32,9 +32,27 @@ class MemController < ApplicationController
 
   def marks
     _query = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:mem_id=> @mem.id})
-    @items = data_list _query
+    @items = data_list _query, 20
     @count = _query.count
   end
+
+  def markcss
+    respond_to do |format|
+      format.html{
+      }
+      format.json { 
+        _ids = Oper.where({:opertyp=> 'FAVOR',:typ=> 'CODE', :mem_id=> @mem.id}).pluck('idcd')
+        _query = Code.where(['id in (?)', _ids.join(',')])
+        render json: {
+          :items=> _query #:status=> 'ACTIVED', 
+        }.to_json(:include=> {:mem=> {:only=> ['nc'], :methods=> ['avatar_url']}})
+      }
+    end
+
+    
+  end
+
+
 
   def docs
     @items = data_list_asc @mem.readmes

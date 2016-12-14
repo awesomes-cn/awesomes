@@ -1,21 +1,27 @@
 =content_for :con
+  div.mark-nav
+    a.active[href="javascript:void(0)"] 框架
+    a[href="/mem/#{@mem.id}/markcss"] 代码
   div.row.mark-list
-    -@items.each do |item|
-      -repo = item.target
-      div.col-sm-4.col-md-3
-        div.thumbnail
-          a[href="#{repo.link_url}"]
-            img[src='#{access_path "repo/#{repo.cover}"}@1e_300w_207h_1c_0i_1o_1x.png']
-          div.caption
-            h4 =repo.name
-          -if @isme  
-            i.fa.fa-times-circle.close[data-id="#{repo.id}"]
-  div#page-mem          
+    -if @items.count < 1
+      h3.no-items 你的收藏为空
+    -else
+      -@items.each do |item|
+        -repo = item.target
+        div.col-sm-4.col-md-3
+          div.thumbnail
+            a[href="#{repo.link_url}"]
+              img[src='#{access_path "repo/#{repo.cover}"}@1e_300w_207h_1c_0i_1o_1x.png']
+            div.caption
+              h4 =repo.name
+            -if @isme  
+              i.fa.fa-times-circle.close[data-id="#{repo.id}"]
+      div#page-mem(style="text-align: right")        
   
   javascript:
     $(function(){
       $("#page-mem").pagination(#{@count},{
-        items_per_page : #{default_page_size},
+        items_per_page : 20,
         current_page : #{page},
         link_to:"?page=__id__"
       })

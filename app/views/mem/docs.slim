@@ -1,13 +1,16 @@
 =content_for :con
   ul.list-group.mem-list-wraper
-    -@items.each do |item|
-      -if item.repo
-        li.list-group-item
-          a.repo[href="#{item.repo.link_url}"] =item.repo.name
-          i.fa.fa-angle-right<>
-          a[href="#{item.repo.link_url}/diff/#{item.id}"] =item.sdesc
-          span.right =item.created_at.strftime("%Y-%m-%d")
-  div#page-mem      
+    -if @items.count < 1
+      h3.no-items 未发布文档
+    -else
+      -@items.each do |item|
+        -if item.repo
+          li.list-group-item
+            a.repo[href="#{item.repo.link_url}"] =item.repo.name
+            i.fa.fa-angle-right<>
+            a[href="#{item.repo.link_url}/diff/#{item.id}"] =item.sdesc
+            span.right =item.created_at.strftime("%Y-%m-%d")
+      div#page-mem      
   input#mem-nav[type="hidden" value="doc"]
   javascript:
     $(function(){

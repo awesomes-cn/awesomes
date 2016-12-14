@@ -1,10 +1,13 @@
 =content_for :con
   ul.list-group.mem-list-wraper
-    -@items.each do |item|
-      li.list-group-item
-        a.repo[href="/code/#{item.id}"] =item.title
-        span.right =item.created_at.strftime("%Y-%m-%d")
-  div#page-mem
+    -if @items.count < 1
+      h3.no-items 未发布代码
+    -else
+      -@items.each do |item|
+        li.list-group-item
+          a.repo[href="/code/#{item.id}"] =item.title
+          span.right =item.created_at.strftime("%Y-%m-%d")
+      div#page-mem
   javascript:
     $(function(){
       $("#page-mem").pagination(#{@count},{
