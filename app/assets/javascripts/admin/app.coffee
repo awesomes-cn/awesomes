@@ -37,7 +37,8 @@ window.admin =
       
       methods:
         list: (page,$pagnation)->
-          page |= 1
+          if !page
+            page = 1
           pagesize = options.pagesize
           $pagnation  = $pagnation || $("#pagenation")
           $.get list_url, {page : page,pagesize: pagesize,filter: app.search}, (data)->
@@ -55,9 +56,9 @@ window.admin =
                 $pagnation.pagination data.count,
                   items_per_page : pagesize
                   current_page : page - 1
-                  callback : (page)->
-                    now_page = page 
-                    app.list page + 1, $pagnation
+                  callback : (paged)->
+                    now_page = paged 
+                    app.list paged + 1, $pagnation
         
         destroy: (item) ->
           if confirm('确定删除该记录？')
