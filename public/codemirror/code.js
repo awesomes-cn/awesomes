@@ -192,7 +192,7 @@ function initEditor(id){
     $.post("/css/save", {
       css: cssCodeMirror.getValue(),
       html: htmlCodeMirror.getValue(),
-      id: itemid,
+      id: editor.codeitem.id,
       title: editor.title
     }, function(data){
       if (data.status) {

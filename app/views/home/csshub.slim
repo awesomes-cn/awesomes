@@ -50,7 +50,7 @@
             a[v-on:click="previewCode(item, $event)" href="javascript:void(0)"  title="查看代码" ]
               i.fa.fa-search>
             
-            a.open-login[ href="javascript:void(0)"  title="收藏" class="active-{{item.isfavord}}" v-on:click="favorcss(item)"]
+            a[href="javascript:void(0)"  title="收藏" class="active-{{item.isfavord}}" v-on:click="favorcss(item)"]
               i.fa.fa-heart>
 
           
@@ -129,6 +129,7 @@
         },
 
         favorcss: function (item) {
+          if(!open_login()) { return }
           $.post("/oper/update",  {
             opertyp: 'FAVOR',
             typ: 'CODE',
