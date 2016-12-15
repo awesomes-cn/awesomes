@@ -198,8 +198,9 @@ class HomeController < ApplicationController
       _query = _query.where(['`group` like ?', "%#{_group}%"])
     end
     render json: {
-      :items=> _query #:status=> 'ACTIVED', 
-    }.to_json(:include=> {:mem=> {:only=> ['nc'], :methods=> ['avatar_url']}})
+      :items=> data_list(_query, 15),
+      :count=> _query.count
+    }.to_json(:include=> {:mem=> {:only=> ['nc', 'id'], :methods=> ['avatar_url']}})
   end
 
   private

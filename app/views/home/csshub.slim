@@ -32,7 +32,8 @@
           {{item.css}}
         
         div.info
-          img.tx[src='{{item.mem.avatar_url}}']
+          a[href="/mem/{{item.mem.id}}" title="{{item.mem.nc}}"]
+            img.tx[src='{{item.mem.avatar_url}}']
           span.like[class="active-{{item.isfavord}}"]
             i.fa.fa-heart>
             | {{item.favor}}
@@ -52,7 +53,11 @@
             
             a[href="javascript:void(0)"  title="收藏" class="active-{{item.isfavord}}" v-on:click="favorcss(item)"]
               i.fa.fa-heart>
-
+  
+  
+    div.clear
+  div.text-center[style="padding: 50px 0;"]
+    div#page-css
           
   // 代码预览
   div.modal-wraper#preview-wraper
@@ -96,12 +101,19 @@
       },
       methods: {
         initcss: function() {
-          $.get("/csscodes", {group: '#{params[:group]}'}, function(data){
+          $.get("/csscodes", {page: #{params[:page] || 1},group: '#{params[:group]}'}, function(data){
             App.initfavors()
             data.items.forEach(function(item){
               formatCss(item)
             })
-            App.csscodes =  data.items 
+            App.csscodes =  data.items
+
+            $("#page-css").pagination(data.count, {
+              items_per_page : 15,
+              current_page : #{page},
+              link_to:"?page=__id__&#{raw page_param}"
+            }) 
+
           })
         },
 
@@ -118,14 +130,12 @@
         },
 
         previewCode: function(item, event) {
-          $.get('/css/code', {id: item.id}, function(data) {
-            data.html = Prism.highlight(data.html,  Prism.languages.markup)
-            data.css = Prism.highlight(data.css,  Prism.languages.css)
-            App.showcode = data;
-          })
+          App.showcode = {
+            html: Prism.highlight(item.html,  Prism.languages.markup),
+            css: Prism.highlight(item.css,  Prism.languages.css)
+          }
           openModal('#preview-wraper')
-          event.stopPropagation();
-
+          event.stopPropagation()
         },
 
         favorcss: function (item) {
