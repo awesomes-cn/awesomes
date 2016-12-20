@@ -1,5 +1,124 @@
 =content_for :con
-  =paginate @items
+  
+  div#chatroom
+    div.inner
+      div.msgs
+        div.msg-item[v-for="item in chat.msgs" class="{{item.mem.id == rails.mem.id ? 'isme' : 'isother'}}"]
+          a[href="/mem/{{item.mem.id}}" target="_blank"]
+            img.tx[src="{{item.mem.tx}}"]
+          div.right-bar
+            //p {{item.mem.nc}}
+            p.whosay {{item.mem.nc}} 于 {{item.time}} 说
+            div.con {{item.msg}}
+        div#testbottom
 
 
+      div.bottom
+        textarea.form-control[type="text" v-model="chatmsg"]
+        div.tools
+          span.send[v-on:click="sendMSG()"] 发送  
+        div.tip[v-cloak] 当前{{chat.count}}人在线
+
+  
+  javascript:
+    var timeago = new timeago();
+    vueExtend.push({
+      data: {
+        chat: {
+          count: 0,
+          msgs: [
+            
+          ]
+        }
+      },
+      methods: {
+        
+        // 发送消息
+        sendMSG: function () {
+          var message = new AV.TextMessage(App.chatmsg);
+          message.setAttributes({
+            mem: {
+              id: '#{current_mem.id}',
+              nc: '#{current_mem.nc}',
+              tx: '#{current_mem.avatar_url}', 
+            }
+          })
+          AppendOneMsg(message)
+          App.chatmsg = ''
+          CHAT.conversation.send(message);
+        }
+      }
+    })
+
+    var Realtime = AV.Realtime;
+    var TextMessage = AV.TextMessage;
+    var CHAT = {
+      conversation: 0,
+      mem: 0
+    }
+    var realtime = new Realtime({
+      appId: 'f70Lhq9vNHHQsvjCkqOSNelp-gzGzoHsz',
+      region: 'cn', 
+    });
+
+    realtime.createIMClient(String(Rails.mem.id)).then(function(mem) {
+      CHAT.mem = mem
+      return mem.getConversation('5858c6d3128fe10069b12cc1')
+    }).then(function(conversation) {
+      CHAT.conversation = conversation 
+      CHAT.mem.on('message', function(message, conver) {
+        console.log('Message received: ' + message.text);
+        AppendOneMsg(message)
+      });
+
+      return conversation.join();
+    })
+
+    .then(function(conversation) {
+      queryMemCount()
+      getLatestMsgs()
+    })
+
+    .then(function(message) {
+    }).catch(console.error);
+
+
+    //查询在线人数
+    function queryMemCount () {
+      CHAT.conversation.count().then(function(count) {
+        App.chat.count = count
+      }).catch(console.error.bind(console));
+    }
+
+    //获取最近的消息
+    function getLatestMsgs () {
+      CHAT.conversation.queryMessages({
+        limit: 10, // limit 取值范围 1~1000，默认 20
+      }).then(function(messages) {
+        // 最新的十条消息，按时间增序排列
+        console.log(messages)
+        messages.forEach(function(msg) {
+          AppendOneMsg(msg)
+        })
+
+      }).catch(console.error.bind(console));
+    }
+
+    // 添加一条信息到页面
+    function AppendOneMsg (msg) {
+      App.chat.msgs.push({
+        mem:  (msg.getAttributes() || {}).mem,
+        time: timeago.format(msg.timestamp, 'zh_CN'),
+        msg: msg.getText()
+      })
+      setTimeout(function () {
+        testbottom.scrollIntoView()
+      }, 100)
+    }
+
+  
+  css:
+    header,footer {
+      display: none
+    }
 
