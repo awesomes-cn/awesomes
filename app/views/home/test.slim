@@ -9,23 +9,44 @@
           div.right-bar
             //p {{item.mem.nc}}
             p.whosay {{item.mem.nc}} 于 {{item.time}} 说
-            div.con {{item.msg}}
+            div.con {{{item.msg}}}
         div#testbottom
 
 
       div.bottom
-        textarea.form-control[type="text" v-model="chatmsg"]
+        textarea#chat-editor
         div.tools
           span.send[v-on:click="sendMSG()"] 发送  
         div.tip[v-cloak] 当前{{chat.count}}人在线
 
-  
+  javascript:
+    var chat_editor = CodeMirror.fromTextArea(document.getElementById("chat-editor"), {
+      mode: 'markdown',
+      theme: "default",
+      lineWrapping: true,
+      extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
+    });
+
+    chat_editor.on("change",function(){
+      App.chat.con = chat_editor.getValue()
+      resetChatLayout()
+    })
+
+    // 改变编辑器的值
+    function resetChatLayout() {
+      //定位布局
+      $('#chatroom > .inner').css('padding-bottom', $('#chatroom  .bottom').height())
+      testbottom.scrollIntoView()
+    }
+
+
   javascript:
     var timeago = new timeago();
     vueExtend.push({
       data: {
         chat: {
           count: 0,
+          con: '',
           msgs: [
             
           ]
@@ -35,17 +56,18 @@
         
         // 发送消息
         sendMSG: function () {
-          var message = new AV.TextMessage(App.chatmsg);
+          var message = new AV.TextMessage(App.chat.con);
           message.setAttributes({
             mem: {
-              id: '#{current_mem.id}',
-              nc: '#{current_mem.nc}',
-              tx: '#{current_mem.avatar_url}', 
+              id: '#{current_mem ? current_mem.id : 0}',
+              nc: '#{current_mem ? current_mem.nc : "游客"}',
+              tx: '#{current_mem ? current_mem.avatar_url : ''}', 
             }
           })
           AppendOneMsg(message)
-          App.chatmsg = ''
           CHAT.conversation.send(message);
+          chat_editor.setValue('')
+          resetChatLayout()
         }
       }
     })
@@ -109,7 +131,7 @@
       App.chat.msgs.push({
         mem:  (msg.getAttributes() || {}).mem,
         time: timeago.format(msg.timestamp, 'zh_CN'),
-        msg: msg.getText()
+        msg: marked(msg.getText())
       })
       setTimeout(function () {
         testbottom.scrollIntoView()

@@ -586,6 +586,12 @@ code[class*="language-"], pre[class*="language-"]{
     border-top: #DDD 1px solid;
     width: 500px;
     left: 0;
+
+    & > .CodeMirror {
+      width: 99%;
+      border-bottom: #DDD 1px solid
+      
+    }
   }
   .tip {
     text-align: center;
@@ -650,6 +656,15 @@ code[class*="language-"], pre[class*="language-"]{
       .whosay {
         margin: 0;
         color: #cabfbf;
+      }
+    }
+
+    .con {
+      pre {
+        text-align: left;
+      }
+      h1,h2,h3,h4,h5,h6,p {
+        margin: 0;
       }
     }
 
