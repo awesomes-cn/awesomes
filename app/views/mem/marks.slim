@@ -11,7 +11,7 @@
         div.col-sm-4.col-md-3
           div.thumbnail
             a[href="#{repo.link_url}"]
-              img[src='#{access_path "repo/#{repo.cover}"}@1e_300w_207h_1c_0i_1o_1x.png']
+              img[src='#{access_path "repo/#{repo.cover}"}?x-oss-process=style/repo']
             div.caption
               h4 =repo.name
             -if @isme  
