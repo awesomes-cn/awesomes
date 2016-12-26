@@ -27,7 +27,7 @@ module RepoHelper
   end
 
   def page_param
-    _para = ['sort','tag','q'].select do |item|
+    _para = ['sort','tag','q', 'group'].select do |item|
       params[item.to_sym]
     end.map do |item|
       "#{item}=#{params[item.to_sym]}"
