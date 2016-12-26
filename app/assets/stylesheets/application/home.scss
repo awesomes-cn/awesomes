@@ -399,6 +399,11 @@
       }
       
     }
+
+    .loading-a {
+      text-decoration: none;
+      color: #444
+    }
   }
 
   .home-extension {
@@ -984,3 +989,73 @@ h5.use-title{
     display: inline-block
   }
 }
+
+
+/* 首页加载动画  */
+
+.csshub-44-loading {
+  text-align: center
+}
+
+.csshub-44-loading > div {
+  background-color: #14b9c7;
+  width: 4px;
+  height: 35px;
+  border-radius: 2px;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: inline-block;
+  -webkit-animation: csshub-44-line-scale-pulse-out 0.9s -0.6s infinite cubic-bezier(0.85, 0.25, 0.37, 0.85);
+          animation: csshub-44-line-scale-pulse-out 0.9s -0.6s infinite cubic-bezier(0.85, 0.25, 0.37, 0.85); }
+
+.csshub-44-loading > div:nth-child(2), .csshub-44-loading > div:nth-child(4) {
+  -webkit-animation-delay: -0.4s !important;
+          animation-delay: -0.4s !important; }
+
+.csshub-44-loading > div:nth-child(1), .csshub-44-loading > div:nth-child(5) {
+  -webkit-animation-delay: -0.2s !important;
+          animation-delay: -0.2s !important; }
+
+
+
+@-webkit-keyframes csshub-44-line-scale-pulse-out {
+  0% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); }
+  50% {
+    -webkit-transform: scaley(0.4);
+            transform: scaley(0.4); }
+  100% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); } }
+
+@keyframes csshub-44-line-scale-pulse-out {
+  0% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); }
+  50% {
+    -webkit-transform: scaley(0.4);
+            transform: scaley(0.4); }
+  100% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); } }
+
+
+@-webkit-keyframes csshub-line-spin-fade-loader {
+  50% {
+    opacity: 0.3; }
+  100% {
+    opacity: 1; 
+  } 
+}
+
+@keyframes csshub-line-spin-fade-loader {
+  50% {
+    opacity: 0.3; 
+  }
+  100% {
+    opacity: 1; 
+  } 
+}
+

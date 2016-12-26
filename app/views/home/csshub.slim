@@ -27,9 +27,9 @@
   div.row
     div.col-md-4[v-for="item in csscodes"]
       div.css-hub[v-cloak]
-        div.code[class="code-part-{{item.id}}"] {{{item.html}}}
+        div.code[class="code-part-{{item.id}}"] {{{item.run_html}}}
         css:
-          {{item.css}}
+          {{item.run_css}}
         
         div.info
           a[href="/mem/{{item.mem.id}}" title="{{item.mem.nc}}"]
@@ -153,9 +153,9 @@
     })
 
     function formatCss(item) {
-      item.css = item.css.replace(/body([^{}]?)+{/, '.code-part-' + item.id + '{')
-      item.css = item.css.replace(/csshub/g, 'csshub-' + item.id)
-      item.html = item.html.replace(/csshub-/g, 'csshub-' + item.id + '-')
+      item.run_css = item.css.replace(/body([^{}]?)+{/, '.code-part-' + item.id + '{')
+      item.run_css = item.run_css.replace(/csshub/g, 'csshub-' + item.id)
+      item.run_html = item.html.replace(/csshub-/g, 'csshub-' + item.id + '-')
       item.isfavord = false
     }
 
