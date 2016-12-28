@@ -37,7 +37,7 @@ every 2.day, :at => '4:00 am' do
 end
 
 
-every 4.day, :at => '6:00 am' do
+every 1.day, :at => '6:00 am' do
   rake "repo:trend"
 end
 

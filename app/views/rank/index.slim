@@ -1,6 +1,6 @@
 =content_for :con
   div.list-group.list-main
-    =cache "repo_rank_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 1.day do
+    =cache "repo_rank_#{url_all_para}_#{I18n.locale}", skip_digest: true, :expires_in => 6.hour do
       
 
       a.list-group-item.first[href="https://www.awesomes.cn/repo/#{@items[0].owner}/#{@items[0].alia}"]
