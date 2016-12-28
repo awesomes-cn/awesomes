@@ -28,9 +28,9 @@ every 1.day, :at => '2:00 am' do
   rake "repo:sync"
 end
 
-every 1.day, :at => '3:00 am' do
-  rake "repo:cover"
-end
+#every 1.day, :at => '3:00 am' do
+#  rake "repo:cover"
+#end
 
 every 2.day, :at => '4:00 am' do
   rake "repo:issue"

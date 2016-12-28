@@ -69,4 +69,8 @@ class Admin::HomeController < AdminController
   def goods
     adminlists Good,[:name,:cover,:price,:order,:desc]
   end
+
+  def logs
+    adminlists Log,[:typcd,:key,:title,:state,:begtime,:endtime]
+  end
 end

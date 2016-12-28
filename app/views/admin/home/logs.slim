@@ -1,0 +1,35 @@
+-content_for :menu
+  =render 'site_bar'
+=content_for :con
+  div#admin-app
+    table.table
+      thead
+        tr
+          th #
+          th 日志类型 
+          th 小类
+          th 标题
+          th 状态
+          th 开始时间
+          th 结束时间
+      tbody 
+        tr[v-for="item in items"]
+          td {{item.id}}
+          td {{item.typcd}}
+          td {{item.key}} 
+          td {{item.title}} 
+          td {{item.state}} 
+          td {{item.begtime}} 
+          td {{item.endtime}} 
+      tfoot
+        tr
+          td[colspan='8'] 
+            span 总记录：
+            span {{count}}
+    div#pagenation
+    input#menubar[type="hidden" value="logs"]
+
+  coffee:
+    $ ()->
+      app = admin.list_data
+        model: 'log'

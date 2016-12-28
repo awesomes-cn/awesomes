@@ -1,6 +1,7 @@
 require "github"
 class MemJob < ApplicationController
   def self.aync_avatar
+    _log = Log.task_begin('MEMAvatar', '用户头像同步')
     _app = ApplicationController.new
     Mem.where("avatar like 'http%'").each do |mem|
       _name = "#{Time.now.strftime("%y%m%d%H%M%S")}-#{rand(99).to_s}.jpg"
@@ -8,7 +9,7 @@ class MemJob < ApplicationController
       mem.update_attributes({:avatar=> _name})
       p "=====#{mem.id}====="
     end  
-    p "=====success aync avatar====="
+    _log.task_end
   end
 
   def self.aync_rank

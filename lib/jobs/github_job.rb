@@ -2,19 +2,24 @@ require "github"
 class GithubJob < ApplicationController
   def self.sync_repo start = 1
     Thread.new{
+      _log = Log.task_begin('RepoInfo', 'Repo信息')
       Repo.where("id >= #{start.to_i}").each do |repo|
         _repo = Github.sync_repo_attr(repo)
         p "====#{repo.id}======="
         sleep 5 
       end
+      _log.task_end
     }.join
   end
 
   def self.repo_trend start = 1
+    _log = Log.task_begin('RepoTrend', 'Repo趋势')
     Repo.where("id >= #{start.to_i}").each do |item|
       item.update_trend
       p "====#{item.id}======="
+      sleep 1
     end
+    _log.task_end
   end
 
   def self.repo_cover start = 1
@@ -30,18 +35,22 @@ class GithubJob < ApplicationController
   end
 
   def self.repo_issue
+    _log = Log.task_begin('RepoIssue', 'Repo issue处理')
     Repo.all.each do |item| 
       Github.get_repo_issue(item)
       p "====#{item.id}======="
       sleep 2
     end
+    _log.task_end
   end
 
   def self.repo_release start = 1
+    _log = Log.task_begin('RepoRelease', 'Repo 最新版本')
     Repo.where(['stargazers_count > ?', 1000]).each do |item| 
       Github.get_repo_release(item)
       p "====#{item.id}======="
       sleep 2
     end
+    _log.task_end
   end
 end
