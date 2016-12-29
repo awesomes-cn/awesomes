@@ -430,3 +430,50 @@
 }
 
 
+
+.repo-relates {
+  border-top: #C5C5C5 1px dashed;
+  padding-top: 30px;
+
+  a{
+    color: #444
+  }
+  
+  .related-item {
+    //border: #DDD 1px solid;
+    position: relative;
+    padding-left: 70px;
+    padding-right: 50px;
+    //border: rgba(221, 221, 221, 0.32) 1px dashed;
+    margin: 20px 0;
+    .fresh {
+      top: 20px;
+    }
+    .cover {
+      width: 100%;
+      border-radius: 5px;
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .desc {
+      height: 30px;
+      overflow: hidden;
+      color: #a7a7a7;
+      font-size: 13px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      display: block;
+    }
+    .extras {
+      color: #b3b3b3;
+       font-size: 13px;
+      .fa-heart {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -12,6 +12,7 @@ class RepoController < ApplicationController
     @lang = 'en' if @item.about_zh.blank?
     @lang = params[:lang] || @lang
     @trends = @item.repo_trends.order('id desc').pluck('trend')[0..10].reverse.join(',')
+    @relates = Repo.where({:rootyp=> @repo.rootyp, :typcd=> @repo.typcd}).where.not({:id=> @repo.id}).order('trend desc').limit(4)
   end 
 
   def translation

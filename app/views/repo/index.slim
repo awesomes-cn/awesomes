@@ -82,6 +82,28 @@
                   | 我们将根据文档质量奖励数额不等的
                   a<>[href="/wealth" target="_blank" style="color: #ff4434;"] A币
 
+      // 相关推荐
+      div.repo-relates
+
+        h4.text-center 同类热门推荐
+        div.row
+          -@relates.each do |item|
+            div.col-md-6
+              div.related-item
+                a[href="#{item.link_url}"]
+                  img.lazy.cover[data-original='#{repo_cover_path item.cover}' data-id="#{item.id}"]
+                a[href="#{item.link_url}"]
+                  h5 =item.name
+                div.desc =item.description_i18
+                -_fresh = fresh item.pushed_at
+                span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
+
+                / div.extras
+                /   i.fa.fa-star>
+                /   span =item.stargazers_count
+                /   i.fa.fa-heart>
+                /   span =item.mark
+
 
   div.comment-panel
     div.co-title
