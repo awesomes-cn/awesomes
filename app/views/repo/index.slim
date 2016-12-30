@@ -86,23 +86,16 @@
       div.repo-relates
 
         h4.text-center 同类热门推荐
-        div.row
-          -@relates.each do |item|
-            div.col-md-6
-              div.related-item
-                a[href="#{item.link_url}"]
-                  img.lazy.cover[data-original='#{repo_cover_path item.cover}' data-id="#{item.id}"]
-                a[href="#{item.link_url}"]
+        =cache "repo_related_list_#{@item.id}",skip_digest: true,:expires_in => 6.hour
+          div.row
+            -@relates.each do |item|
+              div.col-md-6.col-sm-6
+                a.related-item[href="#{item.link_url}"]
+                  img.lazy.cover[data-original='#{Rails.application.config.source_access_path}repo/#{item.cover}?x-oss-process=style/repo-100' data-id="#{item.id}"]
                   h5 =item.name
-                div.desc =item.description_i18
-                -_fresh = fresh item.pushed_at
-                span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
-
-                / div.extras
-                /   i.fa.fa-star>
-                /   span =item.stargazers_count
-                /   i.fa.fa-heart>
-                /   span =item.mark
+                  div.desc =item.description_i18
+                  -_fresh = fresh item.pushed_at
+                  span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
 
 
   div.comment-panel

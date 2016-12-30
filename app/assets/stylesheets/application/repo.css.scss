@@ -441,11 +441,17 @@
   
   .related-item {
     //border: #DDD 1px solid;
+    display: block;
+    text-decoration: none;
     position: relative;
     padding-left: 70px;
     padding-right: 50px;
+     color: #a7a7a7;
     //border: rgba(221, 221, 221, 0.32) 1px dashed;
-    margin: 20px 0;
+    margin-top: 40px;
+    h5 {
+      color: #444
+    }
     .fresh {
       top: 20px;
     }
@@ -461,7 +467,6 @@
     .desc {
       height: 30px;
       overflow: hidden;
-      color: #a7a7a7;
       font-size: 13px;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -474,6 +479,10 @@
       .fa-heart {
         margin-left: 10px;
       }
+    }
+
+    &:hover {
+      color: #3a3636
     }
   }
 }
