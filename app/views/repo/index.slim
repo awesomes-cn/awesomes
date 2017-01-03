@@ -76,11 +76,13 @@
             div.no-zh
               h3 #{@item.name} 暂时没有中文说明
               h4 我们期待您参与进来翻译和完善
-              h5: a.open-login[href="/repo/#{@item.owner}/#{@item.alia}/readme" ] 马上添加中文说明
-              p
-                small
-                  | 我们将根据文档质量奖励数额不等的
-                  a<>[href="/wealth" target="_blank" style="color: #ff4434;"] A币
+              a.open-login[href="/repo/#{@item.owner}/#{@item.alia}/readme"] 
+                h5 添加中文说明
+              p 该操作会锁定该库2天以防止其它用户重复翻译，然后会自动释放
+              / p
+              /   small
+              /     | 我们将根据文档质量奖励数额不等的
+              /     a<>[href="/wealth" target="_blank" style="color: #ff4434;"] A币
 
       // 相关推荐
       div.repo-relates

@@ -3,6 +3,7 @@ class Repo < ActiveRecord::Base
   has_many :repo_notifies
   has_many :repo_trends
   has_many :codes
+  has_many :repo_trans_locks 
 
   attr_accessor :isusing
 
@@ -108,6 +109,21 @@ class Repo < ActiveRecord::Base
 
   def typalia
     "#{(Menutyp.find_by_key typcd).alia} #{(Menutyp.find_by_key rootyp).alia}"
+  end
+
+  def lock_mem
+    _lock = repo_trans_locks[0]
+    _lock ? _lock.mem : nil
+  end
+
+  def can_be_lock? mem
+    !lock_mem or (lock_mem && mem && lock_mem.id == mem.id)
+  end
+
+  def lock mem 
+    if !lock_mem
+      RepoTransLock.create({:mem_id=> mem.id, :repo_id=> id})
+    end 
   end
   
   private

@@ -12,7 +12,8 @@ class Mem < ActiveRecord::Base
   has_many :uses, -> {where(opertyp: 'USING', typ: 'REPO').order('opers.order asc')},
                   class_name: "Oper",
                   foreign_key: 'mem_id'
-  has_many :usedrepos, through: :uses, source: 'use_repo'            
+  has_many :usedrepos, through: :uses, source: 'use_repo'    
+  has_many :repo_trans_locks        
 
   validates :nc,presence: true
   validates :nc,uniqueness: true

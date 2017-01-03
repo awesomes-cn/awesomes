@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228025504) do
+ActiveRecord::Schema.define(version: 20170103080725) do
 
   create_table "aaa", primary_key: "name", id: :string, limit: 23, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   end
@@ -282,6 +282,16 @@ ActiveRecord::Schema.define(version: 20161228025504) do
     t.datetime "updated_at",                         null: false
     t.integer  "repo_id"
   end
+
+  create_table "repo_trans_locks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "mem_id"
+    t.integer  "repo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "repo_trans_locks", ["mem_id"], name: "index_repo_trans_locks_on_mem_id", using: :btree
+  add_index "repo_trans_locks", ["repo_id"], name: "index_repo_trans_locks_on_repo_id", using: :btree
 
   create_table "repo_trends", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "repo_id"
