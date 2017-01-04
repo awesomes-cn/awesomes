@@ -264,10 +264,10 @@ border: 0; margin: 0px 0 30px;  border-radius: 0;
 }
 //- markdown 编辑器
 .markdown-wraper{
-  overflow: hidden;  height: 100%; position: relative;
+   position: relative;
  
   & > div{
-      z-index: 10; position: absolute;height: 100%;top: 0;bottom: 0;border: #DDD 1px solid;
+    height: 100%;
     &.preview-wraper{
      width: 40%; left:0; box-shadow: inset 0 1px 2px #e4e4e4; 
      & > div{
@@ -275,15 +275,28 @@ border: 0; margin: 0px 0 30px;  border-radius: 0;
      }
     }
     &.editor-wraper{
-      border-left: #DDD 1px solid;width: 60%;right: 0;  box-shadow: inset 0 1px 2px #e4e4e4;
-      textarea{width: 100%; border:0 ; outline: none;height: 100%;}
-      .inner{padding: 10px; position: relative; height: 100%; }
+      width: 60%;
+      margin: 0 auto;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid #c9d8db; 
+
+      textarea{
+        width: 100%;
+        border:0 ; 
+        outline: none;
+      }
+      .inner{
+        padding: 10px; 
+        position: relative;
+        height: 3500px
+       
+      }
     }
     &.spliter{
       width:5px;background-color: #111;left:40%;z-index: 11;  cursor: col-resize;
     }
   }
-  .CodeMirror{height: 100%;}
+  .CodeMirror{height: 100%;} 
 
 } 
 

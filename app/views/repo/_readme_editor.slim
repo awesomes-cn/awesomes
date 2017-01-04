@@ -1,39 +1,47 @@
 / div.about-wraper
   /   h4 你正在为 #{params[:typ]} 添加中文文档
   /   p 请严格按照 markdown 格式书写文档，查看Demo 
-div.doc-title
-  h4
-    | 你正在编辑 
-    a<>[href="#{@item.link_url}"] =@item.name
-    | 中文说明
-  p 
-    | 为了防止你正在编辑的内容丢失，默认加载你之前的输入，如果你是首次进入编辑文档，请手动获取最新
-    a#getold<>[href=""] 最新版本
-    | ，并在此基础上做修改
+/ div.doc-title
+/   / h4
+/   /   | 你正在编辑 
+/   /   a<>[href="#{@item.link_url}"] =@item.name
+/   /   | 中文说明
+/   //p 
+/     / | 为了防止你正在编辑的内容丢失，默认加载你之前的输入，如果你是首次进入编辑文档，请手动获取最新
+/     / a#getold<>[href=""] 最新版本
+/     / | ，并在此基础上做修改
   
-  input#upload_pic[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片" data-folder="repo"  ]
+/   input#upload_pic[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片" data-folder="repo"  ]
 
-  =form_for(@item,url: "/readme/new",html:{id: 'item_form',method: 'post'}) do |item|
-    input.editor-val[type="hidden" name="markdown"]
-    input[type="hidden" name="rid" value="#{@item.id}"]
-    input#readme-sdesc[type="hidden" name="sdesc" value="初始化文档"]
-    div.btns-wrap
-      input.btn.btn-danger.open-login#sub-doc[type="button" value="提交文档"] 
-  javascript:
-    $(function(){
-      $("#getold").click(function(){
-        if(confirm("确认将最新版本加载过来？这会导致你已输入的内容被覆盖！")){
-          markdown_editor.setValue($("#tmp-con").val());
-        }
-        return false;
-      })
-    })
+/   =form_for(@item,url: "/readme/new",html:{id: 'item_form',method: 'post'}) do |item|
+/     input.editor-val[type="hidden" name="markdown"]
+/     input[type="hidden" name="rid" value="#{@item.id}"]
+/     input#readme-sdesc[type="hidden" name="sdesc" value="初始化文档"]
+/     div.btns-wrap
+/       input.btn.btn-danger.open-login#sub-doc[type="button" value="提交文档"] 
+/   javascript:
+/     $(function(){
+/       $("#getold").click(function(){
+/         if(confirm("确认将最新版本加载过来？这会导致你已输入的内容被覆盖！")){
+/           markdown_editor.setValue($("#tmp-con").val());
+/         }
+/         return false;
+/       })
+/     })
 
 
-    uplaod_form($('#upload_pic'),function(data){
-      markdown_editor.replaceSelection("![awesomes-cn]("+data.file_path+")");
-    }) 
-  
+    / uplaod_form($('#upload_pic'),function(data){
+    /   markdown_editor.replaceSelection("![awesomes-cn]("+data.file_path+")");
+    / }) 
+div.doc-repo
+  a[href="#{@item.link_url}"]
+    img.cover[src="#{repo_cover_base @item.cover}?x-oss-process=style/subject_repo"]
+div.doc-toolboxs
+  a.pull-left[href="javascript:void(0)"]: i.fa.fa-image
+  a.pull-left[href="javascript:void(0)"]: i.fa.fa-tv
+
+  a.pull-right[href="javascript:void(0)"]: i.fa.fa-save
+
 div.doc-editor
   =render "layouts/markdown_editor"
 
@@ -42,6 +50,7 @@ div.doc-editor
 
 input#tmp-con[type="hidden" value="#{@item.about_zh.blank? ? @item.about : @item.about_zh}"]
 javascript:
+
   if(localStorage["markdown_readme_#{@item.id}"]){
     markdown_editor.setValue(localStorage["markdown_readme_#{@item.id}"]); 
   }
@@ -52,6 +61,10 @@ javascript:
   if(markdown_editor.getValue() == ''){
     markdown_editor.setValue($("#tmp-con").val());
   }
+  
+  $('.markdown-wraper .inner').height('auto')
+
+
 
   $(function(){
     $("#sub-doc").click(function(){
@@ -67,3 +80,6 @@ javascript:
  
 css:
   body{background-color: #FFF}
+  .CodeMirror-vscrollbar {
+    display: none!important
+  }
