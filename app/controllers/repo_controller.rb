@@ -31,7 +31,7 @@ class RepoController < ApplicationController
     @canbelock = true
     if @item.can_be_lock? current_mem
       @item.lock current_mem
-      render :layout=> "blank"
+      #render :layout=> "blank"
     else
       @canbelock = false
     end

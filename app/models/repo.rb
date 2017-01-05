@@ -117,14 +117,28 @@ class Repo < ActiveRecord::Base
   end
 
   def can_be_lock? mem
+    _lock = repo_trans_locks[0]
+    if _lock
+      _reset = Time.new - _lock.created_at
+      if _reset >= 2 * 24 * 3600 
+        unlock
+        return true
+      end
+    end
+
     !lock_mem or (lock_mem && mem && lock_mem.id == mem.id)
   end
 
   def lock mem 
-    if !lock_mem
-      RepoTransLock.create({:mem_id=> mem.id, :repo_id=> id})
-    end 
+    RepoTransLock.create({:mem_id=> mem.id, :repo_id=> id})
   end
+
+  def unlock
+    _lock = repo_trans_locks[0]
+    _lock.destroy
+  end
+
+  
   
   private
   def after_create_callback

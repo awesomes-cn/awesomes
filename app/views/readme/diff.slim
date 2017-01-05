@@ -1,5 +1,5 @@
 =content_for :con
-  div.doc-title
+  div.doc-diff-title
     h4 你正在审核 #{@item.repo.name} 中文说明的提交
 
     =form_for(@item,url: "/readme/#{params[:id]}/diff.json",html:{id: 'item_form',method: 'post'}) do |item|
@@ -11,8 +11,8 @@
       a.btn.btn-primary<>[href="/readme/#{@item.id}/toggle"] #{@item.status == "UNREAD" ? "标记为已处理" : "标记为未处理"}
       a.btn.btn-danger[href="/readme/#{@item.id}/destroy" onclick="return confirm('确定删除？')"] 删除该提交
 
-  div.doc-editor
-    .markdown-wraper
+  div.doc-diff-editor
+    .markdown-wraper-diff
       .preview-wraper.unselect
         div#preview 
           =raw Diffy::Diff.new(@item.repo.about_zh, @item.about).to_s(:html_simple)

@@ -1,3 +1,32 @@
-// Place all the styles related to the readme controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.markdown-wraper-diff{
+  overflow: hidden;  height: 100%; position: relative;
+ 
+  & > div{
+      z-index: 10; position: absolute;height: 100%;top: 0;bottom: 0;border: #DDD 1px solid;
+    &.preview-wraper{
+     width: 40%; left:0; box-shadow: inset 0 1px 2px #e4e4e4; 
+     & > div{
+       overflow-y: scroll; height: 100%; padding: 10px;
+     }
+    }
+    &.editor-wraper{
+      border-left: #DDD 1px solid;width: 60%;right: 0;  box-shadow: inset 0 1px 2px #e4e4e4;
+      textarea{width: 100%; border:0 ; outline: none;height: 100%;}
+      .inner{padding: 10px; position: relative; height: 100%; }
+    }
+    &.spliter{
+      width:5px;background-color: #111;left:40%;z-index: 11;  cursor: col-resize;
+    }
+  }
+  .CodeMirror{height: 100%;}
+
+} 
+
+
+.doc-diff-editor{z-index: 10;width: 100%; height: 100%; padding-top: 75px;position: absolute; box-sizing: border-box;top:0 ;}
+.doc-diff-title{
+  padding: 5px; text-align: center;position: absolute; width: 100%; z-index: 100;
+  .btns-wrap{position: absolute;top: 10px;right: 10px;}
+  .doc-merge-btn {position: absolute;top: 10px;right: 250px;}
+  h4{display: inline-block}
+}

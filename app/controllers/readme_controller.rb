@@ -7,7 +7,10 @@ class ReadmeController < ApplicationController
   
   def new
     _repo = Repo.find(params[:rid])
+    render json: false and return if !_repo.can_be_lock? current_mem
+    
   	Readme.create({:repo_id=> _repo.id,:about=> params[:markdown],:mem_id=> current_mem.id,:old=> _repo.about_zh,:sdesc=> params[:sdesc]}) 
+    render json: true
   end
 
   def diff

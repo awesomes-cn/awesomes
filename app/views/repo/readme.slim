@@ -1,4 +1,8 @@
-=content_for :con
+=content_for :banner
+  css:
+    header,footer {
+      display: none
+    }
   -if @canbelock
     =render 'readme_editor'
   -else
@@ -12,3 +16,4 @@
       p
         a>[href="#{@item.link_url}"] << 返回
 
+  

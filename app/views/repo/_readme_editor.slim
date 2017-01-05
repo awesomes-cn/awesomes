@@ -1,56 +1,43 @@
-/ div.about-wraper
-  /   h4 你正在为 #{params[:typ]} 添加中文文档
-  /   p 请严格按照 markdown 格式书写文档，查看Demo 
-/ div.doc-title
-/   / h4
-/   /   | 你正在编辑 
-/   /   a<>[href="#{@item.link_url}"] =@item.name
-/   /   | 中文说明
-/   //p 
-/     / | 为了防止你正在编辑的内容丢失，默认加载你之前的输入，如果你是首次进入编辑文档，请手动获取最新
-/     / a#getold<>[href=""] 最新版本
-/     / | ，并在此基础上做修改
-  
-/   input#upload_pic[type="file" multiple name="filedata" data-post="/upload/pic" data-text="上传图片" data-folder="repo"  ]
-
-/   =form_for(@item,url: "/readme/new",html:{id: 'item_form',method: 'post'}) do |item|
-/     input.editor-val[type="hidden" name="markdown"]
-/     input[type="hidden" name="rid" value="#{@item.id}"]
-/     input#readme-sdesc[type="hidden" name="sdesc" value="初始化文档"]
-/     div.btns-wrap
-/       input.btn.btn-danger.open-login#sub-doc[type="button" value="提交文档"] 
-/   javascript:
-/     $(function(){
-/       $("#getold").click(function(){
-/         if(confirm("确认将最新版本加载过来？这会导致你已输入的内容被覆盖！")){
-/           markdown_editor.setValue($("#tmp-con").val());
-/         }
-/         return false;
-/       })
-/     })
-
-
-    / uplaod_form($('#upload_pic'),function(data){
-    /   markdown_editor.replaceSelection("![awesomes-cn]("+data.file_path+")");
-    / }) 
 div.doc-repo
-  a[href="#{@item.link_url}"]
+  a[href="#{@item.link_url}" target="_blank"]
     img.cover[src="#{repo_cover_base @item.cover}?x-oss-process=style/subject_repo"]
 div.doc-toolboxs
-  a.pull-left[href="javascript:void(0)"]: i.fa.fa-image
-  a.pull-left[href="javascript:void(0)"]: i.fa.fa-tv
+  a.pull-left.upload#upload_pic[href="javascript:void(0)" title="上传图片"  multiple  data-post="/upload/pic" data-folder="repo"]
+    i.fa.fa-image
 
-  a.pull-right[href="javascript:void(0)"]: i.fa.fa-save
+  a.pull-right[href="javascript:void(0)" title="{{editorView == 'code' ? '预览：空白处双击' : '代码编辑'}}"  v-on:click="switchEditorView()"]
+    i.fa.fa-desktop[v-show="editorView == 'code'"]
+    i.fa.fa-code[v-show="editorView == 'preview'"]
 
-div.doc-editor
-  =render "layouts/markdown_editor"
+  a.pull-right[href="javascript:void(0)" title="提交文档" v-on:click="openSubmitDoc()"]: i.fa.fa-save 
+
+  a.pull-right[href="javascript:void(0)" title="重置" v-on:click="resetDoc()"]: i.fa.fa-reply  
+
+div.doc-wraper
+  div.doc-editor
+    =render "layouts/markdown_editor"
+  div#doc-preview
+
+div.doc-submit-tip
+  div[v-show="docSubmitStatus == 'ready'"]
+    p 请输入本次文档提交的描述
+    div.form-group
+      input.form-control[type="text"  v-model="docSubTitle"]
+    div.alert.alert-warning 提交后将交由后台审核，不可再编辑，只能进行新的提交
+    div.form-group
+      button.btn.pull-left[v-on:click="closeSubmitDoc()"] 再编辑一下
+      button.btn.pull-right.btn-danger[v-on:click="submitDoc()"]  确认提交
+
+  div[v-show="docSubmitStatus == 'ok'"]
+    h3[style="color: #929292; margin-bottom: 20px;"] 提交成功，我们将尽快为您审核
+    h4 
+      a[href="#{@item.link_url}"] 返回该库
+      
 
 
-
-
-input#tmp-con[type="hidden" value="#{@item.about_zh.blank? ? @item.about : @item.about_zh}"]
+code#tmp-con.hide #{@item.about}
 javascript:
-
+  // 初始化赋值
   if(localStorage["markdown_readme_#{@item.id}"]){
     markdown_editor.setValue(localStorage["markdown_readme_#{@item.id}"]); 
   }
@@ -59,22 +46,81 @@ javascript:
   })
 
   if(markdown_editor.getValue() == ''){
-    markdown_editor.setValue($("#tmp-con").val());
+    markdown_editor.setValue($("#tmp-con").html());
   }
   
   $('.markdown-wraper .inner').height('auto')
+  
+  $("#doc-preview").html(marked(markdown_editor.getValue()));
+  Prism.highlightAll();
 
 
-
-  $(function(){
-    $("#sub-doc").click(function(){
-      var sdesc=prompt("请输入提交的描述","")
-      $("#readme-sdesc").val(sdesc);
-      if(sdesc!=null && sdesc!=""){
-        $("#item_form").submit();
-      }
-    })
+  
+  // 双切换预览
+  $(document).dblclick(function() {
+    App.switchEditorView()
   })
+  
+
+  $('.doc-wraper').dblclick(function(e) {
+    e.stopPropagation()
+    return false
+  })
+  
+
+  // 上传图片
+  uplaod_form_by_wraper($('#upload_pic'),function(data){
+    markdown_editor.replaceSelection("![awesomes-cn](" + data.file_path + ")");
+  }) 
+
+  vueExtend.push({
+    data: {
+      editorView: 'code',
+      docSubTitle: '初始化文档',
+      docSubmitStatus: 'ready'
+    },
+    methods: {
+      switchEditorView: function () {
+        this.editorView = (this.editorView == 'code' ? 'preview' : 'code')
+        if(this.editorView == 'code') {
+          $('.doc-wraper #doc-preview').hide()
+          $('.doc-wraper .doc-editor').show()
+        } else {
+          $('.doc-wraper .doc-editor').hide()
+          $('.doc-wraper  #doc-preview').show()
+        }
+      },
+
+      resetDoc: function () {
+        if(confirm("确认放弃当前已编辑内容，将最新版本加载过来？这会导致你已输入的内容被覆盖！")){
+          markdown_editor.setValue($("#tmp-con").html());
+        }
+        return false;
+      },
+
+      openSubmitDoc: function() {
+        $('.doc-wraper').hide()
+        $('.doc-submit-tip').show()
+      },
+
+      closeSubmitDoc: function() {
+        $('.doc-wraper').show()
+        $('.doc-submit-tip').hide()
+      },
+
+      submitDoc: function () { 
+        $.post('/readme/new', {
+          rid: #{@item.id},
+          markdown: markdown_editor.getValue(),
+          sdesc: App.docSubTitle
+        }, function () {
+          App.docSubmitStatus = 'ok'
+        })
+      }
+    }
+  })
+
+ 
 
  
  

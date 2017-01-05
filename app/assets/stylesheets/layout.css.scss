@@ -274,12 +274,7 @@ border: 0; margin: 0px 0 30px;  border-radius: 0;
        overflow-y: scroll; height: 100%; padding: 10px;
      }
     }
-    &.editor-wraper{
-      width: 60%;
-      margin: 0 auto;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid #c9d8db; 
-
+    &.editor-wraper{ 
       textarea{
         width: 100%;
         border:0 ; 
@@ -331,6 +326,14 @@ user-select: none;
   input{ display: inline-block;position: absolute; top:0;FILTER:ALPHA(opacity=0); -moz-opacity:0; opacity: 0;}
   .upbtn{
     padding: 10px 20px; display: inline-block;  background-color: rgb(14, 173, 255);color: #FFF; text-align: center;
+  }
+}
+
+.upload {
+  input[type=file] {
+    position: absolute;
+    top: 0;
+    opacity: 0;
   }
 }
 
