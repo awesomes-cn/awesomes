@@ -4,7 +4,7 @@ class Admin::HomeController < AdminController
   end
 
   def readmes
-    adminlists Readme,[:repo_id,:mem_id,:status,:sdesc,:wealth],:include => {:repo => {:only=>[:name,:id],:methods=>['alia','link_url']},:mem => {:only=>[:nc,:id]}}
+    adminlists Readme,[:repo_id,:mem_id,:status,:sdesc,:wealth,:contribute],:include => {:repo => {:only=>[:name,:id],:methods=>['alia','link_url']},:mem => {:only=>[:nc,:id]}}, :methods=> ['status_alia']
   end
 
   def repos

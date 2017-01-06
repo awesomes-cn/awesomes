@@ -9,6 +9,8 @@
         th 添加者
         th 描述
         th 添加时间 
+        th 状态
+        th 贡献
         th 奖励
         th 操作
     tbody 
@@ -18,6 +20,8 @@
         td: a[href="/mem/{{item.mem.id}}" target="_blank"] {{item.mem.nc}}
         td {{item.sdesc}}
         td {{item.created_at}}  
+        td {{item.status_alia}}
+        td {{item.contribute}}
         td {{item.wealth}}
         td
           a[href='/readme/{{item.id}}/diff'  title='']: i.fa.fa-pencil

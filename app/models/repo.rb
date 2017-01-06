@@ -53,8 +53,26 @@ class Repo < ActiveRecord::Base
   end
 
   def contributors
-    _mems = readmes.where({:status=> 'READED'}).order("id desc").pluck("mem_id")
-    Mem.find(_mems)
+    _total = readmes.where({:status=> 'READED'}).order("id desc").pluck('contribute').reduce(:+)
+
+    _result = {}
+    readmes.where({:status=> 'READED'}).order("id desc").includes(:mem).all.each do |item|
+      _result["mem#{item.mem.id}".to_sym] ||= {:mem=> item.mem, :contribute=> 0} 
+      _result["mem#{item.mem.id}".to_sym][:contribute] += item.contribute
+    end
+
+    _index = 1
+    _prevtotal = 0
+
+    return _result.map do |k, v| 
+      v[:per] = (v[:contribute]  * 1.00 / _total).round(2)
+      v[:per] = 1 - _prevtotal if _index == _result.length
+      _prevtotal += v[:per]
+      _index += 1
+      v
+    end.sort do |prevItem, nextItem| 
+      nextItem[:per] <=> prevItem[:per]
+    end
   end
 
   def cover
@@ -122,11 +140,21 @@ class Repo < ActiveRecord::Base
       _reset = Time.new - _lock.created_at
       if _reset >= 2 * 24 * 3600 
         unlock
-        return true
+        return  {status: true}
       end
     end
 
-    !lock_mem or (lock_mem && mem && lock_mem.id == mem.id)
+    if lock_mem && lock_mem.id != mem.id
+      return {status: false, tip: '当前库已经被其它小伙伴锁定编辑中<br>还有一大波其它库等着你翻译额'} 
+    end
+
+    locks = mem.repo_trans_locks.pluck('repo_id')
+    if locks.count >= 3 and !locks.include? id
+      return {status: false, tip: '你当前已锁定3个库，不能再锁定了<br>请先将已锁定的库编辑提交完成再锁定其它库'} 
+    end
+
+
+    return {status: true}
   end
 
   def lock mem 

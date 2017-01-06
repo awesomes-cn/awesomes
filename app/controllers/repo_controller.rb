@@ -28,12 +28,10 @@ class RepoController < ApplicationController
   end
 
   def readme
-    @canbelock = true
-    if @item.can_be_lock? current_mem
+    @canbelock = @item.can_be_lock? current_mem
+
+    if @canbelock[:status]
       @item.lock current_mem
-      #render :layout=> "blank"
-    else
-      @canbelock = false
     end
   	
   end

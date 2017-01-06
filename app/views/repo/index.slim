@@ -37,6 +37,17 @@
         span[v-bind:class="lang == 'zh-CN' ? 'on' : ''" v-on:click="switch('zh-CN')"] 中
         input[type="hidden" v-model="lang" value="#{@lang}"]
 
+      div.repo-contribute
+        -prevs = 0
+        -@item.contributors.each_with_index do |read, index|
+
+          div.mem-wraper
+            span.flag[style="background-color: #{contribute_color[index]}"]
+            a[href="/mem/#{read[:mem].id}"]
+              img.tx[src="#{read[:mem].avatar_url}"]
+              span #{read[:mem].nc}
+          div.bar[style="width: #{read[:per] * 100}%; left: #{prevs * 100}%; background-color: #{contribute_color[index]}"]
+          - prevs += read[:per]
 
       div[v-show="lang == 'en'"]
         =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
@@ -55,11 +66,7 @@
               p
                 | 感谢文档贡献者
                 a<[href="#{@item.link_url}/commits"] 版本历史 
-              div
-                -@item.contributors.each do |mem|
-                  a.mem-wraper<>[href="/mem/#{mem.id}"]
-                    img.tx[src="#{mem.avatar_url}"]
-                    p #{mem.nc}
+              
                  
             div.edit-footer
               p

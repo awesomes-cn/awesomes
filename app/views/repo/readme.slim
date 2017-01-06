@@ -3,16 +3,12 @@
     header,footer {
       display: none
     }
-  -if @canbelock
+  -if @canbelock[:status]
     =render 'readme_editor'
   -else
-    h4.canotlocktip
-      p
-        a>[href="#{@item.link_url}"] =@item.name
-        span 已经被
-        a<>[href="/mem/#{@item.lock_mem.id}"] =@item.lock_mem.nc
-        span 锁定编辑中
-      p 还有一大波其它库等着你翻译额
+    h4.canotlocktip[style="line-height: 30px;"]
+      p =raw @canbelock[:tip]
+      //p 还有一大波其它库等着你翻译额
       p
         a>[href="#{@item.link_url}"] << 返回
 

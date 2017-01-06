@@ -35,7 +35,7 @@ div.doc-submit-tip
       
 
 
-code#tmp-con.hide #{@item.about}
+code#tmp-con.hide #{ @item.about_zh  || @item.about}
 javascript:
   // 初始化赋值
   if(localStorage["markdown_readme_#{@item.id}"]){
@@ -125,7 +125,7 @@ javascript:
  
  
 css:
-  body{background-color: #FFF}
+  body{background-color: rgba(245, 245, 245, 0.65)}
   .CodeMirror-vscrollbar {
     display: none!important
   }

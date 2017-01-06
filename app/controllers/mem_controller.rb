@@ -55,7 +55,7 @@ class MemController < ApplicationController
 
 
   def docs
-    @items = data_list_asc @mem.readmes
+    @items = data_list @mem.readmes
     @count = @mem.readmes.count
   end
 

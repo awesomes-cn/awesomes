@@ -4,12 +4,12 @@
 
     =form_for(@item,url: "/readme/#{params[:id]}/diff.json",html:{id: 'item_form',method: 'post'}) do |item|
       input.editor-val[type="hidden" name="markdown"]
-      
-      button.btn.btn-success.doc-merge-btn[type="submit"] 合并改提交
+      input.doc-merge-btn[type="text" name="contribute" value="#{@item.compute_contribute}"]
+      button.btn.btn-success.doc-merge-btn[type="submit"] 合并该提交
 
     div.btns-wrap      
       a.btn.btn-primary<>[href="/readme/#{@item.id}/toggle"] #{@item.status == "UNREAD" ? "标记为已处理" : "标记为未处理"}
-      a.btn.btn-danger[href="/readme/#{@item.id}/destroy" onclick="return confirm('确定删除？')"] 删除该提交
+      a.btn.btn-danger[href="/readme/#{@item.id}/unpass"] 审核不通过
 
   div.doc-diff-editor
     .markdown-wraper-diff

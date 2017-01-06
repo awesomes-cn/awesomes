@@ -10,6 +10,7 @@
             i.fa.fa-angle-right<>
             a[href="#{item.repo.link_url}/diff/#{item.id}"] =item.sdesc
             span.right =item.created_at.strftime("%Y-%m-%d")
+            span.label.right[class="label-#{readme_status_label item.status}" style="margin-right: 10px;"] =item.status_alia
       div#page-mem      
   input#mem-nav[type="hidden" value="doc"]
   javascript:

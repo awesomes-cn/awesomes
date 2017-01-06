@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103080725) do
+ActiveRecord::Schema.define(version: 20170106034944) do
 
   create_table "aaa", primary_key: "name", id: :string, limit: 23, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
   end
@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(version: 20170103080725) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.float    "wealth",     limit: 24,         default: 0.0
+    t.integer  "contribute",                    default: 0
   end
 
   create_table "releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

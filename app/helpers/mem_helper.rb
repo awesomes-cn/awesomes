@@ -9,4 +9,12 @@ module MemHelper
       :vip=> t('role.senior')
     }[mem.role.to_sym]
   end
+
+  def readme_status_label status
+    {
+      :UNREAD=> 'default',
+      :READED=> 'success',
+      :UNPASS=> 'danger'
+    }[status.to_sym]
+  end
 end
