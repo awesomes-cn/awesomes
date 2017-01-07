@@ -16,7 +16,7 @@ function uplaod_form_by_wraper($wraper,callback){
 }
 
 
-function upload_change($file, upbtn, $wraper) {
+function upload_change($file, upbtn, $wraper, callback) {
   $file.change(function(){
     if($file.val() == ''){return false;}
     if(upbtn) {
