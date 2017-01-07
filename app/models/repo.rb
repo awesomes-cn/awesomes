@@ -65,8 +65,8 @@ class Repo < ActiveRecord::Base
     _prevtotal = 0
 
     return _result.map do |k, v| 
-      v[:per] = (v[:contribute]  * 1.00 / _total).round(2)
-      v[:per] = 1 - _prevtotal if _index == _result.length
+      v[:per] = (v[:contribute]  * 100 / _total).to_i
+      v[:per] = 100 - _prevtotal if _index == _result.length
       _prevtotal += v[:per]
       _index += 1
       v
