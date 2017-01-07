@@ -89,6 +89,8 @@ javascript:
           $('.doc-wraper .doc-editor').hide()
           $('.doc-wraper  #doc-preview').show()
         }
+
+        $("#doc-preview").html(marked(markdown_editor.getValue()));
       },
 
       resetDoc: function () {
