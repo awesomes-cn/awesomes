@@ -4,7 +4,7 @@ function uplaod_form($file,callback){
   $file.parent().append('<div class="upbtn"  data-loading-text="上传中...">'+$file.attr('data-text')+'</div>')
   var upbtn = $file.parent().find(".upbtn");
   $file.width(upbtn.css("width")).height(upbtn.css("height"));
-  upload_change($file, upbtn, null)
+  upload_change($file, upbtn, null, callback)
 }
 
 
@@ -12,7 +12,7 @@ function uplaod_form_by_wraper($wraper,callback){
   var $file = $('<input type="file"  name="filedata" data-post="' + $wraper.attr('data-post') + '" data-folder="' + $wraper.attr('data-folder') + '"/>')
   $file.width($wraper.css("width")).height($wraper.css("height"));
   $wraper.append($file)
-  upload_change($file, null, $wraper)
+  upload_change($file, null, $wraper, callback)
 }
 
 
