@@ -94,7 +94,7 @@ class Repo < ActiveRecord::Base
     _trend = _trend_prev ? (overall - _trend_prev.overall) / (Date.today - _trend_prev.date)  : 0
    
     _repo_trend.update_attributes({:trend=> _trend})
-    _latest_trends = repo_trends[0..5].map{|item| item.trend}
+    _latest_trends = repo_trends.order('id desc')[0..5].map{|item| item.trend}
     _latest_trend = _latest_trends.count > 0 ? _latest_trends.reduce(:+) * 1.00 / _latest_trends.count : 0
     update_attributes({:trend=> _latest_trend})
   end
