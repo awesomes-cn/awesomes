@@ -144,13 +144,17 @@ class Repo < ActiveRecord::Base
       end
     end
 
+    if readmes[0] && readmes[0].status == 'UNREAD'
+       return {status: false, code: 'HASUNREAD', tip: '当前库有未处理的中文翻译<br>稍等我们会尽快处理'} 
+    end
+
     if lock_mem && lock_mem.id != mem.id
-      return {status: false, tip: '当前库已经被其它小伙伴锁定编辑中<br>还有一大波其它库等着你翻译额'} 
+      return {status: false, code: 'OTHERLOCKED', tip: '当前库已经被其它小伙伴锁定编辑中<br>还有一大波其它库等着你翻译额'} 
     end
 
     locks = mem.repo_trans_locks.pluck('repo_id')
     if locks.count >= 3 and !locks.include? id
-      return {status: false, tip: '你当前已锁定3个库，不能再锁定了<br>请先将已锁定的库编辑提交完成再锁定其它库'} 
+      return {status: false, code: 'IHAVENO',  tip: '你当前已锁定3个库，不能再锁定了<br>请先将已锁定的库编辑提交完成再锁定其它库'} 
     end
 
 
@@ -158,7 +162,7 @@ class Repo < ActiveRecord::Base
   end
 
   def lock mem 
-    RepoTransLock.create({:mem_id=> mem.id, :repo_id=> id})
+    RepoTransLock.find_or_create_by({:mem_id=> mem.id, :repo_id=> id})
   end
 
   def unlock

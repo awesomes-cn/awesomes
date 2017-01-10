@@ -6,9 +6,18 @@
   -if @canbelock[:status]
     =render 'readme_editor'
   -else
-    h4.canotlocktip[style="line-height: 30px;"]
-      p =raw @canbelock[:tip]
-      //p 还有一大波其它库等着你翻译额
+    div.canotlocktip
+      h4[style="line-height: 30px;"]
+        p =raw @canbelock[:tip]
+      
+      -if @canbelock[:code] == 'IHAVENO'
+        ul.list-group
+          -current_mem.lockedrepos.each do |trans|
+            li.list-group-item
+              a[href="#{trans.repo.link_url}"] =trans.repo.name
+              a.pull-right[href="#{trans.repo.link_url}/unlock" title="解锁并对 #{@item.name} 进行加锁编辑"]
+                i.fa.fa-unlock
+
       p
         a>[href="#{@item.link_url}"] << 返回
 

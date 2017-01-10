@@ -109,4 +109,13 @@ class RepoController < ApplicationController
     _mids = Oper.where({:opertyp=> 'MARK',:typ=> 'REPO',:idcd=> @item.id}).limit(50).pluck('mem_id')
     @mems = Mem.where({id: _mids})
   end
+
+
+  def unlock
+    if current_mem.id != @item.lock_mem.id and session[:mem] != 1
+      render json: false and return 
+    end
+    @item.unlock
+    redirect_to request.referer
+  end
 end

@@ -46,4 +46,8 @@ class Mem < ActiveRecord::Base
     end
   end
 
+  def lockedrepos
+    repo_trans_locks.includes(:repo)
+  end
+
 end
