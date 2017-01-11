@@ -259,7 +259,11 @@
 }
 
 #doc-preview {
-  display: none
+  display: none;
+
+  img {
+    max-width: 100%
+  }
 }
 
 .doc-view-tip {

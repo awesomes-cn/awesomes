@@ -144,7 +144,7 @@ class Repo < ActiveRecord::Base
       end
     end
 
-    if readmes[0] && readmes[0].status == 'UNREAD'
+    if readmes.last && readmes.last.status == 'UNREAD'
        return {status: false, code: 'HASUNREAD', tip: '当前库有未处理的中文翻译<br>稍等我们会尽快处理'} 
     end
 

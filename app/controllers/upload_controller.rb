@@ -10,6 +10,6 @@ class UploadController < ApplicationController
     _height =  params[:height].to_i
     _file_name = get_filename(_file)
     upload_pic(_file,_file_name,_folder,_width,_height) 
-    render text: {status: true,file_path: "#{Rails.application.config.source_access_path}#{_folder}/#{_file_name}#{ENV['REPO_PIC_STYLE']}",src: _file_name}.to_json
+    render text: {status: true,file_path: "#{Rails.application.config.source_access_path}#{_folder}/#{_file_name}",src: _file_name}.to_json
   end 
 end

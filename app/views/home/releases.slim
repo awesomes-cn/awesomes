@@ -23,6 +23,6 @@
         
         a.download[href="#{item.repo.html_url}/archive/#{item.tag_name}.zip" target="_blank"] 下载ZIP
 
-        article =raw TrustHtml.sanitize(GitHub::Markdown.render item.body)
+        article =raw TrustHtml.sanitize(GitHub::Markdown.render (item.body || ''))
 
 

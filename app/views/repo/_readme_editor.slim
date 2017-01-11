@@ -91,6 +91,7 @@ javascript:
         }
 
         $("#doc-preview").html(marked(markdown_editor.getValue()));
+        $("#doc-preview table").addClass('table table-bordered table-striped')
       },
 
       resetDoc: function () {
