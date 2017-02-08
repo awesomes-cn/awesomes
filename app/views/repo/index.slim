@@ -60,11 +60,11 @@
           input[type="hidden" v-model="lang" value="#{@lang}"]
       
       div.repo-article
-        div[v-show="lang == 'en'"]
+        div.cons-inner[v-show="lang == 'en'" data-flag="en"]
           =cache "repo_en_view_#{@item.id}",skip_digest: true,:expires_in => 4.day do 
             article[v-pre] = raw GitHub::Markdown.render @item.about
 
-        div[v-show="lang != 'en'" ]
+        div.cons-inner[v-show="lang != 'en'" data-flag="zh"]
           =cache "repo_zh_view_#{@item.id}",skip_digest: true,:expires_in => 4.day
             -if !@item.about_zh.blank? 
               article[v-pre] =raw GitHub::Markdown.render @item.about_zh
@@ -125,5 +125,22 @@
   javascript:
     $(function () {
        $('.repo-article table').addClass('table table-bordered table-striped')
-    })
-  
+
+       // 格式化锚标记
+       $('.repo-article a').each(function() {
+         var _href = $(this).attr('href')
+         var _flag = $(this).closest('.cons-inner').attr('data-flag')
+         if(_href[0] == '#') {
+            $(this).attr('href', _href.replace(/#/, '#doc-' + _flag + '-'))
+            var atag = $(this)
+           
+         }
+       })
+
+       $('.repo-article').find('h1,h2,h3,h4,h5,h6').each(function(htag) {
+         var _flag = $(this).closest('.cons-inner').attr('data-flag')
+         var _txt = $(this).text().toLowerCase().replace(/\s+\/\s+/g, '--').replace(/\s+/g, '-')
+         $(this).attr('id', 'doc-' + _flag + '-' + _txt)
+       })
+
+    })  
