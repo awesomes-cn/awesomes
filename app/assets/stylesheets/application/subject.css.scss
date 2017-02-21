@@ -2,6 +2,8 @@
   //background-color: #EFEEEE;
   text-align: center;
   padding: 50px 1%;
+  position: relative;
+  color: #FFF;
 
   .sub-links{
     a{
@@ -17,6 +19,34 @@
       }
     }
   }
+
+  .bgcover, .bglayer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+  }
+
+  .bgcover {
+    z-index: -1;
+    background-color: #000;
+    opacity: 0.5
+  }
+
+  .bglayer {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    z-index: -2;
+    overflow: hidden;
+
+    canvas {
+      width: 100%!important;
+      height: auto!important
+    }
+
+  }
 }
 .home-card{
   display: block; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12); margin: 20px 0;
@@ -29,22 +59,28 @@
 }
 .card{
   margin: 0 10px;
-  display: block;   position: relative; background-color: #FFF;
+  display: block;   
+  position: relative;
+  background-color: #FFF;
   //margin-bottom: 20px;
-  background-color: #f9f9f9;
-  padding: 10px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  //background-color: #f9f9f9;
+  padding: 20px;
+  // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   border-radius: 2px;
-  border-top: #f5f5f5 1px solid;
   padding-left: 110px;
   padding-right: 80px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   margin-bottom: 10px;
-  &.active{
-    //background-color: rgba(138, 109, 59, 0.04);
+  border: #FFF 1px solid;
+
+  &:hover {
+    border-color: #EEE ;
   }
+  // &.active{
+  //   //background-color: rgba(138, 109, 59, 0.04);
+  // }
   .cover{
     height: 60px;
     position: absolute;
@@ -287,6 +323,7 @@
 .sub-repos{
   max-width: 800px;
   margin: 0 auto;
+  margin-bottom: 50px;
   h3{
     //border: #DDD 1px dashed;
     border-left: 0;
@@ -305,18 +342,27 @@
   
 }
 
+@media (min-width: 992px) {
+  .sub-repos{ 
+    margin-left: 150px;
+  }
+}
+
 .split{
     height: 20px;
   }
 .sub-nav{
   position: absolute;
   font-weight: bold;
+  height: 100%;
   
-  & > div {
-    &.active {
-      a{
-        color: Red
-      }
+  .placehold {
+    height: 30px;
+  }
+  
+  .active {
+    a{
+      color: Red
     }
   }
 

@@ -9,10 +9,10 @@ class SubjectController < ApplicationController
   def index
     @items = {}
     @repo = @item.repo
-    Repo.where("tag like ?","%#{@item.title}%").order("trend desc").all.each do |item|
+    Repo.where("tag like ?","%#{@item.title}%").order("(stargazers_count + forks_count + subscribers_count) desc").all.each do |item|
       @items[item.rootyp_zh] = @items[item.rootyp_zh] || {}
       @items[item.rootyp_zh][item.typcd_zh] = @items[item.rootyp_zh][item.typcd_zh] || []
-      @items[item.rootyp_zh][item.typcd_zh].push  item
+      @items[item.rootyp_zh][item.typcd_zh].push item
     end
   end
 

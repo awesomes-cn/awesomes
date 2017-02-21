@@ -7,18 +7,20 @@ div.sub-nav.hidden-xs.hidden-sm
     -typval.each do |typcd, val|
       div.second[data-link="#{rootyp}-#{typcd}"]
         a[href="##{rootyp}-#{typcd}"] =typcd
-  
+
+  div.placehold
 div.row.sub-repos
   -@items.each do |rootyp, typval|
     -typval.each do |typcd, val|
       div.split[id="#{rootyp}-#{typcd}"]
-      h3 #{rootyp} ● #{typcd}
+      h3
+        span[style="color: #CCC"] #{rootyp} 
+        span<>[style="color: #cacaca"] » 
+        span #{typcd}
       -val.each do |item|
-        
-        div.card.card-small[data-link="#{rootyp}-#{typcd}"]
-          a[href="#{item.link_url}"]
-            img.cover[src='#{repo_cover_base item.cover}?x-oss-process=style/subject_repo']
-            h4 =item.name
+        a.card.card-small[data-link="#{rootyp}-#{typcd}" href="#{item.link_url}"]
+          img.cover[src='#{repo_cover_base item.cover}?x-oss-process=style/subject_repo']
+          h4 =item.name
           div.sdesc =item.description_i18
           
           -_fresh = fresh item.pushed_at
@@ -58,5 +60,12 @@ javascript:
       $('.card').removeClass('active')
       $('.card[data-link=' + activeEl.id  + ']').addClass('active')
     }).scroll()
+
+
+    $(".sub-nav").mCustomScrollbar({
+      theme:"dark",
+      scrollInertia: 0,
+    });
+
 
   })

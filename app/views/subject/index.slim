@@ -9,8 +9,9 @@
 
 =content_for :banner
   div.sub-banner
-    //img.cover.blur[src="#{subject_cover_path @item.cover}"]
-    h2 #{subtitle}
+    div.bglayer[style="background-image: url('#{subject_cover_path @item.cover}')"]
+    div.bgcover
+    h2 #{subtitle} 专题
     p[style="margin: 30px 0"] #{raw subdesc}
     div.sub-links
       a[href="#{@item.website.empty? ? @repo.homepage : @item.website}"  target="_blank"]
@@ -24,7 +25,15 @@
 
   css:
     body{
-      background-color: #F8F8F8
+      background-color: #f8f9fa
+    }
+
+    .navbar  {
+      box-shadow: none
+    }
+
+    footer {
+      display: none;
     }
       
 
