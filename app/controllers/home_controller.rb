@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     @links = Link.order order: :desc
     @root_menus = Menutyp.root_menus
     @repos_count = Repo.count
-    @news = Repo.order('id desc').limit(12)
+    @news = Repo.order('id desc').limit(13)
     @trends = Repo.order('trend desc').limit(5)
     @usemems = Mem.where('`using` > 0').order('reputation desc').limit(4)
     @subjects = Subject.order('`order` desc').limit(4)
