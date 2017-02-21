@@ -36,10 +36,11 @@
 
   .bglayer {
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-attachment: fixed;
     z-index: -2;
     overflow: hidden;
+    background-position: center center;
 
     canvas {
       width: 100%!important;
