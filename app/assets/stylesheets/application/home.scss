@@ -369,6 +369,10 @@
     display: block;
     text-decoration: none;    
     margin-bottom: 20px;
+    position: relative;
+    img {
+      width: 100%;
+    }
     .remark{
       margin-top: 10px;
       color: #CECECE;
@@ -404,6 +408,13 @@
     .loading-a {
       text-decoration: none;
       color: #444
+    }
+
+    
+    .ad {
+      text-align: center;
+      color: #b3b3b3;
+      padding: 5px;
     }
   }
 

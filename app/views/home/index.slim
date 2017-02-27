@@ -85,6 +85,14 @@
               button[type="button" class="close" data-dismiss="alert" aria-label="Close"]
                 span[aria-hidden="true"] &times;
               | 订阅成功，如有问题，你可以随时取消订阅
+          
+          -if _ad = ad_tag('HOME_RIGHT')
+            div.home-rss
+              =render "layouts/ad", ad: _ad
+              div.ad
+                span 「广告区」程序员生存必需品
+            
+               
 
           a.home-rss[href="http://tool.awesomes.cn"]
             h3.text-center Awesome online tools

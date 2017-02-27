@@ -1,6 +1,5 @@
--_ad = ad_tag(position) 
+-_ad = ad || ad_tag(position) 
 -if _ad
-
   -if _ad.image.blank?
     script[type="text/html" class="position-#{position}"]
       div.ad-item =raw _ad.html
@@ -10,5 +9,5 @@
       })
   -else
     div.ad-item
-      a[href="#{_ad.link}" target="_blank"]: img.cover[src="#{access_path "ad/#{_ad.image}"}"] 
+      a[href="#{_ad.link}" target="_blank"]: img[src="#{access_path "ad/#{_ad.image}"}"] 
   
