@@ -64,15 +64,16 @@
         span.fresh[class="#{_fresh[0]}" title="更新于#{item.friendly_time}"]
 
               
-// -ad
-div.ad-wraper-1
-  div.row
-    div.col-md-6.col-sm-6
-      -if _ad = ad_tag('REPO_LIST_LEFT')
-        =render "layouts/ad", ad: _ad, position: 'REPO_LIST_LEFT'  
-    div.col-md-6.col-sm-6
-      -if _ad = ad_tag('REPO_LIST_RIGHT')
-        =render "layouts/ad", ad: _ad, position: 'REPO_LIST_RIGHT' 
+  // -ad
+  -if _adl = ad_tag('REPO_LIST_LEFT')
+    div.ad-wraper-1
+      div.ad-tip 一则纯粹的，脱离了低级趣味的「广告」
+      div.row
+        div.col-md-6.col-sm-6
+          =render "layouts/ad", ad: _adl, position: 'REPO_LIST_LEFT'  
+        div.col-md-6.col-sm-6
+          -if _adr = ad_tag('REPO_LIST_RIGHT')
+            =render "layouts/ad", ad: _adr, position: 'REPO_LIST_RIGHT' 
 
 
 div#page-repo.pagenation.pagination-lg
