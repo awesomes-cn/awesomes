@@ -67,7 +67,8 @@
   
   // ad
   div.topic-extra
-    =render "layouts/ad", position: 'SOURCE_INDEX_BOTTOM'
+    -if _ad = ad_tag('SOURCE_INDEX_BOTTOM')
+      =render "layouts/ad", ad: _ad, position: 'SOURCE_INDEX_BOTTOM'
 
   div.topic-extra
     =render "layouts/comment"

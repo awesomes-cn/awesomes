@@ -68,9 +68,11 @@
 div.ad-wraper-1
   div.row
     div.col-md-6.col-sm-6
-      =render "layouts/ad", position: 'REPO_LIST_LEFT'  
+      -if _ad = ad_tag('REPO_LIST_LEFT')
+        =render "layouts/ad", ad: _ad, position: 'REPO_LIST_LEFT'  
     div.col-md-6.col-sm-6
-      =render "layouts/ad", position: 'REPO_LIST_RIGHT' 
+      -if _ad = ad_tag('REPO_LIST_RIGHT')
+        =render "layouts/ad", ad: _ad, position: 'REPO_LIST_RIGHT' 
 
 
 div#page-repo.pagenation.pagination-lg
