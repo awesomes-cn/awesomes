@@ -130,7 +130,7 @@
        $('.repo-article a').each(function() {
          var _href = $(this).attr('href')
          var _flag = $(this).closest('.cons-inner').attr('data-flag')
-         if(_href[0] == '#') {
+         if(_href && _href[0] == '#') {
             $(this).attr('href', _href.replace(/#/, '#doc-' + _flag + '-'))
             var atag = $(this)
            
