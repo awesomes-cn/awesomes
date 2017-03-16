@@ -9,16 +9,7 @@ $(function(){
     })
   })
 
-  $("pre").each(function(){
-    var pre = $(this);
-    var _lang = pre.attr('lang');
-    if(_lang == 'html'){
-      _lang = "markup";
-    }
-    pre.find('code').attr('class',"language-"+_lang);
-  })
-
-  Prism.highlightAll();
+  hilightAll()
   
   $("article table").each(function(){
     $(this).attr('class','table');
@@ -122,4 +113,20 @@ function list_data($scope,$http,list_url,$scopeitems,$pagnation,callback){
     })
   }
   return me
+}
+
+
+
+// 高亮
+
+function hilightAll () {
+  $("pre").each(function (){
+    var pre = $(this);
+    var _lang = pre.attr('lang');
+    if(_lang == 'html'){
+      _lang = "markup";
+    }
+    pre.find('code').attr('class', "language-" + _lang)
+  })
+  Prism.highlightAll()
 }

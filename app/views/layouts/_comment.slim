@@ -37,6 +37,7 @@ div.comment-wraper
               item.isfavor = data.favors.indexOf(item.id) > -1
             })
             App.comments = data.items
+            setTimeout(hilightAll, 500)
           })
         },
         del_comment(comid, event){
@@ -105,8 +106,13 @@ div.comment-wraper
           })
         }
       }
-
     })
+
+    vueCreated.push(function () {
+      hilightAll()
+    })
+
+
 
     appInit.push(function(){
       App.initComments()

@@ -59,6 +59,10 @@
                  
             p.text-center: a.go[href="/weuse"]  =t('weuse.go_see')   
           
+          
+          a.home-rss[href="http://json.awesomes.cn"]
+            img[src="/assets/jsonon.png"]
+
           div.home-rss.home-vs
             p.text-center =t('vs.which')
             h5.text-center
@@ -71,6 +75,7 @@
               span =t('vs.view')
               a.go<>[href="/vs/10-65-447"] =t('vs.result')
               span =t('vs.suffix')
+           
 
           div.home-rss
             h4.text-center
@@ -86,12 +91,14 @@
                 span[aria-hidden="true"] &times;
               | 订阅成功，如有问题，你可以随时取消订阅
           
-          -if _ad = ad_tag('HOME_RIGHT')
-            div.home-rss
-              =render "layouts/ad", ad: _ad, position: 'HOME_RIGHT'
-              div.ad
-                span 「广告区」程序员生存必需品
+          / -if _ad = ad_tag('HOME_RIGHT')
+          /   div.home-rss
+          /     =render "layouts/ad", ad: _ad, position: 'HOME_RIGHT'
+          /     div.ad
+          /       span 「广告区」程序员生存必需品
             
+          
+
                
 
           a.home-rss[href="http://tool.awesomes.cn"]

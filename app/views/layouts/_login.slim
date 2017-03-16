@@ -68,6 +68,11 @@ div.login-wraper.modal-wraper
             })
             store.set('awesomes-vs', newStores)
           }
+        },
+        ready () {
+           _.each(vueCreated, function(func) {
+            func()
+          })
         }
       }
     
@@ -81,8 +86,16 @@ div.login-wraper.modal-wraper
           }
         })
       })
-      
 
+      var vueEvents =  {
+        
+      }
+
+      mvvmDefault = _.extend(mvvmDefault, vueEvents)
+
+     
+      
+      console.log(mvvmDefault)
       window.App = new Vue(mvvmDefault)
       _.each(appInit, function(func){
         func()
