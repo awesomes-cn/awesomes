@@ -1,5 +1,8 @@
 ### Awesomes
 
+> this code will not be maintained any more. Please check out the new version https://github.com/awesomes-cn/new-awesomes
+
+
 Source code  [awesomes.cn](http://www.awesomes.cn)
 
 why **awesomes** you can get best framwork, library tools.
